@@ -1,8 +1,12 @@
 extends Node3D
 
 @export var cellInstance: PackedScene
+@export var colors: Array[Color] = [Color("pink"), Color("red"), Color("blue")]
 
-func instantiate(position: Vector3, color: Color):
-	var bloc: Node3D = cellInstance.instantiate()
+func instantiate(position: Vector3, colorIdx: int):
+	var bloc: MeshInstance3D = cellInstance.instantiate()
 	bloc.position = position
+	var mat = StandardMaterial3D.new()
+	mat.albedo_color = colors[colorIdx]
+	bloc.material_override = mat;
 	add_child(bloc)

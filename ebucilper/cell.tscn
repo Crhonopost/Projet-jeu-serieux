@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://cvwlrxhtb30qb"]
+[gd_scene load_steps=3 format=3 uid="uid://cvwlrxhtb30qb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_14hpr"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_14hpr"]
+material = SubResource("StandardMaterial3D_14hpr")
 size = Vector3(0.8, 0.8, 0.8)
 
 [node name="Cell" type="MeshInstance3D"]
