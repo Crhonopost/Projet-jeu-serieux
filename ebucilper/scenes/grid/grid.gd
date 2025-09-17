@@ -1,8 +1,9 @@
 extends Node3D
 
+const ColorsEnum = Global.ColorsEnum
+
 
 enum OrientationsEnum  {X_POSI=0, X_NEGA=1, Z_POSI=2, Z_NEGA=3}
-enum ColorsEnum {NONE=0, RED=1, BLUE=2}
 
 var rightOrientation: Array[OrientationsEnum] = [OrientationsEnum.Z_POSI, OrientationsEnum.Z_NEGA, OrientationsEnum.X_NEGA, OrientationsEnum.X_POSI]
 var leftOrientation: Array[OrientationsEnum] = [OrientationsEnum.Z_NEGA, OrientationsEnum.Z_POSI, OrientationsEnum.X_POSI, OrientationsEnum.X_NEGA]
@@ -21,18 +22,20 @@ func _ready() -> void:
 	blocs.fill(ColorsEnum.NONE)
 	
 	
-	placeBlock(ColorsEnum.BLUE)
-	moveForward()
-	moveUp()
-	placeBlock(ColorsEnum.RED)
-	rotateLeft()
-	moveForward()
-	rotateLeft()
-	moveUp()
-	placeBlock(ColorsEnum.BLUE)
-	moveForward()
-	moveUp()
-	placeBlock(ColorsEnum.RED)
+	registerPlaceBlock(ColorsEnum.BLUE)
+	registerMoveForward()
+	registerMoveUp()
+	registerPlaceBlock(ColorsEnum.RED)
+	registerRotateLeft()
+	registerMoveForward()
+	registerRotateLeft()
+	registerMoveUp()
+	registerPlaceBlock(ColorsEnum.BLUE)
+	registerMoveForward()
+	registerMoveUp()
+	registerPlaceBlock(ColorsEnum.RED)
+	
+	processCommands()
 
 
 func posToIdx(position: Vector3i) -> int:
@@ -70,10 +73,18 @@ func rotateRight():
 
 
 var commands = []
-func registerForward():
+func registerMoveForward():
 	commands.append(func (): moveForward())
 func registerRotateLeft():
 	commands.append(func (): rotateLeft())
+func registerRotateRight():
+	commands.append(func (): rotateRight())
+func registerMoveUp():
+	commands.append(func (): moveUp())
+func registerMoveDown():
+	commands.append(func (): moveDown())
+func registerPlaceBlock(color: ColorsEnum):
+	commands.append(func (): placeBlock(color))
 
 
 func clear():

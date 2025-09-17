@@ -1,6 +1,9 @@
 extends Node3D
 
+const ColorsEnum = Global.ColorsEnum
+
 @export var cellInstance: PackedScene
+
 @export var colors: Array[Color] = [Color("pink"), Color("red"), Color("blue")]
 
 func instantiate(position: Vector3, colorIdx: int):
