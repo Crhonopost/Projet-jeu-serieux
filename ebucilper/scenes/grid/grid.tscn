@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cav7hgnw788c8" path="res://scenes/grid/grid.gd" id="1_x0e5n"]
 [ext_resource type="Script" uid="uid://dekn4sp37cmhs" path="res://scenes/grid/visualization.gd" id="2_yuyu4"]
-[ext_resource type="PackedScene" uid="uid://cvwlrxhtb30qb" path="res://cell.tscn" id="3_tjrkl"]
+[ext_resource type="PackedScene" uid="uid://cvwlrxhtb30qb" path="res://scenes/grid/cell.tscn" id="3_tjrkl"]
 
 [node name="Grid" type="Node3D"]
 script = ExtResource("1_x0e5n")
