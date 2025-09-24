@@ -39,22 +39,27 @@ func _process_transformation(delta: float):
 	# Update rotation
 	_rotation.x += -_move_speed.y * delta * ROTATE_SPEED
 	_rotation.y += -_move_speed.x * delta * ROTATE_SPEED
-	if _rotation.x < -PI/2:
-		_rotation.x = -PI/2
-	if _rotation.x > PI/2:
-		_rotation.x = PI/2
+	_rotation.x = clamp(_rotation.x, -PI/2, PI/2)
 	_move_speed = Vector2()
 	
 	# Update distance
 	_distance += _scroll_speed * delta
-	if _distance < 0:
-		_distance = 0
+	_distance = max(_distance, 0.1) # éviter les valeurs nulles
 	_scroll_speed = 0
 	
-	self.set_identity()
-	self.translate_object_local(Vector3(0,0,_distance))
-	_anchor_node.set_identity()
-	_anchor_node.transform.basis = Basis(Quaternion.from_euler(_rotation))
+	# On récupère la position du node ancre
+	var anchor_pos: Vector3 = _anchor_node.global_transform.origin
+	
+	# On crée la base de rotation depuis nos angles
+	var basis = Basis(Quaternion.from_euler(_rotation))
+	
+	# On calcule la position de la caméra
+	var offset = basis.z * _distance  # vecteur vers l'arrière de la caméra
+	var cam_pos = anchor_pos + offset
+	
+	# On met à jour la caméra
+	global_transform.origin = cam_pos
+	look_at(anchor_pos, Vector3.UP)
 
 func _input(event):
 	if event is InputEventScreenDrag:

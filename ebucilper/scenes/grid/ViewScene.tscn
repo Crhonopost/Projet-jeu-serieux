@@ -25,10 +25,9 @@ script = ExtResource("2_hg1qn")
 cellInstance = ExtResource("3_r77gd")
 
 [node name="CameraTarget" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 5, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 10, 10)
 
 [node name="OrbitCamera" type="Camera3D" parent="CameraTarget"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -5, 5.015394)
 script = ExtResource("5_r77gd")
 ZOOM_SPEED = 20.0
 ROTATE_SPEED = 1.0
