@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbyxw6eym1jvg"]
+
+[ext_resource type="Script" uid="uid://cav7hgnw788c8" path="res://scenes/grid/builder.gd" id="1_t2phr"]
+[ext_resource type="Script" uid="uid://dekn4sp37cmhs" path="res://scenes/grid/visualization.gd" id="2_1igrd"]
+[ext_resource type="PackedScene" uid="uid://cvwlrxhtb30qb" path="res://scenes/grid/cell.tscn" id="3_eb6hj"]
+
+[node name="Grid" type="Node3D"]
+script = ExtResource("1_t2phr")
+gridScale = null
+
+[node name="Visualization" type="Node3D" parent="."]
+script = ExtResource("2_1igrd")
+cellInstance = ExtResource("3_eb6hj")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5000001, 0, -0.5000001, 0.8660254, 0, 2.8846583, 2.7874491)
