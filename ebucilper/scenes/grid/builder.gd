@@ -1,57 +1,61 @@
 extends Node3D
 
+const Instruction = Global.InstructionType
+const ColorsEnum = Global.ColorsEnum
 
-@export var grid : GridResource
+var grid : GridResource
 
-enum OrientationsEnum  {X_POSI=0, X_NEGA=1, Z_POSI=2, Z_NEGA=3}
+enum OrientationsEnum  { X_POSITIVE=0, X_NEGATIVE=1, Z_POSITIVE=2, Z_NEGATIVE=3 }
+var rightOrientation: Array[OrientationsEnum] = [OrientationsEnum.Z_POSITIVE, OrientationsEnum.Z_NEGATIVE, OrientationsEnum.X_NEGATIVE, OrientationsEnum.X_POSITIVE]
+var leftOrientation: Array[OrientationsEnum] = [OrientationsEnum.Z_NEGATIVE, OrientationsEnum.Z_POSITIVE, OrientationsEnum.X_POSITIVE, OrientationsEnum.X_NEGATIVE]
 
-var rightOrientation: Array[OrientationsEnum] = [OrientationsEnum.Z_POSI, OrientationsEnum.Z_NEGA, OrientationsEnum.X_NEGA, OrientationsEnum.X_POSI]
-var leftOrientation: Array[OrientationsEnum] = [OrientationsEnum.Z_NEGA, OrientationsEnum.Z_POSI, OrientationsEnum.X_POSI, OrientationsEnum.X_NEGA]
 
-
-var cursorPosition: Vector3i
 var cursorOrientation: OrientationsEnum
+var cursorPosition: Vector3i
 
-
+var buildingTime: int
 
 func _ready() -> void:
-	grid.resize(dimmensions.x * dimmensions.y * dimmensions.z)
-	grid.fill(ColorsEnum.NONE)
-	
-	
-	registerPlaceBlock(ColorsEnum.BLUE)
-	registerMoveForward()
-	registerMoveUp()
-	registerPlaceBlock(ColorsEnum.RED)
-	registerRotateLeft()
-	registerMoveForward()
-	registerRotateLeft()
-	registerMoveUp()
-	registerPlaceBlock(ColorsEnum.BLUE)
-	registerMoveForward()
-	registerMoveUp()
-	registerPlaceBlock(ColorsEnum.RED)
-	
-	processCommands()
+	pass
 
-
-func posToIdx(position: Vector3i) -> int:
-	return position.z + position.x * dimmensions.z + position.y * dimmensions.z * dimmensions.x
+func build(instructions : Array[Instruction]) -> bool:
+	buildingTime = instructions.size()
+	for instruction in instructions:
+		var result = followInstruction(instruction)
+		if !result: return false
+	return true
+	
+func followInstruction(instruction : Instruction) -> bool:
+	var instructionResult: bool
+	match instruction:
+		Instruction.PLACE_BLOCK:
+			pass
+		Instruction.MOVE_FORWARD:
+			pass
+		Instruction.MOVE_UP:
+			pass
+		Instruction.MOVE_DOWN:
+			pass
+		Instruction.ROTATE_LEFT:
+			pass
+		Instruction.ROTATE_RIGHT:
+			pass
+	if !instructionResult:
+		return false
+	return true
 
 func placeBlock(color: ColorsEnum):
-	var cellIndex = posToIdx(cursorPosition) 
-	blocs[cellIndex] = color
-	$Visualization.instantiate(Vector3(cursorPosition) * gridScale, color)
+	grid.placeBlock(cursorPosition, color)
 
 func moveForward():
 	var vec = Vector3i(0,0,0)
-	if(cursorOrientation == OrientationsEnum.X_POSI):
+	if(cursorOrientation == OrientationsEnum.X_POSITIVE):
 		vec += Vector3i(1,0,0)
-	elif(cursorOrientation == OrientationsEnum.X_NEGA):
+	elif(cursorOrientation == OrientationsEnum.X_NEGATIVE):
 		vec -= Vector3i(1,0,0)
-	elif(cursorOrientation == OrientationsEnum.Z_POSI):
+	elif(cursorOrientation == OrientationsEnum.Z_POSITIVE):
 		vec += Vector3i(0,0,1)
-	elif(cursorOrientation == OrientationsEnum.Z_NEGA):
+	elif(cursorOrientation == OrientationsEnum.Z_NEGATIVE):
 		vec -= Vector3i(0,0,1)
 	cursorPosition += vec
 
@@ -66,30 +70,3 @@ func rotateLeft():
 	
 func rotateRight():
 	cursorOrientation = rightOrientation[cursorOrientation]
-
-
-
-var commands = []
-func registerMoveForward():
-	commands.append(func (): moveForward())
-func registerRotateLeft():
-	commands.append(func (): rotateLeft())
-func registerRotateRight():
-	commands.append(func (): rotateRight())
-func registerMoveUp():
-	commands.append(func (): moveUp())
-func registerMoveDown():
-	commands.append(func (): moveDown())
-func registerPlaceBlock(color: ColorsEnum):
-	commands.append(func (): placeBlock(color))
-
-
-func clear():
-	commands.clear()
-	var childs = $Visualization.get_children()
-	for child in childs:
-		child.queue_free()
-
-func processCommands():
-	for command in commands:
-		command.call()
