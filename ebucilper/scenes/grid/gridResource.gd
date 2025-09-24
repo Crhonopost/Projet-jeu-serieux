@@ -8,7 +8,7 @@ const ColorsEnum = Global.ColorsEnum
 
 var grid: Array[ColorsEnum]
 
-func _ready() -> void:
+func _init() -> void:
 	grid.resize(gridScale * gridScale * gridScale)
 	grid.fill(ColorsEnum.NONE)
 

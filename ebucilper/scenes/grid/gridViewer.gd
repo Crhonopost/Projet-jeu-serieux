@@ -8,9 +8,6 @@ extends Node
 
 
 func _ready() -> void:
-	
-	gridTarget.initGrid()
-	gridEditor.initGrid()
 	fillgrid(gridTarget,0.3)
 	fillgrid(gridEditor,0.3)
 	placeBlocs(gridTarget,true)
@@ -21,9 +18,9 @@ func placeBlocs(gridResource : GridResource, isTransparent : bool) :
 	for i in range (gridResource.gridScale) :
 		for j in range (gridResource.gridScale) :
 			for k in range (gridResource.gridScale) :
-				var current = gridResource.grid[i + j * gridResource.gridScale + k * gridResource.gridScale * gridResource.gridScale]
+				var current = gridResource.grid[i + k * gridResource.gridScale + j * gridResource.gridScale * gridResource.gridScale]
 				if(current != Global.ColorsEnum.NONE):
-						$Visualization.instantiate(Vector3(i,j,k),current,isTransparent);
+						$Visualization.instantiate(Vector3(i,k,j),current,isTransparent);
 
 
 func fillgrid(gridResource : GridResource, prob : float):
