@@ -1,6 +1,6 @@
 extends Node3D
 
-const InstructionType = Global.InstructionType
+const InstructionType = Instruction.InstructionType
 const ColorsEnum = Global.ColorsEnum
 
 var grid : GridResource
@@ -11,7 +11,7 @@ var leftOrientation: Array[OrientationsEnum] = [OrientationsEnum.Z_NEGATIVE, Ori
 
 var cursorOrientation: OrientationsEnum
 var cursorPosition: Vector3i
-var currentCOlor: ColorsEnum
+var currentColor: ColorsEnum
 
 var buildingTime: int
 
@@ -47,7 +47,7 @@ func followInstruction(instruction : Instruction) -> bool:
 	return true
 
 func placeBlock():
-	grid.placeBlock(cursorPosition, currentCOlor)
+	grid.placeBlock(cursorPosition, currentColor)
 
 func moveForward():
 	var vec = Vector3i(0,0,0)
@@ -74,4 +74,4 @@ func rotateRight():
 	cursorOrientation = rightOrientation[cursorOrientation]
 	
 func changeColor(color: String):
-	cursorOrientation = rightOrientation[cursorOrientation]
+	currentColor = ColorsEnum[color]
