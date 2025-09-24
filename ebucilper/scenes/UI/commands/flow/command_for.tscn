@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjv8urfgdxgo5"]
+
+[ext_resource type="Script" uid="uid://thaoj3iidrcp" path="res://scenes/UI/commands/flow/command_for.gd" id="1_hlrc6"]
+
+[node name="CommandFor" type="Control"]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 648.0
+grow_horizontal = 2
+script = ExtResource("1_hlrc6")
+
+[node name="Flow" type="VBoxContainer" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Count" type="SpinBox" parent="Flow"]
+layout_mode = 2
+min_value = 1.0
+max_value = 999.0
+value = 1.0
+rounded = true
+
+[node name="Add" type="Button" parent="Flow"]
+layout_mode = 2
+text = "Add"
+
+[node name="Instructions" type="VBoxContainer" parent="Flow"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="value_changed" from="Flow/Count" to="." method="_on_count_value_changed"]
+[connection signal="pressed" from="Flow/Add" to="." method="_on_add_pressed"]

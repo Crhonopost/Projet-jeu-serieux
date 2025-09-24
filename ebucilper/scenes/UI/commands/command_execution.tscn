@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6dr2w76yksl4"]
+
+[ext_resource type="Script" uid="uid://btkh4v5ptb3a2" path="res://scenes/UI/commands/command_execution.gd" id="1_hhaww"]
+
+[node name="CommandExecution" type="Control"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+script = ExtResource("1_hhaww")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/VBox"]
+layout_mode = 2
+text = "Instruction type"
+
+[node name="ShowTypes" type="Button" parent="HBoxContainer/VBox"]
+layout_mode = 2
+text = "Change type"
+
+[node name="ExecuctionTypes" type="VBoxContainer" parent="HBoxContainer/VBox"]
+layout_mode = 2
+
+[node name="Delete" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Delete"
+
+[connection signal="pressed" from="HBoxContainer/VBox/ShowTypes" to="." method="_on_show_types_pressed"]
+[connection signal="pressed" from="HBoxContainer/Delete" to="." method="_on_delete_pressed"]
