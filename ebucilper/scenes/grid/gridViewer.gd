@@ -8,8 +8,8 @@ extends Node
 
 
 func _ready() -> void:
-	fillgrid(gridTarget,0.3)
-	fillgrid(gridEditor,0.3)
+	fillgrid(gridTarget,0.05)
+	fillgrid(gridEditor,0.05)
 	placeBlocs(gridTarget,true)
 	placeBlocs(gridEditor, false)
 
