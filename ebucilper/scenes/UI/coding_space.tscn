@@ -65,7 +65,9 @@ entryInstruction = SubResource("Resource_a6itc")
 script = ExtResource("2_bwyhw")
 
 [node name="EntryPoint" parent="." instance=ExtResource("6_r5p2t")]
-layout_mode = 1
+layout_mode = 0
+offset_right = 0.0
+offset_bottom = 0.0
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1
