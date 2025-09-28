@@ -16,6 +16,7 @@ var currentColor: ColorsEnum
 var buildingTime: int
 
 func _ready() -> void:
+	currentColor = Global.ColorsEnum.RED
 	pass
 
 func build(instructions : Array[Instruction]) -> bool:
@@ -26,7 +27,7 @@ func build(instructions : Array[Instruction]) -> bool:
 	return true
 	
 func followInstruction(instruction : Instruction) -> bool:
-	var instructionResult: bool
+	var instructionResult: bool = true
 	match instruction.action:
 		InstructionType.PLACE_BLOCK:
 			placeBlock()
@@ -42,9 +43,10 @@ func followInstruction(instruction : Instruction) -> bool:
 			rotateRight()
 		InstructionType.CHANGE_COLOR:
 			changeColor(instruction.arguments["color"])
-	if !instructionResult:
-		return false
-	return true
+		_:
+			printerr("Unknown instruction type")
+			instructionResult = false
+	return instructionResult
 
 func placeBlock():
 	grid.placeBlock(cursorPosition, currentColor)
