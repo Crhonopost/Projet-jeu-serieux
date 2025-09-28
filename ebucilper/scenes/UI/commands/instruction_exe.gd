@@ -4,6 +4,8 @@ extends Control
 
 @onready var typeLabel: Label = $HBoxContainer/Type
 
+signal exitCode
+
 var childsInstances : Array[Node] = []
 
 func _ready():
@@ -13,11 +15,17 @@ func retrieveCommand() -> Array[Instruction.InstructionType]:
 	return []
 
 func _on_delete_pressed() -> void:
-	queue_free()
+	emit_signal("exitCode")
 
 func buildFromResource():
 	if(!instructionResource): return
-	for child in childsInstances:
-		child.queue_free()
 	
 	typeLabel.text = instructionResource.getName()
+
+
+func _get_drag_data(at_position: Vector2) -> Variant:
+	var title: Label = Label.new()
+	title.text = instructionResource.getName()
+	set_drag_preview(title)
+	emit_signal("exitCode")
+	return instructionResource

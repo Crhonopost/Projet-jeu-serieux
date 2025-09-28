@@ -13,6 +13,10 @@ extends Node
 	# placeBlocs(gridTarget,true)
 	# placeBlocs(gridEditor, false)
 
+func clearEditor():
+	gridEditor.clear()
+	$Visualization.clear()
+	placeBlocs(gridTarget, true)
 
 func placeBlocs(gridResource : GridResource, isTransparent : bool) :
 	for i in range (gridResource.gridScale) :
@@ -20,7 +24,7 @@ func placeBlocs(gridResource : GridResource, isTransparent : bool) :
 			for k in range (gridResource.gridScale) :
 				var current = gridResource.grid[i + k * gridResource.gridScale + j * gridResource.gridScale * gridResource.gridScale]
 				if(current != Global.ColorsEnum.NONE):
-						$Visualization.instantiate(Vector3(i,k,j),current,isTransparent);
+					$Visualization.instantiate(Vector3(i,k,j),current,isTransparent);
 
 
 func fillgrid(gridResource : GridResource, prob : float):

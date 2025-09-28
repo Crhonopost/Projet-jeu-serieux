@@ -1,9 +1,12 @@
 extends Control
 
 @onready var builder = $SubViewportContainer/SubViewport/Builder
+@onready var gridView = $SubViewportContainer/SubViewport/Grid
 
 func _on_coding_space_launch() -> void:
 	var instructions = $CodingSpace.retrieveInstructions()
-	builder.grid = $SubViewportContainer/SubViewport/Grid.gridEditor
+	gridView.clearEditor()
+	builder.grid = gridView.gridEditor
+	builder.resetState()
 	builder.build(instructions)
-	$SubViewportContainer/SubViewport/Grid.placeBlocs(builder.grid, false)
+	gridView.placeBlocs(builder.grid, false)

@@ -21,3 +21,6 @@ func placeBlock(position: Vector3i, color : ColorsEnum) -> bool :
 
 func positionToIndex(position: Vector3i) -> int :
 	return position.x + position.y * gridScale + position.z * gridScale * gridScale
+
+func clear() -> void:
+	grid.fill(ColorsEnum.NONE)

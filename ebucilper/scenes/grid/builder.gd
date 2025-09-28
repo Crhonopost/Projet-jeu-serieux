@@ -16,8 +16,12 @@ var currentColor: ColorsEnum
 var buildingTime: int
 
 func _ready() -> void:
-	currentColor = Global.ColorsEnum.RED
-	pass
+	resetState()
+
+func resetState() -> void:
+	cursorOrientation = OrientationsEnum.Z_POSITIVE
+	cursorPosition = Vector3i.ZERO
+	currentColor = ColorsEnum.RED
 
 func build(instructions : Array[Instruction]) -> bool:
 	buildingTime = instructions.size()

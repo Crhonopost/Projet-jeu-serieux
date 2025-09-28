@@ -13,3 +13,7 @@ func instantiate(position: Vector3, colorIdx: int , isTransparent := false):
 	mat.albedo_color = colors[colorIdx]
 	bloc.material_override = mat;
 	add_child(bloc)
+
+func clear():
+	for child in get_children():
+		child.queue_free()

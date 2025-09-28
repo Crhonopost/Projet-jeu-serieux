@@ -22,14 +22,14 @@ grow_vertical = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
+[node name="Delete" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Delete"
+
 [node name="Type" type="Label" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Type"
-
-[node name="Delete" type="Button" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Delete"
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -37,3 +37,5 @@ theme_override_constants/margin_left = 50
 
 [node name="SubInstructions" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
 layout_mode = 2
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Delete" to="." method="_on_delete_pressed"]
