@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://waw005kjj8fv"]
+
+[ext_resource type="Script" uid="uid://d87qkimg17no" path="res://scenes/UI/instruction_item.gd" id="1_bnymg"]
+
+[node name="InstructionItem" type="PanelContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_bnymg")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "For"

@@ -26,3 +26,10 @@ func refreshUI():
 		var instance = InstructionVisualBuilder.instantiate(instructionResource.childs[childIt])
 		instructionList.add_child(instance)
 		childIt += 1
+
+func _drop_data(at_position: Vector2, data: Variant) -> void:
+	instructionResource.childs.append(data)
+	refreshUI()
+
+func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
+	return true
