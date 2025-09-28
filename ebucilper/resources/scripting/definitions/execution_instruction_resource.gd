@@ -1,6 +1,6 @@
 class_name ExecutionInstructionResource extends InstructionResource
 
-const InstructionType = Global.InstructionType
+const InstructionType = Instruction.InstructionType
 var INSTRUCTION_NAMES = {
 	InstructionType.PLACE_BLOCK: "PLACE_BLOCK",
 	InstructionType.MOVE_FORWARD: "MOVE_FORWARD",
@@ -13,4 +13,4 @@ var INSTRUCTION_NAMES = {
 @export var type: InstructionType
 
 func getName() -> String:
-    return INSTRUCTION_NAMES[type]
+	return INSTRUCTION_NAMES[type]

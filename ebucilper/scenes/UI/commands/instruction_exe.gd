@@ -6,14 +6,12 @@ extends Node2D
 @onready var typeLabel: Label = $SubViewport/Control/HBoxContainer/Type
 @onready var viewport: Viewport = $SubViewport
 
-@onready var instructionExeScene : PackedScene = load("res://scenes/UI/commands/instruction_exe.tscn")
-
 var childsInstances : Array[Node] = []
 
 func _ready():
 	buildFromResource()
 
-func retrieveCommand() -> Array[Global.InstructionType]:
+func retrieveCommand() -> Array[Instruction.InstructionType]:
 	return []
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -36,9 +34,10 @@ func buildFromResource():
 	if(instructionResource is FlowInstructionResource):
 		var childIt = 0
 		while(childIt < instructionResource.childs.size()):
-			var instance = instructionExeScene.instantiate()
-			instance.instructionResource = instructionResource.childs[childIt]
-			childsInstances.append(instance)
+			var instance = InstructionVisualBuilder.instantiate(instructionResource.childs[childIt])
 			instance.translate(Vector2(50, (childIt + 1) * 50))
+
 			add_child(instance)
+			childsInstances.append(instance)
+
 			childIt += 1

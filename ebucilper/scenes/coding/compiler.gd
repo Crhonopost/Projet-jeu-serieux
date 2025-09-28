@@ -1,6 +1,6 @@
 extends  Node
 
-const InstructionType = Global.InstructionType
+const InstructionType = Instruction.InstructionType
 
 func processInstructions(entryPoint: InstructionResource) -> Array[InstructionType]:
     var res : Array[InstructionType]

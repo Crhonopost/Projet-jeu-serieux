@@ -1,6 +1,6 @@
 extends Control
 
-const InstructionType = Global.InstructionType
+const InstructionType = Instruction.InstructionType
 
 signal instructionChanged(InstructionType)
 

@@ -15,5 +15,5 @@ func _ready() -> void:
 func _on_button_pressed() -> void:
 	emit_signal("launch")
 
-func retrieveInstructions() -> Array[Global.InstructionType]:
+func retrieveInstructions() -> Array[Instruction.InstructionType]:
 	return compiler.processInstructions(entryPoint.instructionResource)
