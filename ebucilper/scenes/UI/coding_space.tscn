@@ -1,7 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://c2i2xc75qwiwp"]
+[gd_scene load_steps=11 format=3 uid="uid://c2i2xc75qwiwp"]
 
 [ext_resource type="Script" uid="uid://b678kr1glpsrl" path="res://scenes/UI/coding_space.gd" id="1_25lkw"]
-[ext_resource type="PackedScene" uid="uid://cjv8urfgdxgo5" path="res://scenes/UI/commands/flow/command_for.tscn" id="2_bwyhw"]
+[ext_resource type="Script" uid="uid://bulv0feibbce" path="res://scenes/coding/compiler.gd" id="2_bwyhw"]
+[ext_resource type="Script" uid="uid://bqe45dm5wyip4" path="res://resources/scripting/definitions/instruction_resource.gd" id="2_fn0c8"]
+[ext_resource type="PackedScene" uid="uid://bbavicoatjdec" path="res://scenes/UI/commands/instruction_exe.tscn" id="3_3v25e"]
+[ext_resource type="Script" uid="uid://cyysoo4jhjpub" path="res://resources/scripting/definitions/execution_instruction_resource.gd" id="3_a6itc"]
+[ext_resource type="Script" uid="uid://cioni3f13iu1e" path="res://resources/scripting/definitions/for_instruction_resource.gd" id="3_r5p2t"]
+
+[sub_resource type="Resource" id="Resource_vjcr8"]
+script = ExtResource("3_a6itc")
+metadata/_custom_type_script = "uid://cyysoo4jhjpub"
+
+[sub_resource type="Resource" id="Resource_r5p2t"]
+script = ExtResource("3_a6itc")
+type = 1
+metadata/_custom_type_script = "uid://cyysoo4jhjpub"
+
+[sub_resource type="Resource" id="Resource_f75ky"]
+script = ExtResource("3_a6itc")
+metadata/_custom_type_script = "uid://cyysoo4jhjpub"
+
+[sub_resource type="Resource" id="Resource_a6itc"]
+script = ExtResource("3_r5p2t")
+iterationCount = 3
+childs = Array[ExtResource("2_fn0c8")]([SubResource("Resource_vjcr8"), SubResource("Resource_r5p2t"), SubResource("Resource_f75ky")])
+metadata/_custom_type_script = "uid://cioni3f13iu1e"
 
 [node name="CodingSpace" type="Control"]
 layout_mode = 3
@@ -11,26 +34,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_25lkw")
+entryInstruction = SubResource("Resource_a6itc")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Compiler" type="Node" parent="."]
+script = ExtResource("2_bwyhw")
+
+[node name="EntryPoint" parent="." instance=ExtResource("3_3v25e")]
+
+[node name="Button" type="Button" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 2
+anchor_top = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_top = -32.0
+offset_right = 41.0
+offset_bottom = -1.0
+grow_vertical = 0
+text = "Launch"
 
-[node name="Execute" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Execute"
-
-[node name="Commands" type="VBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="CommandFor" parent="VBoxContainer/Commands" instance=ExtResource("2_bwyhw")]
-custom_minimum_size = Vector2(0, 86.805)
-layout_mode = 2
-size_flags_vertical = 0
-
-[connection signal="pressed" from="VBoxContainer/Execute" to="." method="_on_execute_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

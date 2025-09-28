@@ -1,9 +1,19 @@
 extends Control
 
+@onready var compiler := $Compiler 
+@onready var entryPoint := $EntryPoint
 
-func _on_execute_pressed() -> void:
-	var res: Array[Global.InstructionType]
-	for child in $VBoxContainer/Commands.get_children():
-		res.append_array(child.retrieveCommand())
-	
-	print(res)
+@export var entryInstruction : FlowInstructionResource
+
+signal launch
+
+func _ready() -> void:
+	entryPoint.instructionResource = entryInstruction
+	entryPoint.buildFromResource()
+
+
+func _on_button_pressed() -> void:
+	emit_signal("launch")
+
+func retrieveInstructions() -> Array[Global.InstructionType]:
+	return compiler.processInstructions(entryPoint.instructionResource)
