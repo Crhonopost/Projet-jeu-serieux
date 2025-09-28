@@ -1,43 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://bbavicoatjdec"]
+[gd_scene load_steps=2 format=3 uid="uid://bbavicoatjdec"]
 
 [ext_resource type="Script" uid="uid://dklvussic3lxx" path="res://scenes/UI/commands/instruction_exe.gd" id="1_dfbn3"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_47gub"]
-viewport_path = NodePath("SubViewport")
-
-[node name="InstructionExe" type="Node2D"]
+[node name="InstructionExe" type="Control"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 50.0
 script = ExtResource("1_dfbn3")
 
-[node name="Control" type="Sprite2D" parent="."]
-texture = SubResource("ViewportTexture_47gub")
-centered = false
-
-[node name="SubViewport" type="SubViewport" parent="."]
-handle_input_locally = false
-size = Vector2i(512, 100)
-
-[node name="Control" type="Control" parent="SubViewport"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="SubViewport/Control"]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 31.0
+offset_bottom = 50.0
 grow_horizontal = 2
 
-[node name="Type" type="Label" parent="SubViewport/Control/HBoxContainer"]
+[node name="Type" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Type"
 
-[node name="Delete" type="Button" parent="SubViewport/Control/HBoxContainer"]
+[node name="Delete" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 text = "Delete"
-
-[connection signal="pressed" from="SubViewport/Control/HBoxContainer/Delete" to="." method="_on_delete_pressed"]

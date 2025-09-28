@@ -1,11 +1,17 @@
 extends Node
 
 @onready var exeInstructionScene : PackedScene = load("res://scenes/UI/commands/instruction_exe.tscn")
+@onready var forInstructionScene : PackedScene = load("res://scenes/UI/commands/instruction_flow.tscn")
 
-func instantiate(instruction: InstructionResource) -> Node2D:
+func instantiate(instruction: InstructionResource) -> Control:
+	var instance = Control.new()
 	if(instruction is ExecutionInstructionResource):
-		var instance = exeInstructionScene.instantiate()
-		instance.instructionResource = instruction
-		return instance
+		instance = exeInstructionScene.instantiate()
+	elif(instruction is ForInstructionResource):
+		instance = forInstructionScene.instantiate()
 	else:
-		return Node2D.new()
+		printerr("Can't build instruction UI")
+		return instance
+	
+	instance.instructionResource = instruction
+	return instance

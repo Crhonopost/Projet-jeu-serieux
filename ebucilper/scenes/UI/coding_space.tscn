@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://b678kr1glpsrl" path="res://scenes/UI/coding_space.gd" id="1_25lkw"]
 [ext_resource type="Script" uid="uid://bulv0feibbce" path="res://scenes/coding/compiler.gd" id="2_bwyhw"]
 [ext_resource type="Script" uid="uid://bqe45dm5wyip4" path="res://resources/scripting/definitions/instruction_resource.gd" id="2_fn0c8"]
-[ext_resource type="PackedScene" uid="uid://bbavicoatjdec" path="res://scenes/UI/commands/instruction_exe.tscn" id="3_3v25e"]
 [ext_resource type="Script" uid="uid://cyysoo4jhjpub" path="res://resources/scripting/definitions/execution_instruction_resource.gd" id="3_a6itc"]
 [ext_resource type="Script" uid="uid://cioni3f13iu1e" path="res://resources/scripting/definitions/for_instruction_resource.gd" id="3_r5p2t"]
+[ext_resource type="PackedScene" uid="uid://ccvogvottrj2u" path="res://scenes/UI/commands/instruction_flow.tscn" id="6_r5p2t"]
 
 [sub_resource type="Resource" id="Resource_vjcr8"]
 script = ExtResource("3_a6itc")
@@ -35,7 +35,8 @@ entryInstruction = SubResource("Resource_a6itc")
 [node name="Compiler" type="Node" parent="."]
 script = ExtResource("2_bwyhw")
 
-[node name="EntryPoint" parent="." instance=ExtResource("3_3v25e")]
+[node name="EntryPoint" parent="." instance=ExtResource("6_r5p2t")]
+layout_mode = 1
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1

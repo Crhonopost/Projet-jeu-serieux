@@ -9,7 +9,7 @@ signal launch
 
 func _ready() -> void:
 	entryPoint.instructionResource = entryInstruction
-	entryPoint.buildFromResource()
+	entryPoint.refreshUI()
 
 
 func _on_button_pressed() -> void:
