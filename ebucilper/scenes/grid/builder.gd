@@ -60,6 +60,10 @@ func followInstruction(instruction : Instruction) -> bool:
 			jumpIf(instruction.arguments["jump_index"], instruction.arguments["variable_a"], instruction.arguments["variable_b"], instruction.arguments["comparator"], false)
 		InstructionType.JUMP_IF_NOT:
 			jumpIf(instruction.arguments["jump_index"], instruction.arguments["variable_a"], instruction.arguments["variable_b"], instruction.arguments["comparator"], true)
+		InstructionType.CREATE_VAR:
+			createVariable(instruction.arguments["variable_name"])
+		InstructionType.UPDATE_VAR:
+			updateVariable(instruction.arguments["variable_name"], instruction.arguments["operations"])
 		_:
 			printerr("Unknown instruction type")
 			instructionResult = false
@@ -120,4 +124,23 @@ func jumpIf(idx: int, variableA: Variant, variableB: Variant, comparator: Instru
 	if( (negation && !comparison) || 
 		(!negation && comparison)):
 		instructionIdx = idx
-	
+
+func createVariable(name: String):
+	runtimeVariables["String"] = null
+
+func executeCalcul(operation: Dictionary):
+	if(operation.has("variable")):
+		return extractVar(operation["variable"])
+	else:
+		var a = executeCalcul(operation["operation_1"])
+		var b = executeCalcul(operation["operation_2"])
+		match operation["operator"]:
+			Instruction.Operators.ADD:
+				return a + b
+			Instruction.Operators.SUB:
+				return a - b
+			Instruction.Operators.MULT:
+				return a * b
+
+func updateVariable(name: String, operations: Dictionary):
+	runtimeVariables[name] = executeCalcul(operations)

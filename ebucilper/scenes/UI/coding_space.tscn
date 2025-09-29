@@ -12,8 +12,8 @@
 [sub_resource type="Resource" id="Resource_iduvy"]
 script = ExtResource("3_vjcr8")
 variableA = "test"
-variableB = 20
 comparator = 1
+variableB = 20
 metadata/_custom_type_script = "uid://bir504d7dlwrt"
 
 [sub_resource type="Resource" id="Resource_a6itc"]
