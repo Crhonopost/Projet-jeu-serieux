@@ -24,4 +24,15 @@ text = "Delete"
 layout_mode = 2
 text = "Type"
 
+[node name="VariableCreation" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Name" type="LineEdit" parent="HBoxContainer/VariableCreation"]
+layout_mode = 2
+
+[node name="InitialValue" type="LineEdit" parent="HBoxContainer/VariableCreation"]
+layout_mode = 2
+
 [connection signal="pressed" from="HBoxContainer/Delete" to="." method="_on_delete_pressed"]
+[connection signal="text_changed" from="HBoxContainer/VariableCreation/Name" to="." method="_on_create_var_name_input_text_changed"]
+[connection signal="text_changed" from="HBoxContainer/VariableCreation/InitialValue" to="." method="_on_initial_value_text_changed"]

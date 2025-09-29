@@ -6,7 +6,6 @@ extends Control
 
 signal exitCode
 
-var childsInstances : Array[Node] = []
 
 func _ready():
 	buildFromResource()
@@ -21,6 +20,11 @@ func buildFromResource():
 	if(!instructionResource): return
 	
 	typeLabel.text = instructionResource.getName()
+	
+	if instructionResource.type == Instruction.InstructionType.CREATE_VAR:
+		$HBoxContainer/VariableCreation.visible = true
+	else: 
+		$HBoxContainer/VariableCreation.visible = false
 
 
 func _get_drag_data(at_position: Vector2) -> Variant:
@@ -29,3 +33,11 @@ func _get_drag_data(at_position: Vector2) -> Variant:
 	set_drag_preview(title)
 	emit_signal("exitCode")
 	return instructionResource
+
+
+func _on_create_var_name_input_text_changed(new_text: String) -> void:
+	instructionResource.arguments["variable_name"] = new_text
+
+
+func _on_initial_value_text_changed(new_text: String) -> void:
+	instructionResource.arguments["operations"] = {"variable" : int(new_text)}

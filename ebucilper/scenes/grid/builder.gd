@@ -61,7 +61,7 @@ func followInstruction(instruction : Instruction) -> bool:
 		InstructionType.JUMP_IF_NOT:
 			jumpIf(instruction.arguments["jump_index"], instruction.arguments["variable_a"], instruction.arguments["variable_b"], instruction.arguments["comparator"], true)
 		InstructionType.CREATE_VAR:
-			createVariable(instruction.arguments["variable_name"])
+			createVariable(instruction.arguments["variable_name"], instruction.arguments["operations"])
 		InstructionType.UPDATE_VAR:
 			updateVariable(instruction.arguments["variable_name"], instruction.arguments["operations"])
 		_:
@@ -125,9 +125,6 @@ func jumpIf(idx: int, variableA: Variant, variableB: Variant, comparator: Instru
 		(!negation && comparison)):
 		instructionIdx = idx
 
-func createVariable(name: String):
-	runtimeVariables["String"] = null
-
 func executeCalcul(operation: Dictionary):
 	if(operation.has("variable")):
 		return extractVar(operation["variable"])
@@ -142,5 +139,9 @@ func executeCalcul(operation: Dictionary):
 			Instruction.Operators.MULT:
 				return a * b
 
+func createVariable(name: String, operations: Dictionary):
+	runtimeVariables[name] = executeCalcul(operations)
+
 func updateVariable(name: String, operations: Dictionary):
+	if(!runtimeVariables.has(name)): return false
 	runtimeVariables[name] = executeCalcul(operations)
