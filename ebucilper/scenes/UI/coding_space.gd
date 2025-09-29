@@ -16,4 +16,4 @@ func _on_button_pressed() -> void:
 	emit_signal("launch")
 
 func retrieveInstructions() -> Array[Instruction]:
-	return compiler.processInstructions(entryPoint.instructionResource)
+	return compiler.processInstructions(entryPoint.instructionResource, 0)

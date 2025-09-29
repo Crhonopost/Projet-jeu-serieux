@@ -5,22 +5,20 @@
 [ext_resource type="Script" uid="uid://bqe45dm5wyip4" path="res://resources/scripting/definitions/instruction_resource.gd" id="2_fn0c8"]
 [ext_resource type="Script" uid="uid://cyysoo4jhjpub" path="res://resources/scripting/definitions/execution_instruction_resource.gd" id="3_a6itc"]
 [ext_resource type="Script" uid="uid://cioni3f13iu1e" path="res://resources/scripting/definitions/for_instruction_resource.gd" id="3_r5p2t"]
+[ext_resource type="Script" uid="uid://bir504d7dlwrt" path="res://resources/scripting/definitions/condition_resource.gd" id="3_vjcr8"]
 [ext_resource type="PackedScene" uid="uid://ccvogvottrj2u" path="res://scenes/UI/commands/instruction_flow.tscn" id="6_r5p2t"]
 [ext_resource type="Script" uid="uid://d1ynh7ys7iaab" path="res://scenes/UI/inventory.gd" id="7_a6itc"]
 
-[sub_resource type="Resource" id="Resource_vjcr8"]
-script = ExtResource("3_a6itc")
-metadata/_custom_type_script = "uid://cyysoo4jhjpub"
-
-[sub_resource type="Resource" id="Resource_r5p2t"]
-script = ExtResource("3_a6itc")
-type = 2
-metadata/_custom_type_script = "uid://cyysoo4jhjpub"
+[sub_resource type="Resource" id="Resource_iduvy"]
+script = ExtResource("3_vjcr8")
+variableA = "test"
+variableB = 20
+comparator = 1
+metadata/_custom_type_script = "uid://bir504d7dlwrt"
 
 [sub_resource type="Resource" id="Resource_a6itc"]
 script = ExtResource("3_r5p2t")
-iterationCount = 9
-childs = Array[ExtResource("2_fn0c8")]([SubResource("Resource_vjcr8"), SubResource("Resource_r5p2t")])
+condition = SubResource("Resource_iduvy")
 metadata/_custom_type_script = "uid://cioni3f13iu1e"
 
 [sub_resource type="Resource" id="Resource_f75ky"]
@@ -67,7 +65,6 @@ script = ExtResource("2_bwyhw")
 [node name="EntryPoint" parent="." instance=ExtResource("6_r5p2t")]
 layout_mode = 0
 offset_right = 0.0
-offset_bottom = 0.0
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1

@@ -11,6 +11,7 @@ var INSTRUCTION_NAMES = {
 }
 
 @export var type: InstructionType
+@export var arguments: Dictionary
 
 func getName() -> String:
 	return INSTRUCTION_NAMES[type]

@@ -5,6 +5,9 @@ class_name InstructionFlowUI extends Control
 @onready var typeLabel: Label = $VBoxContainer/HBoxContainer/Type
 @onready var header: HBoxContainer = $VBoxContainer/HBoxContainer
 @onready var instructionList: VBoxContainer = $VBoxContainer/MarginContainer/SubInstructions
+@onready var conditionList: VBoxContainer = $VBoxContainer/HBoxContainer/Conditions
+
+@onready var conditionScene: PackedScene = load("res://scenes/UI/commands/condition.tscn")
 
 signal exitCode
 
@@ -21,6 +24,13 @@ func refreshUI():
 	if(!instructionResource): return
 	for child in instructionList.get_children():
 		child.queue_free()
+	
+	for child in conditionList.get_children():
+		child.queue_free()
+	
+	var conditionInstance = conditionScene.instantiate()
+	conditionInstance.condition = instructionResource.condition
+	conditionList.add_child(conditionInstance)
 	
 	typeLabel.text = instructionResource.getName()
 	var childIt = 0

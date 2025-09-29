@@ -12,8 +12,9 @@ var leftOrientation: Array[OrientationsEnum] = [OrientationsEnum.Z_NEGATIVE, Ori
 var cursorOrientation: OrientationsEnum
 var cursorPosition: Vector3i
 var currentColor: ColorsEnum
-
+var instructionIdx: int
 var buildingTime: int
+var runtimeVariables: Dictionary
 
 func _ready() -> void:
 	resetState()
@@ -22,12 +23,18 @@ func resetState() -> void:
 	cursorOrientation = OrientationsEnum.Z_POSITIVE
 	cursorPosition = Vector3i.ZERO
 	currentColor = ColorsEnum.RED
+	instructionIdx = 0
+	runtimeVariables.clear()
+	runtimeVariables["test"] = 0
 
 func build(instructions : Array[Instruction]) -> bool:
 	buildingTime = instructions.size()
-	for instruction in instructions:
+	while instructionIdx<instructions.size():
+		var instruction := instructions[instructionIdx]
+		instructionIdx += 1
 		var result = followInstruction(instruction)
 		if !result: return false
+		runtimeVariables["test"] += 1
 	return true
 	
 func followInstruction(instruction : Instruction) -> bool:
@@ -47,6 +54,12 @@ func followInstruction(instruction : Instruction) -> bool:
 			rotateRight()
 		InstructionType.CHANGE_COLOR:
 			changeColor(instruction.arguments["color"])
+		InstructionType.JUMP:
+			jump(instruction.arguments["jump_index"])
+		InstructionType.JUMP_IF:
+			jumpIf(instruction.arguments["jump_index"], instruction.arguments["variable_a"], instruction.arguments["variable_b"], instruction.arguments["comparator"], false)
+		InstructionType.JUMP_IF_NOT:
+			jumpIf(instruction.arguments["jump_index"], instruction.arguments["variable_a"], instruction.arguments["variable_b"], instruction.arguments["comparator"], true)
 		_:
 			printerr("Unknown instruction type")
 			instructionResult = false
@@ -81,3 +94,30 @@ func rotateRight():
 	
 func changeColor(color: String):
 	currentColor = ColorsEnum[color]
+
+func jump(idx: int):
+	instructionIdx = idx
+
+func extractVar(variable) -> Variant:
+	if variable is String:
+		return runtimeVariables[variable]
+	else:
+		return variable
+
+func jumpIf(idx: int, variableA: Variant, variableB: Variant, comparator: Instruction.Comparators, negation: bool):
+	var varA = extractVar(variableA)
+	var varB = extractVar(variableB)
+	
+	var comparison: bool
+	match comparator:
+		Instruction.Comparators.SUPERIOR:
+			comparison = varA > varB
+		Instruction.Comparators.INFERIOR:
+			comparison = varA < varB
+		Instruction.Comparators.EQUAL:
+			comparison = varA == varB
+	
+	if( (negation && !comparison) || 
+		(!negation && comparison)):
+		instructionIdx = idx
+	
