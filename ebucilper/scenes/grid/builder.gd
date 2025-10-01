@@ -41,7 +41,7 @@ func followInstruction(instruction : Instruction) -> bool:
 	var instructionResult: bool = true
 	match instruction.action:
 		InstructionType.PLACE_BLOCK:
-			placeBlock()
+			instructionResult = placeBlock()
 		InstructionType.MOVE_FORWARD:
 			moveForward()
 		InstructionType.MOVE_UP:
@@ -70,7 +70,7 @@ func followInstruction(instruction : Instruction) -> bool:
 	return instructionResult
 
 func placeBlock():
-	grid.placeBlock(cursorPosition, currentColor)
+	return grid.placeBlock(cursorPosition, currentColor)
 
 func moveForward():
 	var vec = Vector3i(0,0,0)
