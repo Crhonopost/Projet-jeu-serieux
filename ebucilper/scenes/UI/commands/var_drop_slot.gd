@@ -2,27 +2,30 @@ extends Control
 
 var variable
 
-signal stateChanged
+signal stateChanged(variable)
+
+func _ready() -> void:
+	$Input.get_line_edit().set_drag_forwarding(_get_drag_data, _can_drop_data, _drop_data)
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
-	return data is int or data is String
+	return data is String
 
 func _drop_data(at_position: Vector2, data: Variant) -> void:
-	variable = data
-	$Name.text = data.name
 	setVariableMode(true)
-	emit_signal("stateChanged")
+	variable = data
+	$Name.text = variable
+	emit_signal("stateChanged", variable)
 
 func _get_drag_data(at_position: Vector2) -> Variant:
 	if(variable != null):
-		var text := Label.new()
-		text.text = variable
-		set_drag_preview(text)
-		setVariableMode(false)
+		var title := Label.new()
+		title.text = str(variable)
+		set_drag_preview(title)
 		
 		var res = variable
-		variable = null
-		emit_signal("stateChanged")
+		variable = 0
+		setVariableMode(false)
+		emit_signal("stateChanged", variable)
 		return res
 	else:
 		return null
@@ -35,7 +38,7 @@ func setVariableMode(state: bool):
 	else:
 		$Name.visible = false
 		$Input.visible = true
-		variable = null
+		$Input.value = variable
 
 func setVariable(value: Variant) -> void:
 	variable = value
@@ -50,4 +53,4 @@ func setVariable(value: Variant) -> void:
 
 func _on_input_value_changed(value: float) -> void:
 	variable = value
-	emit_signal("stateChanged")
+	emit_signal("stateChanged", variable)

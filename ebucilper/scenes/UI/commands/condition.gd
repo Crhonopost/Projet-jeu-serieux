@@ -11,11 +11,11 @@ func _ready() -> void:
 	if(condition.variableB):
 		$VarDropSlotB.setVariable(condition.variableB)
 
-func _on_var_drop_slot_a_state_changed() -> void:
-	condition.variableA = $VarDropSlotA.variable
+func _on_var_drop_slot_a_state_changed(variable) -> void:
+	condition.variableA = variable
 	emit_signal("conditionUpdated", condition)
 
 
-func _on_var_drop_slot_b_state_changed() -> void:
-	condition.variableB = $VarDropSlotB.variable
+func _on_var_drop_slot_b_state_changed(variable) -> void:
+	condition.variableB = variable
 	emit_signal("conditionUpdated", condition)
