@@ -12,8 +12,8 @@ var leftOrientation: Array[OrientationsEnum] = [OrientationsEnum.Z_NEGATIVE, Ori
 var cursorOrientation: OrientationsEnum
 var cursorPosition: Vector3i
 var currentColor: ColorsEnum
-var instructionIdx: int
-var buildingTime: int
+var instructionIdx: int # current instruction
+var buildingTime: int # number of executed instructions
 var runtimeVariables: Dictionary
 
 func _ready() -> void:
@@ -28,7 +28,7 @@ func resetState() -> void:
 	runtimeVariables["test"] = 0
 
 func build(instructions : Array[Instruction]) -> bool:
-	buildingTime = instructions.size()
+	buildingTime = 0
 	while instructionIdx<instructions.size():
 		var instruction := instructions[instructionIdx]
 		instructionIdx += 1
@@ -42,18 +42,25 @@ func followInstruction(instruction : Instruction) -> bool:
 	match instruction.action:
 		InstructionType.PLACE_BLOCK:
 			instructionResult = placeBlock()
+			buildingTime += 1
 		InstructionType.MOVE_FORWARD:
 			moveForward()
+			buildingTime += 1
 		InstructionType.MOVE_UP:
 			moveUp()
+			buildingTime += 1
 		InstructionType.MOVE_DOWN:
 			moveDown()
+			buildingTime += 1
 		InstructionType.ROTATE_LEFT:
 			rotateLeft()
+			buildingTime += 1
 		InstructionType.ROTATE_RIGHT:
 			rotateRight()
+			buildingTime += 1
 		InstructionType.CHANGE_COLOR:
 			changeColor(instruction.arguments["color"])
+			buildingTime += 1
 		InstructionType.JUMP:
 			jump(instruction.arguments["jump_index"])
 		InstructionType.JUMP_IF:
@@ -67,6 +74,7 @@ func followInstruction(instruction : Instruction) -> bool:
 		_:
 			printerr("Unknown instruction type")
 			instructionResult = false
+	
 	return instructionResult
 
 func placeBlock():
