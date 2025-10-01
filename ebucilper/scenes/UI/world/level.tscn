@@ -1,0 +1,79 @@
+[gd_scene load_steps=4 format=3 uid="uid://fwytoh7mehli"]
+
+[ext_resource type="Script" uid="uid://c8kkrhpd8jyew" path="res://scenes/level/scene_change.gd" id="1_ho8or"]
+[ext_resource type="Texture2D" uid="uid://bshhg66b65p7p" path="res://Assets/Images/circle.webp" id="1_xetyy"]
+[ext_resource type="Texture2D" uid="uid://c82bsjmp0ng3e" path="res://Assets/Images/star.png" id="2_ho8or"]
+
+[node name="Level" type="MarginContainer"]
+offset_right = 200.0
+offset_bottom = 280.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Control4" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Bâtiment 36"
+
+[node name="Control3" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_xetyy")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Control2" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_ho8or")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_ho8or")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_ho8or")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Control5" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_ho8or")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

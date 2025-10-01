@@ -53,6 +53,11 @@ script = ExtResource("3_a6itc")
 type = 10
 metadata/_custom_type_script = "uid://cyysoo4jhjpub"
 
+[sub_resource type="Resource" id="Resource_lhmcw"]
+script = ExtResource("3_a6itc")
+type = 6
+metadata/_custom_type_script = "uid://cyysoo4jhjpub"
+
 [node name="CodingSpace" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -95,6 +100,6 @@ offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("7_a6itc")
-availableInstructions = Array[ExtResource("2_fn0c8")]([SubResource("Resource_f75ky"), SubResource("Resource_xchgw"), SubResource("Resource_usmbw"), SubResource("Resource_78wbv"), SubResource("Resource_dhuyy"), SubResource("Resource_jhjoh"), SubResource("Resource_vjcr8")])
+availableInstructions = Array[ExtResource("2_fn0c8")]([SubResource("Resource_f75ky"), SubResource("Resource_xchgw"), SubResource("Resource_usmbw"), SubResource("Resource_78wbv"), SubResource("Resource_dhuyy"), SubResource("Resource_jhjoh"), SubResource("Resource_vjcr8"), SubResource("Resource_lhmcw")])
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
