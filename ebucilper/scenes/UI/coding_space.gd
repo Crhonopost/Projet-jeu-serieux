@@ -1,16 +1,19 @@
 extends Control
 
 @onready var compiler := $Compiler 
-@onready var entryPoint := $EntryPoint
+var entryPoint : Control
 
 @export var entryInstruction : FlowInstructionResource
 
 signal launch
 
 func _ready() -> void:
-	entryPoint.instructionResource = entryInstruction
-	entryPoint.refreshUI()
+	setEntryInstruction(entryInstruction)
 
+func setEntryInstruction(entryInstruction : FlowInstructionResource):
+	entryPoint = InstructionVisualBuilder.instantiate(entryInstruction)
+	$FirstLine.add_child(entryPoint)
+	entryPoint.refreshUI()
 
 func _on_button_pressed() -> void:
 	emit_signal("launch")

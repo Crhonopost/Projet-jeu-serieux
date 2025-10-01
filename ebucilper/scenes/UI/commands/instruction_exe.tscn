@@ -13,7 +13,7 @@ script = ExtResource("1_dfbn3")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_right = 100.0
+offset_right = 244.0
 offset_bottom = 50.0
 
 [node name="Delete" type="Button" parent="HBoxContainer"]

@@ -2,6 +2,8 @@ extends Control
 
 @export var condition: ConditionResource
 
+signal conditionUpdated(condition: ConditionResource)
+
 func _ready() -> void:
 	$Comparator.text = condition.getComparatorText()
 	if(condition.variableA):
@@ -9,16 +11,11 @@ func _ready() -> void:
 	if(condition.variableB):
 		$VarDropSlotB.setVariable(condition.variableB)
 
-
 func _on_var_drop_slot_a_state_changed() -> void:
-	if $VarDropSlotA.variable != null:
-		condition.variableA = $VarDropSlotA.variable
-	else:
-		condition.variableA = $VarDropSlotA.content
+	condition.variableA = $VarDropSlotA.variable
+	emit_signal("conditionUpdated", condition)
 
 
 func _on_var_drop_slot_b_state_changed() -> void:
-	if $VarDropSlotB.variable != null:
-		condition.variableB = $VarDropSlotB.variable
-	else:
-		condition.variableB = $VarDropSlotB.content
+	condition.variableB = $VarDropSlotB.variable
+	emit_signal("conditionUpdated", condition)

@@ -11,9 +11,9 @@ script = ExtResource("1_8llb4")
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 
-[node name="Input" type="LineEdit" parent="."]
+[node name="Input" type="SpinBox" parent="."]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 mouse_filter = 1
 
-[connection signal="text_changed" from="Input" to="." method="_on_input_text_changed"]
+[connection signal="value_changed" from="Input" to="." method="_on_input_value_changed"]

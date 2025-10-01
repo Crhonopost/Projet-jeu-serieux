@@ -14,9 +14,6 @@ signal exitCode
 func _ready():
 	refreshUI()
 
-func retrieveCommand() -> Array[Instruction.InstructionType]:
-	return []
-
 func _on_delete_pressed() -> void:
 	emit_signal("exitCode")
 
@@ -30,6 +27,8 @@ func refreshUI():
 	
 	var conditionInstance = conditionScene.instantiate()
 	conditionInstance.condition = instructionResource.condition
+	conditionInstance.connect("conditionUpdated", func(condition): 
+		instructionResource.condition = condition)
 	conditionList.add_child(conditionInstance)
 	
 	typeLabel.text = instructionResource.getName()

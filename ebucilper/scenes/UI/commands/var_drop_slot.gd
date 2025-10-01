@@ -1,19 +1,12 @@
 extends Control
 
-var variable: VariableResource
-var content
-
-func _enter_tree() -> void:
-	variable = VariableResource.new()
+var variable
 
 signal stateChanged
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
-	if data is VariableResource:
-		return true
-	else:
-		return false
-		
+	return data is int or data is String
+
 func _drop_data(at_position: Vector2, data: Variant) -> void:
 	variable = data
 	$Name.text = data.name
@@ -23,7 +16,7 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 func _get_drag_data(at_position: Vector2) -> Variant:
 	if(variable != null):
 		var text := Label.new()
-		text.text = variable.name
+		text.text = variable
 		set_drag_preview(text)
 		setVariableMode(false)
 		
@@ -42,17 +35,19 @@ func setVariableMode(state: bool):
 	else:
 		$Name.visible = false
 		$Input.visible = true
-
-func _on_input_text_changed(new_text: String) -> void:
-	content = new_text
-	emit_signal("stateChanged")
+		variable = null
 
 func setVariable(value: Variant) -> void:
+	variable = value
 	if(value is String):
-		variable.name = value
+		variable = value
 		$Name.text = value
 		setVariableMode(true)
 	else:
-		content = value
-		$Input.text = str(value)
+		$Input.value = value
 		setVariableMode(false)
+
+
+func _on_input_value_changed(value: float) -> void:
+	variable = value
+	emit_signal("stateChanged")

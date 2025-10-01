@@ -8,7 +8,7 @@ var COMPARATORS_NAMES = {
 
 @export var variableA: Variant
 @export var comparator: Instruction.Comparators
-@export var variableB: Variant
+@export var variableB: int
 
 func getComparatorText():
 	return COMPARATORS_NAMES[comparator]
