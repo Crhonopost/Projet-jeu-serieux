@@ -22,12 +22,14 @@ func buildFromResource():
 	typeLabel.text = instructionResource.getName()
 	
 	if instructionResource.type == Instruction.InstructionType.CREATE_VAR:
-		$HBoxContainer/VariableCreation.visible = true
+		$HBoxContainer/Special/VariableCreation.visible = true
 	else: 
-		$HBoxContainer/VariableCreation.visible = false
+		$HBoxContainer/Special/VariableCreation.visible = false
 		
 	if instructionResource.type == Instruction.InstructionType.CHANGE_COLOR:
-		$HBoxContainer/ColorPick.visible = true
+		$HBoxContainer/Special/ColorPick.visible = true
+	else:
+		$HBoxContainer/Special/ColorPick.visible = false
 
 
 func _get_drag_data(at_position: Vector2) -> Variant:
@@ -44,3 +46,7 @@ func _on_create_var_name_input_text_changed(new_text: String) -> void:
 
 func _on_initial_value_text_changed(new_text: String) -> void:
 	instructionResource.arguments["operations"] = {"variable" : int(new_text)}
+
+
+func _on_item_list_item_selected(index: int) -> void:
+	instructionResource.arguments["color"] = index + 1

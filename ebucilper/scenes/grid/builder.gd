@@ -104,8 +104,9 @@ func rotateLeft():
 func rotateRight():
 	cursorOrientation = rightOrientation[cursorOrientation]
 	
-func changeColor(color: String):
-	currentColor = ColorsEnum[color]
+func changeColor(color: int):
+	var colorString = ColorsEnum.keys()[color]
+	currentColor = ColorsEnum[colorString]
 
 func jump(idx: int):
 	instructionIdx = idx

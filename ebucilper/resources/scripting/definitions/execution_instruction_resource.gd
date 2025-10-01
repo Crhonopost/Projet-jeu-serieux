@@ -8,7 +8,8 @@ var INSTRUCTION_NAMES = {
 	InstructionType.MOVE_DOWN: "MOVE_DOWN",
 	InstructionType.ROTATE_LEFT: "ROTATE_LEFT",
 	InstructionType.ROTATE_RIGHT: "ROTATE_RIGHT",
-	InstructionType.CREATE_VAR: "CREATE_VARIABLE"
+	InstructionType.CREATE_VAR: "CREATE_VARIABLE",
+	InstructionType.CHANGE_COLOR: "CHANGE_COLOR",
 }
 
 @export var type: InstructionType
