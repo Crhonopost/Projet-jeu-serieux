@@ -27,13 +27,9 @@ func buildFromResource():
 			$HBoxContainer/Special/VariableCreation/Name.text = instructionResource.arguments["variable_name"]
 		if(instructionResource.arguments.has("operations")):
 			$HBoxContainer/Special/VariableCreation/InitialValue.text = str(instructionResource.arguments["operations"]["variable"])
-	else: 
-		$HBoxContainer/Special/VariableCreation.visible = false
 		
 	if instructionResource.type == Instruction.InstructionType.CHANGE_COLOR:
 		$HBoxContainer/Special/ColorPick.visible = true
-	else:
-		$HBoxContainer/Special/ColorPick.visible = false
 
 
 func _get_drag_data(at_position: Vector2) -> Variant:

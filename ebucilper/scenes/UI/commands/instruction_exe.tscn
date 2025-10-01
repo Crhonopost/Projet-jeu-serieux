@@ -28,6 +28,7 @@ text = "Type"
 layout_mode = 2
 
 [node name="ColorPick" type="HBoxContainer" parent="HBoxContainer/Special"]
+visible = false
 layout_mode = 0
 offset_left = 4.0
 offset_right = 4.0
@@ -42,6 +43,7 @@ item_0/text = "RED"
 item_1/text = "BLUE"
 
 [node name="VariableCreation" type="HBoxContainer" parent="HBoxContainer/Special"]
+visible = false
 layout_mode = 0
 offset_left = 4.0
 offset_right = 144.0

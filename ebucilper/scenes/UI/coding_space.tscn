@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c2i2xc75qwiwp"]
+[gd_scene load_steps=19 format=3 uid="uid://c2i2xc75qwiwp"]
 
 [ext_resource type="Script" uid="uid://b678kr1glpsrl" path="res://scenes/UI/coding_space.gd" id="1_25lkw"]
 [ext_resource type="Script" uid="uid://bulv0feibbce" path="res://scenes/coding/compiler.gd" id="2_bwyhw"]
@@ -44,8 +44,14 @@ script = ExtResource("3_a6itc")
 type = 2
 metadata/_custom_type_script = "uid://cyysoo4jhjpub"
 
+[sub_resource type="Resource" id="Resource_3t8km"]
+script = ExtResource("3_vjcr8")
+variableA = null
+metadata/_custom_type_script = "uid://bir504d7dlwrt"
+
 [sub_resource type="Resource" id="Resource_jhjoh"]
 script = ExtResource("3_r5p2t")
+condition = SubResource("Resource_3t8km")
 metadata/_custom_type_script = "uid://cioni3f13iu1e"
 
 [sub_resource type="Resource" id="Resource_vjcr8"]
