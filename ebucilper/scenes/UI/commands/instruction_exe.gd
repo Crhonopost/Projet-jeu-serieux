@@ -25,6 +25,9 @@ func buildFromResource():
 		$HBoxContainer/VariableCreation.visible = true
 	else: 
 		$HBoxContainer/VariableCreation.visible = false
+		
+	if instructionResource.type == Instruction.InstructionType.CHANGE_COLOR:
+		$HBoxContainer/ColorPick.visible = true
 
 
 func _get_drag_data(at_position: Vector2) -> Variant:

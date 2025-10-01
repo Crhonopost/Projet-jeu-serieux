@@ -1,10 +1,8 @@
 extends Node
 
 
-@export var gridTarget : GridResource
 
-@export var gridEditor : GridResource
-
+@export var currentGrid : GridResource
 
 
 # func _ready() -> void:
@@ -13,10 +11,10 @@ extends Node
 	# placeBlocs(gridTarget,true)
 	# placeBlocs(gridEditor, false)
 
-func clearEditor():
-	gridEditor.clear()
+func clearGrid():
+	currentGrid.clear()
 	$Visualization.clear()
-	placeBlocs(gridTarget, true)
+
 
 func placeBlocs(gridResource : GridResource, isTransparent : bool) :
 	for i in range (gridResource.gridScale) :
@@ -29,12 +27,4 @@ func placeBlocs(gridResource : GridResource, isTransparent : bool) :
 
 func fillgrid(gridResource : GridResource, prob : float):
 	for i in range (gridResource.grid.size()):
-		var nbColor = Global.ColorsEnum.keys().size()
-		var color = randi() % 2
-		var x = randf()
-		if(x < prob):
-			if(color == 1):
-				gridResource.grid[i] = Global.ColorsEnum.RED
-			else :
-				gridResource.grid[i] = Global.ColorsEnum.BLUE
-		
+		gridResource.grid[i] = Global.ColorsEnum.RED
