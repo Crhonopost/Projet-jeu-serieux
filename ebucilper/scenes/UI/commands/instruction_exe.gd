@@ -23,6 +23,10 @@ func buildFromResource():
 	
 	if instructionResource.type == Instruction.InstructionType.CREATE_VAR:
 		$HBoxContainer/Special/VariableCreation.visible = true
+		if(instructionResource.arguments.has("variable_name")):
+			$HBoxContainer/Special/VariableCreation/Name.text = instructionResource.arguments["variable_name"]
+		if(instructionResource.arguments.has("operations")):
+			$HBoxContainer/Special/VariableCreation/InitialValue.text = str(instructionResource.arguments["operations"]["variable"])
 	else: 
 		$HBoxContainer/Special/VariableCreation.visible = false
 		

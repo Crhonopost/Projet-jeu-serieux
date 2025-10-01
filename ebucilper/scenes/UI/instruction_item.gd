@@ -11,7 +11,7 @@ func _get_drag_data(at_position: Vector2) -> Variant:
 	label.text = instruction.getName()
 	set_drag_preview(label)
 	
-	return instruction
+	return instruction.duplicate(true)
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	return false

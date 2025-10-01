@@ -23,7 +23,7 @@ func _get_drag_data(at_position: Vector2) -> Variant:
 		set_drag_preview(title)
 		
 		var res = variable
-		variable = 0
+		variable = 0_
 		setVariableMode(false)
 		emit_signal("stateChanged", variable)
 		return res
