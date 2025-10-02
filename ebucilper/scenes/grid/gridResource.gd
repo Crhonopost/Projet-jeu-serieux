@@ -13,7 +13,7 @@ func _init() -> void:
 	grid.fill(ColorsEnum.NONE)
 
 func placeBlock(position: Vector3i, color : ColorsEnum) -> bool :
-	if position.x > gridScale or position.y > gridScale or position.z > gridScale:
+	if position.x >= gridScale or position.y >= gridScale or position.z >= gridScale:
 		return false
 	var index = positionToIndex(position)
 	grid[index] = color

@@ -1,4 +1,3 @@
-@abstract class_name FlowInstructionResource extends InstructionResource
+@abstract class_name FlowInstructionResource extends ListInstructionResource
 
-@export var childs: Array[InstructionResource]
 @export var condition: ConditionResource

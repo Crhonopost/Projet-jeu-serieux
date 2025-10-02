@@ -5,7 +5,7 @@ extends Control
 @onready var compiler := $Compiler 
 var entryPoint : Control
 
-@export var entryInstruction : FlowInstructionResource
+@export var entryInstruction : ListInstructionResource
 
 signal launch
 
@@ -13,7 +13,7 @@ func _ready() -> void:
 	setEntryInstruction(entryInstruction)
 	InstructionVisualBuilder.connect("variableCreationInstantiated", newVariableAdded)
 
-func setEntryInstruction(entryInstruction : FlowInstructionResource):
+func setEntryInstruction(entryInstruction : ListInstructionResource):
 	entryPoint = InstructionVisualBuilder.instantiate(entryInstruction)
 	$FirstLine.add_child(entryPoint)
 	entryPoint.refreshUI()

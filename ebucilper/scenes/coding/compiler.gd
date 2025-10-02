@@ -15,29 +15,29 @@ func processInstructions(entryPoint: InstructionResource, instructionIdx: int) -
 			content.arguments = entryPoint.arguments
 		return [content]
 	
-	elif(entryPoint is FlowInstructionResource):    
-		var flowContent : Array[Instruction]
-		
-		var endLoopCondition := Instruction.new()
-		endLoopCondition.action = InstructionType.JUMP_IF_NOT
-		endLoopCondition.arguments = {
-			"variable_a" = entryPoint.condition.variableA,
-			"variable_b" = entryPoint.condition.variableB,
-			"comparator" = entryPoint.condition.comparator
-		}
+	elif(entryPoint is ListInstructionResource):    
+		var instructionList : Array[Instruction]
 		
 		for child in entryPoint.childs:
-			flowContent.append_array(processInstructions(child, instructionIdx + flowContent.size()))
+			instructionList.append_array(processInstructions(child, instructionIdx + 1))
 		
 		if(entryPoint is ForInstructionResource):
-			endLoopCondition.arguments["jump_index"] = instructionIdx + flowContent.size() + 2
-			flowContent.append(endLoopCondition)
-			
 			var jumpBackInstruction:= Instruction.new()
 			jumpBackInstruction.action = InstructionType.JUMP
 			jumpBackInstruction.arguments["jump_index"] = instructionIdx
-			flowContent.append(jumpBackInstruction)
+			instructionList.append(jumpBackInstruction)
+			
+			var endLoopCondition := Instruction.new()
+			endLoopCondition.action = InstructionType.JUMP_IF_NOT
+			endLoopCondition.arguments = {
+				"variable_a" = entryPoint.condition.variableA.value,
+				"variable_b" = entryPoint.condition.variableB.value,
+				"comparator" = entryPoint.condition.comparator
+			}
+			
+			endLoopCondition.arguments["jump_index"] = instructionIdx + instructionList.size() + 2
+			instructionList.push_front(endLoopCondition)
 		
-		res.append_array(flowContent)
+		res.append_array(instructionList)
 	
 	return res

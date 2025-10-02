@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://wy2gsxwbexgl" path="res://scenes/UI/commands/instruction_flow.gd" id="1_drnas"]
 
-[node name="InstructionFlow" type="Control"]
+[node name="InstructionList" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0

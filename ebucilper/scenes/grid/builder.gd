@@ -25,7 +25,6 @@ func resetState() -> void:
 	currentColor = ColorsEnum.RED
 	instructionIdx = 0
 	runtimeVariables.clear()
-	runtimeVariables["test"] = 0
 
 func build(instructions : Array[Instruction]) -> bool:
 	buildingTime = 0
@@ -115,11 +114,11 @@ func extractVar(variable) -> Variant:
 	if variable == null: 
 		return 0
 	if variable is String:
-		return runtimeVariables[variable.value]
+		return runtimeVariables[variable]
 	else:
 		return variable
 
-func jumpIf(idx: int, variableA: VariableResource, variableB: VariableResource, comparator: Instruction.Comparators, negation: bool):
+func jumpIf(idx: int, variableA: Variant, variableB: Variant, comparator: Instruction.Comparators, negation: bool):
 	var varA = extractVar(variableA)
 	var varB = extractVar(variableB)
 	

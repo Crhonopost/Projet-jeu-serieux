@@ -1,7 +1,7 @@
 extends Node
 
 @onready var exeInstructionScene : PackedScene = load("res://scenes/UI/commands/instruction_exe.tscn")
-@onready var forInstructionScene : PackedScene = load("res://scenes/UI/commands/instruction_flow.tscn")
+@onready var flowInstructionScene : PackedScene = load("res://scenes/UI/commands/instruction_flow.tscn")
 
 signal variableCreationInstantiated(variable: VariableResource)
 
@@ -11,8 +11,8 @@ func instantiate(instruction: InstructionResource) -> Control:
 		instance = exeInstructionScene.instantiate()
 		if(instruction is CreateInstructionResource):
 			emit_signal("variableCreationInstantiated", instruction.name)
-	elif(instruction is ForInstructionResource):
-		instance = forInstructionScene.instantiate()
+	elif(instruction is ListInstructionResource):
+		instance = flowInstructionScene.instantiate()
 	else:
 		printerr("Can't build instruction UI")
 		return instance
