@@ -6,9 +6,9 @@ var COMPARATORS_NAMES = {
 	Instruction.Comparators.EQUAL: "=="
 }
 
-@export var variableA: Variant
+@export var variableA: VariableResource
 @export var comparator: Instruction.Comparators
-@export var variableB: int
+@export var variableB: VariableResource
 
 func getComparatorText():
 	return COMPARATORS_NAMES[comparator]

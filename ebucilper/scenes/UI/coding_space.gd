@@ -1,5 +1,7 @@
 extends Control
 
+@onready var variableItemScene : PackedScene = load("res://scenes/UI/commands/editor/variable_item.tscn")
+
 @onready var compiler := $Compiler 
 var entryPoint : Control
 
@@ -9,6 +11,7 @@ signal launch
 
 func _ready() -> void:
 	setEntryInstruction(entryInstruction)
+	InstructionVisualBuilder.connect("variableCreationInstantiated", newVariableAdded)
 
 func setEntryInstruction(entryInstruction : FlowInstructionResource):
 	entryPoint = InstructionVisualBuilder.instantiate(entryInstruction)
@@ -20,3 +23,8 @@ func _on_button_pressed() -> void:
 
 func retrieveInstructions() -> Array[Instruction]:
 	return compiler.processInstructions(entryPoint.instructionResource, 0)
+
+func newVariableAdded(variable: VariableResource):
+	var instance = variableItemScene.instantiate()
+	instance.variable = variable
+	$VariableList.add_child(instance)

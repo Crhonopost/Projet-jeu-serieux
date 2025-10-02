@@ -8,7 +8,11 @@ func processInstructions(entryPoint: InstructionResource, instructionIdx: int) -
 	if(entryPoint is ExecutionInstructionResource):
 		var content := Instruction.new()
 		content.action = entryPoint.type
-		content.arguments = entryPoint.arguments
+		if(entryPoint is CreateInstructionResource):
+			content.arguments["variable_name"] = entryPoint.name.value
+			content.arguments["operations"] = {"variable": entryPoint.value}
+		else:
+			content.arguments = entryPoint.arguments
 		return [content]
 	
 	elif(entryPoint is FlowInstructionResource):    

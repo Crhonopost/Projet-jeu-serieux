@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://d13m15esml6em"]
+
+[ext_resource type="Script" uid="uid://dlwvxm38ol4u7" path="res://scenes/UI/commands/editor/variable_item.gd" id="1_2dq06"]
+
+[node name="VariableItem" type="CenterContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2dq06")
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 2

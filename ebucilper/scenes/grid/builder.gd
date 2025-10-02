@@ -112,12 +112,14 @@ func jump(idx: int):
 	instructionIdx = idx
 
 func extractVar(variable) -> Variant:
+	if variable == null: 
+		return 0
 	if variable is String:
-		return runtimeVariables[variable]
+		return runtimeVariables[variable.value]
 	else:
 		return variable
 
-func jumpIf(idx: int, variableA: Variant, variableB: Variant, comparator: Instruction.Comparators, negation: bool):
+func jumpIf(idx: int, variableA: VariableResource, variableB: VariableResource, comparator: Instruction.Comparators, negation: bool):
 	var varA = extractVar(variableA)
 	var varB = extractVar(variableB)
 	
