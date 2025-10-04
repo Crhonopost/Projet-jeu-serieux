@@ -3,7 +3,7 @@ extends Node
 @onready var exeInstructionScene : PackedScene = load("res://scenes/UI/commands/instruction_exe.tscn")
 @onready var flowInstructionScene : PackedScene = load("res://scenes/UI/commands/instruction_flow.tscn")
 
-signal variableCreationInstantiated(variable: VariableResource)
+signal variableCreationInstantiated(variable: VariableExpressionResource)
 
 func instantiate(instruction: InstructionResource) -> Control:
 	var instance = Control.new()

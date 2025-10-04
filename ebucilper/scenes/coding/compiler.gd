@@ -9,8 +9,8 @@ func processInstructions(entryPoint: InstructionResource, instructionIdx: int) -
 		var content := Instruction.new()
 		content.action = entryPoint.type
 		if(entryPoint is CreateInstructionResource):
-			content.arguments["variable_name"] = entryPoint.name.value
-			content.arguments["operations"] = {"variable": entryPoint.value}
+			content.arguments["name"] = entryPoint.name.value
+			content.arguments["value"] = entryPoint.value
 		else:
 			content.arguments = entryPoint.arguments
 		return [content]

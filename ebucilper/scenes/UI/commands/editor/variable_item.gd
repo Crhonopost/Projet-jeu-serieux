@@ -1,6 +1,6 @@
 extends Control
 
-@export var variable : VariableResource
+@export var variable : VariableExpressionResource
 
 func _ready() -> void:
 	variable.connect("valueChanged", onValueChanged)

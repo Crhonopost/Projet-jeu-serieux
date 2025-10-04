@@ -67,9 +67,9 @@ func followInstruction(instruction : Instruction) -> bool:
 		InstructionType.JUMP_IF_NOT:
 			jumpIf(instruction.arguments["jump_index"], instruction.arguments["variable_a"], instruction.arguments["variable_b"], instruction.arguments["comparator"], true)
 		InstructionType.CREATE_VAR:
-			createVariable(instruction.arguments["variable_name"], instruction.arguments["operations"])
+			createVariable(instruction.arguments["name"], instruction.arguments["value"])
 		InstructionType.UPDATE_VAR:
-			updateVariable(instruction.arguments["variable_name"], instruction.arguments["operations"])
+			updateVariable(instruction.arguments["variable_name"], instruction.arguments["operation"])
 		_:
 			printerr("Unknown instruction type")
 			instructionResult = false
@@ -136,21 +136,18 @@ func jumpIf(idx: int, variableA: Variant, variableB: Variant, comparator: Instru
 		instructionIdx = idx
 
 func executeCalcul(operation: Dictionary):
-	if(operation.has("variable")):
-		return extractVar(operation["variable"])
-	else:
-		var a = executeCalcul(operation["operation_1"])
-		var b = executeCalcul(operation["operation_2"])
-		match operation["operator"]:
-			Instruction.Operators.ADD:
-				return a + b
-			Instruction.Operators.SUB:
-				return a - b
-			Instruction.Operators.MULT:
-				return a * b
+	var a = extractVar(operation["operand_1"])
+	var b = extractVar(operation["operand_2"])
+	match operation["operator"]:
+		Instruction.Operators.ADD:
+			return a + b
+		Instruction.Operators.SUB:
+			return a - b
+		Instruction.Operators.MULT:
+			return a * b
 
-func createVariable(name: String, operations: Dictionary):
-	runtimeVariables[name] = executeCalcul(operations)
+func createVariable(name: String, initialValue: Variant):
+	runtimeVariables[name] = extractVar(initialValue)
 
 func updateVariable(name: String, operations: Dictionary):
 	if(!runtimeVariables.has(name)): return false

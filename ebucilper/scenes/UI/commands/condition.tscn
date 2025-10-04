@@ -6,8 +6,6 @@
 
 [sub_resource type="Resource" id="Resource_wfvhq"]
 script = ExtResource("2_208yj")
-variableA = null
-variableB = null
 metadata/_custom_type_script = "uid://bir504d7dlwrt"
 
 [node name="Condition" type="HBoxContainer"]

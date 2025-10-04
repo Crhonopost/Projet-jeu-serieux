@@ -9,6 +9,9 @@ class_name InstructionFlowUI extends Control
 
 @onready var conditionScene: PackedScene = load("res://scenes/UI/commands/condition.tscn")
 
+var instructionsDirty = true
+var conditionDirty = true
+
 signal exitCode
 
 func _ready():
@@ -19,26 +22,32 @@ func _on_delete_pressed() -> void:
 
 func refreshUI():
 	if(!instructionResource): return
-	for child in instructionList.get_children():
-		child.queue_free()
 	
-	for child in conditionList.get_children():
-		child.queue_free()
-	
-	if(instructionResource is FlowInstructionResource):
-		var conditionInstance = conditionScene.instantiate()
-		conditionInstance.condition = instructionResource.condition
-		conditionInstance.connect("conditionUpdated", func(condition): 
-			instructionResource.condition = condition)
-		conditionList.add_child(conditionInstance)
+	if conditionDirty:
+		conditionDirty = false
+		for child in conditionList.get_children():
+			child.queue_free()
+		
+		if(instructionResource is FlowInstructionResource):
+			var conditionInstance = conditionScene.instantiate()
+			conditionInstance.condition = instructionResource.condition
+			conditionInstance.connect("conditionUpdated", func(condition): 
+				instructionResource.condition = condition)
+			conditionList.add_child(conditionInstance)
 	
 	typeLabel.text = instructionResource.getName()
-	var childIt = 0
-	while(childIt < instructionResource.childs.size()):
-		var instance = InstructionVisualBuilder.instantiate(instructionResource.childs[childIt])
-		instance.connect("exitCode", func (): childLeave(childIt))
-		instructionList.add_child(instance)
-		childIt += 1
+	
+	if instructionsDirty:
+		instructionsDirty = false
+		for child in instructionList.get_children():
+			child.queue_free()
+
+		var childIt = 0
+		while(childIt < instructionResource.childs.size()):
+			var instance = InstructionVisualBuilder.instantiate(instructionResource.childs[childIt])
+			instance.connect("exitCode", func (): childLeave(childIt))
+			instructionList.add_child(instance)
+			childIt += 1
 
 func childLeave(idx : int):
 	instructionResource.childs.remove_at(idx)
@@ -46,6 +55,7 @@ func childLeave(idx : int):
 
 func _drop_data(at_position: Vector2, data: Variant) -> void:
 	instructionResource.childs.append(data)
+	instructionsDirty = true
 	refreshUI()
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:

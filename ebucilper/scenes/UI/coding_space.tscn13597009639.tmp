@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c2i2xc75qwiwp"]
+[gd_scene load_steps=24 format=3 uid="uid://c2i2xc75qwiwp"]
 
 [ext_resource type="Script" uid="uid://b678kr1glpsrl" path="res://scenes/UI/coding_space.gd" id="1_25lkw"]
 [ext_resource type="Script" uid="uid://bulv0feibbce" path="res://scenes/coding/compiler.gd" id="2_bwyhw"]
@@ -6,25 +6,40 @@
 [ext_resource type="Script" uid="uid://cyysoo4jhjpub" path="res://resources/scripting/definitions/execution_instruction_resource.gd" id="3_a6itc"]
 [ext_resource type="Script" uid="uid://bbv23l8h2i6ka" path="res://resources/scripting/definitions/list_instruction_resource.gd" id="3_f75ky"]
 [ext_resource type="Script" uid="uid://cioni3f13iu1e" path="res://resources/scripting/definitions/for_instruction_resource.gd" id="3_r5p2t"]
-[ext_resource type="Script" uid="uid://cqurtj2o02nh" path="res://resources/scripting/definitions/operation/variable_expression_resource.gd" id="3_usmbw"]
 [ext_resource type="Script" uid="uid://bir504d7dlwrt" path="res://resources/scripting/definitions/condition_resource.gd" id="3_vjcr8"]
 [ext_resource type="Script" uid="uid://d1ynh7ys7iaab" path="res://scenes/UI/inventory.gd" id="7_a6itc"]
 [ext_resource type="Script" uid="uid://bptnkeoa30f03" path="res://resources/scripting/definitions/create_instruction_resource.gd" id="9_f75ky"]
 
-[sub_resource type="Resource" id="Resource_iduvy"]
-script = ExtResource("3_usmbw")
-value = "test"
-metadata/_custom_type_script = "uid://cqurtj2o02nh"
+[sub_resource type="GDScript" id="GDScript_f75ky"]
+script/source = "class_name VariableResource extends Resource
+
+@export var value: Variant
+
+signal valueChanged(newValue: Variant)
+
+func setValue(newValue):
+	value = newValue
+	emit_signal(\"valueChanged\", newValue)
+
+func _init() -> void:
+	if(value == null):
+		value = 0
+"
 
 [sub_resource type="Resource" id="Resource_3t8km"]
+script = SubResource("GDScript_f75ky")
+value = "test"
+metadata/_custom_type_script = "uid://djyf2knsdt4hy"
+
+[sub_resource type="Resource" id="Resource_47f3o"]
 script = ExtResource("9_f75ky")
-name = SubResource("Resource_iduvy")
+name = SubResource("Resource_3t8km")
 type = 10
 metadata/_custom_type_script = "uid://bptnkeoa30f03"
 
-[sub_resource type="Resource" id="Resource_47f3o"]
+[sub_resource type="Resource" id="Resource_iduvy"]
 script = ExtResource("3_f75ky")
-childs = Array[ExtResource("2_fn0c8")]([SubResource("Resource_3t8km")])
+childs = Array[ExtResource("2_fn0c8")]([SubResource("Resource_47f3o")])
 metadata/_custom_type_script = "uid://bbv23l8h2i6ka"
 
 [sub_resource type="Resource" id="Resource_f75ky"]
@@ -60,22 +75,6 @@ script = ExtResource("3_r5p2t")
 condition = SubResource("Resource_81tti")
 metadata/_custom_type_script = "uid://cioni3f13iu1e"
 
-[sub_resource type="GDScript" id="GDScript_f75ky"]
-script/source = "class_name VariableResource extends Resource
-
-@export var value: Variant
-
-signal valueChanged(newValue: Variant)
-
-func setValue(newValue):
-	value = newValue
-	emit_signal(\"valueChanged\", newValue)
-
-func _init() -> void:
-	if(value == null):
-		value = 0
-"
-
 [sub_resource type="Resource" id="Resource_7l374"]
 script = SubResource("GDScript_f75ky")
 value = "Variable"
@@ -100,7 +99,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_25lkw")
-entryInstruction = SubResource("Resource_47f3o")
+entryInstruction = SubResource("Resource_iduvy")
 
 [node name="Compiler" type="Node" parent="."]
 script = ExtResource("2_bwyhw")

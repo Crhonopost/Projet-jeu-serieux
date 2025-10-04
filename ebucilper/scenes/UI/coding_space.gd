@@ -24,7 +24,7 @@ func _on_button_pressed() -> void:
 func retrieveInstructions() -> Array[Instruction]:
 	return compiler.processInstructions(entryPoint.instructionResource, 0)
 
-func newVariableAdded(variable: VariableResource):
+func newVariableAdded(variable: VariableExpressionResource):
 	var instance = variableItemScene.instantiate()
 	instance.variable = variable
 	$VariableList.add_child(instance)
