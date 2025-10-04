@@ -18,14 +18,14 @@ func getInstructions(parentVarName: String = "temp") -> Array[Instruction]:
 		resA = parentVarName + "1"
 		res.append(variableA.getInstructions(resA))
 	elif(variableA is VariableExpressionResource):
-		resA = variableA.variable.value
+		resA = variableA.value
 	
 	var resB
 	if(variableB is OperationResource):
 		resB = parentVarName + "2"
 		res.append(variableB.getInstructions(resB))
 	elif(variableB is VariableExpressionResource):
-		resB = variableB.variable.value
+		resB = variableB.value
 	
 	var operationInstruction := Instruction.new()
 	operationInstruction.action = Instruction.InstructionType.UPDATE_VAR
@@ -34,9 +34,16 @@ func getInstructions(parentVarName: String = "temp") -> Array[Instruction]:
 		"operand_2" : resB,
 		"operator" : operator
 	}
-	operationInstruction.arguments["variable_name"] = variableName if variableName != "" else parentVarName
+	if(variableName == ""):
+		var creationInstruction := Instruction.new()
+		creationInstruction.action = Instruction.InstructionType.CREATE_VAR
+		creationInstruction.arguments["name"] = parentVarName
+		creationInstruction.arguments["value"] = 0
+		
+		res.append(creationInstruction)
+		operationInstruction.arguments["variable_name"] = parentVarName
+	else:
+		operationInstruction.arguments["variable_name"] = variableName
 	
-	res.append_array(resA)
-	res.append_array(resB)
 	res.append(operationInstruction)
 	return res

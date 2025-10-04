@@ -17,14 +17,21 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	return data is ExpressionResource
 
 func _drop_data(at_position: Vector2, data: Variant) -> void:
-	if(data is VariableExpressionResource):
+	if(data is VariableExpressionResource && variable.value is int):
 		setVariableMode(data)
+	elif(data is VariableExpressionResource):
+		var newExpr = OperationResource.new()
+		newExpr.variableA = variable
+		newExpr.variableB = data
+		setOperationMode(newExpr)
+	elif(data is OperationResource):
+		setOperationMode(data)
 
 func _get_drag_data(at_position: Vector2) -> Variant:
 	if(variable != null):
 		variable.disconnect("valueChanged", onVariableChange)
 		var title := Label.new()
-		title.text = str(variable.value)
+		title.text = str(variable)
 		set_drag_preview(title)
 		
 		var res = variable
@@ -67,7 +74,7 @@ func setOperationMode(opExpr: OperationResource):
 	var right_input = preload("res://scenes/UI/commands/var_drop_slot.tscn").instantiate()
 	
 	var op_label = Label.new()
-	op_label.text = opExpr.operator
+	op_label.text = Instruction.operatorToStr(opExpr.operator)
 
 	hbox.add_child(left_input)
 	hbox.add_child(op_label)
