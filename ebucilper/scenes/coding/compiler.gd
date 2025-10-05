@@ -5,7 +5,10 @@ const InstructionType = Instruction.InstructionType
 func processInstructions(entryPoint: InstructionResource, instructionIdx: int) -> Array[Instruction]:
 	var res : Array[Instruction]
 
-	if(entryPoint is ExecutionInstructionResource):
+	if(entryPoint is UpdateInstructionResource):
+		entryPoint.expression.variableName = entryPoint.name.value
+		res.append_array(entryPoint.expression.getInstructions())
+	elif(entryPoint is ExecutionInstructionResource):
 		var content := Instruction.new()
 		content.action = entryPoint.type
 		if(entryPoint is CreateInstructionResource):

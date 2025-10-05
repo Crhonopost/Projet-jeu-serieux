@@ -8,7 +8,15 @@ func evaluate() -> float:
 	return value
 	
 func getInstructions(parentVarName: String = "temp") -> Array[Instruction]:
-	return []
+	var resInstru = Instruction.new()
+	resInstru.action = Instruction.InstructionType.UPDATE_VAR
+	resInstru.arguments["variable_name"] = parentVarName
+	resInstru.arguments["operation"] = {
+		"operand_1" : 0,
+		"operand_2" : value,
+		"operator" : Instruction.Operators.ADD
+	}
+	return [resInstru]
 
 
 func setValue(newValue):

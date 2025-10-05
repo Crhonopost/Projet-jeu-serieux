@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://b51qinbvc777l"]
+
+[ext_resource type="Script" uid="uid://b23jqn7iyxkki" path="res://scenes/UI/commands/executions/variable_update.gd" id="1_3a48y"]
+[ext_resource type="PackedScene" uid="uid://de8ex6hebdcaj" path="res://scenes/UI/commands/var_drop_slot.tscn" id="1_pbx5m"]
+
+[node name="VariableUpdate" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_3a48y")
+
+[node name="VarDropTarget" parent="." instance=ExtResource("1_pbx5m")]
+layout_mode = 2
+replaceOnDrop = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = " = "
+
+[node name="VarDrop" parent="." instance=ExtResource("1_pbx5m")]
+layout_mode = 2
+
+[connection signal="stateChanged" from="VarDropTarget" to="." method="_on_var_drop_target_state_changed"]
+[connection signal="stateChanged" from="VarDrop" to="." method="_on_var_drop_state_changed"]

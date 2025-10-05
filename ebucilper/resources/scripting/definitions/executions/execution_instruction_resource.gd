@@ -9,6 +9,7 @@ var INSTRUCTION_NAMES = {
 	InstructionType.ROTATE_LEFT: "ROTATE_LEFT",
 	InstructionType.ROTATE_RIGHT: "ROTATE_RIGHT",
 	InstructionType.CREATE_VAR: "CREATE_VARIABLE",
+	InstructionType.UPDATE_VAR: "UPDATE_VARIABLE",
 	InstructionType.CHANGE_COLOR: "CHANGE_COLOR",
 }
 

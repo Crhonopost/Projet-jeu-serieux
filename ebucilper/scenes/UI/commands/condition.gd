@@ -4,12 +4,12 @@ extends Control
 
 signal conditionUpdated(condition: ConditionResource)
 
-func _ready() -> void:
+func _enter_tree() -> void:
 	$Comparator.text = condition.getComparatorText()
 	if(condition.variableA):
-		$VarDropSlotA.setVariableMode(condition.variableA)
+		$VarDropSlotA.variable = condition.variableA
 	if(condition.variableB):
-		$VarDropSlotB.setVariableMode(condition.variableB)
+		$VarDropSlotB.variable = condition.variableB
 
 func _on_var_drop_slot_a_state_changed(variable) -> void:
 	condition.variableA = variable

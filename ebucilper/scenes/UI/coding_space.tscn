@@ -1,15 +1,16 @@
-[gd_scene load_steps=25 format=3 uid="uid://c2i2xc75qwiwp"]
+[gd_scene load_steps=29 format=3 uid="uid://c2i2xc75qwiwp"]
 
 [ext_resource type="Script" uid="uid://b678kr1glpsrl" path="res://scenes/UI/coding_space.gd" id="1_25lkw"]
 [ext_resource type="Script" uid="uid://bulv0feibbce" path="res://scenes/coding/compiler.gd" id="2_bwyhw"]
 [ext_resource type="Script" uid="uid://bqe45dm5wyip4" path="res://resources/scripting/definitions/instruction_resource.gd" id="2_fn0c8"]
-[ext_resource type="Script" uid="uid://cyysoo4jhjpub" path="res://resources/scripting/definitions/execution_instruction_resource.gd" id="3_a6itc"]
+[ext_resource type="Script" uid="uid://cyysoo4jhjpub" path="res://resources/scripting/definitions/executions/execution_instruction_resource.gd" id="3_a6itc"]
 [ext_resource type="Script" uid="uid://bbv23l8h2i6ka" path="res://resources/scripting/definitions/list_instruction_resource.gd" id="3_f75ky"]
 [ext_resource type="Script" uid="uid://cioni3f13iu1e" path="res://resources/scripting/definitions/for_instruction_resource.gd" id="3_r5p2t"]
 [ext_resource type="Script" uid="uid://cqurtj2o02nh" path="res://resources/scripting/definitions/operation/variable_expression_resource.gd" id="3_usmbw"]
 [ext_resource type="Script" uid="uid://bir504d7dlwrt" path="res://resources/scripting/definitions/condition_resource.gd" id="3_vjcr8"]
 [ext_resource type="Script" uid="uid://d1ynh7ys7iaab" path="res://scenes/UI/inventory.gd" id="7_a6itc"]
-[ext_resource type="Script" uid="uid://bptnkeoa30f03" path="res://resources/scripting/definitions/create_instruction_resource.gd" id="9_f75ky"]
+[ext_resource type="Script" uid="uid://bptnkeoa30f03" path="res://resources/scripting/definitions/executions/create_instruction_resource.gd" id="9_f75ky"]
+[ext_resource type="Script" uid="uid://jhj821woppuc" path="res://resources/scripting/definitions/executions/update_instruction_resource.gd" id="11_jhjoh"]
 
 [sub_resource type="Resource" id="Resource_iduvy"]
 script = ExtResource("3_usmbw")
@@ -92,6 +93,23 @@ script = ExtResource("3_a6itc")
 type = 6
 metadata/_custom_type_script = "uid://cyysoo4jhjpub"
 
+[sub_resource type="Resource" id="Resource_uhta5"]
+script = ExtResource("3_usmbw")
+value = 0
+metadata/_custom_type_script = "uid://cqurtj2o02nh"
+
+[sub_resource type="Resource" id="Resource_drghr"]
+script = ExtResource("3_usmbw")
+value = ""
+metadata/_custom_type_script = "uid://cqurtj2o02nh"
+
+[sub_resource type="Resource" id="Resource_0ie7x"]
+script = ExtResource("11_jhjoh")
+name = SubResource("Resource_drghr")
+expression = SubResource("Resource_uhta5")
+type = 11
+metadata/_custom_type_script = "uid://jhj821woppuc"
+
 [node name="CodingSpace" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -134,7 +152,7 @@ offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("7_a6itc")
-availableInstructions = Array[ExtResource("2_fn0c8")]([SubResource("Resource_f75ky"), SubResource("Resource_xchgw"), SubResource("Resource_usmbw"), SubResource("Resource_78wbv"), SubResource("Resource_dhuyy"), SubResource("Resource_jhjoh"), SubResource("Resource_sfy5e"), SubResource("Resource_lhmcw")])
+availableInstructions = Array[ExtResource("2_fn0c8")]([SubResource("Resource_f75ky"), SubResource("Resource_xchgw"), SubResource("Resource_usmbw"), SubResource("Resource_78wbv"), SubResource("Resource_dhuyy"), SubResource("Resource_jhjoh"), SubResource("Resource_sfy5e"), SubResource("Resource_lhmcw"), SubResource("Resource_0ie7x")])
 
 [node name="VariableList" type="VBoxContainer" parent="."]
 layout_mode = 1

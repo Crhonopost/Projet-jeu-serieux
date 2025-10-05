@@ -33,7 +33,6 @@ func build(instructions : Array[Instruction]) -> bool:
 		instructionIdx += 1
 		var result = followInstruction(instruction)
 		if !result: return false
-		runtimeVariables["test"] += 1
 	return true
 	
 func followInstruction(instruction : Instruction) -> bool:

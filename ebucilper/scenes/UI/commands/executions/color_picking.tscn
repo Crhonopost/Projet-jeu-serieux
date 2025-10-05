@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://dls2w0af4xo48"]
+
+[ext_resource type="Script" uid="uid://cq5iqomw50bwv" path="res://scenes/UI/commands/executions/color_picking.gd" id="1_lvrrf"]
+
+[node name="ColorPick" type="HBoxContainer"]
+offset_left = 4.0
+offset_right = 4.0
+offset_bottom = 50.0
+script = ExtResource("1_lvrrf")
+
+[node name="ItemList" type="ItemList" parent="."]
+layout_mode = 2
+auto_width = true
+auto_height = true
+item_count = 2
+item_0/text = "RED"
+item_1/text = "BLUE"
+
+[connection signal="item_selected" from="ItemList" to="." method="_on_item_list_item_selected"]

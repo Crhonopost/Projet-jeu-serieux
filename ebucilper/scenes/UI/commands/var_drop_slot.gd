@@ -1,8 +1,11 @@
 extends Control
 
 var variable : ExpressionResource = VariableExpressionResource.new()
+@export var replaceOnDrop := false
 
 signal stateChanged(variable: ExpressionResource)
+
+var nameLabel: Label
 
 func _ready() -> void:
 	if(variable is VariableExpressionResource):
@@ -11,13 +14,13 @@ func _ready() -> void:
 		setOperationMode(variable)
 
 func onVariableChange(newVal):
-	$Name.text = str(newVal)
+	nameLabel.text = str(newVal)
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	return data is ExpressionResource
 
 func _drop_data(at_position: Vector2, data: Variant) -> void:
-	if(data is VariableExpressionResource && variable.value is int):
+	if((data is VariableExpressionResource && variable.value is int) || replaceOnDrop):
 		setVariableMode(data)
 	elif(data is VariableExpressionResource):
 		var newExpr = OperationResource.new()
@@ -52,6 +55,7 @@ func setVariableMode(varExpr : VariableExpressionResource):
 	if(variable.value is String):
 		var label = Label.new()
 		label.text = str(variable.value)
+		nameLabel = label
 		$HBoxContainer.add_child(label)
 	else:
 		var input = SpinBox.new()
