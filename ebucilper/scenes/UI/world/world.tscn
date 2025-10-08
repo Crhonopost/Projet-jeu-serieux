@@ -29,23 +29,43 @@ label_settings = SubResource("LabelSettings_fmaxo")
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
+vertical_scroll_mode = 0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Level" parent="VBoxContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
+[node name="Level" parent="VBoxContainer/ScrollContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
+layout_mode = 2
+level_id = "bat36"
+level_name = "Bâtiment 36"
+level_path = "res://levels/bat36"
+target_steps = 10
+optimal_steps = 5
+unlocked = true
+done = true
+steps = 7
+
+[node name="Level2" parent="VBoxContainer/ScrollContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
+layout_mode = 2
+level_name = "Bâtiment 16"
+level_path = "res://levels/bat16"
+unlocked = true
+
+[node name="Level3" parent="VBoxContainer/ScrollContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
 layout_mode = 2
 
-[node name="Level2" parent="VBoxContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
+[node name="Level4" parent="VBoxContainer/ScrollContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
 layout_mode = 2
 
-[node name="Level3" parent="VBoxContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
+[node name="Level5" parent="VBoxContainer/ScrollContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
 layout_mode = 2
 
-[node name="Level4" parent="VBoxContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
-layout_mode = 2
-
-[node name="Level5" parent="VBoxContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
+[node name="Level6" parent="VBoxContainer/ScrollContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
 layout_mode = 2
 
 [node name="Control4" type="Control" parent="VBoxContainer"]
