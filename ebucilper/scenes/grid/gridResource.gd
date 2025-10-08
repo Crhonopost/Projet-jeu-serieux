@@ -24,3 +24,13 @@ func positionToIndex(position: Vector3i) -> int :
 
 func clear() -> void:
 	grid.fill(ColorsEnum.NONE)
+	
+func to_serializable_dict() -> Dictionary:
+	var dims := [gridScale, gridScale, gridScale]
+
+	var grid_copy := grid.duplicate(true)
+
+	return {
+		"dimensions": dims,
+		"grid": grid_copy
+	}
