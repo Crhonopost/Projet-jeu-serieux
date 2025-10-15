@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bbyxw6eym1jvg" path="res://scenes/grid/ViewScene.tscn" id="2_1n4kf"]
 [ext_resource type="Script" uid="uid://qrylnjtay82j" path="res://scenes/grid/gridResource.gd" id="4_6j83v"]
 [ext_resource type="Script" uid="uid://cav7hgnw788c8" path="res://scenes/grid/builder.gd" id="4_7ehec"]
-[ext_resource type="Texture2D" uid="uid://ffnioimoqd74" path="res://Assets/Images/Skyboxes/AllSkyFree_Sky_DeepDusk_Equirect.png" id="6_g6sfq"]
+[ext_resource type="Texture2D" uid="uid://fi8tohkevpo8" path="res://Assets/Images/Skyboxes/AllSkyFree_Sky_AnotherPlanet_Equirect.png" id="6_g6sfq"]
 
 [sub_resource type="Resource" id="Resource_g6sfq"]
 script = ExtResource("4_6j83v")
