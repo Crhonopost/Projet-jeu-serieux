@@ -1,4 +1,4 @@
-class_name UpdateInstructionResource extends ExecutionInstructionResource
+class_name UpdateLogicResource extends ExecutionLogicResource
 
 @export var name := VariableExpressionResource.new()
 @export var expression: ExpressionResource = VariableExpressionResource.new()

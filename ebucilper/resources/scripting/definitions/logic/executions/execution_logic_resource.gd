@@ -1,4 +1,4 @@
-class_name ExecutionInstructionResource extends InstructionResource
+class_name ExecutionLogicResource extends LogicResource
 
 const InstructionType = Instruction.InstructionType
 var INSTRUCTION_NAMES = {

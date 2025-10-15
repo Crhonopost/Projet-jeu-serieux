@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bnfb5aq78k3gx"]
 
 [ext_resource type="Script" uid="uid://bakb1u0vj3n4h" path="res://scenes/UI/commands/condition.gd" id="1_fq5ah"]
-[ext_resource type="Script" uid="uid://bir504d7dlwrt" path="res://resources/scripting/definitions/condition_resource.gd" id="2_208yj"]
+[ext_resource type="Script" uid="uid://bir504d7dlwrt" path="res://resources/scripting/definitions/logic/condition_resource.gd" id="2_208yj"]
 [ext_resource type="PackedScene" uid="uid://de8ex6hebdcaj" path="res://scenes/UI/commands/var_drop_slot.tscn" id="2_gp5if"]
 
 [sub_resource type="Resource" id="Resource_wfvhq"]
