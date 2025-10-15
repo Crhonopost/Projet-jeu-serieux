@@ -17,7 +17,10 @@ func _ready() -> void:
 	else:
 		push_error("Error: el JSON no contiene un arreglo de strings")
 		
-	$Banner/Label.text = texts[current_text]
+		
+	var levelData = texts[current_text].split("|")
+	$Banner/Label.text = levelData[0]
+	$Character.texture = load("res://Assets/Images/characters/" + levelData[1])
 	await get_tree().create_timer(3).timeout
 	
 	if texts.size() == 1 :
@@ -32,7 +35,11 @@ func _on_button_pressed() -> void:
 	else:
 		$Button.visible = false
 		current_text += 1
-		$Banner/Label.text = texts[current_text]
+		
+		var levelData = texts[current_text].split("|")
+		$Banner/Label.text = levelData[0]
+		$Character.texture = load("res://Assets/Images/characters/" + levelData[1])
+	
 		await get_tree().create_timer(3).timeout
 		if current_text == texts.size() - 1 :
 			$Button.text = "Start"
