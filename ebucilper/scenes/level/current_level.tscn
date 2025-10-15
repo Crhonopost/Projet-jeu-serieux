@@ -1,16 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://b267yic7ui0nk"]
+[gd_scene load_steps=11 format=3 uid="uid://b267yic7ui0nk"]
 
 [ext_resource type="Script" uid="uid://b7c8bsgviwne6" path="res://scenes/level/current_level.gd" id="1_1n4kf"]
 [ext_resource type="PackedScene" uid="uid://c2i2xc75qwiwp" path="res://scenes/UI/coding_space.tscn" id="1_j3nmy"]
 [ext_resource type="PackedScene" uid="uid://bbyxw6eym1jvg" path="res://scenes/grid/ViewScene.tscn" id="2_1n4kf"]
 [ext_resource type="Script" uid="uid://qrylnjtay82j" path="res://scenes/grid/gridResource.gd" id="4_6j83v"]
 [ext_resource type="Script" uid="uid://cav7hgnw788c8" path="res://scenes/grid/builder.gd" id="4_7ehec"]
+[ext_resource type="Texture2D" uid="uid://0nw44w57ihvb" path="res://Assets/Blender/AllSkyFree_Sky_EpicBlueSunset_Equirect.png" id="6_g6sfq"]
 
 [sub_resource type="Resource" id="Resource_g6sfq"]
 script = ExtResource("4_6j83v")
 metadata/_custom_type_script = "uid://qrylnjtay82j"
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5ggq6"]
+panorama = ExtResource("6_g6sfq")
 
 [sub_resource type="Sky" id="Sky_6j83v"]
 sky_material = SubResource("PanoramaSkyMaterial_5ggq6")
