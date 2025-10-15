@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rhck5ddagurf"
-path="res://.godot/imported/nicolas_lutz_sad.png-d60b91ed993cf09cd93868fb16c48604.ctex"
+uid="uid://dkrslgckuyy4v"
+path="res://.godot/imported/william_puesh_happy.png-a336896924889dabb1d02068f0cdb4f5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/nicolas_lutz_sad.png"
-dest_files=["res://.godot/imported/nicolas_lutz_sad.png-d60b91ed993cf09cd93868fb16c48604.ctex"]
+source_file="res://Assets/Images/characters/william_puesh_happy.png"
+dest_files=["res://.godot/imported/william_puesh_happy.png-a336896924889dabb1d02068f0cdb4f5.ctex"]
 
 [params]
 

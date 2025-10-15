@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://chd0ikkfqbyqk" path="res://scenes/level/load_story.gd" id="1_hmpfh"]
 [ext_resource type="Texture2D" uid="uid://65iu3hsrri36" path="res://levels/bat16/background.png" id="2_50vrq"]
 [ext_resource type="Texture2D" uid="uid://cha53wh6hho3e" path="res://Assets/Images/banner.png" id="3_50vrq"]
-[ext_resource type="Texture2D" uid="uid://on53etfxd4ck" path="res://Assets/Images/characters/lutz_happy.png" id="3_vx6h1"]
+[ext_resource type="Texture2D" uid="uid://on53etfxd4ck" path="res://Assets/Images/characters/nicolas_lutz_happy.png" id="3_vx6h1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_50vrq"]
 shadow_size = 0

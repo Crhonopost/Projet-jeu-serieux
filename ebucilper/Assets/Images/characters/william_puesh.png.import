@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dn8y33hyssqlx"
-path="res://.godot/imported/william_puesh_sad.png-d7f92e2a8180b4fe41f67a6792834fe8.ctex"
+uid="uid://dph1k7yycnl7x"
+path="res://.godot/imported/william_puesh.png-0034174b418830aa8aacc124b54d1ecb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/william_puesh_sad.png"
-dest_files=["res://.godot/imported/william_puesh_sad.png-d7f92e2a8180b4fe41f67a6792834fe8.ctex"]
+source_file="res://Assets/Images/characters/william_puesh.png"
+dest_files=["res://.godot/imported/william_puesh.png-0034174b418830aa8aacc124b54d1ecb.ctex"]
 
 [params]
 
