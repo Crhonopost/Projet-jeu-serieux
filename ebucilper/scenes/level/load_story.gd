@@ -18,7 +18,7 @@ func _ready() -> void:
 		push_error("Error: el JSON no contiene un arreglo de strings")
 		
 	$Banner/Label.text = texts[current_text]
-	await get_tree().create_timer(5).timeout
+	await get_tree().create_timer(3).timeout
 	
 	if texts.size() == 1 :
 		$Button.text = "Start"
