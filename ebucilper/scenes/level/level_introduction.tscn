@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5vxark281f0s"]
+[gd_scene load_steps=6 format=3 uid="uid://b5vxark281f0s"]
 
 [ext_resource type="Script" uid="uid://chd0ikkfqbyqk" path="res://scenes/level/load_story.gd" id="1_hmpfh"]
 [ext_resource type="Texture2D" uid="uid://65iu3hsrri36" path="res://levels/bat16/background.png" id="2_50vrq"]
+[ext_resource type="Texture2D" uid="uid://cha53wh6hho3e" path="res://Assets/Images/banner.png" id="3_50vrq"]
+[ext_resource type="Texture2D" uid="uid://on53etfxd4ck" path="res://Assets/Images/nicolas_lutz.png" id="3_vx6h1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_50vrq"]
+shadow_size = 0
 
 [node name="Bat36" type="Control"]
 layout_mode = 3
@@ -20,31 +25,56 @@ texture = ExtResource("2_50vrq")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Button" type="Button" parent="."]
-visible = false
-layout_mode = 0
-offset_left = 969.0
-offset_top = 567.0
-offset_right = 1114.0
-offset_bottom = 616.0
-text = "Start"
+[node name="NicolasLutz" type="Sprite2D" parent="."]
+position = Vector2(206, 470)
+texture = ExtResource("3_vx6h1")
 
-[node name="Label" type="Label" parent="."]
+[node name="Banner" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(600, 300)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -323.0
+offset_top = -233.0
+offset_right = 277.0
+offset_bottom = 67.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("3_50vrq")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Banner"]
+modulate = Color(0.017646605, 0.017646605, 0.017646605, 1)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -164.0
-offset_top = -24.5
-offset_right = 164.0
-offset_bottom = 24.5
+offset_left = -217.0
+offset_top = -58.0
+offset_right = 205.0
+offset_bottom = 56.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Oh non ! 
 
 La Université de Montpellier a été détruite"
-horizontal_alignment = 1
+label_settings = SubResource("LabelSettings_50vrq")
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="."]
+visible = false
+modulate = Color(1, 0.29411766, 0.44705883, 1)
+self_modulate = Color(18.892157, 4.313358, 4.7359314, 1)
+layout_mode = 0
+offset_left = 969.0
+offset_top = 567.0
+offset_right = 1114.0
+offset_bottom = 616.0
+text = "Start"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
