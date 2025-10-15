@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://chd0ikkfqbyqk" path="res://scenes/level/load_story.gd" id="1_hmpfh"]
 [ext_resource type="Texture2D" uid="uid://65iu3hsrri36" path="res://levels/bat16/background.png" id="2_50vrq"]
 [ext_resource type="Texture2D" uid="uid://cha53wh6hho3e" path="res://Assets/Images/banner.png" id="3_50vrq"]
-[ext_resource type="Texture2D" uid="uid://on53etfxd4ck" path="res://Assets/Images/nicolas_lutz.png" id="3_vx6h1"]
+[ext_resource type="Texture2D" uid="uid://on53etfxd4ck" path="res://Assets/Images/characters/lutz_happy.png" id="3_vx6h1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_50vrq"]
 shadow_size = 0
@@ -18,15 +18,23 @@ grow_vertical = 2
 script = ExtResource("1_hmpfh")
 
 [node name="Background" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 1420.0
-offset_bottom = 692.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_50vrq")
-expand_mode = 1
-stretch_mode = 4
+expand_mode = 5
 
-[node name="NicolasLutz" type="Sprite2D" parent="."]
-position = Vector2(206, 470)
+[node name="Character" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -384.0
+offset_right = 386.0
+grow_vertical = 0
 texture = ExtResource("3_vx6h1")
 
 [node name="Banner" type="TextureRect" parent="."]
