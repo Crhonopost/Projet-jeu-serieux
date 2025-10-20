@@ -24,23 +24,51 @@ func draw_grid(immediate_mesh: ImmediateMesh):
 	var size = grid_size * cell_size
 
 	# Tracer les lignes parallèles aux axes
-	for i in range(grid_size + 1):
-		var offset = i * cell_size
-
-		# X parallèle
-		for j in range(grid_size + 1):
-			var offset2 = j * cell_size
-			# lignes sur Z
-			immediate_mesh.surface_add_vertex(Vector3(0, offset, offset2) + cellOffset)
-			immediate_mesh.surface_add_vertex(Vector3(size, offset, offset2) + cellOffset)
-			# lignes sur Y
-			immediate_mesh.surface_add_vertex(Vector3(offset2, 0, offset) + cellOffset)
-			immediate_mesh.surface_add_vertex(Vector3(offset2, size, offset) + cellOffset)
-
-		# Z parallèle
-		for j in range(grid_size + 1):
-			var offset2 = j * cell_size
-			immediate_mesh.surface_add_vertex(Vector3(offset, offset2, 0) + cellOffset)
-			immediate_mesh.surface_add_vertex(Vector3(offset, offset2, size) + cellOffset)
-
+	#for i in range(grid_size + 1):
+		#var offset = i * cell_size
+#
+		## X parallèle
+		#for j in range(grid_size + 1):
+			#var offset2 = j * cell_size
+			## lignes sur Z
+			#immediate_mesh.surface_add_vertex(Vector3(0, offset, offset2) + cellOffset)
+			#immediate_mesh.surface_add_vertex(Vector3(size, offset, offset2) + cellOffset)
+			## lignes sur Y
+			#immediate_mesh.surface_add_vertex(Vector3(offset2, 0, offset) + cellOffset)
+			#immediate_mesh.surface_add_vertex(Vector3(offset2, size, offset) + cellOffset)
+#
+		## Z parallèle
+		#for j in range(grid_size + 1):
+			#var offset2 = j * cell_size
+			#immediate_mesh.surface_add_vertex(Vector3(offset, offset2, 0) + cellOffset)
+			#immediate_mesh.surface_add_vertex(Vector3(offset, offset2, size) + cellOffset)
+	
+	# Axes Z
+	immediate_mesh.surface_add_vertex(Vector3(0, 0, 0) + cellOffset)
+	immediate_mesh.surface_add_vertex(Vector3(0, 0, size) + cellOffset)
+	immediate_mesh.surface_add_vertex(Vector3(size, 0, 0) + cellOffset)
+	immediate_mesh.surface_add_vertex(Vector3(size, 0, size) + cellOffset)
+	immediate_mesh.surface_add_vertex(Vector3(0, size, 0) + cellOffset)
+	immediate_mesh.surface_add_vertex(Vector3(0, size, size) + cellOffset)
+	immediate_mesh.surface_add_vertex(Vector3(size, size, 0) + cellOffset)
+	immediate_mesh.surface_add_vertex(Vector3(size, size, size) + cellOffset)
+	# Axe X
+	immediate_mesh.surface_add_vertex(Vector3(0, 0, 0) + cellOffset)
+	immediate_mesh.surface_add_vertex(Vector3(size, 0, 0) + cellOffset)
+	immediate_mesh.surface_add_vertex(Vector3(0, 0, size) + cellOffset)
+	immediate_mesh.surface_add_vertex(Vector3(size, 0, size) + cellOffset)
+	immediate_mesh.surface_add_vertex(Vector3(0, size, 0) + cellOffset)
+	immediate_mesh.surface_add_vertex(Vector3(size, size, 0) + cellOffset)
+	immediate_mesh.surface_add_vertex(Vector3(0, size, size) + cellOffset)
+	immediate_mesh.surface_add_vertex(Vector3(size, size, size) + cellOffset)
+	# Axe Y
+	immediate_mesh.surface_add_vertex(Vector3(0, 0, 0) + cellOffset)
+	immediate_mesh.surface_add_vertex(Vector3(0, size, 0) + cellOffset)
+	immediate_mesh.surface_add_vertex(Vector3(size, 0, 0) + cellOffset)
+	immediate_mesh.surface_add_vertex(Vector3(size, size, 0) + cellOffset)
+	immediate_mesh.surface_add_vertex(Vector3(0, 0, size) + cellOffset)
+	immediate_mesh.surface_add_vertex(Vector3(0, size, size) + cellOffset)
+	immediate_mesh.surface_add_vertex(Vector3(size, 0, size) + cellOffset)
+	immediate_mesh.surface_add_vertex(Vector3(size, size, size) + cellOffset)
+	
 	immediate_mesh.surface_end()

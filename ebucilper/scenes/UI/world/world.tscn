@@ -41,20 +41,9 @@ size_flags_vertical = 3
 
 [node name="Level" parent="VBoxContainer/ScrollContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
 layout_mode = 2
-level_id = "bat36"
-level_name = "Bâtiment 36"
-level_path = "res://levels/bat36"
-target_steps = 10
-optimal_steps = 5
-unlocked = true
-done = true
-steps = 7
 
 [node name="Level2" parent="VBoxContainer/ScrollContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
 layout_mode = 2
-level_name = "Bâtiment 16"
-level_path = "res://levels/bat16"
-unlocked = true
 
 [node name="Level3" parent="VBoxContainer/ScrollContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
 layout_mode = 2

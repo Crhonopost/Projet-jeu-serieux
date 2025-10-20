@@ -9,6 +9,7 @@
 
 [node name="Grid" type="Node3D"]
 script = ExtResource("1_brle5")
+mode = 1
 
 [node name="Visualization" type="Node3D" parent="."]
 script = ExtResource("2_hg1qn")

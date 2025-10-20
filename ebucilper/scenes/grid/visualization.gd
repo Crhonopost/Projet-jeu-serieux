@@ -11,6 +11,12 @@ func instantiate(position: Vector3, colorIdx: int , isTransparent := false):
 	bloc.position = position
 	var mat = StandardMaterial3D.new()
 	mat.albedo_color = colors[colorIdx]
+	if isTransparent:
+		var alpha = 0.2
+		mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+		var col: Color = mat.albedo_color
+		col.a = alpha
+		mat.albedo_color = col
 	bloc.material_override = mat;
 	add_child(bloc)
 
