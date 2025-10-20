@@ -13,7 +13,7 @@ enum showTargetBlockMode {all,layer,smaller}
 	# placeBlocs(gridTarget,true)
 	# placeBlocs(gridEditor, false)
 func _ready():
-	showTargetBlock(mode, true, Vector3i(1,2,3))
+	showTargetBlock(mode, true, Vector3i(0,0,0))
 
 func clearGrid():
 	currentGrid.clear()
@@ -36,15 +36,29 @@ func fillgrid(gridResource : GridResource, prob : float):
 func showTargetBlock(showMode : showTargetBlockMode , show : bool, cursor_position:Vector3i):
 
 	if not show or currentGrid == null:
+		push_warning("showTargetBlock: currentGrid is null or show is false")
 		return
+	$Visualization.clear()
+	
+	print("showTargetBlock: using gridScale = ", currentGrid.gridScale)
+	print("showTargetBlock: grid size = ", currentGrid.grid.size())
+	
+	var S := currentGrid.gridScale
 
 	if showMode == showTargetBlockMode.all:
-		for i in range (currentGrid.gridScale) :
-			for j in range (currentGrid.gridScale) :
-				for k in range (currentGrid.gridScale) :
-					$Visualization.instantiate(Vector3(i, k, j), Global.ColorsEnum.RED, true)
+		for i in range(S):
+			for k in range(S):
+				for j in range(S):
+					var idx := i + k * S + j * S * S
+					var c := currentGrid.grid[idx]
+					if c != 0:
+						$Visualization.instantiate(Vector3(i, k, j), c, true)
+
 	if showMode == showTargetBlockMode.layer:
-		var layer_pos = cursor_position.y
-		for i in range (currentGrid.gridScale) :
-			for j in range (currentGrid.gridScale) :
-				$Visualization.instantiate(Vector3(i, layer_pos, j), Global.ColorsEnum.RED, true)
+		var k := clampi(cursor_position.y, 0, S - 1)
+		for i in range(S):
+			for j in range(S):
+				var idx := i + k * S + j * S * S
+				var c := currentGrid.grid[idx]
+				if c != 0:
+					$Visualization.instantiate(Vector3(i, k, j), c, true)
