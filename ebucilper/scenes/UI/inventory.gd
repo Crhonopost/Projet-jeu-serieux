@@ -1,6 +1,6 @@
 extends HBoxContainer
 
-@export var availableInstructions : Array[InstructionResource]
+@export var availableInstructions : Array[LogicResource]
 
 @onready var instructionItemScene : PackedScene = load("res://scenes/UI/instruction_item.tscn")
 

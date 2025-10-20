@@ -4,7 +4,7 @@ class_name OperationResource extends ExpressionResource
 @export var variableName: String
 
 @export var variableA: ExpressionResource
-@export var operator: Instruction.Operators
+@export var operator: LowLevelExpression.OperatorEnum
 @export var variableB: ExpressionResource
 
 func _to_string() -> String:
@@ -27,23 +27,21 @@ func getInstructions(parentVarName: String = "temp") -> Array[Instruction]:
 	elif(variableB is VariableExpressionResource):
 		resB = variableB.value
 	
-	var operationInstruction := Instruction.new()
-	operationInstruction.action = Instruction.InstructionType.UPDATE_VAR
-	operationInstruction.arguments["operation"] = {
-		"operand_1" : resA,
-		"operand_2" : resB,
-		"operator" : operator
-	}
+	var operationInstruction := UpdateVarInstruction.new()
+	operationInstruction.expression.A = resA
+	operationInstruction.expression.B = resB
+	operationInstruction.expression.operator = operator
+	
 	if(variableName == ""):
-		var creationInstruction := Instruction.new()
-		creationInstruction.action = Instruction.InstructionType.CREATE_VAR
-		creationInstruction.arguments["name"] = parentVarName
-		creationInstruction.arguments["value"] = 0
+		var creationInstruction := CreateVarInstruction.new()
+		creationInstruction.expression.A = 0
+		creationInstruction.expression.operator = LowLevelExpression.OperatorEnum.NONE
+		creationInstruction.target = parentVarName
 		
 		res.append(creationInstruction)
-		operationInstruction.arguments["variable_name"] = parentVarName
+		operationInstruction.target = parentVarName
 	else:
-		operationInstruction.arguments["variable_name"] = variableName
+		operationInstruction.target = variableName
 	
 	res.append(operationInstruction)
 	return res

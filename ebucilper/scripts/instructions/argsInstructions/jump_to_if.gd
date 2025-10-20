@@ -1,4 +1,4 @@
-class_name JumpToIf extends JumpTo
+class_name JumpToIfInstruction extends JumpToInstruction
 
-var condition
+var condition: LowLevelExpression
 var evaluateNot: bool

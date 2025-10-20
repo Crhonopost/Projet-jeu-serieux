@@ -5,13 +5,13 @@ extends Node
 
 signal variableCreationInstantiated(variable: VariableExpressionResource)
 
-func instantiate(instruction: InstructionResource) -> Control:
+func instantiate(instruction: LogicResource) -> Control:
 	var instance = Control.new()
-	if(instruction is ExecutionInstructionResource):
+	if(instruction is ExecutionLogicResource):
 		instance = exeInstructionScene.instantiate()
-		if(instruction is CreateInstructionResource):
+		if(instruction is CreateLogicResource):
 			emit_signal("variableCreationInstantiated", instruction.name)
-	elif(instruction is ListInstructionResource):
+	elif(instruction is ListLogicResource):
 		instance = flowInstructionScene.instantiate()
 	else:
 		printerr("Can't build instruction UI")

@@ -1,33 +1,40 @@
 extends  Node
 
-const InstructionType = Instruction.InstructionType
+const InstructionType = NoArgsInstruction.NoArgInstructionType
 
-func processInstructions(entryPoint: InstructionResource, instructionIdx: int) -> Array[Instruction]:
+func processInstructions(entryPoint: LogicResource, instructionIdx: int) -> Array[Instruction]:
 	var res : Array[Instruction]
 
-	if(entryPoint is UpdateInstructionResource):
+	if(entryPoint is UpdateLogicResource):
 		entryPoint.expression.variableName = entryPoint.name.value
 		res.append_array(entryPoint.expression.getInstructions())
-	elif(entryPoint is ExecutionInstructionResource):
-		var content := Instruction.new()
-		content.action = entryPoint.type
-		if(entryPoint is CreateInstructionResource):
-			content.arguments["name"] = entryPoint.name.value
-			content.arguments["value"] = entryPoint.value
-		else:
-			content.arguments = entryPoint.arguments
-		return [content]
+	elif(entryPoint is ExecutionLogicResource):
+		var instru: Instruction
+		if(entryPoint is NoArgsLogicResource):
+			instru = NoArgsInstruction.new()
+			instru.action = entryPoint.type
+		
+		elif entryPoint is CreateLogicResource:
+			instru = CreateVarInstruction.new()
+			instru.expression.A = entryPoint.valuA
+			instru.expression.operator = LowLevelExpression.OperatorEnum.NONE
+			instru.target = entryPoint.name.value
+		
+		elif entryPoint is ChangeColorLogicResource:
+			instru = ChangeColorInstruction.new()
+			instru.color = entryPoint.color
+		
+		return [instru]
 	
-	elif(entryPoint is ListInstructionResource):    
+	elif(entryPoint is ListLogicResource):    
 		var instructionList : Array[Instruction]
 		
 		for child in entryPoint.childs:
 			instructionList.append_array(processInstructions(child, instructionIdx + 1))
 		
-		if(entryPoint is ForInstructionResource):
-			var jumpBackInstruction:= Instruction.new()
-			jumpBackInstruction.action = InstructionType.JUMP
-			jumpBackInstruction.arguments["jump_index"] = instructionIdx
+		if(entryPoint is WhileLogicResource):
+			var jumpBackInstruction:= JumpToInstruction.new()
+			jumpBackInstruction.toIdx = instructionIdx
 			instructionList.append(jumpBackInstruction)
 			
 			var conditionExpressions: Array[Instruction] = []
@@ -45,15 +52,12 @@ func processInstructions(entryPoint: InstructionResource, instructionIdx: int) -
 				condiVarB = condiVarB.value
 			
 			
-			var endLoopCondition := Instruction.new()
-			endLoopCondition.action = InstructionType.JUMP_IF_NOT
-			endLoopCondition.arguments = {
-				"variable_a" = condiVarA,
-				"variable_b" = condiVarB,
-				"comparator" = entryPoint.condition.comparator
-			}
-			
-			endLoopCondition.arguments["jump_index"] = instructionIdx + conditionExpressions.size() + instructionList.size() + 2
+			var endLoopCondition := JumpToIfInstruction.new()
+			endLoopCondition.evaluateNot = true
+			endLoopCondition.condition.A = condiVarA
+			endLoopCondition.condition.B = condiVarB
+			endLoopCondition.condition.operator = entryPoint.condition.comparator
+			endLoopCondition.toIdx = instructionIdx + conditionExpressions.size() + instructionList.size() + 2
 			conditionExpressions.append(endLoopCondition)
 			
 			conditionExpressions.append_array(instructionList)

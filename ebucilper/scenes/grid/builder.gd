@@ -1,6 +1,6 @@
 extends Node3D
 
-const InstructionType = Instruction.InstructionType
+const NoArgInstructionType = NoArgsInstruction.NoArgInstructionType
 const ColorsEnum = Global.ColorsEnum
 
 var grid : GridResource
@@ -34,44 +34,44 @@ func build(instructions : Array[Instruction]) -> bool:
 		var result = followInstruction(instruction)
 		if !result: return false
 	return true
-	
-func followInstruction(instruction : Instruction) -> bool:
+
+func followNoArgs(instruction: NoArgsInstruction) -> bool:
 	var instructionResult: bool = true
 	match instruction.action:
-		InstructionType.PLACE_BLOCK:
+		NoArgInstructionType.PLACE_BLOCK:
 			instructionResult = placeBlock()
-			buildingTime += 1
-		InstructionType.MOVE_FORWARD:
+		NoArgInstructionType.MOVE_FORWARD:
 			moveForward()
-			buildingTime += 1
-		InstructionType.MOVE_UP:
+		NoArgInstructionType.MOVE_UP:
 			moveUp()
-			buildingTime += 1
-		InstructionType.MOVE_DOWN:
+		NoArgInstructionType.MOVE_DOWN:
 			moveDown()
-			buildingTime += 1
-		InstructionType.ROTATE_LEFT:
+		NoArgInstructionType.ROTATE_LEFT:
 			rotateLeft()
-			buildingTime += 1
-		InstructionType.ROTATE_RIGHT:
+		NoArgInstructionType.ROTATE_RIGHT:
 			rotateRight()
-			buildingTime += 1
-		InstructionType.CHANGE_COLOR:
-			changeColor(instruction.arguments["color"])
-			buildingTime += 1
-		InstructionType.JUMP:
-			jump(instruction.arguments["jump_index"])
-		InstructionType.JUMP_IF:
-			jumpIf(instruction.arguments["jump_index"], instruction.arguments["variable_a"], instruction.arguments["variable_b"], instruction.arguments["comparator"], false)
-		InstructionType.JUMP_IF_NOT:
-			jumpIf(instruction.arguments["jump_index"], instruction.arguments["variable_a"], instruction.arguments["variable_b"], instruction.arguments["comparator"], true)
-		InstructionType.CREATE_VAR:
-			createVariable(instruction.arguments["name"], instruction.arguments["value"])
-		InstructionType.UPDATE_VAR:
-			updateVariable(instruction.arguments["variable_name"], instruction.arguments["operation"])
-		_:
-			printerr("Unknown instruction type")
-			instructionResult = false
+	
+	buildingTime += 1
+	return instructionResult
+
+func followInstruction(instruction : Instruction) -> bool:
+	var instructionResult: bool = true
+	if instruction is NoArgsInstruction:
+		followNoArgs(instruction)
+	elif instruction is ChangeColorInstruction:
+		changeColor(instruction.color)
+		buildingTime += 1
+	elif instruction is JumpToInstruction:
+		jump(instruction.toIdx)
+	elif instruction is JumpToIfInstruction:
+		jumpIf(instruction.toIdx, instruction.condition, instruction.evaluateNot)
+	elif instruction is CreateVarInstruction:
+		createVariable(instruction.target, instruction.expression)
+	elif instruction is UpdateVarInstruction:
+		updateVariable(instruction.target, instruction.expression)
+	else:
+		printerr("Unknown instruction type")
+		instructionResult = false
 	
 	return instructionResult
 
@@ -117,37 +117,28 @@ func extractVar(variable) -> Variant:
 	else:
 		return variable
 
-func jumpIf(idx: int, variableA: Variant, variableB: Variant, comparator: Instruction.Comparators, negation: bool):
-	var varA = extractVar(variableA)
-	var varB = extractVar(variableB)
+func jumpIf(idx: int, expression: LowLevelExpression, negation: bool):
+	var varA = extractVar(expression.A)
+	var varB = extractVar(expression.B)
 	
-	var comparison: bool
-	match comparator:
-		Instruction.Comparators.SUPERIOR:
-			comparison = varA > varB
-		Instruction.Comparators.INFERIOR:
-			comparison = varA < varB
-		Instruction.Comparators.EQUAL:
-			comparison = varA == varB
+	var comparison: bool = expression.execute(varA, expression.operator, varB)
 	
 	if( (negation && !comparison) || 
 		(!negation && comparison)):
 		instructionIdx = idx
 
-func executeCalcul(operation: Dictionary):
-	var a = extractVar(operation["operand_1"])
-	var b = extractVar(operation["operand_2"])
-	match operation["operator"]:
-		Instruction.Operators.ADD:
-			return a + b
-		Instruction.Operators.SUB:
-			return a - b
-		Instruction.Operators.MULT:
-			return a * b
+func executeCalcul(expression: LowLevelExpression) -> int:
+	var varA = extractVar(expression.A)
+	
+	if expression.operator == LowLevelExpression.OperatorEnum.NONE:
+		return varA
+	
+	var varB = extractVar(expression.B)
+	return expression.execute(varA, expression.operator, varB)
 
-func createVariable(name: String, initialValue: Variant):
+func createVariable(name: String, initialValue: LowLevelExpression):
 	runtimeVariables[name] = extractVar(initialValue)
 
-func updateVariable(name: String, operations: Dictionary):
+func updateVariable(name: String, expression: LowLevelExpression):
 	if(!runtimeVariables.has(name)): return false
-	runtimeVariables[name] = executeCalcul(operations)
+	runtimeVariables[name] = executeCalcul(expression)

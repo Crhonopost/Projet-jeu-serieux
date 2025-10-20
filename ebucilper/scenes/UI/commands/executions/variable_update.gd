@@ -1,6 +1,6 @@
 extends HBoxContainer
 
-var update := UpdateInstructionResource.new()
+var update := UpdateLogicResource.new()
 
 func _enter_tree() -> void:
 	$VarDropTarget.variable = update.name

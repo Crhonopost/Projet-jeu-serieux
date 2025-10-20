@@ -1,3 +1,3 @@
-class_name JumpTo extends ArgsInstruction
+class_name JumpToInstruction extends ArgsInstruction
 
 var toIdx : int

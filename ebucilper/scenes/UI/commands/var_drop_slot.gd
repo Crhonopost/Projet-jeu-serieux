@@ -78,7 +78,7 @@ func setOperationMode(opExpr: OperationResource):
 	var right_input = preload("res://scenes/UI/commands/var_drop_slot.tscn").instantiate()
 	
 	var op_label = Label.new()
-	op_label.text = Instruction.operatorToStr(opExpr.operator)
+	op_label.text = LowLevelExpression.operatorToStr(opExpr.operator)
 
 	hbox.add_child(left_input)
 	hbox.add_child(op_label)

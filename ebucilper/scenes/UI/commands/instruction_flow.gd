@@ -1,6 +1,6 @@
 class_name InstructionFlowUI extends Control
 
-@export var instructionResource: ListInstructionResource
+@export var instructionResource: ListLogicResource
 
 @onready var typeLabel: Label = $VBoxContainer/HBoxContainer/Type
 @onready var header: HBoxContainer = $VBoxContainer/HBoxContainer
@@ -28,7 +28,7 @@ func refreshUI():
 		for child in conditionList.get_children():
 			child.queue_free()
 		
-		if(instructionResource is FlowInstructionResource):
+		if(instructionResource is FlowLogicResource):
 			var conditionInstance = conditionScene.instantiate()
 			conditionInstance.condition = instructionResource.condition
 			conditionInstance.connect("conditionUpdated", func(condition): 
@@ -59,4 +59,4 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 	refreshUI()
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
-	return data is InstructionResource
+	return data is LogicResource

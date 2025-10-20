@@ -1,0 +1,55 @@
+[gd_scene load_steps=10 format=3 uid="uid://b267yic7ui0nk"]
+
+[ext_resource type="Script" uid="uid://b7c8bsgviwne6" path="res://scenes/level/current_level.gd" id="1_1n4kf"]
+[ext_resource type="PackedScene" uid="uid://c2i2xc75qwiwp" path="res://scenes/UI/coding_space.tscn" id="1_j3nmy"]
+[ext_resource type="PackedScene" uid="uid://bbyxw6eym1jvg" path="res://scenes/grid/ViewScene.tscn" id="2_1n4kf"]
+[ext_resource type="Script" uid="uid://qrylnjtay82j" path="res://scenes/grid/gridResource.gd" id="4_6j83v"]
+[ext_resource type="Script" uid="uid://cav7hgnw788c8" path="res://scenes/grid/builder.gd" id="4_7ehec"]
+
+[sub_resource type="Resource" id="Resource_g6sfq"]
+script = ExtResource("4_6j83v")
+metadata/_custom_type_script = "uid://qrylnjtay82j"
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7ehec"]
+sky_top_color = Color(0.28467593, 0.4785813, 0.5541494, 1)
+sky_horizon_color = Color(0.74036336, 0.62754905, 0.57817876, 1)
+ground_bottom_color = Color(0.050980393, 0.09019608, 0.11372549, 1)
+ground_horizon_color = Color(0.73937356, 0.62654036, 0.58950263, 1)
+
+[sub_resource type="Sky" id="Sky_6j83v"]
+sky_material = SubResource("ProceduralSkyMaterial_7ehec")
+
+[sub_resource type="Environment" id="Environment_g6sfq"]
+background_mode = 2
+sky = SubResource("Sky_6j83v")
+
+[node name="CurrentLevel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1n4kf")
+
+[node name="CodingSpace" parent="." instance=ExtResource("1_j3nmy")]
+layout_mode = 1
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_direction = 3
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 512.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Grid" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_1n4kf")]
+currentGrid = SubResource("Resource_g6sfq")
+
+[node name="Builder" type="Node3D" parent="SubViewportContainer/SubViewport"]
+script = ExtResource("4_7ehec")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
+environment = SubResource("Environment_g6sfq")
