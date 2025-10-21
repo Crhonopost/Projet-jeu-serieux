@@ -11,11 +11,18 @@ func _ready():
 
 func _on_coding_space_launch() -> void:
 	var instructions = $CodingSpace.retrieveInstructions()
-	gridView.clearGrid()
-	builder.grid = gridView.currentGrid
+	#gridView.clearGrid()
+	#builder.grid = gridView.currentGrid
+	gridView.clear_player()
+	builder.grid = gridView.playerGrid
+	gridView.playerGrid.gridScale = gridView.currentGrid.gridScale
+	gridView.playerGrid.clear()
+	
 	builder.resetState()
 	builder.build(instructions)
-	gridView.placeBlocs(builder.grid, false)
+	#gridView.placeBlocs(builder.grid, false)
+	gridView.placePlayerBlocs()
+	gridView.showTargetBlock(gridView.mode, true, Vector3i.ZERO)
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if dev_mode and event.is_action_pressed("dev_save_target"):
