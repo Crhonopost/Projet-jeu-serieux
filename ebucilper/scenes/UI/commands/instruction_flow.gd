@@ -2,10 +2,10 @@ class_name InstructionFlowUI extends Control
 
 @export var instructionResource: ListLogicResource
 
-@onready var typeLabel: Label = $VBoxContainer/HBoxContainer/Type
-@onready var header: HBoxContainer = $VBoxContainer/HBoxContainer
-@onready var instructionList: VBoxContainer = $VBoxContainer/MarginContainer/SubInstructions
-@onready var conditionList: VBoxContainer = $VBoxContainer/HBoxContainer/Conditions
+@onready var typeLabel: Label = $HBoxContainer/Type
+@onready var header: HBoxContainer = $HBoxContainer
+@onready var instructionList: VBoxContainer = $MarginContainer/SubInstructions
+@onready var conditionList: VBoxContainer = $HBoxContainer/Conditions
 
 @onready var conditionScene: PackedScene = load("res://scenes/UI/commands/condition.tscn")
 
