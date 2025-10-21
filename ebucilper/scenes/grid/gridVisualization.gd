@@ -100,7 +100,7 @@ func draw_grid(immediate_mesh: ImmediateMesh):
 		render_mode unshaded, cull_disabled, fog_disabled;
 
 		uniform vec4 tint : source_color = vec4(1.0);
-		uniform vec3  grid_center = vec3(5.0);
+		uniform vec3  grid_center = vec3(4.5);
 		uniform float max_dist    = 5.0;
 		uniform float alpha_min   = 0.0;
 		uniform float alpha_max   = 0.5;
@@ -109,13 +109,17 @@ func draw_grid(immediate_mesh: ImmediateMesh):
 		
 		void vertex() {
 			float d = distance(VERTEX, grid_center);
-			float t = 1.0 - clamp(d / max_dist, 0.0, 1.0);
-			v_alpha = mix(alpha_min, alpha_max, t);
+			float radius = max_dist * 0.9;
+			float fade   = max_dist * 0.4;
+
+			float a = smoothstep(radius, radius + fade, d);
+
+			v_alpha = mix(alpha_min, alpha_max, a);
 		}
 		
 		void fragment() {
 		    ALBEDO = tint.rgb;
-		    ALPHA = alpha_max-v_alpha;
+		    ALPHA = v_alpha;
 		}
 	"""
 	var axis_mat: ShaderMaterial = ShaderMaterial.new()
