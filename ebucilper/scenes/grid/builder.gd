@@ -61,10 +61,10 @@ func followInstruction(instruction : Instruction) -> bool:
 	elif instruction is ChangeColorInstruction:
 		changeColor(instruction.color)
 		buildingTime += 1
-	elif instruction is JumpToInstruction:
-		jump(instruction.toIdx)
 	elif instruction is JumpToIfInstruction:
 		jumpIf(instruction.toIdx, instruction.condition, instruction.evaluateNot)
+	elif instruction is JumpToInstruction:
+		jump(instruction.toIdx)
 	elif instruction is CreateVarInstruction:
 		createVariable(instruction.target, instruction.expression)
 	elif instruction is UpdateVarInstruction:
@@ -114,6 +114,8 @@ func extractVar(variable) -> Variant:
 		return 0
 	if variable is String:
 		return runtimeVariables[variable]
+	elif variable is not float && variable is not int && variable is not bool:
+		return 0
 	else:
 		return variable
 
@@ -137,7 +139,7 @@ func executeCalcul(expression: LowLevelExpression) -> int:
 	return expression.execute(varA, expression.operator, varB)
 
 func createVariable(name: String, initialValue: LowLevelExpression):
-	runtimeVariables[name] = extractVar(initialValue)
+	runtimeVariables[name] = executeCalcul(initialValue)
 
 func updateVariable(name: String, expression: LowLevelExpression):
 	if(!runtimeVariables.has(name)): return false

@@ -16,7 +16,7 @@ func processInstructions(entryPoint: LogicResource, instructionIdx: int) -> Arra
 		
 		elif entryPoint is CreateLogicResource:
 			instru = CreateVarInstruction.new()
-			instru.expression.A = entryPoint.valuA
+			instru.expression.A = entryPoint.value
 			instru.expression.operator = LowLevelExpression.OperatorEnum.NONE
 			instru.target = entryPoint.name.value
 		
@@ -57,7 +57,7 @@ func processInstructions(entryPoint: LogicResource, instructionIdx: int) -> Arra
 			endLoopCondition.condition.A = condiVarA
 			endLoopCondition.condition.B = condiVarB
 			endLoopCondition.condition.operator = entryPoint.condition.comparator
-			endLoopCondition.toIdx = instructionIdx + conditionExpressions.size() + instructionList.size() + 2
+			endLoopCondition.toIdx = instructionIdx + conditionExpressions.size() + instructionList.size() + 1
 			conditionExpressions.append(endLoopCondition)
 			
 			conditionExpressions.append_array(instructionList)

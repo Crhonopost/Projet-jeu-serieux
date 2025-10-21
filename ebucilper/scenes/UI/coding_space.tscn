@@ -1,12 +1,16 @@
-[gd_scene load_steps=16 format=3 uid="uid://c2i2xc75qwiwp"]
+[gd_scene load_steps=24 format=3 uid="uid://c2i2xc75qwiwp"]
 
 [ext_resource type="Script" uid="uid://b678kr1glpsrl" path="res://scenes/UI/coding_space.gd" id="1_25lkw"]
 [ext_resource type="Script" uid="uid://bulv0feibbce" path="res://scripts/compiler.gd" id="2_bwyhw"]
 [ext_resource type="Script" uid="uid://bqe45dm5wyip4" path="res://resources/scripting/definitions/logic/logic_resource.gd" id="2_fn0c8"]
 [ext_resource type="Script" uid="uid://bbv23l8h2i6ka" path="res://resources/scripting/definitions/logic/list_instruction_resource.gd" id="3_f75ky"]
+[ext_resource type="Script" uid="uid://bir504d7dlwrt" path="res://resources/scripting/definitions/logic/condition_resource.gd" id="3_vjcr8"]
 [ext_resource type="Script" uid="uid://dmggbp5elydyj" path="res://resources/scripting/definitions/logic/executions/change_color_logic_resource.gd" id="6_a6itc"]
 [ext_resource type="Script" uid="uid://d1ynh7ys7iaab" path="res://scenes/UI/inventory.gd" id="7_a6itc"]
 [ext_resource type="Script" uid="uid://qjop52belxgl" path="res://resources/scripting/definitions/logic/executions/no_args_logic_resource.gd" id="7_vjcr8"]
+[ext_resource type="Script" uid="uid://cioni3f13iu1e" path="res://resources/scripting/definitions/logic/flows/while_instruction_resource.gd" id="8_vjcr8"]
+[ext_resource type="Script" uid="uid://bptnkeoa30f03" path="res://resources/scripting/definitions/logic/executions/create_logic_resource.gd" id="9_f75ky"]
+[ext_resource type="Script" uid="uid://jhj821woppuc" path="res://resources/scripting/definitions/logic/executions/update_logic_resource.gd" id="11_jhjoh"]
 
 [sub_resource type="Resource" id="Resource_47f3o"]
 script = ExtResource("3_f75ky")
@@ -44,6 +48,24 @@ metadata/_custom_type_script = "uid://qjop52belxgl"
 script = ExtResource("7_vjcr8")
 type = 5
 metadata/_custom_type_script = "uid://qjop52belxgl"
+
+[sub_resource type="Resource" id="Resource_3t8km"]
+script = ExtResource("3_vjcr8")
+comparator = 6
+metadata/_custom_type_script = "uid://bir504d7dlwrt"
+
+[sub_resource type="Resource" id="Resource_xchgw"]
+script = ExtResource("8_vjcr8")
+condition = SubResource("Resource_3t8km")
+metadata/_custom_type_script = "uid://cioni3f13iu1e"
+
+[sub_resource type="Resource" id="Resource_iduvy"]
+script = ExtResource("9_f75ky")
+metadata/_custom_type_script = "uid://bptnkeoa30f03"
+
+[sub_resource type="Resource" id="Resource_lhmcw"]
+script = ExtResource("11_jhjoh")
+metadata/_custom_type_script = "uid://jhj821woppuc"
 
 [node name="CodingSpace" type="Control"]
 layout_mode = 3
@@ -87,7 +109,7 @@ offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("7_a6itc")
-availableInstructions = Array[ExtResource("2_fn0c8")]([SubResource("Resource_f75ky"), SubResource("Resource_usmbw"), SubResource("Resource_a6itc"), SubResource("Resource_vjcr8"), SubResource("Resource_jhjoh"), SubResource("Resource_78wbv"), SubResource("Resource_dhuyy")])
+availableInstructions = Array[ExtResource("2_fn0c8")]([SubResource("Resource_f75ky"), SubResource("Resource_usmbw"), SubResource("Resource_a6itc"), SubResource("Resource_vjcr8"), SubResource("Resource_jhjoh"), SubResource("Resource_78wbv"), SubResource("Resource_dhuyy"), SubResource("Resource_xchgw"), SubResource("Resource_iduvy"), SubResource("Resource_lhmcw")])
 
 [node name="VariableList" type="VBoxContainer" parent="."]
 layout_mode = 1

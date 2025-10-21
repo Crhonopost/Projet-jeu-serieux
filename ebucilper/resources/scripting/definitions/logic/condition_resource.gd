@@ -5,5 +5,5 @@ class_name ConditionResource extends Resource
 @export var comparator: LowLevelExpression.OperatorEnum
 @export var variableB: ExpressionResource
 
-func getComparatorText():
-	LowLevelExpression.operatorToStr(comparator)
+func getComparatorText() -> String:
+	return LowLevelExpression.operatorToStr(comparator)
