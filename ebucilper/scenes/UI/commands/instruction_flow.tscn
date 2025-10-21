@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://ccvogvottrj2u"]
+[gd_scene load_steps=3 format=3 uid="uid://ccvogvottrj2u"]
 
 [ext_resource type="Script" uid="uid://wy2gsxwbexgl" path="res://scenes/UI/commands/instruction_flow.gd" id="1_drnas"]
+[ext_resource type="PackedScene" uid="uid://de8ex6hebdcaj" path="res://scenes/UI/commands/var_drop_slot.tscn" id="2_lpbb1"]
 
 [node name="InstructionList" type="VBoxContainer"]
 offset_right = 1152.0
@@ -18,7 +19,7 @@ text = "Delete"
 layout_mode = 2
 text = "Type"
 
-[node name="Conditions" type="VBoxContainer" parent="HBoxContainer"]
+[node name="ConditionInput" parent="HBoxContainer" instance=ExtResource("2_lpbb1")]
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

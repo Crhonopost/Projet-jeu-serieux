@@ -45,25 +45,17 @@ func processWhile(whileLogic: WhileLogicResource, instructionIdx: int) -> Array[
 	var instructionList : Array[Instruction]
 	
 	################ jump condition #####################
-	var condiVarA = whileLogic.condition.variableA
-	var condiVarB = whileLogic.condition.variableB
-	if(condiVarA is OperationResource):
-		instructionList.append_array(condiVarA.getInstructions("temp1"))
-		condiVarA = "temp1"
-	else:
-		condiVarA = condiVarA.value
-	if(condiVarB is OperationResource):
-		instructionList.append_array(condiVarB.getInstructions("temp2"))
-		condiVarB = "temp2"
-	else:
-		condiVarB = condiVarB.value
+	var conditions = whileLogic.condition.getInstructions("_condition")
 	
+	var createVar := CreateVarInstruction.new()
+	createVar.target = "_condition"
+	
+	instructionList.append(createVar)
+	instructionList.append_array(conditions)
 	
 	var endLoopCondition := JumpToIfInstruction.new()
 	endLoopCondition.evaluateNot = true
-	endLoopCondition.condition.A = condiVarA
-	endLoopCondition.condition.B = condiVarB
-	endLoopCondition.condition.operator = whileLogic.condition.comparator
+	endLoopCondition.condition.A = "_condition"
 	instructionList.append(endLoopCondition)
 	#####################################
 	

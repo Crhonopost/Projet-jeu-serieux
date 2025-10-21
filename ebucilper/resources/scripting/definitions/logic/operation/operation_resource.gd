@@ -16,7 +16,7 @@ func getInstructions(parentVarName: String = "temp") -> Array[Instruction]:
 	var resA
 	if(variableA is OperationResource):
 		resA = parentVarName + "1"
-		res.append(variableA.getInstructions(resA))
+		res.append_array(variableA.getInstructions(resA))
 	elif(variableA is VariableExpressionResource):
 		resA = variableA.value
 	

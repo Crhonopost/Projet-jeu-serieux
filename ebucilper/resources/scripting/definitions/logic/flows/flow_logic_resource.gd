@@ -1,3 +1,3 @@
 @abstract class_name FlowLogicResource extends ListLogicResource
 
-@export var condition: ConditionResource
+@export var condition: ExpressionResource

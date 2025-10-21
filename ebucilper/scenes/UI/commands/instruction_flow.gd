@@ -5,25 +5,19 @@ class_name InstructionFlowUI extends Control
 @onready var typeLabel: Label = $HBoxContainer/Type
 @onready var header: HBoxContainer = $HBoxContainer
 @onready var instructionList: VBoxContainer = $MarginContainer/SubInstructions
-@onready var conditionList: VBoxContainer = $HBoxContainer/Conditions
-
-@onready var conditionScene: PackedScene = load("res://scenes/UI/commands/condition.tscn")
+@onready var conditionField = $HBoxContainer/ConditionInput
 
 signal exitCode
 
 func _ready():
 	typeLabel.text = instructionResource.getName()
 	
-	instantiateCondition()
+	if(instructionResource is FlowLogicResource):
+		conditionField.variable = instructionResource.condition
+		conditionField.connect("stateChanged", updateCondition)
+	
 	instantiateList()
 	
-func instantiateCondition():
-	if(instructionResource is FlowLogicResource):
-		var conditionInstance = conditionScene.instantiate()
-		conditionInstance.condition = instructionResource.condition
-		conditionInstance.connect("conditionUpdated", func(condition): 
-			instructionResource.condition = condition)
-		conditionList.add_child(conditionInstance)
 
 func instantiateList():
 	for instructionChild in instructionResource.childs:
@@ -37,6 +31,8 @@ func instantiateChild(instructionChild: LogicResource):
 func _on_delete_pressed() -> void:
 	emit_signal("exitCode")
 
+func updateCondition(condition: ExpressionResource):
+	instructionResource.condition = condition
 
 
 func childLeave(logicRes: LogicResource):
