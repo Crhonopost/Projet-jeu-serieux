@@ -16,7 +16,6 @@ func _ready() -> void:
 func setEntryInstruction(entryInstruction : ListLogicResource):
 	entryPoint = InstructionVisualBuilder.instantiate(entryInstruction)
 	$FirstLine.add_child(entryPoint)
-	entryPoint.refreshUI()
 
 func _on_button_pressed() -> void:
 	emit_signal("launch")
