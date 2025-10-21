@@ -6,6 +6,9 @@ extends Control
 @export var dev_mode: bool = true                 # developpement mode
 @export var level_name: String = "level_001"      # can be changed in inspector
 
+func _ready():
+	_load_target_from_json()
+
 func _on_coding_space_launch() -> void:
 	var instructions = $CodingSpace.retrieveInstructions()
 	gridView.clearGrid()
@@ -39,3 +42,29 @@ func _save_current_as_target() -> void:
 	f.close()
 
 	print("Saved target to: ", file_path)
+
+
+func _load_target_from_json():
+	var file_path := "res://scenes/level/design_level_json/%s.json" % level_name
+	if not FileAccess.file_exists(file_path):
+		push_error("Target JSON file not found: %s" % file_path)
+		return
+
+	var f := FileAccess.open(file_path, FileAccess.READ)
+	var json_str := f.get_as_text()
+	f.close()
+
+	var result = JSON.parse_string(json_str)
+	if result == null:
+		push_error("Failed to parse JSON: %s" % file_path)
+		return
+
+	var grid_data = result.get("grid_data", null)
+	if grid_data == null:
+		push_error("No 'grid_data' found in JSON.")
+		return
+
+	var new_grid = GridResource.new()
+	new_grid.from_serializable_dict(grid_data)
+	gridView.currentGrid = new_grid
+	gridView.showTargetBlock(gridView.mode, true, Vector3i(0, 0, 0))

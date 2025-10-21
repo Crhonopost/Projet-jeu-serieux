@@ -25,6 +25,7 @@ func resetState() -> void:
 	currentColor = ColorsEnum.RED
 	instructionIdx = 0
 	runtimeVariables.clear()
+	
 
 func build(instructions : Array[Instruction]) -> bool:
 	buildingTime = 0
