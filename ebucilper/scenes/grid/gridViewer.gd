@@ -5,6 +5,7 @@ extends Node
 @export var currentGrid : GridResource
 enum showTargetBlockMode {all,layer,smaller}
 @export var mode : showTargetBlockMode
+var playerGrid: GridResource = GridResource.new() 
 
 
 # func _ready() -> void:
@@ -18,6 +19,20 @@ func _ready():
 func clearGrid():
 	currentGrid.clear()
 	$Visualization.clear()
+	
+func clear_player():
+	$Visualization.clear()
+
+
+func placePlayerBlocs() -> void:
+	var S := playerGrid.gridScale
+	for i in range(S):
+		for k in range(S):
+			for j in range(S):
+				var idx := i + k * S + j * S * S
+				var c := playerGrid.grid[idx]
+				if c != Global.ColorsEnum.NONE:
+					$Visualization.instantiate(Vector3(i, k, j), c, false)
 
 
 func placeBlocs(gridResource : GridResource, isTransparent : bool) :
@@ -38,7 +53,7 @@ func showTargetBlock(showMode : showTargetBlockMode , show : bool, cursor_positi
 	if not show or currentGrid == null:
 		push_warning("showTargetBlock: currentGrid is null or show is false")
 		return
-	$Visualization.clear()
+	#$Visualization.clear()
 	
 	print("showTargetBlock: using gridScale = ", currentGrid.gridScale)
 	print("showTargetBlock: grid size = ", currentGrid.grid.size())
