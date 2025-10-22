@@ -1,8 +1,8 @@
 extends PanelContainer
 
-var instruction : InstructionResource
+var instruction : LogicResource
 
-func setInstruction(instruc : InstructionResource):
+func setInstruction(instruc : LogicResource):
 	$Label.text = instruc.getName()
 	instruction = instruc
 

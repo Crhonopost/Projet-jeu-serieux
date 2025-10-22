@@ -1,39 +1,31 @@
-[gd_scene load_steps=2 format=3 uid="uid://ccvogvottrj2u"]
+[gd_scene load_steps=3 format=3 uid="uid://ccvogvottrj2u"]
 
 [ext_resource type="Script" uid="uid://wy2gsxwbexgl" path="res://scenes/UI/commands/instruction_flow.gd" id="1_drnas"]
+[ext_resource type="PackedScene" uid="uid://de8ex6hebdcaj" path="res://scenes/UI/commands/var_drop_slot.tscn" id="2_lpbb1"]
 
-[node name="InstructionList" type="Control"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1152.0
-size_flags_vertical = 3
-script = ExtResource("1_drnas")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
+[node name="InstructionList" type="VBoxContainer"]
 offset_right = 1152.0
 offset_bottom = 35.0
+script = ExtResource("1_drnas")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Delete" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="Delete" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 text = "Delete"
 
-[node name="Type" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="Type" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 text = "Type"
 
-[node name="Conditions" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+[node name="ConditionInput" parent="HBoxContainer" instance=ExtResource("2_lpbb1")]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 50
 
-[node name="SubInstructions" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
+[node name="SubInstructions" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Delete" to="." method="_on_delete_pressed"]

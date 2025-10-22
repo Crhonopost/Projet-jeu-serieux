@@ -1,6 +1,6 @@
 extends Control
 
-@export var instructionResource: ExecutionInstructionResource
+@export var instructionResource: ExecutionLogicResource
 
 @onready var typeLabel: Label = $HBoxContainer/Type
 
@@ -14,8 +14,8 @@ signal exitCode
 func _ready():
 	buildFromResource()
 
-func retrieveCommand() -> Array[Instruction.InstructionType]:
-	return []
+#func retrieveCommand() -> Array[Instruction.InstructionType]:
+	#return []
 
 func _on_delete_pressed() -> void:
 	emit_signal("exitCode")
@@ -25,15 +25,15 @@ func buildFromResource():
 	
 	typeLabel.text = instructionResource.getName()
 	
-	if instructionResource is CreateInstructionResource:
+	if instructionResource is CreateLogicResource:
 		var argsInstance = variableCreationScene.instantiate()
 		argsInstance.creation = instructionResource
 		$HBoxContainer/Special.add_child(argsInstance)
-	elif instructionResource.type == Instruction.InstructionType.CHANGE_COLOR:
+	elif instructionResource is ChangeColorLogicResource:
 		var argsInstance = colorPickingScene.instantiate()
-		argsInstance.color = instructionResource
+		argsInstance.colorLogic = instructionResource
 		$HBoxContainer/Special.add_child(argsInstance)
-	elif instructionResource.type == Instruction.InstructionType.UPDATE_VAR:
+	elif instructionResource is UpdateLogicResource:
 		var argsInstance = variableUpdateScene.instantiate()
 		argsInstance.update = instructionResource
 		$HBoxContainer/Special.add_child(argsInstance)

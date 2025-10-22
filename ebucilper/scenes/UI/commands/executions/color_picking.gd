@@ -1,6 +1,6 @@
 extends HBoxContainer
 
-var color : ExecutionInstructionResource
+var colorLogic : ChangeColorLogicResource
 
 func _on_item_list_item_selected(index: int) -> void:
-	color.arguments["color"] = index + 1
+	colorLogic.color = index + 1

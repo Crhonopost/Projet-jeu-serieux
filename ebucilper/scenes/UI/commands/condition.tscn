@@ -1,29 +1,40 @@
-[gd_scene load_steps=5 format=3 uid="uid://bnfb5aq78k3gx"]
+[gd_scene load_steps=5 format=3 uid="uid://dnv8o7moxwwhm"]
 
-[ext_resource type="Script" uid="uid://bakb1u0vj3n4h" path="res://scenes/UI/commands/condition.gd" id="1_fq5ah"]
-[ext_resource type="Script" uid="uid://bir504d7dlwrt" path="res://resources/scripting/definitions/condition_resource.gd" id="2_208yj"]
 [ext_resource type="PackedScene" uid="uid://de8ex6hebdcaj" path="res://scenes/UI/commands/var_drop_slot.tscn" id="2_gp5if"]
 
+[sub_resource type="GDScript" id="GDScript_q6gk4"]
+script/source = "extends Control
+
+@export var condition: ExpressionResource
+
+func _enter_tree() -> void:
+	$VarDropSlot.variable = condition
+"
+
+[sub_resource type="GDScript" id="GDScript_usmbw"]
+script/source = "extends Resource
+
+
+@export var variableA: ExpressionResource
+@export var comparator: LowLevelExpression.OperatorEnum
+@export var variableB: ExpressionResource
+
+func getComparatorText() -> String:
+	return LowLevelExpression.operatorToStr(comparator)
+"
+
 [sub_resource type="Resource" id="Resource_wfvhq"]
-script = ExtResource("2_208yj")
+script = SubResource("GDScript_usmbw")
 metadata/_custom_type_script = "uid://bir504d7dlwrt"
 
 [node name="Condition" type="HBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 offset_right = 56.0
 offset_bottom = 23.0
-script = ExtResource("1_fq5ah")
+script = SubResource("GDScript_q6gk4")
 condition = SubResource("Resource_wfvhq")
 
-[node name="VarDropSlotA" parent="." instance=ExtResource("2_gp5if")]
+[node name="VarDropSlot" parent="." instance=ExtResource("2_gp5if")]
 layout_mode = 2
 
-[node name="Comparator" type="Label" parent="."]
-layout_mode = 2
-text = "COMP"
-
-[node name="VarDropSlotB" parent="." instance=ExtResource("2_gp5if")]
-layout_mode = 2
-
-[connection signal="stateChanged" from="VarDropSlotA" to="." method="_on_var_drop_slot_a_state_changed"]
-[connection signal="stateChanged" from="VarDropSlotB" to="." method="_on_var_drop_slot_b_state_changed"]
+[connection signal="stateChanged" from="VarDropSlot" to="." method="_on_var_drop_slot_a_state_changed"]

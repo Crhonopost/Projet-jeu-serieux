@@ -20,7 +20,7 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	return data is ExpressionResource
 
 func _drop_data(at_position: Vector2, data: Variant) -> void:
-	if((data is VariableExpressionResource && variable.value is int) || replaceOnDrop):
+	if((data is VariableExpressionResource && (variable == null || variable.value is int)) || replaceOnDrop):
 		setVariableMode(data)
 	elif(data is VariableExpressionResource):
 		var newExpr = OperationResource.new()
@@ -58,14 +58,17 @@ func setVariableMode(varExpr : VariableExpressionResource):
 		nameLabel = label
 		$HBoxContainer.add_child(label)
 	else:
-		var input = SpinBox.new()
+		var input := SpinBox.new()
+		input.min_value = -9999
+		input.max_value = 9999
 		input.value = variable.value
 		input.get_line_edit().set_drag_forwarding(_get_drag_data, _can_drop_data, _drop_data)
 		input.connect("value_changed", _on_input_value_changed)
 		$HBoxContainer.add_child(input)
 	
 	emit_signal("stateChanged", variable)
-	variable.connect("valueChanged", onVariableChange)
+	if !variable.is_connected("valueChanged", onVariableChange):
+		variable.connect("valueChanged", onVariableChange)
 
 func setOperationMode(opExpr: OperationResource):
 	clearChildren()
@@ -78,7 +81,7 @@ func setOperationMode(opExpr: OperationResource):
 	var right_input = preload("res://scenes/UI/commands/var_drop_slot.tscn").instantiate()
 	
 	var op_label = Label.new()
-	op_label.text = Instruction.operatorToStr(opExpr.operator)
+	op_label.text = LowLevelExpression.operatorToStr(opExpr.operator)
 
 	hbox.add_child(left_input)
 	hbox.add_child(op_label)

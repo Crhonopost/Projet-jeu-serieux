@@ -1,6 +1,6 @@
 extends HBoxContainer
 
-var creation := CreateInstructionResource.new()
+var creation := CreateLogicResource.new()
 
 func _ready() -> void:
 	$Name.text = str(creation.name.value)
