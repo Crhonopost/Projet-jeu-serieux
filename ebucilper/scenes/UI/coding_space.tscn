@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://c2i2xc75qwiwp"]
+[gd_scene load_steps=28 format=3 uid="uid://c2i2xc75qwiwp"]
 
 [ext_resource type="Script" uid="uid://b678kr1glpsrl" path="res://scenes/UI/coding_space.gd" id="1_25lkw"]
 [ext_resource type="Script" uid="uid://bulv0feibbce" path="res://scripts/compiler.gd" id="2_bwyhw"]
@@ -17,6 +17,16 @@
 [sub_resource type="Resource" id="Resource_47f3o"]
 script = ExtResource("3_f75ky")
 metadata/_custom_type_script = "uid://bbv23l8h2i6ka"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dhuyy"]
+texture = ExtResource("4_dhuyy")
+texture_margin_left = 64.0
+texture_margin_top = 64.0
+texture_margin_right = 51.0
+texture_margin_bottom = 75.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(0, 0, 435, 331)
 
 [sub_resource type="Resource" id="Resource_f75ky"]
 script = ExtResource("6_a6itc")
@@ -93,36 +103,34 @@ entryInstruction = SubResource("Resource_47f3o")
 [node name="Compiler" type="Node" parent="."]
 script = ExtResource("2_bwyhw")
 
-[node name="CodingBackground" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 880.0
-offset_bottom = 900.0
-texture = ExtResource("4_dhuyy")
-
 [node name="CodeContainer" type="Control" parent="."]
 anchors_preset = 0
-offset_left = 65.0
-offset_top = 64.0
-offset_right = 817.0
-offset_bottom = 833.0
+offset_right = 879.0
+offset_bottom = 897.0
 
-[node name="Button" type="Button" parent="CodeContainer"]
-clip_contents = true
+[node name="Panel" type="Panel" parent="CodeContainer"]
 layout_mode = 0
-offset_left = 10.0
-offset_top = 716.0
-offset_right = 64.0
-offset_bottom = 764.0
-icon = ExtResource("5_jhjoh")
-icon_alignment = 1
-expand_icon = true
+offset_right = 879.0
+offset_bottom = 897.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_dhuyy")
 
 [node name="FirstLine" type="Control" parent="CodeContainer"]
 anchors_preset = 0
-offset_left = 14.0
-offset_top = 25.0
-offset_right = 14.0
-offset_bottom = 33.0
+offset_right = 879.0
+offset_bottom = 897.0
+
+[node name="Button" type="TextureButton" parent="CodeContainer"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 44.0
+offset_top = -150.0
+offset_right = 140.0
+offset_bottom = -54.0
+grow_vertical = 0
+texture_normal = ExtResource("5_jhjoh")
+stretch_mode = 0
 
 [node name="InventoryBackground" type="TextureRect" parent="."]
 layout_mode = 0
