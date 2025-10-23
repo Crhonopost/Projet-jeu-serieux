@@ -1,4 +1,4 @@
-extends HBoxContainer
+extends FlowContainer 
 
 @export var availableInstructions : Array[LogicResource]
 

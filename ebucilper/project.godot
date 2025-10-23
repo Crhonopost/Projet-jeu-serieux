@@ -21,6 +21,11 @@ Global="*res://scripts/global.gd"
 InstructionVisualBuilder="*res://scripts/instruction_visual_builder.gd"
 ActiveLevel="*res://scripts/active_level.gd"
 
+[display]
+
+window/size/viewport_width=1600
+window/size/viewport_height=900
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/orbit_camera/plugin.cfg")
