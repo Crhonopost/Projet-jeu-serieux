@@ -56,3 +56,5 @@ script = ExtResource("4_7ehec")
 environment = SubResource("Environment_g6sfq")
 
 [connection signal="launch" from="CodingSpace" to="." method="_on_coding_space_launch"]
+[connection signal="mouse_entered" from="SubViewportContainer" to="." method="_on_sub_viewport_container_mouse_entered"]
+[connection signal="mouse_exited" from="SubViewportContainer" to="." method="_on_sub_viewport_container_mouse_exited"]

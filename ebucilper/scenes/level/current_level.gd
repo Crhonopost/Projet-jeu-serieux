@@ -75,3 +75,18 @@ func _load_target_from_json():
 	new_grid.from_serializable_dict(grid_data)
 	gridView.currentGrid = new_grid
 	gridView.showTargetBlock(gridView.mode, true, Vector3i(0, 0, 0))
+
+
+var mouse_over_viewport = false
+
+func _input(event: InputEvent) -> void:
+	if(event.is_action("move_camera")):
+		$SubViewportContainer/SubViewport/Grid.get_node("CameraTarget/OrbitCamera").follow_mouse = mouse_over_viewport && event.is_action_pressed("move_camera")
+	
+
+func _on_sub_viewport_container_mouse_entered() -> void:
+	mouse_over_viewport = true
+
+
+func _on_sub_viewport_container_mouse_exited() -> void:
+	mouse_over_viewport = false

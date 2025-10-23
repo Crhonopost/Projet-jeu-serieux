@@ -9,6 +9,8 @@ extends Camera3D
 @export var MOUSE_ZOOM_SPEED: float = 10
 @export var TOUCH_INVERT_ZOOM: bool = false
 
+var follow_mouse: bool = false
+
 # Event var
 var _move_speed: Vector2
 var _scroll_speed: float
@@ -72,7 +74,7 @@ func _input(event):
 		_process_touch_zoom_event(event)
 
 func _process_mouse_rotation_event(e: InputEventMouseMotion):
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+	if follow_mouse:
 		_move_speed = e.relative
 
 func _process_mouse_scroll_event(e: InputEventMouseButton):
