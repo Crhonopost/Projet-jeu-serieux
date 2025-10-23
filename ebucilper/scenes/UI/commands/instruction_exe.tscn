@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bbavicoatjdec"]
+[gd_scene load_steps=3 format=3 uid="uid://bbavicoatjdec"]
 
 [ext_resource type="Script" uid="uid://dklvussic3lxx" path="res://scenes/UI/commands/instruction_exe.gd" id="1_dfbn3"]
+[ext_resource type="Texture2D" uid="uid://beh1tqeb2op44" path="res://Assets/Images/UI/delete_icon.png" id="2_o87p7"]
 
 [node name="InstructionExe" type="Control"]
 custom_minimum_size = Vector2(0, 50)
@@ -18,7 +19,8 @@ offset_bottom = 50.0
 
 [node name="Delete" type="Button" parent="HBoxContainer"]
 layout_mode = 2
-text = "Delete"
+icon = ExtResource("2_o87p7")
+icon_alignment = 1
 
 [node name="Type" type="Label" parent="HBoxContainer"]
 layout_mode = 2

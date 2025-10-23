@@ -1,9 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://c2i2xc75qwiwp"]
+[gd_scene load_steps=25 format=3 uid="uid://c2i2xc75qwiwp"]
 
 [ext_resource type="Script" uid="uid://b678kr1glpsrl" path="res://scenes/UI/coding_space.gd" id="1_25lkw"]
 [ext_resource type="Script" uid="uid://bulv0feibbce" path="res://scripts/compiler.gd" id="2_bwyhw"]
 [ext_resource type="Script" uid="uid://bqe45dm5wyip4" path="res://resources/scripting/definitions/logic/logic_resource.gd" id="2_fn0c8"]
 [ext_resource type="Script" uid="uid://bbv23l8h2i6ka" path="res://resources/scripting/definitions/logic/list_instruction_resource.gd" id="3_f75ky"]
+[ext_resource type="Texture2D" uid="uid://k8e42x6djj3e" path="res://Assets/Images/UI/launch_icon.png" id="5_jhjoh"]
 [ext_resource type="Script" uid="uid://dmggbp5elydyj" path="res://resources/scripting/definitions/logic/executions/change_color_logic_resource.gd" id="6_a6itc"]
 [ext_resource type="Script" uid="uid://d1ynh7ys7iaab" path="res://scenes/UI/inventory.gd" id="7_a6itc"]
 [ext_resource type="Script" uid="uid://qjop52belxgl" path="res://resources/scripting/definitions/logic/executions/no_args_logic_resource.gd" id="7_vjcr8"]
@@ -96,6 +97,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Button" type="Button" parent="."]
+clip_contents = true
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -104,7 +106,9 @@ offset_top = -32.0
 offset_right = 41.0
 offset_bottom = -1.0
 grow_vertical = 0
-text = "Launch"
+icon = ExtResource("5_jhjoh")
+icon_alignment = 1
+expand_icon = true
 
 [node name="Inventory" type="HBoxContainer" parent="."]
 layout_mode = 1

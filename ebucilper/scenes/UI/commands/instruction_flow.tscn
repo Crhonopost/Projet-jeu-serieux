@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ccvogvottrj2u"]
+[gd_scene load_steps=4 format=3 uid="uid://ccvogvottrj2u"]
 
 [ext_resource type="Script" uid="uid://wy2gsxwbexgl" path="res://scenes/UI/commands/instruction_flow.gd" id="1_drnas"]
 [ext_resource type="PackedScene" uid="uid://de8ex6hebdcaj" path="res://scenes/UI/commands/var_drop_slot.tscn" id="2_lpbb1"]
+[ext_resource type="Texture2D" uid="uid://beh1tqeb2op44" path="res://Assets/Images/UI/delete_icon.png" id="2_tinb2"]
 
 [node name="InstructionList" type="VBoxContainer"]
 offset_right = 1152.0
@@ -12,8 +13,10 @@ script = ExtResource("1_drnas")
 layout_mode = 2
 
 [node name="Delete" type="Button" parent="HBoxContainer"]
+clip_contents = true
 layout_mode = 2
-text = "Delete"
+icon = ExtResource("2_tinb2")
+icon_alignment = 1
 
 [node name="Type" type="Label" parent="HBoxContainer"]
 layout_mode = 2
