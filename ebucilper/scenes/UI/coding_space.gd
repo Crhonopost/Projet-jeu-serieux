@@ -3,27 +3,30 @@ extends Control
 @onready var variableItemScene : PackedScene = load("res://scenes/UI/commands/editor/variable_item.tscn")
 
 @onready var compiler := $Compiler 
-var entryPoint : Control
+@onready var functionsNode := $CodeContainer/Functions
 
-@export var entryInstruction : ListLogicResource
+
+var selectedFunction: int = 0
+@export var functions : Array[FunctionLogicResource]
 
 signal launch
 
 func _ready() -> void:
-	setEntryInstruction(entryInstruction)
-	InstructionVisualBuilder.connect("variableCreationInstantiated", newVariableAdded)
-
-func setEntryInstruction(entryInstruction : ListLogicResource):
-	entryPoint = InstructionVisualBuilder.instantiate(entryInstruction)
-	$CodeContainer/FirstLine.add_child(entryPoint)
+	for fct in functions:
+		var fctUI := InstructionVisualBuilder.instantiate(fct)
+		fctUI.visible = false
+		functionsNode.add_child(fctUI)
+	
+	functionsNode.get_child(0).visible = true
 
 func _on_button_pressed() -> void:
 	emit_signal("launch")
 
 func retrieveInstructions() -> Array[Instruction]:
-	return compiler.processInstructions(entryPoint.instructionResource, 0)
+	return compiler.processAllInstructions(functions)
 
-func newVariableAdded(variable: VariableExpressionResource):
-	var instance = variableItemScene.instantiate()
-	instance.variable = variable
-	$VariableList.add_child(instance)
+
+func _on_function_select_value_changed(value: float) -> void:
+	functionsNode.get_child(selectedFunction).visible = false
+	functionsNode.get_child(int(value)).visible = true
+	selectedFunction = value

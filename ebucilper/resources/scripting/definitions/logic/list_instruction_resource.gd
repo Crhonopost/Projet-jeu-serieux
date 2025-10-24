@@ -1,4 +1,4 @@
-class_name ListLogicResource extends LogicResource
+@abstract class_name ListLogicResource extends LogicResource
 
 @export var childs: Array[LogicResource]
 

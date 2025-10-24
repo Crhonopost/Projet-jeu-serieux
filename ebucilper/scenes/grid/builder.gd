@@ -12,9 +12,12 @@ var leftOrientation: Array[OrientationsEnum] = [OrientationsEnum.Z_NEGATIVE, Ori
 var cursorOrientation: OrientationsEnum
 var cursorPosition: Vector3i
 var currentColor: ColorsEnum
-var instructionIdx: int # current instruction
 var buildingTime: int # number of executed instructions
-var runtimeVariables: Dictionary
+
+
+
+
+var callStack : Array[ExecutionContext]
 
 func _ready() -> void:
 	resetState()
@@ -23,15 +26,19 @@ func resetState() -> void:
 	cursorOrientation = OrientationsEnum.Z_POSITIVE
 	cursorPosition = Vector3i.ZERO
 	currentColor = ColorsEnum.RED
-	instructionIdx = 0
-	runtimeVariables.clear()
+	callStack.clear()
 	
 
 func build(instructions : Array[Instruction]) -> bool:
 	buildingTime = 0
-	while instructionIdx<instructions.size():
-		var instruction := instructions[instructionIdx]
-		instructionIdx += 1
+	
+	var init := ExecutionContext.new()
+	init.instructionIdx = 0
+	callStack.append(init)
+	
+	while callStack.size() > 0:
+		var instruction := instructions[callStack.back().instructionIdx]
+		callStack.back().instructionIdx += 1
 		var result = followInstruction(instruction)
 		if !result: return false
 	return true
@@ -51,6 +58,8 @@ func followNoArgs(instruction: NoArgsInstruction) -> bool:
 			rotateLeft()
 		NoArgInstructionType.ROTATE_RIGHT:
 			rotateRight()
+		NoArgInstructionType.EXIT_FUNCTION:
+			callStack.pop_back()
 	
 	buildingTime += 1
 	return instructionResult
@@ -108,28 +117,37 @@ func changeColor(color: int):
 	currentColor = ColorsEnum[colorString]
 
 func jump(idx: int):
-	instructionIdx = idx
+	callStack.back().instructionIdx = idx
 
 func extractVar(variable) -> Variant:
 	if variable == null: 
 		return 0
 	if variable is String:
-		return runtimeVariables[variable]
+		return callStack.back().variables[variable]
 	elif variable is not float && variable is not int && variable is not bool:
 		return 0
 	else:
 		return variable
 
 func jumpIf(idx: int, expression: LowLevelExpression, negation: bool):
-	var comparison: bool = expression.execute(runtimeVariables)
+	var comparison: bool = expression.execute(callStack.back().variables)
 	
 	if( (negation && !comparison) || 
 		(!negation && comparison)):
-		instructionIdx = idx
+		callStack.back().instructionIdx = idx
 
 func createVariable(name: String, initialValue: LowLevelExpression):
-	runtimeVariables[name] = initialValue.execute(runtimeVariables)
+	callStack.back().variables[name] = initialValue.execute(callStack.back().variables)
 
 func updateVariable(name: String, expression: LowLevelExpression):
-	if(!runtimeVariables.has(name)): return false
-	runtimeVariables[name] = expression.execute(runtimeVariables)
+	if(!callStack.back().variables.has(name)): return false
+	callStack.back().variables[name] = expression.execute(callStack.back().variables)
+
+func startFunction():
+	var context = ExecutionContext.new()
+	context.instructionIdx = callStack.back().instructionIdx
+	callStack.push_back(context)
+	return
+
+func endFunction():
+	callStack.pop_back()

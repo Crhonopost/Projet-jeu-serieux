@@ -1,9 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://c2i2xc75qwiwp"]
+[gd_scene load_steps=26 format=3 uid="uid://c2i2xc75qwiwp"]
 
 [ext_resource type="Script" uid="uid://b678kr1glpsrl" path="res://scenes/UI/coding_space.gd" id="1_25lkw"]
 [ext_resource type="Script" uid="uid://bulv0feibbce" path="res://scripts/compiler.gd" id="2_bwyhw"]
 [ext_resource type="Script" uid="uid://bqe45dm5wyip4" path="res://resources/scripting/definitions/logic/logic_resource.gd" id="2_fn0c8"]
-[ext_resource type="Script" uid="uid://bbv23l8h2i6ka" path="res://resources/scripting/definitions/logic/list_instruction_resource.gd" id="3_f75ky"]
 [ext_resource type="Texture2D" uid="uid://defmvwypi571s" path="res://Assets/Images/UI/coding_background.png" id="4_dhuyy"]
 [ext_resource type="Texture2D" uid="uid://k8e42x6djj3e" path="res://Assets/Images/UI/launch_icon.png" id="5_jhjoh"]
 [ext_resource type="Script" uid="uid://dmggbp5elydyj" path="res://resources/scripting/definitions/logic/executions/change_color_logic_resource.gd" id="6_a6itc"]
@@ -14,10 +13,6 @@
 [ext_resource type="Script" uid="uid://jhj821woppuc" path="res://resources/scripting/definitions/logic/executions/update_logic_resource.gd" id="11_jhjoh"]
 [ext_resource type="Texture2D" uid="uid://mmanpa8yedsi" path="res://Assets/Images/UI/coding_space_background.png" id="12_78wbv"]
 [ext_resource type="Script" uid="uid://wg0wpwcwxkec" path="res://resources/scripting/definitions/logic/flows/flow_logic_resource.gd" id="14_xchgw"]
-
-[sub_resource type="Resource" id="Resource_47f3o"]
-script = ExtResource("3_f75ky")
-metadata/_custom_type_script = "uid://bbv23l8h2i6ka"
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dhuyy"]
 texture = ExtResource("4_dhuyy")
@@ -86,7 +81,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_25lkw")
-entryInstruction = SubResource("Resource_47f3o")
 
 [node name="Compiler" type="Node" parent="."]
 script = ExtResource("2_bwyhw")
@@ -102,10 +96,16 @@ offset_right = 879.0
 offset_bottom = 897.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_dhuyy")
 
-[node name="FirstLine" type="Control" parent="CodeContainer"]
+[node name="Functions" type="Control" parent="CodeContainer"]
 anchors_preset = 0
 offset_right = 879.0
 offset_bottom = 897.0
+
+[node name="FunctionSelect" type="SpinBox" parent="CodeContainer"]
+layout_mode = 0
+offset_left = 485.0
+offset_right = 571.5625
+offset_bottom = 31.0
 
 [node name="Button" type="TextureButton" parent="CodeContainer"]
 layout_mode = 1
@@ -154,4 +154,5 @@ offset_right = 40.0
 offset_bottom = 20.0
 grow_vertical = 2
 
+[connection signal="value_changed" from="CodeContainer/FunctionSelect" to="." method="_on_function_select_value_changed"]
 [connection signal="pressed" from="CodeContainer/Button" to="." method="_on_button_pressed"]

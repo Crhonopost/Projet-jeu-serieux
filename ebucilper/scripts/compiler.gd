@@ -2,6 +2,24 @@ extends  Node
 
 const InstructionType = NoArgsInstruction.NoArgInstructionType
 
+var functionCallsWaiting : Dictionary[int, String]
+
+func processAllInstructions(entryPoints: Array[FunctionLogicResource]) -> Array[Instruction]:
+	var functions: Dictionary[String, int]
+	
+	var res : Array[Instruction]
+	for entry in entryPoints:
+		functions[entry.name] = res.size()
+		res.append_array(processInstructions(entry, res.size()))
+		var endInstruction := NoArgsInstruction.new()
+		endInstruction.action = InstructionType.EXIT_FUNCTION
+		res.append(endInstruction)
+	
+	for fctCall in functionCallsWaiting.keys():
+		res[fctCall].jumpIdx = functions[functionCallsWaiting[fctCall]]
+	
+	return res
+
 func processInstructions(entryPoint: LogicResource, instructionIdx: int) -> Array[Instruction]:
 	var res : Array[Instruction]
 
@@ -15,6 +33,11 @@ func processInstructions(entryPoint: LogicResource, instructionIdx: int) -> Arra
 		if(entryPoint is NoArgsLogicResource):
 			instru = NoArgsInstruction.new()
 			instru.action = entryPoint.type
+		
+		elif entryPoint is CallFunctionLogicResource:
+			instru = CallFunctionInstruction.new()
+			functionCallsWaiting[instructionIdx] = entryPoint.name
+			
 		
 		elif entryPoint is CreateLogicResource:
 			instru = CreateVarInstruction.new()
