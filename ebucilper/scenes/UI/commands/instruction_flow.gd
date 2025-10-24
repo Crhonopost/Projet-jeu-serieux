@@ -5,7 +5,7 @@ class_name InstructionFlowUI extends Control
 @onready var typeLabel: Label = $HBoxContainer/Type
 @onready var header: HBoxContainer = $HBoxContainer
 @onready var instructionList: VBoxContainer = $MarginContainer/SubInstructions
-@onready var conditionField = $HBoxContainer/ConditionInput
+@onready var conditionField = $HBoxContainer/Condition
 
 signal exitCode
 
@@ -13,8 +13,8 @@ func _ready():
 	typeLabel.text = instructionResource.getName()
 	
 	if(instructionResource is FlowLogicResource):
-		conditionField.variable = instructionResource.condition
-		conditionField.connect("stateChanged", updateCondition)
+		conditionField.text = instructionResource.condition
+		conditionField.visible = true
 	
 	instantiateList()
 	
@@ -31,10 +31,6 @@ func instantiateChild(instructionChild: LogicResource):
 func _on_delete_pressed() -> void:
 	emit_signal("exitCode")
 
-func updateCondition(condition: ExpressionResource):
-	instructionResource.condition = condition
-
-
 func childLeave(logicRes: LogicResource):
 	for child in instructionList.get_children():
 		if child.instructionResource == logicRes:
@@ -47,3 +43,7 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	return data is LogicResource
+
+
+func _on_condition_text_changed(new_text: String) -> void:
+	instructionResource.condition = new_text

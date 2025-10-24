@@ -121,27 +121,15 @@ func extractVar(variable) -> Variant:
 		return variable
 
 func jumpIf(idx: int, expression: LowLevelExpression, negation: bool):
-	var varA = extractVar(expression.A)
-	var varB = extractVar(expression.B)
-	
-	var comparison: bool = expression.execute(varA, expression.operator, varB)
+	var comparison: bool = expression.execute(runtimeVariables)
 	
 	if( (negation && !comparison) || 
 		(!negation && comparison)):
 		instructionIdx = idx
 
-func executeCalcul(expression: LowLevelExpression) -> int:
-	var varA = extractVar(expression.A)
-	
-	if expression.operator == LowLevelExpression.OperatorEnum.NONE:
-		return varA
-	
-	var varB = extractVar(expression.B)
-	return expression.execute(varA, expression.operator, varB)
-
 func createVariable(name: String, initialValue: LowLevelExpression):
-	runtimeVariables[name] = executeCalcul(initialValue)
+	runtimeVariables[name] = initialValue.execute(runtimeVariables)
 
 func updateVariable(name: String, expression: LowLevelExpression):
 	if(!runtimeVariables.has(name)): return false
-	runtimeVariables[name] = executeCalcul(expression)
+	runtimeVariables[name] = expression.execute(runtimeVariables)

@@ -1,51 +1,35 @@
-class_name LowLevelExpression extends Node
+class_name LowLevelExpression
 
-enum OperatorEnum {ADD, SUB, MULT, DIV, MOD, SUPE, INFE, EQUA, NONE}
+var variables : PackedStringArray
+var expression := Expression.new()
 
-static func operatorToStr(op: OperatorEnum) -> String:
-	match op:
-		OperatorEnum.ADD:
-			return "+"
-		OperatorEnum.MULT:
-			return "*"
-		OperatorEnum.SUB:
-			return "-"
-		OperatorEnum.DIV:
-			return "/"
-		OperatorEnum.MOD:
-			return "%"
-		OperatorEnum.INFE:
-			return "<"
-		OperatorEnum.SUPE:
-			return ">"
-		OperatorEnum.EQUA:
-			return "=="
-		OperatorEnum.NONE:
-			return ""
+func parse(expr: String) -> void:
+	variables = extract_variables(expr)
+	expression.parse(expr, variables)
+
+func execute(runtimesVars: Dictionary) -> Variant:
+	var inputs := []
+	for v in variables:
+		inputs.append(runtimesVars[v])
+	return expression.execute(inputs)
+
+const reserved_words: PackedStringArray = [
 	
-	return "????"
+]
 
-static func execute(operandA: int, op: OperatorEnum, operandB: int) -> int:
-	match op:
-		OperatorEnum.ADD:
-			return operandA + operandB
-		OperatorEnum.MULT:
-			return operandA * operandB
-		OperatorEnum.SUB:
-			return operandA - operandB
-		OperatorEnum.DIV:
-			return operandA / operandB
-		OperatorEnum.MOD:
-			return operandA % operandB
-		OperatorEnum.INFE:
-			return operandA < operandB
-		OperatorEnum.SUPE:
-			return operandA > operandB
-		OperatorEnum.EQUA:
-			return operandA == operandB
-	
-	return 0
-
-var A : Variant
-var operator: OperatorEnum
-var B : Variant
+func extract_variables(expr: String) -> PackedStringArray:
+	var regex = RegEx.new()
+	# Capture tout mot commençant par lettre ou underscore, suivi de lettres/chiffres/underscore
+	regex.compile(r"\b([A-Za-z_][A-Za-z0-9_]*)\b")
+	var matches = regex.search_all(expr)
+	var vars = []
+	for m in matches:
+		var name = m.get_string(1)
+		# filtrer s’il s’agit d’un mot réservé ou d’un nombre, ou d’une fonction connue
+		if reserved_words.has(name):
+			continue
+		# optionnel : filtrer s’il s’agit d’un nombre (mais ici on ne le captera pas)
+		# ajouter s’il n’est pas déjà dans la liste
+		if not vars.has(name):
+			vars.append(name)
+	return vars

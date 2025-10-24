@@ -11,7 +11,7 @@ func getInstructions(parentVarName: String = "temp") -> Array[Instruction]:
 	var resInstru = UpdateVarInstruction.new()
 	resInstru.target = parentVarName
 	resInstru.expression.A = value
-	resInstru.expression.operator = LowLevelExpression.OperatorEnum.NONE
+	resInstru.expression.operator = OperationResource.OperatorEnum.NONE
 	return [resInstru]
 
 

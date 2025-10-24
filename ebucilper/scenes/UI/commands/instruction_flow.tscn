@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccvogvottrj2u"]
+[gd_scene load_steps=3 format=3 uid="uid://ccvogvottrj2u"]
 
 [ext_resource type="Script" uid="uid://wy2gsxwbexgl" path="res://scenes/UI/commands/instruction_flow.gd" id="1_drnas"]
-[ext_resource type="PackedScene" uid="uid://de8ex6hebdcaj" path="res://scenes/UI/commands/var_drop_slot.tscn" id="2_lpbb1"]
 [ext_resource type="Texture2D" uid="uid://beh1tqeb2op44" path="res://Assets/Images/UI/delete_icon.png" id="2_tinb2"]
 
 [node name="InstructionList" type="VBoxContainer"]
@@ -22,7 +21,8 @@ icon_alignment = 1
 layout_mode = 2
 text = "Type"
 
-[node name="ConditionInput" parent="HBoxContainer" instance=ExtResource("2_lpbb1")]
+[node name="Condition" type="LineEdit" parent="HBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -34,3 +34,4 @@ theme_override_constants/margin_left = 50
 layout_mode = 2
 
 [connection signal="pressed" from="HBoxContainer/Delete" to="." method="_on_delete_pressed"]
+[connection signal="text_changed" from="HBoxContainer/Condition" to="." method="_on_condition_text_changed"]

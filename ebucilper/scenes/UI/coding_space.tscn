@@ -62,16 +62,7 @@ type = 5
 metadata/_custom_type_script = "uid://qjop52belxgl"
 
 [sub_resource type="GDScript" id="GDScript_usmbw"]
-script/source = "class_name ConditionResource extends Resource
-
-
-@export var variableA: ExpressionResource
-@export var comparator: LowLevelExpression.OperatorEnum
-@export var variableB: ExpressionResource
-
-func getComparatorText() -> String:
-	return LowLevelExpression.operatorToStr(comparator)
-"
+script/source = ""
 
 [sub_resource type="Resource" id="Resource_3t8km"]
 script = SubResource("GDScript_usmbw")

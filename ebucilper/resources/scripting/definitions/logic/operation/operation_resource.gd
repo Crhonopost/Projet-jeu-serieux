@@ -1,10 +1,12 @@
 class_name OperationResource extends ExpressionResource
 
 
+enum OperatorEnum {ADD, SUB, MULT, DIV, MOD, SUPE, INFE, EQUA, NONE}
+
 @export var variableName: String
 
 @export var variableA: ExpressionResource
-@export var operator: LowLevelExpression.OperatorEnum
+@export var operator: OperatorEnum
 @export var variableB: ExpressionResource
 
 func _to_string() -> String:
@@ -35,7 +37,7 @@ func getInstructions(parentVarName: String = "temp") -> Array[Instruction]:
 	if(variableName == ""):
 		var creationInstruction := CreateVarInstruction.new()
 		creationInstruction.expression.A = 0
-		creationInstruction.expression.operator = LowLevelExpression.OperatorEnum.NONE
+		creationInstruction.expression.operator = OperatorEnum.NONE
 		creationInstruction.target = parentVarName
 		
 		res.append(creationInstruction)

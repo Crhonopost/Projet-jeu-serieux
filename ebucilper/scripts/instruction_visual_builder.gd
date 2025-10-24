@@ -9,8 +9,8 @@ func instantiate(instruction: LogicResource) -> Control:
 	var instance = Control.new()
 	if(instruction is ExecutionLogicResource):
 		instance = exeInstructionScene.instantiate()
-		if(instruction is CreateLogicResource):
-			emit_signal("variableCreationInstantiated", instruction.name)
+		#if(instruction is CreateLogicResource):
+			#emit_signal("variableCreationInstantiated", instruction.name)
 	elif(instruction is ListLogicResource):
 		instance = flowInstructionScene.instantiate()
 	else:

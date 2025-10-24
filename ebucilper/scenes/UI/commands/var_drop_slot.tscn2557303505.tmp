@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://de8ex6hebdcaj"]
+
+[ext_resource type="Script" uid="uid://dux28l3ks7r68" path="res://scenes/UI/commands/var_drop_slot.gd" id="1_8llb4"]
+
+[node name="VarDropSlot" type="CenterContainer"]
+custom_minimum_size = Vector2(70, 50)
+offset_right = 100.0
+offset_bottom = 50.0
+mouse_filter = 0
+script = ExtResource("1_8llb4")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2

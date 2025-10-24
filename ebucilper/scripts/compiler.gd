@@ -6,8 +6,10 @@ func processInstructions(entryPoint: LogicResource, instructionIdx: int) -> Arra
 	var res : Array[Instruction]
 
 	if(entryPoint is UpdateLogicResource):
-		entryPoint.expression.variableName = entryPoint.name.value
-		res.append_array(entryPoint.expression.getInstructions())
+		var update = UpdateVarInstruction.new()
+		update.target = entryPoint.name
+		update.expression.parse(entryPoint.expression)
+		res.append(update)
 	elif(entryPoint is ExecutionLogicResource):
 		var instru: Instruction
 		if(entryPoint is NoArgsLogicResource):
@@ -16,9 +18,10 @@ func processInstructions(entryPoint: LogicResource, instructionIdx: int) -> Arra
 		
 		elif entryPoint is CreateLogicResource:
 			instru = CreateVarInstruction.new()
-			instru.expression.A = entryPoint.value
-			instru.expression.operator = LowLevelExpression.OperatorEnum.NONE
-			instru.target = entryPoint.name.value
+			instru.expression.parse(entryPoint.value)
+			#instru.expression.A = entryPoint.value
+			#instru.expression.operator = LowLevelExpression.OperatorEnum.NONE
+			instru.target = entryPoint.name
 		
 		elif entryPoint is ChangeColorLogicResource:
 			instru = ChangeColorInstruction.new()
@@ -45,17 +48,18 @@ func processWhile(whileLogic: WhileLogicResource, instructionIdx: int) -> Array[
 	var instructionList : Array[Instruction]
 	
 	################ jump condition #####################
-	var conditions = whileLogic.condition.getInstructions("_condition")
-	
-	var createVar := CreateVarInstruction.new()
-	createVar.target = "_condition"
-	
-	instructionList.append(createVar)
-	instructionList.append_array(conditions)
-	
+	#var conditions = whileLogic.condition.getInstructions("_condition")
+	#
+	#var createVar := CreateVarInstruction.new()
+	#createVar.target = "_condition"
+	#
+	#instructionList.append(createVar)
+	#instructionList.append_array(conditions)
+	#
 	var endLoopCondition := JumpToIfInstruction.new()
 	endLoopCondition.evaluateNot = true
-	endLoopCondition.condition.A = "_condition"
+	#endLoopCondition.condition.A = "_condition"
+	endLoopCondition.condition.parse(whileLogic.condition)
 	instructionList.append(endLoopCondition)
 	#####################################
 	

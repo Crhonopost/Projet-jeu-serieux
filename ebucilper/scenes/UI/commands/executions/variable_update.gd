@@ -3,13 +3,13 @@ extends HBoxContainer
 var update := UpdateLogicResource.new()
 
 func _enter_tree() -> void:
-	$VarDropTarget.variable = update.name
-	$VarDrop.variable = update.expression
+	$VarTarget.text = update.name
+	$VarExpression.text = update.expression
 
 
-func _on_var_drop_target_state_changed(variable: ExpressionResource) -> void:
-	update.name = variable
+func _on_var_target_text_changed(new_text: String) -> void:
+	update.name = new_text
 
 
-func _on_var_drop_state_changed(variable: ExpressionResource) -> void:
-	update.expression = variable
+func _on_var_expression_text_changed(new_text: String) -> void:
+	update.expression = new_text

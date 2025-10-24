@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5c1cct5nh7jm"]
+
+[ext_resource type="Script" uid="uid://d0q3teiblgv47" path="res://scenes/UI/commands/executions/variable_creation.gd" id="1_fhssg"]
+
+[node name="VariableCreation" type="HBoxContainer"]
+offset_left = 4.0
+offset_right = 144.0
+offset_bottom = 50.0
+script = ExtResource("1_fhssg")
+
+[node name="Name" type="LineEdit" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = " = "
+
+[node name="InitialValue" type="LineEdit" parent="."]
+layout_mode = 2
+
+[connection signal="text_changed" from="Name" to="." method="_on_name_text_changed"]
+[connection signal="text_changed" from="InitialValue" to="." method="_on_initial_value_text_changed"]
