@@ -34,6 +34,8 @@ func processInstructions(entryPoint: LogicResource, instructionIdx: int) -> Arra
 		
 		if entryPoint is WhileLogicResource:
 			instructionList.append_array(processWhile(entryPoint, instructionIdx))
+		elif entryPoint is FlowLogicResource:
+			instructionList.append_array(processIf(entryPoint, instructionIdx))
 		else:
 			for child in entryPoint.childs:
 				instructionList.append_array(processInstructions(child, instructionIdx + instructionList.size()))
@@ -41,41 +43,43 @@ func processInstructions(entryPoint: LogicResource, instructionIdx: int) -> Arra
 		res.append_array(instructionList)
 	return res
 
+func processIf(ifLogic: FlowLogicResource, instructionIdx: int) -> Array[Instruction]:
+	var res : Array[Instruction]
+	
+	var jumpIfCondition := JumpToIfInstruction.new()
+	jumpIfCondition.evaluateNot = true
+	jumpIfCondition.condition.parse(ifLogic.condition)
+	res.append(jumpIfCondition)
+	
+	for child in ifLogic.childs:
+		res.append_array(processInstructions(child, instructionIdx + res.size()))
+	
+	jumpIfCondition.toIdx = instructionIdx + res.size()
+	
+	return res
+	
 
 func processWhile(whileLogic: WhileLogicResource, instructionIdx: int) -> Array[Instruction]:
 	var res : Array[Instruction]
-
-	var instructionList : Array[Instruction]
 	
 	################ jump condition #####################
-	#var conditions = whileLogic.condition.getInstructions("_condition")
-	#
-	#var createVar := CreateVarInstruction.new()
-	#createVar.target = "_condition"
-	#
-	#instructionList.append(createVar)
-	#instructionList.append_array(conditions)
-	#
 	var endLoopCondition := JumpToIfInstruction.new()
 	endLoopCondition.evaluateNot = true
-	#endLoopCondition.condition.A = "_condition"
 	endLoopCondition.condition.parse(whileLogic.condition)
-	instructionList.append(endLoopCondition)
+	res.append(endLoopCondition)
 	#####################################
 	
 	################# childs ####################
 	for child in whileLogic.childs:
-		instructionList.append_array(processInstructions(child, instructionIdx + instructionList.size()))
+		res.append_array(processInstructions(child, instructionIdx + res.size()))
 	#####################################
 	
 	################# jump back ####################
 	var jumpBackInstruction:= JumpToInstruction.new()
 	jumpBackInstruction.toIdx = instructionIdx
-	instructionList.append(jumpBackInstruction)
+	res.append(jumpBackInstruction)
 	#####################################
 	
-	endLoopCondition.toIdx = instructionIdx + instructionList.size()
-	
-	res.append_array(instructionList)
+	endLoopCondition.toIdx = instructionIdx + res.size()
 	
 	return res
