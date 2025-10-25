@@ -98,22 +98,10 @@ target_steps = 10
 optimal_steps = 5
 unlocked = true
 done = true
-steps = 7
+steps = 5
 
 [node name="Level2" parent="LevelsList/ScrollContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
 layout_mode = 2
 level_name = "Bâtiment 16"
 level_path = "res://levels/bat16"
 unlocked = true
-
-[node name="Level3" parent="LevelsList/ScrollContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
-layout_mode = 2
-
-[node name="Level4" parent="LevelsList/ScrollContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
-layout_mode = 2
-
-[node name="Level5" parent="LevelsList/ScrollContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
-layout_mode = 2
-
-[node name="Level6" parent="LevelsList/ScrollContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
-layout_mode = 2

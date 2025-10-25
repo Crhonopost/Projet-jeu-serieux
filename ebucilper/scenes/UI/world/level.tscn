@@ -23,7 +23,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("2_phv5u")
 theme_override_font_sizes/font_size = 32
-text = "Bâtiment 36"
+text = "Level name"
 
 [node name="Control3" type="Control" parent="LevelContainer"]
 layout_mode = 2
