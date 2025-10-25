@@ -4,7 +4,8 @@ extends Control
 @onready var gridView = $SubViewportContainer/SubViewport/Grid
 
 @export var dev_mode: bool = true                 # developpement mode
-@export var level_name: String = "level_001"      # can be changed in inspector
+var level_name : String = ActiveLevel.level_name
+var level_path : String = ActiveLevel.level_path
 
 func _ready():
 	_load_target_from_json()
@@ -39,11 +40,7 @@ func _save_current_as_target() -> void:
 		"grid_data": builder.grid.to_serializable_dict()
 	}
 
-	var dir_path := "res://scenes/level/design_level_json" 
-	if DirAccess.open(dir_path) == null:
-		DirAccess.make_dir_absolute(dir_path)
-
-	var file_path := "%s/%s.json" % [dir_path, level_name]
+	var file_path := level_path + "/level.json"
 	var f := FileAccess.open(file_path, FileAccess.WRITE)
 	f.store_string(JSON.stringify(payload, "\t"))
 	f.close()
@@ -52,7 +49,7 @@ func _save_current_as_target() -> void:
 
 
 func _load_target_from_json():
-	var file_path := "res://scenes/level/design_level_json/%s.json" % level_name
+	var file_path := level_path + "/target.json"
 	if not FileAccess.file_exists(file_path):
 		push_error("Target JSON file not found: %s" % file_path)
 		return

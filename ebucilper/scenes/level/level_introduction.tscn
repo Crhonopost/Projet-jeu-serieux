@@ -97,6 +97,7 @@ texture = ExtResource("3_vx6h1")
 expand_mode = 1
 
 [node name="Button" type="Button" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
