@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dw1qsxvlj8t6q"]
+[gd_scene load_steps=9 format=3 uid="uid://dw1qsxvlj8t6q"]
 
 [ext_resource type="Script" uid="uid://chd0ikkfqbyqk" path="res://scenes/level/load_story.gd" id="1_hmpfh"]
 [ext_resource type="Texture2D" uid="uid://65iu3hsrri36" path="res://levels/bat16/background.png" id="2_50vrq"]
+[ext_resource type="FontFile" uid="uid://bewn88o0me7h7" path="res://Assets/Fonts/Coolvetica Rg.otf" id="3_uuwn3"]
 [ext_resource type="Texture2D" uid="uid://on53etfxd4ck" path="res://Assets/Images/characters/nicolas_lutz_happy.png" id="3_vx6h1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_50vrq"]
@@ -77,7 +78,8 @@ offset_bottom = -36.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 0.92941177, 1, 1)
-theme_override_font_sizes/font_size = 22
+theme_override_fonts/font = ExtResource("3_uuwn3")
+theme_override_font_sizes/font_size = 28
 text = "Oh non ! 
 
 La Université de Montpellier a été détruite"
@@ -95,7 +97,6 @@ texture = ExtResource("3_vx6h1")
 expand_mode = 1
 
 [node name="Button" type="Button" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -108,6 +109,7 @@ offset_right = -23.0
 offset_bottom = -23.0
 grow_horizontal = 0
 grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_uuwn3")
 theme_override_font_sizes/font_size = 22
 theme_override_styles/normal = SubResource("StyleBoxFlat_vx6h1")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_rkvut")

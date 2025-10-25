@@ -1,45 +1,95 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmay8br4ehsts"]
+[gd_scene load_steps=6 format=3 uid="uid://cmay8br4ehsts"]
 
 [ext_resource type="PackedScene" uid="uid://fwytoh7mehli" path="res://scenes/UI/world/level.tscn" id="1_fmaxo"]
+[ext_resource type="Texture2D" uid="uid://c5mn07u5l2rvp" path="res://levels/bat36/background.png" id="1_ivcrt"]
+[ext_resource type="FontFile" uid="uid://cj52gxydlihfd" path="res://Assets/Fonts/Breakdown PG.otf" id="2_mm5an"]
+[ext_resource type="FontFile" uid="uid://bewn88o0me7h7" path="res://Assets/Fonts/Coolvetica Rg.otf" id="3_rg8tu"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_fmaxo"]
-font_size = 26
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ivcrt"]
+bg_color = Color(0.16470589, 0.10980392, 0.07058824, 0.7058824)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
-[node name="MarginContainer2" type="MarginContainer"]
+[node name="TextureRect" type="TextureRect"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 1024.0
+grow_horizontal = 2
+texture = ExtResource("1_ivcrt")
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 2
-
-[node name="Control2" type="Control" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="VBoxContainer"]
-layout_mode = 2
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 131.0
+offset_top = 108.0
+offset_right = -131.0
+offset_bottom = 235.0
+grow_horizontal = 2
 size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.8784314, 0.3137255, 0.42745098, 1)
+theme_override_fonts/font = ExtResource("2_mm5an")
+theme_override_font_sizes/font_size = 110
 text = "Université de Montpellier"
-label_settings = SubResource("LabelSettings_fmaxo")
+autowrap_mode = 2
 
-[node name="Control3" type="Control" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 130.0
+offset_top = 236.0
+offset_right = -132.0
+offset_bottom = 295.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.9607843, 0.8745098, 0.88235295, 1)
+theme_override_fonts/font = ExtResource("3_rg8tu")
+theme_override_font_sizes/font_size = 48
+text = "Apprends à programmer en aidant à reconstruire l'université."
+autowrap_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+[node name="LevelsList" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 47.0
+offset_top = -7.0
+offset_right = -47.0
+offset_bottom = 315.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ivcrt")
+metadata/_edit_group_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="LevelsList"]
 custom_minimum_size = Vector2(0, 250)
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 vertical_scroll_mode = 0
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/ScrollContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="LevelsList/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Level" parent="VBoxContainer/ScrollContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
+[node name="Level" parent="LevelsList/ScrollContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
 layout_mode = 2
 level_id = "bat36"
 level_name = "Bâtiment 36"
@@ -50,24 +100,20 @@ unlocked = true
 done = true
 steps = 7
 
-[node name="Level2" parent="VBoxContainer/ScrollContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
+[node name="Level2" parent="LevelsList/ScrollContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
 layout_mode = 2
 level_name = "Bâtiment 16"
 level_path = "res://levels/bat16"
 unlocked = true
 
-[node name="Level3" parent="VBoxContainer/ScrollContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
+[node name="Level3" parent="LevelsList/ScrollContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
 layout_mode = 2
 
-[node name="Level4" parent="VBoxContainer/ScrollContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
+[node name="Level4" parent="LevelsList/ScrollContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
 layout_mode = 2
 
-[node name="Level5" parent="VBoxContainer/ScrollContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
+[node name="Level5" parent="LevelsList/ScrollContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
 layout_mode = 2
 
-[node name="Level6" parent="VBoxContainer/ScrollContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
+[node name="Level6" parent="LevelsList/ScrollContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
 layout_mode = 2
-
-[node name="Control4" type="Control" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
