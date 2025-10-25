@@ -25,6 +25,8 @@ ActiveLevel="*res://scripts/active_level.gd"
 
 window/size/viewport_width=1600
 window/size/viewport_height=900
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [editor_plugins]
 

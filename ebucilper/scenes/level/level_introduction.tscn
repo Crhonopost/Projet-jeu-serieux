@@ -1,12 +1,39 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5vxark281f0s"]
+[gd_scene load_steps=8 format=3 uid="uid://dw1qsxvlj8t6q"]
 
 [ext_resource type="Script" uid="uid://chd0ikkfqbyqk" path="res://scenes/level/load_story.gd" id="1_hmpfh"]
 [ext_resource type="Texture2D" uid="uid://65iu3hsrri36" path="res://levels/bat16/background.png" id="2_50vrq"]
-[ext_resource type="Texture2D" uid="uid://cha53wh6hho3e" path="res://Assets/Images/banner.png" id="3_50vrq"]
 [ext_resource type="Texture2D" uid="uid://on53etfxd4ck" path="res://Assets/Images/characters/nicolas_lutz_happy.png" id="3_vx6h1"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_50vrq"]
-shadow_size = 0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_50vrq"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.1764706, 0.101960786, 0.105882354, 0.827451)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vx6h1"]
+bg_color = Color(0.8117647, 0.19607843, 0.26666668, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0, 0, 0.30980393)
+shadow_size = 2
+shadow_offset = Vector2(1, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rkvut"]
+bg_color = Color(0.77254903, 0.17254902, 0.21176471, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uuwn3"]
+bg_color = Color(0.84705883, 0.27058825, 0.3254902, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="Bat36" type="Control"]
 layout_mode = 3
@@ -25,7 +52,36 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_50vrq")
-expand_mode = 5
+expand_mode = 1
+
+[node name="Banner" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -227.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_50vrq")
+
+[node name="Label" type="Label" parent="Banner"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 461.0
+offset_top = 36.0
+offset_right = -248.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.92941177, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "Oh non ! 
+
+La Université de Montpellier a été détruite"
+autowrap_mode = 2
 
 [node name="Character" type="TextureRect" parent="."]
 layout_mode = 1
@@ -36,53 +92,26 @@ offset_top = -384.0
 offset_right = 386.0
 grow_vertical = 0
 texture = ExtResource("3_vx6h1")
-
-[node name="Banner" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(600, 300)
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -323.0
-offset_top = -233.0
-offset_right = 277.0
-offset_bottom = 67.0
-grow_horizontal = 2
-grow_vertical = 0
-texture = ExtResource("3_50vrq")
 expand_mode = 1
-
-[node name="Label" type="Label" parent="Banner"]
-modulate = Color(0.017646605, 0.017646605, 0.017646605, 1)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -217.0
-offset_top = -58.0
-offset_right = 205.0
-offset_bottom = 56.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Oh non ! 
-
-La Université de Montpellier a été détruite"
-label_settings = SubResource("LabelSettings_50vrq")
-autowrap_mode = 2
 
 [node name="Button" type="Button" parent="."]
 visible = false
-modulate = Color(1, 0.29411766, 0.44705883, 1)
-self_modulate = Color(18.892157, 4.313358, 4.7359314, 1)
-layout_mode = 0
-offset_left = 969.0
-offset_top = 567.0
-offset_right = 1114.0
-offset_bottom = 616.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -218.0
+offset_top = -91.0
+offset_right = -23.0
+offset_bottom = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_vx6h1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rkvut")
+theme_override_styles/hover = SubResource("StyleBoxFlat_uuwn3")
 text = "Start"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
