@@ -44,3 +44,6 @@ func _on_button_pressed() -> void:
 		if current_text == texts.size() - 1 :
 			$Button.text = "Start"
 		$Button.visible = true
+
+func _on_skip_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/level/current_level.tscn")
