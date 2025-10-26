@@ -1,5 +1,17 @@
-[
-	"Ho non! La fac été détruite par l'attaque des plantes mutantes. Le batiment 36 va s'effondrer il faut faire quelque chose ou notre fabuleux campus triolet va disparaitre|william_puesh_sad.png",
-	"Toi la ! tu peux peut etre nous guider pour reconstruire la fac nous avons besoin d'un plan ! |william_puesh.png",
-	"oui oui baguette |william_puesh.png"
-]
+{
+	"texts": [
+		{ 
+			"text": "Ho non! La fac été détruite par l'attaque des plantes mutantes. Le batiment 36 va s'effondrer il faut faire quelque chose ou notre fabuleux campus triolet va disparaitre",
+			"character": "william_puesh_sad.png" 
+		},
+		{ 
+			"text": "Toi la ! tu peux peut etre nous guider pour reconstruire la fac nous avons besoin d'un plan !",
+			"character": "william_puesh.png" 
+		},
+		{ 
+			"text": "oui oui baguette",
+			"character": "william_puesh_happy.png" 
+		},
+	],
+	"tip": "Glisse l’instruction “placer un bloc” dans la zone de construction pour ajouter un bloc. Essaie ensuite différentes instructions pour construire ton objectif !"
+}

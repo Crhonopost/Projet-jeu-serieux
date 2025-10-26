@@ -72,7 +72,8 @@ func _load_target_from_json():
 	new_grid.from_serializable_dict(grid_data)
 	gridView.currentGrid = new_grid
 	gridView.showTargetBlock(gridView.mode, true, Vector3i(0, 0, 0))
-
+	
+	$CodingSpace/GoalContainer/Goal.text = ActiveLevel.level_tip
 
 var mouse_over_viewport = false
 

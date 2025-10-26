@@ -1,11 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://b267yic7ui0nk"]
+[gd_scene load_steps=15 format=3 uid="uid://cdm743mdlxcbq"]
 
 [ext_resource type="Script" uid="uid://b7c8bsgviwne6" path="res://scenes/level/current_level.gd" id="1_1n4kf"]
 [ext_resource type="PackedScene" uid="uid://c2i2xc75qwiwp" path="res://scenes/UI/coding_space.tscn" id="1_j3nmy"]
-[ext_resource type="PackedScene" uid="uid://bbyxw6eym1jvg" path="res://scenes/grid/ViewScene.tscn" id="2_1n4kf"]
+[ext_resource type="PackedScene" uid="uid://ckwrutivvfd2d" path="res://scenes/grid/ViewScene.tscn" id="2_1n4kf"]
 [ext_resource type="Script" uid="uid://bg3typib0wbdw" path="res://resources/scripting/definitions/logic/flows/function_logic_resource.gd" id="3_pxd4i"]
-[ext_resource type="Script" uid="uid://qrylnjtay82j" path="res://scenes/grid/gridResource.gd" id="4_6j83v"]
-[ext_resource type="Script" uid="uid://cav7hgnw788c8" path="res://scenes/grid/builder.gd" id="4_7ehec"]
+[ext_resource type="Script" path="res://scenes/grid/gridResource.gd" id="4_6j83v"]
+[ext_resource type="Script" path="res://scenes/grid/builder.gd" id="4_7ehec"]
 [ext_resource type="Script" uid="uid://bqe45dm5wyip4" path="res://resources/scripting/definitions/logic/logic_resource.gd" id="4_p6xvp"]
 [ext_resource type="Texture2D" uid="uid://0nw44w57ihvb" path="res://Assets/Blender/AllSkyFree_Sky_EpicBlueSunset_Equirect.png" id="6_g6sfq"]
 
@@ -48,15 +48,19 @@ functions = Array[ExtResource("3_pxd4i")]([SubResource("Resource_r8t8t"), SubRes
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 layout_direction = 3
-layout_mode = 0
-offset_left = 1.0
-offset_top = 3.0
-offset_right = 721.0
-offset_bottom = 453.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -882.0
+offset_bottom = -250.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(720, 450)
+size = Vector2i(718, 650)
 render_target_update_mode = 4
 
 [node name="Grid" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_1n4kf")]
