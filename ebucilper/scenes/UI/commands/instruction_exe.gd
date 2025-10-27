@@ -9,7 +9,11 @@ signal exitCode
 @onready var variableCreationScene : PackedScene = load("res://scenes/UI/commands/executions/variable_creation.tscn")
 @onready var colorPickingScene : PackedScene = load("res://scenes/UI/commands/executions/color_picking.tscn")
 @onready var variableUpdateScene : PackedScene = load("res://scenes/UI/commands/executions/variable_update.tscn")
+@onready var functionCallScene : PackedScene = load("res://scenes/UI/commands/executions/function_call.tscn")
 
+
+func getSpecialNode():
+	return $HBoxContainer/Special.get_child(0)
 
 func _ready():
 	buildFromResource()
@@ -36,6 +40,10 @@ func buildFromResource():
 	elif instructionResource is UpdateLogicResource:
 		var argsInstance = variableUpdateScene.instantiate()
 		argsInstance.update = instructionResource
+		$HBoxContainer/Special.add_child(argsInstance)
+	elif instructionResource is CallFunctionLogicResource:
+		var argsInstance = functionCallScene.instantiate()
+		argsInstance.functionCall = instructionResource
 		$HBoxContainer/Special.add_child(argsInstance)
 
 

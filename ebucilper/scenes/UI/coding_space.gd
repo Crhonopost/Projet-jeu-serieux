@@ -9,15 +9,25 @@ extends Control
 var selectedFunction: int = 0
 @export var functions : Array[FunctionLogicResource]
 
+@onready var functionEditionScene : PackedScene = load("res://scenes/UI/commands/functions/function_edition.tscn")
+
 signal launch
 
 func _ready() -> void:
-	for fct in functions:
-		var fctUI := InstructionVisualBuilder.instantiate(fct)
-		fctUI.visible = false
+	for i in range(functions.size()):
+		var fctUI := functionEditionScene.instantiate()
+		fctUI.edit_function(functions[i])
 		functionsNode.add_child(fctUI)
-	
-	functionsNode.get_child(0).visible = true
+		functionsNode.set_tab_title(i, str(i))
+		
+	InstructionVisualBuilder.connect("functionCallInstantiatiated", functionCall)
+
+func functionCall(node: Control):
+	node.getSpecialNode().connect("connectToFunction", func (index): connectNodeToFunction(index, node))
+	node.getSpecialNode().linkWithFunctionRes(functions[functionsNode.current_tab])
+
+func connectNodeToFunction(index: int, node: Node):
+	node.getSpecialNode().linkWithFunctionRes(functions[index])
 
 func _on_button_pressed() -> void:
 	emit_signal("launch")
@@ -26,7 +36,5 @@ func retrieveInstructions() -> Array[Instruction]:
 	return compiler.processAllInstructions(functions)
 
 
-func _on_function_select_value_changed(value: float) -> void:
-	functionsNode.get_child(selectedFunction).visible = false
-	functionsNode.get_child(int(value)).visible = true
-	selectedFunction = value
+func _on_functions_tab_selected(tab: int) -> void:
+	selectedFunction = tab

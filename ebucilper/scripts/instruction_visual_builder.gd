@@ -4,6 +4,7 @@ extends Node
 @onready var flowInstructionScene : PackedScene = load("res://scenes/UI/commands/instruction_flow.tscn")
 
 signal variableCreationInstantiated(variable: VariableExpressionResource)
+signal functionCallInstantiatiated(node: Control)
 
 func instantiate(instruction: LogicResource) -> Control:
 	var instance = Control.new()
@@ -18,5 +19,8 @@ func instantiate(instruction: LogicResource) -> Control:
 		return instance
 	
 	instance.instructionResource = instruction
+	
+	if instruction is CallFunctionLogicResource:
+		call_deferred("emit_signal", "functionCallInstantiatiated", instance)
 	
 	return instance

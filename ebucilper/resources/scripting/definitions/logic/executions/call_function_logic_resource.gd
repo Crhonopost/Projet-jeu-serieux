@@ -1,6 +1,6 @@
 class_name CallFunctionLogicResource extends ExecutionLogicResource
 
-@export var name : String
+@export var targetFunction: FunctionLogicResource
 @export var args: PackedStringArray
 
 

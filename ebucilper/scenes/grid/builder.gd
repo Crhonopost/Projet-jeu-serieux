@@ -79,6 +79,8 @@ func followInstruction(instruction : Instruction) -> bool:
 		createVariable(instruction.target, instruction.expression)
 	elif instruction is UpdateVarInstruction:
 		updateVariable(instruction.target, instruction.expression)
+	elif instruction is CallFunctionInstruction:
+		callFunction(instruction.jumpIdx, instruction.argsToVar)
 	else:
 		printerr("Unknown instruction type")
 		instructionResult = false
@@ -142,6 +144,15 @@ func createVariable(name: String, initialValue: LowLevelExpression):
 func updateVariable(name: String, expression: LowLevelExpression):
 	if(!callStack.back().variables.has(name)): return false
 	callStack.back().variables[name] = expression.execute(callStack.back().variables)
+
+func callFunction(idx: int, argsToVar: Dictionary[String, LowLevelExpression]):
+	var initVariables: Dictionary[String, int]
+	for arg in argsToVar.keys():
+		initVariables[arg] = argsToVar[arg].execute(callStack.back().variables)
+	
+	startFunction()
+	callStack.back().instructionIdx = idx
+	callStack.back().variables = initVariables
 
 func startFunction():
 	var context = ExecutionContext.new()

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://df43h6fe2vdmn"]
+
+[ext_resource type="Script" uid="uid://ek2dw78lbox" path="res://scenes/UI/commands/executions/function_call.gd" id="1_m8ml8"]
+
+[node name="function_call" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_m8ml8")
+
+[node name="FunctionIdx" type="SpinBox" parent="."]
+layout_mode = 2
+
+[connection signal="value_changed" from="FunctionIdx" to="." method="_on_function_idx_value_changed"]

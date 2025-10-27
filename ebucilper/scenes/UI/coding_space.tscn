@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://b678kr1glpsrl" path="res://scenes/UI/coding_space.gd" id="1_25lkw"]
 [ext_resource type="Script" uid="uid://bulv0feibbce" path="res://scripts/compiler.gd" id="2_bwyhw"]
 [ext_resource type="Script" uid="uid://bqe45dm5wyip4" path="res://resources/scripting/definitions/logic/logic_resource.gd" id="2_fn0c8"]
-[ext_resource type="Texture2D" uid="uid://defmvwypi571s" path="res://Assets/Images/UI/coding_background.png" id="4_dhuyy"]
 [ext_resource type="Texture2D" uid="uid://k8e42x6djj3e" path="res://Assets/Images/UI/launch_icon.png" id="5_jhjoh"]
 [ext_resource type="Script" uid="uid://dmggbp5elydyj" path="res://resources/scripting/definitions/logic/executions/change_color_logic_resource.gd" id="6_a6itc"]
 [ext_resource type="Script" uid="uid://d1ynh7ys7iaab" path="res://scenes/UI/inventory.gd" id="7_a6itc"]
@@ -12,17 +11,8 @@
 [ext_resource type="Script" uid="uid://bptnkeoa30f03" path="res://resources/scripting/definitions/logic/executions/create_logic_resource.gd" id="9_f75ky"]
 [ext_resource type="Script" uid="uid://jhj821woppuc" path="res://resources/scripting/definitions/logic/executions/update_logic_resource.gd" id="11_jhjoh"]
 [ext_resource type="Texture2D" uid="uid://mmanpa8yedsi" path="res://Assets/Images/UI/coding_space_background.png" id="12_78wbv"]
+[ext_resource type="Script" uid="uid://bbo0hwiwoksjc" path="res://resources/scripting/definitions/logic/executions/call_function_logic_resource.gd" id="13_dhuyy"]
 [ext_resource type="Script" uid="uid://wg0wpwcwxkec" path="res://resources/scripting/definitions/logic/flows/flow_logic_resource.gd" id="14_xchgw"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dhuyy"]
-texture = ExtResource("4_dhuyy")
-texture_margin_left = 64.0
-texture_margin_top = 64.0
-texture_margin_right = 51.0
-texture_margin_bottom = 75.0
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
-region_rect = Rect2(0, 0, 435, 331)
 
 [sub_resource type="Resource" id="Resource_f75ky"]
 script = ExtResource("6_a6itc")
@@ -73,6 +63,10 @@ metadata/_custom_type_script = "uid://jhj821woppuc"
 script = ExtResource("14_xchgw")
 metadata/_custom_type_script = "uid://wg0wpwcwxkec"
 
+[sub_resource type="Resource" id="Resource_47f3o"]
+script = ExtResource("13_dhuyy")
+metadata/_custom_type_script = "uid://bbo0hwiwoksjc"
+
 [node name="CodingSpace" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -90,22 +84,13 @@ anchors_preset = 0
 offset_right = 879.0
 offset_bottom = 897.0
 
-[node name="Panel" type="Panel" parent="CodeContainer"]
-layout_mode = 0
-offset_right = 879.0
-offset_bottom = 897.0
-theme_override_styles/panel = SubResource("StyleBoxTexture_dhuyy")
-
-[node name="Functions" type="Control" parent="CodeContainer"]
-anchors_preset = 0
-offset_right = 879.0
-offset_bottom = 897.0
-
-[node name="FunctionSelect" type="SpinBox" parent="CodeContainer"]
-layout_mode = 0
-offset_left = 485.0
-offset_right = 571.5625
-offset_bottom = 31.0
+[node name="Functions" type="TabContainer" parent="CodeContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Button" type="TextureButton" parent="CodeContainer"]
 layout_mode = 1
@@ -142,7 +127,7 @@ offset_bottom = -8.650024
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("7_a6itc")
-availableInstructions = Array[ExtResource("2_fn0c8")]([SubResource("Resource_f75ky"), SubResource("Resource_usmbw"), SubResource("Resource_a6itc"), SubResource("Resource_vjcr8"), SubResource("Resource_jhjoh"), SubResource("Resource_78wbv"), SubResource("Resource_dhuyy"), SubResource("Resource_xchgw"), SubResource("Resource_iduvy"), SubResource("Resource_lhmcw"), SubResource("Resource_3t8km")])
+availableInstructions = Array[ExtResource("2_fn0c8")]([SubResource("Resource_f75ky"), SubResource("Resource_usmbw"), SubResource("Resource_a6itc"), SubResource("Resource_vjcr8"), SubResource("Resource_jhjoh"), SubResource("Resource_78wbv"), SubResource("Resource_dhuyy"), SubResource("Resource_xchgw"), SubResource("Resource_iduvy"), SubResource("Resource_lhmcw"), SubResource("Resource_3t8km"), SubResource("Resource_47f3o")])
 
 [node name="VariableList" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -154,5 +139,5 @@ offset_right = 40.0
 offset_bottom = 20.0
 grow_vertical = 2
 
-[connection signal="value_changed" from="CodeContainer/FunctionSelect" to="." method="_on_function_select_value_changed"]
+[connection signal="tab_selected" from="CodeContainer/Functions" to="." method="_on_functions_tab_selected"]
 [connection signal="pressed" from="CodeContainer/Button" to="." method="_on_button_pressed"]
