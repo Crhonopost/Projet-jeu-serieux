@@ -1,5 +1,7 @@
 extends HBoxContainer
 
+@onready var argUIScene : PackedScene = load("res://scenes/UI/commands/functions/argument_ui.tscn")
+
 var connectedFunction: FunctionLogicResource
 var functionCall := CallFunctionLogicResource.new()
 
@@ -13,9 +15,8 @@ func linkWithFunctionRes(fnc: FunctionLogicResource):
 		connectedFunction.disconnect("updateArgsCount", argCountUpdated)
 	
 	fnc.connect("updateArgsCount", argCountUpdated)
-	for child in range(get_child_count()):
-		if(child > 0):
-			get_child(child).queue_free()
+	for child in $Arguments.get_children():
+		child.queue_free()
 	connectedFunction = fnc
 	argCountUpdated(fnc.args.size())
 	
@@ -23,17 +24,18 @@ func linkWithFunctionRes(fnc: FunctionLogicResource):
 
 
 func argCountUpdated(newCount: int):
-	var diff = newCount - (get_child_count() - 1) # -1 To avoid deleting range input
+	var diff = newCount -  $Arguments.get_child_count()
 	if diff > 0:
 		for i in range(diff):
-			var lineEdit = LineEdit.new()
+			var input = argUIScene.instantiate()
 			var correctIdx = connectedFunction.args.size() - diff
-			lineEdit.name = connectedFunction.args[correctIdx]
-			lineEdit.connect("text_submitted",  func (newText: String): changeArgVar(correctIdx, newText))
-			add_child(lineEdit)
+			input.connect("expressionUpdated", func (newText: String): changeArgVar(correctIdx, newText))
+			input.set_arg_name(connectedFunction.args[correctIdx])
+			
+			$Arguments.add_child(input)
 			functionCall.args.append("")
 	elif diff < 0:
-		var childs = get_children()
+		var childs = $Arguments.get_children()
 		for i in range(-diff):
 			childs[childs.size() - 1 - i].queue_free()
 			functionCall.args.remove_at(functionCall.args.size() - 1)

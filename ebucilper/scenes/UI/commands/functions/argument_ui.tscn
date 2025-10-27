@@ -7,7 +7,10 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_pynrt")
 
-[node name="NameInput" type="LineEdit" parent="."]
+[node name="VariableName" type="Label" parent="."]
 layout_mode = 2
 
-[connection signal="text_submitted" from="NameInput" to="." method="_on_name_input_text_submitted"]
+[node name="ExpressionInput" type="LineEdit" parent="."]
+layout_mode = 2
+
+[connection signal="text_changed" from="ExpressionInput" to="." method="_on_expression_input_text_changed"]

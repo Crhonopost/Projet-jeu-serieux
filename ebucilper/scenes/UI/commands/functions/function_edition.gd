@@ -1,7 +1,5 @@
 extends Control
 
-
-var argument_scene: PackedScene = load("res://scenes/UI/commands/functions/argument_ui.tscn")
 @export var edited_function: FunctionLogicResource
 
 func edit_function(function: FunctionLogicResource):
@@ -22,10 +20,10 @@ func _on_add_pressed() -> void:
 
 func createArgUI(startingIdx:int, count : int):
 	for i in range(count):
-		var argUI = argument_scene.instantiate()
+		var argUI := LineEdit.new()
 		var lastIdx: int = startingIdx + i
-		argUI.set_arg_name(edited_function.args.get(lastIdx))
-		argUI.connect("nameUpdated", func (name: String): edited_function.args[lastIdx] = name )
+		argUI.text = edited_function.args.get(lastIdx)
+		argUI.connect("text_submitted", func (name: String): edited_function.args[lastIdx] = name )
 		$ArgumentsEdition/Arguments.add_child(argUI)
 
 

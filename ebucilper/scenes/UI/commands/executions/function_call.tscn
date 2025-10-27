@@ -10,4 +10,7 @@ script = ExtResource("1_m8ml8")
 [node name="FunctionIdx" type="SpinBox" parent="."]
 layout_mode = 2
 
+[node name="Arguments" type="HBoxContainer" parent="."]
+layout_mode = 2
+
 [connection signal="value_changed" from="FunctionIdx" to="." method="_on_function_idx_value_changed"]
