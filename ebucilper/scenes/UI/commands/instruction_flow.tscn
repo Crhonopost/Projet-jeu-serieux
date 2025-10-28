@@ -1,7 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://ccvogvottrj2u"]
+[gd_scene load_steps=5 format=3 uid="uid://ccvogvottrj2u"]
 
 [ext_resource type="Script" uid="uid://wy2gsxwbexgl" path="res://scenes/UI/commands/instruction_flow.gd" id="1_drnas"]
-[ext_resource type="Texture2D" uid="uid://beh1tqeb2op44" path="res://Assets/Images/UI/delete_icon.png" id="2_tinb2"]
+[ext_resource type="Texture2D" uid="uid://ulwo83m4ugky" path="res://Assets/Images/code/Cross.png" id="2_tinb2"]
+[ext_resource type="Texture2D" uid="uid://bu4wjd6r53xu7" path="res://Assets/Images/code/List.png" id="3_tinb2"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o113n"]
+texture = ExtResource("3_tinb2")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(0, 0, 64, 64)
 
 [node name="InstructionList" type="VBoxContainer"]
 offset_right = 1152.0
@@ -11,11 +22,10 @@ script = ExtResource("1_drnas")
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Delete" type="Button" parent="HBoxContainer"]
-clip_contents = true
+[node name="Delete" type="TextureButton" parent="HBoxContainer"]
 layout_mode = 2
-icon = ExtResource("2_tinb2")
-icon_alignment = 1
+size_flags_vertical = 4
+texture_normal = ExtResource("2_tinb2")
 
 [node name="Type" type="Label" parent="HBoxContainer"]
 layout_mode = 2
@@ -27,11 +37,19 @@ layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
+size_flags_horizontal = 0
 size_flags_vertical = 3
 theme_override_constants/margin_left = 50
 
-[node name="SubInstructions" type="VBoxContainer" parent="MarginContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+texture_filter = 2
 layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxTexture_o113n")
+
+[node name="SubInstructions" type="VBoxContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
 
 [connection signal="pressed" from="HBoxContainer/Delete" to="." method="_on_delete_pressed"]
 [connection signal="text_changed" from="HBoxContainer/Condition" to="." method="_on_condition_text_changed"]

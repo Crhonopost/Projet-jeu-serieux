@@ -2,7 +2,7 @@ extends Control
 
 @export var instructionResource: ExecutionLogicResource
 
-@onready var typeLabel: Label = $HBoxContainer/Type
+@onready var typeLabel: Label = $InstructionExe/Type
 
 signal exitCode
 
@@ -12,8 +12,10 @@ signal exitCode
 @onready var functionCallScene : PackedScene = load("res://scenes/UI/commands/executions/function_call.tscn")
 
 
+@onready var specialNode: Control = $InstructionExe/Special
+
 func getSpecialNode():
-	return $HBoxContainer/Special.get_child(0)
+	return specialNode.get_child(0)
 
 func _ready():
 	buildFromResource()
@@ -32,19 +34,19 @@ func buildFromResource():
 	if instructionResource is CreateLogicResource:
 		var argsInstance = variableCreationScene.instantiate()
 		argsInstance.creation = instructionResource
-		$HBoxContainer/Special.add_child(argsInstance)
+		specialNode.add_child(argsInstance)
 	elif instructionResource is ChangeColorLogicResource:
 		var argsInstance = colorPickingScene.instantiate()
 		argsInstance.colorLogic = instructionResource
-		$HBoxContainer/Special.add_child(argsInstance)
+		specialNode.add_child(argsInstance)
 	elif instructionResource is UpdateLogicResource:
 		var argsInstance = variableUpdateScene.instantiate()
 		argsInstance.update = instructionResource
-		$HBoxContainer/Special.add_child(argsInstance)
+		specialNode.add_child(argsInstance)
 	elif instructionResource is CallFunctionLogicResource:
 		var argsInstance = functionCallScene.instantiate()
 		argsInstance.functionCall = instructionResource
-		$HBoxContainer/Special.add_child(argsInstance)
+		specialNode.add_child(argsInstance)
 
 
 func _get_drag_data(at_position: Vector2) -> Variant:
@@ -53,3 +55,11 @@ func _get_drag_data(at_position: Vector2) -> Variant:
 	set_drag_preview(title)
 	emit_signal("exitCode")
 	return instructionResource
+
+
+func _on_mouse_entered() -> void:
+	$InstructionExe/CenterContainer/Delete.visible = true
+
+
+func _on_mouse_exited() -> void:
+	$InstructionExe/CenterContainer/Delete.visible = false
