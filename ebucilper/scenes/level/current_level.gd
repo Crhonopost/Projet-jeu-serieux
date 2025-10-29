@@ -73,7 +73,7 @@ func _load_target_from_json():
 	gridView.currentGrid = new_grid
 	gridView.showTargetBlock(gridView.mode, true, Vector3i(0, 0, 0))
 	
-	$CodingSpace/GoalContainer/Goal.text = ActiveLevel.level_tip
+	$CodingSpace.setTip(ActiveLevel.level_tip)
 
 var mouse_over_viewport = false
 

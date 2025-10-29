@@ -3,7 +3,7 @@ extends Control
 @onready var variableItemScene : PackedScene = load("res://scenes/UI/commands/editor/variable_item.tscn")
 
 @onready var compiler := $Compiler 
-@onready var functionsNode := $CodeContainer/Functions
+@onready var functionsNode := $HBoxContainer/LeftSide/Functions
 
 
 var selectedFunction: int = 0
@@ -21,6 +21,9 @@ func _ready() -> void:
 		functionsNode.set_tab_title(i, str(i))
 		
 	InstructionVisualBuilder.connect("functionCallInstantiatiated", functionCall)
+
+func setTip(tip: String):
+	$HBoxContainer/LeftSide/PanelContainer/MarginContainer/Goal.text = ActiveLevel.level_tip
 
 func functionCall(node: Control):
 	node.getSpecialNode().connect("connectToFunction", func (index): connectNodeToFunction(index, node))
