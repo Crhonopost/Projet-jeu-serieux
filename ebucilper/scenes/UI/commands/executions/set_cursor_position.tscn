@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqi122m28jhso"]
+
+[ext_resource type="Script" uid="uid://dm2oyk7bn06dc" path="res://scenes/UI/commands/executions/set_cursor_position.gd" id="1_ena3y"]
+
+[node name="SetCursorPosition" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ena3y")
+
+[node name="XTitle" type="Label" parent="."]
+layout_mode = 2
+text = "X"
+
+[node name="X" type="LineEdit" parent="."]
+layout_mode = 2
+
+[node name="YTitle" type="Label" parent="."]
+layout_mode = 2
+text = "Y"
+
+[node name="Y" type="LineEdit" parent="."]
+layout_mode = 2
+
+[node name="ZTitle" type="Label" parent="."]
+layout_mode = 2
+text = "Z"
+
+[node name="Z" type="LineEdit" parent="."]
+layout_mode = 2
+
+[connection signal="text_changed" from="X" to="." method="_on_x_text_changed"]
+[connection signal="text_changed" from="Y" to="." method="_on_y_text_changed"]
+[connection signal="text_changed" from="Z" to="." method="_on_z_text_changed"]

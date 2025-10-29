@@ -61,6 +61,12 @@ func processInstructions(entryPoint: LogicResource, instructionIdx: int) -> Arra
 			instru = ChangeColorInstruction.new()
 			instru.color = entryPoint.color
 		
+		elif entryPoint is SetCursorPositionLogicResource:
+			instru = SetCursorPositionInstruction.new()
+			instru.position_x.parse(entryPoint.position_x)
+			instru.position_y.parse(entryPoint.position_y)
+			instru.position_z.parse(entryPoint.position_z)
+		
 		return [instru]
 	
 	elif(entryPoint is ListLogicResource):    

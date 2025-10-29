@@ -10,6 +10,7 @@ signal exitCode
 @onready var colorPickingScene : PackedScene = load("res://scenes/UI/commands/executions/color_picking.tscn")
 @onready var variableUpdateScene : PackedScene = load("res://scenes/UI/commands/executions/variable_update.tscn")
 @onready var functionCallScene : PackedScene = load("res://scenes/UI/commands/executions/function_call.tscn")
+@onready var setCursorPosScene : PackedScene = load("res://scenes/UI/commands/executions/set_cursor_position.tscn")
 
 
 @onready var specialNode: Control = $InstructionExe/Special
@@ -46,6 +47,10 @@ func buildFromResource():
 	elif instructionResource is CallFunctionLogicResource:
 		var argsInstance = functionCallScene.instantiate()
 		argsInstance.functionCall = instructionResource
+		specialNode.add_child(argsInstance)
+	elif  instructionResource is SetCursorPositionLogicResource:
+		var argsInstance = setCursorPosScene.instantiate()
+		argsInstance.cursor_position = instructionResource
 		specialNode.add_child(argsInstance)
 
 

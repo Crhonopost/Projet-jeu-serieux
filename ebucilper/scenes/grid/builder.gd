@@ -81,6 +81,8 @@ func followInstruction(instruction : Instruction) -> bool:
 		updateVariable(instruction.target, instruction.expression)
 	elif instruction is CallFunctionInstruction:
 		callFunction(instruction.jumpIdx, instruction.argsToVar)
+	elif instruction is SetCursorPositionInstruction:
+		moveTo(instruction.position_x, instruction.position_y, instruction.position_z)
 	else:
 		printerr("Unknown instruction type")
 		instructionResult = false
@@ -89,6 +91,14 @@ func followInstruction(instruction : Instruction) -> bool:
 
 func placeBlock():
 	return grid.placeBlock(cursorPosition, currentColor)
+
+func moveTo(position_x: LowLevelExpression, position_y: LowLevelExpression, position_z: LowLevelExpression):
+	var cur_variables = callStack.back().variables
+	cursorPosition = Vector3i(
+		position_x.execute(cur_variables),
+		position_y.execute(cur_variables),
+		position_z.execute(cur_variables)
+	)
 
 func moveForward():
 	var vec = Vector3i(0,0,0)

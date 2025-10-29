@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://c2i2xc75qwiwp"]
+[gd_scene load_steps=31 format=3 uid="uid://c2i2xc75qwiwp"]
 
 [ext_resource type="Script" uid="uid://b678kr1glpsrl" path="res://scenes/UI/coding_space.gd" id="1_25lkw"]
 [ext_resource type="Script" uid="uid://bulv0feibbce" path="res://scripts/compiler.gd" id="2_bwyhw"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://jhj821woppuc" path="res://resources/scripting/definitions/logic/executions/update_logic_resource.gd" id="11_jhjoh"]
 [ext_resource type="FontFile" uid="uid://bewn88o0me7h7" path="res://Assets/Fonts/Coolvetica Rg.otf" id="12_78wbv"]
 [ext_resource type="Script" uid="uid://bbo0hwiwoksjc" path="res://resources/scripting/definitions/logic/executions/call_function_logic_resource.gd" id="13_dhuyy"]
+[ext_resource type="Script" uid="uid://d1w3rheadok7n" path="res://resources/scripting/definitions/logic/executions/set_cursor_position_logic_resource.gd" id="14_iduvy"]
 [ext_resource type="Script" uid="uid://wg0wpwcwxkec" path="res://resources/scripting/definitions/logic/flows/flow_logic_resource.gd" id="14_xchgw"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dhuyy"]
@@ -76,6 +77,10 @@ metadata/_custom_type_script = "uid://wg0wpwcwxkec"
 [sub_resource type="Resource" id="Resource_47f3o"]
 script = ExtResource("13_dhuyy")
 metadata/_custom_type_script = "uid://bbo0hwiwoksjc"
+
+[sub_resource type="Resource" id="Resource_sfy5e"]
+script = ExtResource("14_iduvy")
+metadata/_custom_type_script = "uid://d1w3rheadok7n"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dhuyy"]
 bg_color = Color(0.8, 0.25882354, 0.23137255, 1)
@@ -159,7 +164,7 @@ offset_bottom = -79.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("7_a6itc")
-availableInstructions = Array[ExtResource("2_fn0c8")]([SubResource("Resource_f75ky"), SubResource("Resource_usmbw"), SubResource("Resource_a6itc"), SubResource("Resource_vjcr8"), SubResource("Resource_jhjoh"), SubResource("Resource_78wbv"), SubResource("Resource_dhuyy"), SubResource("Resource_xchgw"), SubResource("Resource_iduvy"), SubResource("Resource_lhmcw"), SubResource("Resource_3t8km"), SubResource("Resource_47f3o")])
+availableInstructions = Array[ExtResource("2_fn0c8")]([SubResource("Resource_f75ky"), SubResource("Resource_usmbw"), SubResource("Resource_a6itc"), SubResource("Resource_vjcr8"), SubResource("Resource_jhjoh"), SubResource("Resource_78wbv"), SubResource("Resource_dhuyy"), SubResource("Resource_xchgw"), SubResource("Resource_iduvy"), SubResource("Resource_lhmcw"), SubResource("Resource_3t8km"), SubResource("Resource_47f3o"), SubResource("Resource_sfy5e")])
 
 [node name="CodeContainer" type="Control" parent="."]
 layout_mode = 1
