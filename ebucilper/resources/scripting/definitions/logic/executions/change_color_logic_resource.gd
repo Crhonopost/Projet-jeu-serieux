@@ -4,3 +4,6 @@ class_name ChangeColorLogicResource extends ExecutionLogicResource
 
 func getName() -> String:
 	return "CHANGE_COLOR"
+
+func getLogo() -> Texture2D:
+	return load("res://Assets/Images/code/Logos/Change_color.png")

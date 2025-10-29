@@ -28,7 +28,7 @@ func argCountUpdated(newCount: int):
 	if diff > 0:
 		for i in range(diff):
 			var input = argUIScene.instantiate()
-			var correctIdx = connectedFunction.args.size() - diff
+			var correctIdx = connectedFunction.args.size() - diff + i
 			input.connect("expressionUpdated", func (newText: String): changeArgVar(correctIdx, newText))
 			input.set_arg_name(connectedFunction.args[correctIdx])
 			

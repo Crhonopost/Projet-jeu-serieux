@@ -6,3 +6,6 @@ class_name SetCursorPositionLogicResource extends ExecutionLogicResource
 
 func getName() -> String:
 	return "SET_CURSOR_POSITION"
+
+func getLogo() -> Texture2D:
+	return load("res://Assets/Images/code/Logos/Move_up.png")

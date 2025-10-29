@@ -1,25 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://waw005kjj8fv"]
+[gd_scene load_steps=3 format=3 uid="uid://waw005kjj8fv"]
 
 [ext_resource type="Script" uid="uid://d87qkimg17no" path="res://scenes/UI/instruction_item.gd" id="1_bnymg"]
+[ext_resource type="Texture2D" uid="uid://27lqrsd82utl" path="res://Assets/Images/code/Logos/Move_up.png" id="2_q5lp6"]
 
-[node name="InstructionItem" type="Control"]
-custom_minimum_size = Vector2(150, 25)
-layout_mode = 3
-anchors_preset = 0
-offset_right = 26.0
-offset_bottom = 23.0
+[node name="InstructionItem" type="CenterContainer"]
+offset_right = 64.0
+offset_bottom = 64.0
 script = ExtResource("1_bnymg")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(28, 14)
-layout_mode = 0
-offset_top = 4.0
-offset_right = 51.0
-offset_bottom = 19.0
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_right = 26.0
-offset_bottom = 23.0
-size_flags_horizontal = 4
-text = "For"
+texture_filter = 1
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("2_q5lp6")
+stretch_mode = 4

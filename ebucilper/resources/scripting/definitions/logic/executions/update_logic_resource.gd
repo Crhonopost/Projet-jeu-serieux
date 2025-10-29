@@ -8,3 +8,6 @@ class_name UpdateLogicResource extends ExecutionLogicResource
 
 func getName() -> String:
 	return "UPDATE_VARIABLE"
+
+func getLogo() -> Texture2D:
+	return load("res://Assets/Images/code/Logos/Move_up.png")

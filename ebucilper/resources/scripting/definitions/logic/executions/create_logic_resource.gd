@@ -9,3 +9,6 @@ class_name CreateLogicResource extends ExecutionLogicResource
 
 func getName() -> String:
 	return "CREATE_VARIABLE"
+
+func getLogo() -> Texture2D:
+	return load("res://Assets/Images/code/Logos/Move_up.png")

@@ -12,5 +12,17 @@ var INSTRUCTION_NAMES = {
 	InstructionType.ROTATE_RIGHT: "ROTATE_RIGHT",
 }
 
+var INSTRUCTION_LOGOS = {
+	InstructionType.PLACE_BLOCK: preload("res://Assets/Images/code/Logos/Place_block.png"),
+	InstructionType.MOVE_FORWARD: preload("res://Assets/Images/code/Logos/Move_up.png"),
+	InstructionType.MOVE_UP: preload("res://Assets/Images/code/Logos/Move_up.png"),
+	InstructionType.MOVE_DOWN: preload("res://Assets/Images/code/Logos/Move_down.png"),
+	InstructionType.ROTATE_LEFT: preload("res://Assets/Images/code/Logos/Move_up.png"),
+	InstructionType.ROTATE_RIGHT: preload("res://Assets/Images/code/Logos/Move_up.png"),
+}
+
 func getName()->String:
 	return INSTRUCTION_NAMES[type]
+
+func getLogo() -> Texture2D:
+	return INSTRUCTION_LOGOS[type]
