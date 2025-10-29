@@ -14,11 +14,11 @@ var INSTRUCTION_NAMES = {
 
 var INSTRUCTION_LOGOS = {
 	InstructionType.PLACE_BLOCK: preload("res://Assets/Images/code/Logos/Place_block.png"),
-	InstructionType.MOVE_FORWARD: preload("res://Assets/Images/code/Logos/Move_up.png"),
+	InstructionType.MOVE_FORWARD: preload("res://Assets/Images/code/Logos/Move_forward.png"),
 	InstructionType.MOVE_UP: preload("res://Assets/Images/code/Logos/Move_up.png"),
 	InstructionType.MOVE_DOWN: preload("res://Assets/Images/code/Logos/Move_down.png"),
-	InstructionType.ROTATE_LEFT: preload("res://Assets/Images/code/Logos/Move_up.png"),
-	InstructionType.ROTATE_RIGHT: preload("res://Assets/Images/code/Logos/Move_up.png"),
+	InstructionType.ROTATE_LEFT: preload("res://Assets/Images/code/Logos/Turn_left.png"),
+	InstructionType.ROTATE_RIGHT: preload("res://Assets/Images/code/Logos/Turn_right.png"),
 }
 
 func getName()->String:

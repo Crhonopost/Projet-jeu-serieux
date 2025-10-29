@@ -11,4 +11,4 @@ func getName() -> String:
 	return "CREATE_VARIABLE"
 
 func getLogo() -> Texture2D:
-	return load("res://Assets/Images/code/Logos/Move_up.png")
+	return load("res://Assets/Images/code/Logos/Create_var.png")

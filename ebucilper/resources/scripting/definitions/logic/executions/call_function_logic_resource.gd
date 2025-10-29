@@ -8,4 +8,4 @@ func getName() -> String:
 	return "CALL_FUNCTION"
 
 func getLogo() -> Texture2D:
-	return load("res://Assets/Images/code/Logos/Move_up.png")
+	return load("res://Assets/Images/code/Logos/Call_function.png")

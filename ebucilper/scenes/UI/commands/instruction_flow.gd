@@ -2,10 +2,10 @@ class_name InstructionFlowUI extends Control
 
 @export var instructionResource: ListLogicResource
 
-@onready var typeLabel: Label = $HBoxContainer/Type
-@onready var header: HBoxContainer = $HBoxContainer
-@onready var instructionList: VBoxContainer = $MarginContainer/PanelContainer/SubInstructions
-@onready var conditionField = $HBoxContainer/Condition
+@onready var typeLabel: Label = $PanelTitle/HBoxContainer/Type
+@onready var header: HBoxContainer = $PanelTitle/HBoxContainer
+@onready var instructionList: VBoxContainer = $PanelInstructions/MarginContainer/SubInstructions
+@onready var conditionField = $PanelTitle/HBoxContainer/Condition
 
 signal exitCode
 
@@ -16,7 +16,7 @@ func _ready():
 		conditionField.text = instructionResource.condition
 		conditionField.visible = true
 	elif(instructionResource is FunctionLogicResource):
-		$HBoxContainer.visible = false
+		$PanelTitle/HBoxContainer.visible = false
 	
 	instantiateList()
 	
