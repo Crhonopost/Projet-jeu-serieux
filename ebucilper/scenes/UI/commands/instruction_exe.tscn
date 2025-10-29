@@ -1,22 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://bbavicoatjdec"]
+[gd_scene load_steps=4 format=3 uid="uid://bbavicoatjdec"]
 
-[ext_resource type="Texture2D" uid="uid://d4cgrdkbpna0k" path="res://Assets/Images/code/Instruction.png" id="1_810cs"]
+[ext_resource type="StyleBox" uid="uid://djmewo62gik6r" path="res://resources/ui/panels/instruction_exe.tres" id="1_810cs"]
 [ext_resource type="Script" uid="uid://dklvussic3lxx" path="res://scenes/UI/commands/instruction_exe.gd" id="1_dfbn3"]
 [ext_resource type="Texture2D" uid="uid://ulwo83m4ugky" path="res://Assets/Images/code/Cross.png" id="2_o87p7"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dspxf"]
-texture = ExtResource("1_810cs")
-texture_margin_left = 16.0
-texture_margin_top = 16.0
-texture_margin_right = 16.0
-texture_margin_bottom = 16.0
-
 [node name="InstructionExe" type="PanelContainer"]
-texture_filter = 2
+texture_filter = 1
 offset_left = 45.0
 offset_right = 45.0
 offset_bottom = 50.0
-theme_override_styles/panel = SubResource("StyleBoxTexture_dspxf")
+theme_override_styles/panel = ExtResource("1_810cs")
 script = ExtResource("1_dfbn3")
 
 [node name="InstructionExe" type="HBoxContainer" parent="."]
@@ -35,7 +28,7 @@ layout_mode = 2
 
 [node name="Delete" type="TextureButton" parent="InstructionExe/CenterContainer"]
 visible = false
-texture_filter = 2
+texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 1

@@ -1,0 +1,13 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://dkd7qwh2g1tn2"]
+
+[ext_resource type="Texture2D" uid="uid://bu4wjd6r53xu7" path="res://Assets/Images/code/List.png" id="1_503j5"]
+
+[resource]
+texture = ExtResource("1_503j5")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(0, 0, 64, 64)

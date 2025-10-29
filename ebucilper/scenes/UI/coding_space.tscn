@@ -1,9 +1,9 @@
-[gd_scene load_steps=31 format=3 uid="uid://c2i2xc75qwiwp"]
+[gd_scene load_steps=32 format=3 uid="uid://c2i2xc75qwiwp"]
 
 [ext_resource type="Script" uid="uid://b678kr1glpsrl" path="res://scenes/UI/coding_space.gd" id="1_25lkw"]
 [ext_resource type="Script" uid="uid://bulv0feibbce" path="res://scripts/compiler.gd" id="2_bwyhw"]
 [ext_resource type="Script" uid="uid://bqe45dm5wyip4" path="res://resources/scripting/definitions/logic/logic_resource.gd" id="2_fn0c8"]
-[ext_resource type="Texture2D" uid="uid://defmvwypi571s" path="res://Assets/Images/UI/coding_background.png" id="4_dhuyy"]
+[ext_resource type="StyleBox" uid="uid://b1mv4qn7s3w4d" path="res://resources/ui/panels/coding_space.tres" id="3_xchgw"]
 [ext_resource type="Script" uid="uid://dmggbp5elydyj" path="res://resources/scripting/definitions/logic/executions/change_color_logic_resource.gd" id="6_a6itc"]
 [ext_resource type="Script" uid="uid://d1ynh7ys7iaab" path="res://scenes/UI/inventory.gd" id="7_a6itc"]
 [ext_resource type="Script" uid="uid://qjop52belxgl" path="res://resources/scripting/definitions/logic/executions/no_args_logic_resource.gd" id="7_vjcr8"]
@@ -14,16 +14,7 @@
 [ext_resource type="Script" uid="uid://bbo0hwiwoksjc" path="res://resources/scripting/definitions/logic/executions/call_function_logic_resource.gd" id="13_dhuyy"]
 [ext_resource type="Script" uid="uid://d1w3rheadok7n" path="res://resources/scripting/definitions/logic/executions/set_cursor_position_logic_resource.gd" id="14_iduvy"]
 [ext_resource type="Script" uid="uid://wg0wpwcwxkec" path="res://resources/scripting/definitions/logic/flows/flow_logic_resource.gd" id="14_xchgw"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dhuyy"]
-texture = ExtResource("4_dhuyy")
-texture_margin_left = 64.0
-texture_margin_top = 64.0
-texture_margin_right = 51.0
-texture_margin_bottom = 75.0
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
-region_rect = Rect2(0, 0, 435, 331)
+[ext_resource type="Script" uid="uid://c2h1mt0env6k5" path="res://resources/scripting/definitions/logic/flows/for_logic_resource.gd" id="15_iduvy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dhuyy"]
 bg_color = Color(0.8, 0.25882354, 0.23137255, 1)
@@ -102,6 +93,10 @@ metadata/_custom_type_script = "uid://bbo0hwiwoksjc"
 script = ExtResource("14_iduvy")
 metadata/_custom_type_script = "uid://d1w3rheadok7n"
 
+[sub_resource type="Resource" id="Resource_7l374"]
+script = ExtResource("15_iduvy")
+metadata/_custom_type_script = "uid://c2h1mt0env6k5"
+
 [node name="CodingSpace" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -133,7 +128,7 @@ layout_mode = 2
 
 [node name="GoalContainer" type="Panel" parent="HBoxContainer/LeftSide/PanelContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_dhuyy")
+theme_override_styles/panel = ExtResource("3_xchgw")
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/LeftSide/PanelContainer"]
 layout_mode = 2
@@ -150,6 +145,7 @@ autowrap_mode = 2
 [node name="Functions" type="TabContainer" parent="HBoxContainer/LeftSide"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("3_xchgw")
 
 [node name="Button" type="Button" parent="HBoxContainer/LeftSide"]
 layout_mode = 2
@@ -172,7 +168,7 @@ size_flags_horizontal = 3
 
 [node name="InventoryBackground" type="Panel" parent="HBoxContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_dhuyy")
+theme_override_styles/panel = ExtResource("3_xchgw")
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
@@ -182,7 +178,7 @@ theme_override_constants/margin_top = 30
 [node name="Inventory" type="FlowContainer" parent="HBoxContainer/VBoxContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 script = ExtResource("7_a6itc")
-availableInstructions = Array[ExtResource("2_fn0c8")]([SubResource("Resource_f75ky"), SubResource("Resource_usmbw"), SubResource("Resource_a6itc"), SubResource("Resource_vjcr8"), SubResource("Resource_jhjoh"), SubResource("Resource_78wbv"), SubResource("Resource_dhuyy"), SubResource("Resource_xchgw"), SubResource("Resource_iduvy"), SubResource("Resource_lhmcw"), SubResource("Resource_3t8km"), SubResource("Resource_47f3o"), SubResource("Resource_sfy5e")])
+availableInstructions = Array[ExtResource("2_fn0c8")]([SubResource("Resource_f75ky"), SubResource("Resource_usmbw"), SubResource("Resource_a6itc"), SubResource("Resource_vjcr8"), SubResource("Resource_jhjoh"), SubResource("Resource_78wbv"), SubResource("Resource_dhuyy"), SubResource("Resource_xchgw"), SubResource("Resource_iduvy"), SubResource("Resource_lhmcw"), SubResource("Resource_3t8km"), SubResource("Resource_47f3o"), SubResource("Resource_sfy5e"), SubResource("Resource_7l374")])
 
 [connection signal="tab_selected" from="HBoxContainer/LeftSide/Functions" to="." method="_on_functions_tab_selected"]
 [connection signal="pressed" from="HBoxContainer/LeftSide/Button" to="." method="_on_button_pressed"]

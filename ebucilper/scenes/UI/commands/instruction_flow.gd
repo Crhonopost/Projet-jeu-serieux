@@ -17,6 +17,10 @@ func _ready():
 		conditionField.visible = true
 	elif(instructionResource is FunctionLogicResource):
 		$PanelTitle/HBoxContainer.visible = false
+	elif(instructionResource is ForLogicResource):
+		$PanelTitle/HBoxContainer/For.visible = true
+		$PanelTitle/HBoxContainer/For/VariableName.text = instructionResource.variableName
+		$PanelTitle/HBoxContainer/For/InitValue.text = instructionResource.stepCount
 	
 	instantiateList()
 	
@@ -49,3 +53,11 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 
 func _on_condition_text_changed(new_text: String) -> void:
 	instructionResource.condition = new_text
+
+
+func _on_variable_name_text_changed(new_text: String) -> void:
+	instructionResource.variableName = new_text
+
+
+func _on_init_value_text_changed(new_text: String) -> void:
+	instructionResource.stepCount = new_text

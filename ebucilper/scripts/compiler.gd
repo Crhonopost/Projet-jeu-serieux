@@ -74,6 +74,8 @@ func processInstructions(entryPoint: LogicResource, instructionIdx: int) -> Arra
 		
 		if entryPoint is WhileLogicResource:
 			instructionList.append_array(processWhile(entryPoint, instructionIdx))
+		elif entryPoint is ForLogicResource:
+			instructionList.append_array(processFor(entryPoint, instructionIdx))
 		elif entryPoint is FlowLogicResource:
 			instructionList.append_array(processIf(entryPoint, instructionIdx))
 		else:
@@ -98,6 +100,41 @@ func processIf(ifLogic: FlowLogicResource, instructionIdx: int) -> Array[Instruc
 	
 	return res
 	
+
+func processFor(forLogic: ForLogicResource, instructionIdx: int) -> Array[Instruction]:
+	var res : Array[Instruction]
+	
+	var iteratorCreation := CreateVarInstruction.new()
+	iteratorCreation.target = forLogic.variableName
+	iteratorCreation.expression.parse("0")
+	res.append(iteratorCreation)
+	
+	################ jump condition #####################
+	var endLoopCondition := JumpToIfInstruction.new()
+	endLoopCondition.evaluateNot = true
+	endLoopCondition.condition.parse(forLogic.variableName + "<" + forLogic.stepCount)
+	res.append(endLoopCondition)
+	#####################################
+	
+	################# childs ####################
+	var iteratorUpdate := UpdateVarInstruction.new()
+	iteratorUpdate.target = forLogic.variableName
+	iteratorUpdate.expression.parse(forLogic.variableName + " + 1")
+	res.append(iteratorUpdate)
+	
+	for child in forLogic.childs:
+		res.append_array(processInstructions(child, instructionIdx + res.size()))
+	#####################################
+	
+	################# jump back ####################
+	var jumpBackInstruction:= JumpToInstruction.new()
+	jumpBackInstruction.toIdx = instructionIdx + 1
+	res.append(jumpBackInstruction)
+	#####################################
+	
+	endLoopCondition.toIdx = instructionIdx + res.size()
+	
+	return res
 
 func processWhile(whileLogic: WhileLogicResource, instructionIdx: int) -> Array[Instruction]:
 	var res : Array[Instruction]
