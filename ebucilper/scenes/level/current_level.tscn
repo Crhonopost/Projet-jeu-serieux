@@ -103,12 +103,12 @@ step_delay = 0.2
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
 environment = SubResource("Environment_g6sfq")
 
-[node name="modeSelector" type="Control" parent="SubViewportContainer"]
+[node name="ModeSelector" type="Control" parent="SubViewportContainer"]
 layout_mode = 2
 script = ExtResource("12_3mkxh")
 grid_viewer_path = NodePath("../SubViewport/Grid")
 
-[node name="modeOpt" type="OptionButton" parent="SubViewportContainer/modeSelector"]
+[node name="ModeOpt" type="OptionButton" parent="SubViewportContainer/ModeSelector"]
 layout_mode = 0
 offset_right = 51.0
 offset_bottom = 29.0

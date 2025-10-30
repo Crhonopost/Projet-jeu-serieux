@@ -10,6 +10,7 @@ var playerGrid: GridResource = GridResource.new()
 @onready var builder: Node3D = $"../Builder"
 @export var cell_size: float = 1.0 
 @export var move_time_per_cell := 0.10
+var selector: SelectionBox3D
 
 var _last_layer := -1
 var drone: Node3D
@@ -23,6 +24,13 @@ var move_tween: Tween
 	# placeBlocs(gridTarget,true)
 	# placeBlocs(gridEditor, false)
 func _ready():
+	clearGrid()
+	
+	selector = SelectionBox3D.new()
+	selector.cell_size = cell_size
+	add_child(selector)
+	selector.position = Vector3(builder.cursorPosition) * cell_size-Vector3(0.5,0.5,0.5)
+	
 	builder.grid = playerGrid
 	if drone_scene:
 		drone = drone_scene.instantiate()
@@ -31,6 +39,8 @@ func _ready():
 		_setup_drone_anim(2)
 		if builder and not builder.cursor_moved.is_connected(_on_cursor_moved):
 			builder.cursor_moved.connect(_on_cursor_moved)
+		if not builder.block_placed.is_connected(_on_block_placed):
+			builder.block_placed.connect(_on_block_placed)
 
 	
 func _process(_dt):
@@ -43,6 +53,11 @@ func _process(_dt):
 			_draw_target_layer(k)
 			_last_layer = k
 
+
+func _on_block_placed(pos: Vector3i, color: int) -> void:
+	if $Visualization:
+		$Visualization.instantiate(Vector3(pos.x, pos.y, pos.z), color, false)
+		
 func _on_cursor_moved(pos: Vector3i, orientation: int) -> void:
 	if drone == null: return
 	
@@ -51,7 +66,7 @@ func _on_cursor_moved(pos: Vector3i, orientation: int) -> void:
 
 	var from := drone.position
 	var to := Vector3(pos.x, pos.y, pos.z) * cell_size
-	to.y += cell_size * 1.0
+	to.y += cell_size * 1.5
 
 	var dis: float = (absf(from.x - to.x) + absf(from.y - to.y) + absf(from.z - to.z)) / cell_size
 	var dur: float = maxf(1.0, dis) * move_time_per_cell
@@ -67,11 +82,13 @@ func _on_cursor_moved(pos: Vector3i, orientation: int) -> void:
 	move_tween.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 	move_tween.tween_property(drone, "position", to, dur)
 	move_tween.parallel().tween_property(drone, "rotation:y", yaw, dur)
+	
+	selector.position = Vector3(pos.x, pos.y, pos.z) * cell_size - Vector3(0.5,0.5,0.5)
 
 
 func _set_drone_immediately(pos: Vector3i, orientation: int) -> void:
 	var p := Vector3(pos.x, pos.y, pos.z) * cell_size
-	p.y += cell_size * 0.5
+	p.y += cell_size * 1.5
 	drone.position = p
 	var yaw := 0.0
 	match orientation:
