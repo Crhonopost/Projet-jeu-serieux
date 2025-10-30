@@ -14,7 +14,8 @@ var cursorPosition: Vector3i
 var currentColor: ColorsEnum
 var buildingTime: int # number of executed instructions
 
-
+signal cursor_moved(pos: Vector3i, orientation: OrientationsEnum)
+@export var step_delay := 0.12
 
 
 var callStack : Array[ExecutionContext]
@@ -28,6 +29,10 @@ func resetState() -> void:
 	currentColor = ColorsEnum.RED
 	callStack.clear()
 	
+	
+func _pause_step() -> void:
+	if step_delay > 0.0:
+		await get_tree().create_timer(step_delay).timeout
 
 func build(instructions : Array[Instruction]) -> bool:
 	buildingTime = 0
@@ -42,7 +47,7 @@ func build(instructions : Array[Instruction]) -> bool:
 		var result = followInstruction(instruction)
 		if !result: return false
 	return true
-
+	
 func followNoArgs(instruction: NoArgsInstruction) -> bool:
 	var instructionResult: bool = true
 	match instruction.action:
@@ -62,6 +67,7 @@ func followNoArgs(instruction: NoArgsInstruction) -> bool:
 			callStack.pop_back()
 	
 	buildingTime += 1
+	await _pause_step() 
 	return instructionResult
 
 func followInstruction(instruction : Instruction) -> bool:
@@ -99,6 +105,7 @@ func moveTo(position_x: LowLevelExpression, position_y: LowLevelExpression, posi
 		position_y.execute(cur_variables),
 		position_z.execute(cur_variables)
 	)
+	emit_signal("cursor_moved", cursorPosition, cursorOrientation)
 
 func moveForward():
 	var vec = Vector3i(0,0,0)
@@ -111,18 +118,23 @@ func moveForward():
 	elif(cursorOrientation == OrientationsEnum.Z_NEGATIVE):
 		vec -= Vector3i(0,0,1)
 	cursorPosition += vec
+	emit_signal("cursor_moved", cursorPosition, cursorOrientation)
 
 func moveUp():
 	cursorPosition.y += 1
+	emit_signal("cursor_moved", cursorPosition, cursorOrientation)
 	
 func moveDown():
 	cursorPosition.y -= 1
+	emit_signal("cursor_moved", cursorPosition, cursorOrientation)
 
 func rotateLeft():
 	cursorOrientation = leftOrientation[cursorOrientation]
+	emit_signal("cursor_moved", cursorPosition, cursorOrientation)
 	
 func rotateRight():
 	cursorOrientation = rightOrientation[cursorOrientation]
+	emit_signal("cursor_moved", cursorPosition, cursorOrientation)
 	
 func changeColor(color: int):
 	var colorString = ColorsEnum.keys()[color]
