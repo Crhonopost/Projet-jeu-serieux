@@ -55,6 +55,3 @@ func from_serializable_dict(data: Dictionary) -> void:
 
 	for i in range(min(grid.size(), grid_data.size())):
 		grid[i] = int(grid_data[i])
-			
-		if grid[i] != 0:
-			print("Loaded block at index ", i, " with value ", grid[i])
