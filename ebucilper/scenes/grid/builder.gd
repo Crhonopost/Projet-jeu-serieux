@@ -15,6 +15,7 @@ var currentColor: ColorsEnum
 var buildingTime: int # number of executed instructions
 
 signal cursor_moved(pos: Vector3i, orientation: OrientationsEnum)
+signal block_placed(pos: Vector3i, color: int)
 @export var step_delay := 0.12
 
 
@@ -44,7 +45,7 @@ func build(instructions : Array[Instruction]) -> bool:
 	while callStack.size() > 0:
 		var instruction := instructions[callStack.back().instructionIdx]
 		callStack.back().instructionIdx += 1
-		var result = followInstruction(instruction)
+		var result = await followInstruction(instruction)
 		if !result: return false
 	return true
 	
@@ -73,7 +74,7 @@ func followNoArgs(instruction: NoArgsInstruction) -> bool:
 func followInstruction(instruction : Instruction) -> bool:
 	var instructionResult: bool = true
 	if instruction is NoArgsInstruction:
-		followNoArgs(instruction)
+		instructionResult = await followNoArgs(instruction)
 	elif instruction is ChangeColorInstruction:
 		changeColor(instruction.color)
 		buildingTime += 1
@@ -83,12 +84,14 @@ func followInstruction(instruction : Instruction) -> bool:
 		jump(instruction.toIdx)
 	elif instruction is CreateVarInstruction:
 		createVariable(instruction.target, instruction.expression)
+		await _pause_step()
 	elif instruction is UpdateVarInstruction:
 		updateVariable(instruction.target, instruction.expression)
+		await _pause_step()
 	elif instruction is CallFunctionInstruction:
 		callFunction(instruction.jumpIdx, instruction.argsToVar)
 	elif instruction is SetCursorPositionInstruction:
-		moveTo(instruction.position_x, instruction.position_y, instruction.position_z)
+		await moveTo(instruction.position_x, instruction.position_y, instruction.position_z)
 	else:
 		printerr("Unknown instruction type")
 		instructionResult = false
@@ -96,7 +99,13 @@ func followInstruction(instruction : Instruction) -> bool:
 	return instructionResult
 
 func placeBlock():
-	return grid.placeBlock(cursorPosition, currentColor)
+	var ok := grid.placeBlock(cursorPosition, currentColor)
+	if ok:
+		emit_signal("block_placed", cursorPosition, currentColor)
+	else:
+		push_warning("placeBlock failed at %s" % [cursorPosition])
+	return ok
+
 
 func moveTo(position_x: LowLevelExpression, position_y: LowLevelExpression, position_z: LowLevelExpression):
 	var cur_variables = callStack.back().variables
@@ -106,6 +115,7 @@ func moveTo(position_x: LowLevelExpression, position_y: LowLevelExpression, posi
 		position_z.execute(cur_variables)
 	)
 	emit_signal("cursor_moved", cursorPosition, cursorOrientation)
+	await _pause_step()
 
 func moveForward():
 	var vec = Vector3i(0,0,0)
@@ -119,22 +129,27 @@ func moveForward():
 		vec -= Vector3i(0,0,1)
 	cursorPosition += vec
 	emit_signal("cursor_moved", cursorPosition, cursorOrientation)
+	await _pause_step() 
 
 func moveUp():
 	cursorPosition.y += 1
 	emit_signal("cursor_moved", cursorPosition, cursorOrientation)
+	await _pause_step() 
 	
 func moveDown():
 	cursorPosition.y -= 1
 	emit_signal("cursor_moved", cursorPosition, cursorOrientation)
+	await _pause_step()
 
 func rotateLeft():
 	cursorOrientation = leftOrientation[cursorOrientation]
 	emit_signal("cursor_moved", cursorPosition, cursorOrientation)
+	await _pause_step() 
 	
 func rotateRight():
 	cursorOrientation = rightOrientation[cursorOrientation]
 	emit_signal("cursor_moved", cursorPosition, cursorOrientation)
+	await _pause_step() 
 	
 func changeColor(color: int):
 	var colorString = ColorsEnum.keys()[color]

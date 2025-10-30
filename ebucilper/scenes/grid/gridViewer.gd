@@ -22,6 +22,7 @@ var move_tween: Tween
 	# placeBlocs(gridTarget,true)
 	# placeBlocs(gridEditor, false)
 func _ready():
+	clearGrid()
 	builder.grid = playerGrid
 	if drone_scene:
 		drone = drone_scene.instantiate()
@@ -30,6 +31,8 @@ func _ready():
 		_setup_drone_anim(2)
 		if builder and not builder.cursor_moved.is_connected(_on_cursor_moved):
 			builder.cursor_moved.connect(_on_cursor_moved)
+		if not builder.block_placed.is_connected(_on_block_placed):
+			builder.block_placed.connect(_on_block_placed)
 
 	
 func _process(_dt):
@@ -42,6 +45,12 @@ func _process(_dt):
 			_draw_target_layer(k)
 			_last_layer = k
 
+
+func _on_block_placed(pos: Vector3i, color: int) -> void:
+	# 直接实例化一个玩家方块（不清空）
+	if $Visualization:
+		$Visualization.instantiate(Vector3(pos.x, pos.y, pos.z), color, false)
+		
 func _on_cursor_moved(pos: Vector3i, orientation: int) -> void:
 	if drone == null: return
 	
