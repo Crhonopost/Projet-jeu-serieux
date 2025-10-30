@@ -2,7 +2,7 @@ extends Control
 # in inspector, set the grid_viewer_path as the node of GridViewer
 @export var grid_viewer_path: NodePath
 @onready var gv = get_node(grid_viewer_path)
-@onready var opt: OptionButton = $modeOpt
+@onready var opt: OptionButton = $ModeOpt
 
 const MODE_ALL := 0
 const MODE_LAYER := 1
