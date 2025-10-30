@@ -13,15 +13,27 @@ func _on_function_idx_value_changed(value: float) -> void:
 func linkWithFunctionRes(fnc: FunctionLogicResource):
 	if(connectedFunction != null && connectedFunction.is_connected("updateArgsCount", argCountUpdated)):
 		connectedFunction.disconnect("updateArgsCount", argCountUpdated)
+		connectedFunction.disconnect("updateFuncName", functionNameUpdated)
+		connectedFunction.disconnect("updateArgName", argNameUpdated)
 	
+	fnc.connect("updateFuncName",  functionNameUpdated)
 	fnc.connect("updateArgsCount", argCountUpdated)
+	fnc.connect("updateArgName", argNameUpdated)
+	
+	functionNameUpdated(fnc.name)
 	for child in $Arguments.get_children():
 		child.queue_free()
 	connectedFunction = fnc
 	argCountUpdated(fnc.args.size())
 	
 	functionCall.targetFunction = fnc
+	
 
+func argNameUpdated(idx: int, name: String):
+	$Arguments.get_child(idx).set_arg_name(name)
+
+func functionNameUpdated(newName: String):
+	$FunctionName.text = "(" + newName + ")"
 
 func argCountUpdated(newCount: int):
 	var diff = newCount -  $Arguments.get_child_count()

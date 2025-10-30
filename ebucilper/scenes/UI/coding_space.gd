@@ -15,10 +15,7 @@ signal launch
 
 func _ready() -> void:
 	for i in range(functions.size()):
-		var fctUI := functionEditionScene.instantiate()
-		fctUI.edit_function(functions[i])
-		functionsNode.add_child(fctUI)
-		functionsNode.set_tab_title(i, str(i))
+		add_function(functions[i])
 		
 	InstructionVisualBuilder.connect("functionCallInstantiatiated", functionCall)
 
@@ -41,3 +38,15 @@ func retrieveInstructions() -> Array[Instruction]:
 
 func _on_functions_tab_selected(tab: int) -> void:
 	selectedFunction = tab
+
+func add_function(function: FunctionLogicResource):
+	var fctUI := functionEditionScene.instantiate()
+	fctUI.edit_function(function)
+	functionsNode.add_child(fctUI)
+	functionsNode.set_tab_title(functionsNode.get_child_count()-1, function.name)
+	
+	function.connect("updateFuncName", func (name): functionsNode.set_tab_title(functionsNode.get_child_count()-1, name))
+
+func _on_add_function_pressed() -> void:
+	functions.append(FunctionLogicResource.new())
+	add_function(functions.back())

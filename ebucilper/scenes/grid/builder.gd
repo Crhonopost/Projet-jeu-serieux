@@ -35,18 +35,26 @@ func _pause_step() -> void:
 	if step_delay > 0.0:
 		await get_tree().create_timer(step_delay).timeout
 
-func build(instructions : Array[Instruction]) -> bool:
+
+var instructionList: Array[Instruction]
+func load_program(instructions: Array[Instruction]):
+	instructionList = instructions
 	buildingTime = 0
 	
 	var init := ExecutionContext.new()
 	init.instructionIdx = 0
 	callStack.append(init)
-	
+
+func next_step():
+	var instruction := instructionList[callStack.back().instructionIdx]
+	callStack.back().instructionIdx += 1
+	var result = await followInstruction(instruction)
+	if !result: return false
+
+func build() -> bool:
 	while callStack.size() > 0:
-		var instruction := instructions[callStack.back().instructionIdx]
-		callStack.back().instructionIdx += 1
-		var result = await followInstruction(instruction)
-		if !result: return false
+		next_step()
+		buildingTime += 1
 	return true
 	
 func followNoArgs(instruction: NoArgsInstruction) -> bool:

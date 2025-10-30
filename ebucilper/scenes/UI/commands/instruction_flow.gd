@@ -43,6 +43,13 @@ func childLeave(logicRes: LogicResource):
 			child.queue_free()
 	instructionResource.childs.erase(logicRes)
 
+func _get_drag_data(at_position: Vector2) -> Variant:
+	var title: Label = Label.new()
+	title.text = instructionResource.getName()
+	set_drag_preview(title)
+	emit_signal("exitCode")
+	return instructionResource
+
 func _drop_data(at_position: Vector2, data: Variant) -> void:
 	instructionResource.childs.append(data)
 	instantiateChild(data)

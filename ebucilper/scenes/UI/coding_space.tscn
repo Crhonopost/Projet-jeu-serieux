@@ -142,6 +142,10 @@ theme_override_font_sizes/font_size = 26
 text = "Oui oui baguette"
 autowrap_mode = 2
 
+[node name="AddFunction" type="Button" parent="HBoxContainer/LeftSide"]
+layout_mode = 2
+text = "Add Function"
+
 [node name="Functions" type="TabContainer" parent="HBoxContainer/LeftSide"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -180,5 +184,6 @@ layout_mode = 2
 script = ExtResource("7_a6itc")
 availableInstructions = Array[ExtResource("2_fn0c8")]([SubResource("Resource_f75ky"), SubResource("Resource_usmbw"), SubResource("Resource_a6itc"), SubResource("Resource_vjcr8"), SubResource("Resource_jhjoh"), SubResource("Resource_78wbv"), SubResource("Resource_dhuyy"), SubResource("Resource_xchgw"), SubResource("Resource_iduvy"), SubResource("Resource_lhmcw"), SubResource("Resource_3t8km"), SubResource("Resource_47f3o"), SubResource("Resource_sfy5e"), SubResource("Resource_7l374")])
 
+[connection signal="pressed" from="HBoxContainer/LeftSide/AddFunction" to="." method="_on_add_function_pressed"]
 [connection signal="tab_selected" from="HBoxContainer/LeftSide/Functions" to="." method="_on_functions_tab_selected"]
 [connection signal="pressed" from="HBoxContainer/LeftSide/Button" to="." method="_on_button_pressed"]

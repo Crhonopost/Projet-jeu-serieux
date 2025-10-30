@@ -20,7 +20,8 @@ func _on_coding_space_launch() -> void:
 	gridView.playerGrid.clear()
 	
 	builder.resetState()
-	builder.build(instructions)
+	builder.load_program(instructions)
+	builder.build()
 	#gridView.placeBlocs(builder.grid, false)
 	gridView.placePlayerBlocs()
 	gridView.showTargetBlock(gridView.mode, true, Vector3i.ZERO)
@@ -42,6 +43,7 @@ func _save_current_as_target() -> void:
 
 	var file_path := level_path + "/target.json"
 	var f := FileAccess.open(file_path, FileAccess.WRITE)
+
 	f.store_string(JSON.stringify(payload, "\t"))
 	f.close()
 
