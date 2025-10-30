@@ -1,5 +1,6 @@
 extends Node
 
+signal level_complete
 
 @export var drone_scene: PackedScene
 @export var currentGrid : GridResource
@@ -127,6 +128,37 @@ func _setup_drone_anim(speedScale:float) -> void:
 		anim.play(name_anim)
 		return
 
+func _yaw_for(orientation: int) -> float:
+	var yaw := 0.0
+	match orientation:
+		builder.OrientationsEnum.X_POSITIVE: yaw = 0.0
+		builder.OrientationsEnum.X_NEGATIVE: yaw = deg_to_rad(180)
+		builder.OrientationsEnum.Z_POSITIVE: yaw = deg_to_rad(90)
+		builder.OrientationsEnum.Z_NEGATIVE: yaw = deg_to_rad(-90)
+	return yaw
+
+func move_to_start(pos: Vector3i, orientation: int) -> void:
+	if drone == null:
+		return
+	var to := Vector3(pos.x, pos.y, pos.z) * cell_size
+	to.y += cell_size * 1.5
+	
+	if selector:
+		selector.position = Vector3(pos) * cell_size - Vector3(0.5, 0.5, 0.5)
+
+	var yaw := _yaw_for(orientation)
+	
+	var from := drone.position
+	var dis: float = (absf(from.x - to.x) + absf(from.y - to.y) + absf(from.z - to.z)) / cell_size
+	var dur: float = maxf(1.0, dis) * move_time_per_cell
+
+	if move_tween and move_tween.is_running():
+		move_tween.kill()
+	move_tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+	move_tween.tween_property(drone, "position", to, dur)
+	move_tween.parallel().tween_property(drone, "rotation:y", yaw, dur)
+
+	await move_tween.finished
 
 
 func clearGrid():
@@ -194,3 +226,20 @@ func showTargetBlock(showMode : showTargetBlockMode , show : bool, cursor_positi
 
 	elif showMode == showTargetBlockMode.layer:
 		_draw_target_layer(clampi(cursor_position.y, 0, S - 1))
+		
+
+func _grids_are_equal(grid1: GridResource, grid2: GridResource) -> bool:
+	if grid1.gridScale != grid2.gridScale:
+		return false
+
+	for i in range(grid1.grid.size()):
+		if grid1.grid[i] != grid2.grid[i]:
+			print(grid1.grid[i],"\t", grid2.grid[i],"\t", i)
+			return false
+
+	return true
+
+func _on_current_level_check_grid() -> void:
+	if _grids_are_equal(currentGrid, playerGrid):
+		print("ouioui baguette")
+		level_complete.emit()

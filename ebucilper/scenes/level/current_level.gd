@@ -1,5 +1,7 @@
 extends Control
 
+signal check_grid
+
 @onready var builder = $SubViewportContainer/SubViewport/Builder
 @onready var gridView = $SubViewportContainer/SubViewport/Grid
 
@@ -20,11 +22,14 @@ func _on_coding_space_launch() -> void:
 	gridView.playerGrid.clear()
 	
 	builder.resetState()
+	# wait for the cursor back to start
+	await gridView.move_to_start(builder.cursorPosition, builder.cursorOrientation) 
 	builder.load_program(instructions)
 	builder.build()
 	#gridView.placeBlocs(builder.grid, false)
 	gridView.placePlayerBlocs()
 	gridView.showTargetBlock(gridView.mode, true, Vector3i.ZERO)
+	check_grid.emit()
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if dev_mode and event.is_action_pressed("dev_save_target"):
@@ -90,3 +95,7 @@ func _on_sub_viewport_container_mouse_entered() -> void:
 
 func _on_sub_viewport_container_mouse_exited() -> void:
 	mouse_over_viewport = false
+
+
+func _on_grid_level_complete() -> void:
+	$CodingSpace.setTip("gagné")

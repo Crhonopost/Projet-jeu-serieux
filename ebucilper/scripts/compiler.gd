@@ -83,6 +83,7 @@ func processInstructions(entryPoint: LogicResource, instructionIdx: int) -> Arra
 				instructionList.append_array(processInstructions(child, instructionIdx + instructionList.size()))
 		
 		res.append_array(instructionList)
+	
 	return res
 
 func processIf(ifLogic: FlowLogicResource, instructionIdx: int) -> Array[Instruction]:
