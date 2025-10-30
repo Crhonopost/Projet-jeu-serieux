@@ -6,6 +6,9 @@ extends Node
 enum showTargetBlockMode {all,layer,smaller}
 @export var mode : showTargetBlockMode
 var playerGrid: GridResource = GridResource.new() 
+@onready var builder: Node3D = $"../Builder"
+
+var _last_layer := -1
 
 
 # func _ready() -> void:
@@ -14,7 +17,17 @@ var playerGrid: GridResource = GridResource.new()
 	# placeBlocs(gridTarget,true)
 	# placeBlocs(gridEditor, false)
 func _ready():
-	showTargetBlock(mode, true, Vector3i(0,0,0))
+	print("builder.cursorPosition",builder.cursorPosition)
+	
+func _process(_dt):
+	if mode == showTargetBlockMode.layer and currentGrid != null and builder != null:
+		var S := currentGrid.gridScale
+		var k := clampi(builder.cursorPosition.y, 0, S - 1)
+		if k != _last_layer:
+			if $Visualization.has_method("clear_target"):
+				$Visualization.clear_target()
+			_draw_target_layer(k)
+			_last_layer = k
 
 func clearGrid():
 	currentGrid.clear()
@@ -47,6 +60,19 @@ func placeBlocs(gridResource : GridResource, isTransparent : bool) :
 func fillgrid(gridResource : GridResource, prob : float):
 	for i in range (gridResource.grid.size()):
 		gridResource.grid[i] = Global.ColorsEnum.RED
+
+		
+		
+func _draw_target_layer(k:int) -> void:
+	var S := currentGrid.gridScale
+	for i in range(S):
+		for j in range(S):
+			var idx := i + k * S + j * S * S
+			var c := currentGrid.grid[idx]
+			if c != 0:
+				$Visualization.instantiate(Vector3(i, k, j), c, true)
+				
+
 		
 func showTargetBlock(showMode : showTargetBlockMode , show : bool, cursor_position:Vector3i):
 
@@ -69,11 +95,5 @@ func showTargetBlock(showMode : showTargetBlockMode , show : bool, cursor_positi
 					if c != 0:
 						$Visualization.instantiate(Vector3(i, k, j), c, true)
 
-	if showMode == showTargetBlockMode.layer:
-		var k := clampi(cursor_position.y, 0, S - 1)
-		for i in range(S):
-			for j in range(S):
-				var idx := i + k * S + j * S * S
-				var c := currentGrid.grid[idx]
-				if c != 0:
-					$Visualization.instantiate(Vector3(i, k, j), c, true)
+	elif showMode == showTargetBlockMode.layer:
+		_draw_target_layer(clampi(cursor_position.y, 0, S - 1))

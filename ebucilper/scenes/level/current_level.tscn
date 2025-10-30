@@ -91,6 +91,7 @@ render_target_update_mode = 4
 
 [node name="Grid" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_1n4kf")]
 currentGrid = SubResource("Resource_g6sfq")
+mode = 1
 
 [node name="Builder" type="Node3D" parent="SubViewportContainer/SubViewport"]
 script = ExtResource("4_7ehec")

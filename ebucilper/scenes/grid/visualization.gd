@@ -17,8 +17,15 @@ func instantiate(position: Vector3, colorIdx: int , isTransparent := false):
 		var col: Color = mat.albedo_color
 		col.a = alpha
 		mat.albedo_color = col
+		bloc.add_to_group("target_vis")
 	bloc.material_override = mat;
 	add_child(bloc)
+
+func clear_target():
+	for child in get_children():
+		if child.is_in_group("target_vis"):
+			child.queue_free()
+
 
 func clear():
 	for child in get_children():
