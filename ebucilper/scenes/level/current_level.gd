@@ -40,7 +40,7 @@ func _save_current_as_target() -> void:
 		"grid_data": builder.grid.to_serializable_dict()
 	}
 
-	var file_path := level_path + "/level.json"
+	var file_path := level_path + "/target.json"
 	var f := FileAccess.open(file_path, FileAccess.WRITE)
 	f.store_string(JSON.stringify(payload, "\t"))
 	f.close()
