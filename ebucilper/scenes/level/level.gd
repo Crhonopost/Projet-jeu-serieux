@@ -44,4 +44,5 @@ func _on_button_pressed() -> void:
 	ActiveLevel.level_id = level_id
 	ActiveLevel.level_name = level_name
 	ActiveLevel.level_path = level_path
+	
 	get_tree().change_scene_to_file("res://scenes/level/level_introduction.tscn")

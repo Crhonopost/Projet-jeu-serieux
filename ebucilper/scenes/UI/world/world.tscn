@@ -105,3 +105,14 @@ layout_mode = 2
 level_name = "Bâtiment 16"
 level_path = "res://levels/bat16"
 unlocked = true
+
+[node name="tutorial" parent="LevelsList/ScrollContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
+layout_mode = 2
+level_id = "tutorial"
+level_name = "tutorial"
+level_path = "res://levels/tuto"
+target_steps = 10
+optimal_steps = 5
+unlocked = true
+done = true
+steps = 5

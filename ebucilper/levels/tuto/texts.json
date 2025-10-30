@@ -1,0 +1,14 @@
+{
+	"texts": [
+		{ 
+			"text": "Bienvenu dans le tuto !",
+			"character": "" 
+		},
+		{ 
+			"text": "On va apprendre a utiliser le drone constructeur",
+			"character": "" 
+		},
+		
+	],
+	"tip": "Glisse l’instruction “placer un bloc” dans la zone de construction pour ajouter un bloc. Essaie ensuite différentes instructions pour construire ton objectif !"
+}
