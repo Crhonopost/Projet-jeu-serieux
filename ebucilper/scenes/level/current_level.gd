@@ -22,6 +22,8 @@ func _on_coding_space_launch() -> void:
 	gridView.playerGrid.clear()
 	
 	builder.resetState()
+	# wait for the cursor back to start
+	await gridView.move_to_start(builder.cursorPosition, builder.cursorOrientation) 
 	builder.build(instructions)
 	#gridView.placeBlocs(builder.grid, false)
 	gridView.placePlayerBlocs()
