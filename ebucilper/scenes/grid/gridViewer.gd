@@ -1,5 +1,6 @@
 extends Node
 
+signal level_complete
 
 @export var drone_scene: PackedScene
 @export var currentGrid : GridResource
@@ -177,3 +178,20 @@ func showTargetBlock(showMode : showTargetBlockMode , show : bool, cursor_positi
 
 	elif showMode == showTargetBlockMode.layer:
 		_draw_target_layer(clampi(cursor_position.y, 0, S - 1))
+		
+
+func _grids_are_equal(grid1: GridResource, grid2: GridResource) -> bool:
+	if grid1.gridScale != grid2.gridScale:
+		return false
+
+	for i in range(grid1.grid.size()):
+		if grid1.grid[i] != grid2.grid[i]:
+			print(grid1.grid[i],"\t", grid2.grid[i],"\t", i)
+			return false
+
+	return true
+
+func _on_current_level_check_grid() -> void:
+	if _grids_are_equal(currentGrid, playerGrid):
+		print("ouioui baguette")
+		level_complete.emit()
