@@ -25,12 +25,17 @@ ActiveLevel="*res://scripts/active_level.gd"
 
 window/size/viewport_width=1600
 window/size/viewport_height=900
+window/size/mode=1
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/orbit_camera/plugin.cfg")
+
+[gui]
+
+timers/tooltip_delay_sec=0.2
 
 [input]
 
