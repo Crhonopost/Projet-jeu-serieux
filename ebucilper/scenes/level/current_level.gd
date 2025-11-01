@@ -47,6 +47,8 @@ func _save_current_as_target() -> void:
 	
 	level.build_data.building_time = builder.buildingTime
 	level.build_data.grid = builder.grid.to_serializable_dict()
+	
+	ResourceSaver.save(level)
 
 
 func _load_target():

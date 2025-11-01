@@ -101,11 +101,3 @@ size_flags_vertical = 3
 [node name="Level" parent="TextureRect/LevelsList/ScrollContainer/LevelList" instance=ExtResource("1_fmaxo")]
 layout_mode = 2
 level_data = ExtResource("5_a6vwr")
-
-[node name="Level2" parent="TextureRect/LevelsList/ScrollContainer/LevelList" instance=ExtResource("1_fmaxo")]
-layout_mode = 2
-level_data = ExtResource("6_jorwd")
-
-[node name="tutorial" parent="TextureRect/LevelsList/ScrollContainer/LevelList" instance=ExtResource("1_fmaxo")]
-layout_mode = 2
-level_data = ExtResource("7_i1d74")
