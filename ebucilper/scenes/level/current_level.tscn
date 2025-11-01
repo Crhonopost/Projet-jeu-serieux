@@ -110,11 +110,20 @@ grid_viewer_path = NodePath("../SubViewport/Grid")
 
 [node name="ModeOpt" type="OptionButton" parent="SubViewportContainer/ModeSelector"]
 layout_mode = 0
-offset_right = 51.0
-offset_bottom = 29.0
+offset_left = 57.0
+offset_right = 107.0
+offset_bottom = 31.0
+
+[node name="Button" type="Button" parent="SubViewportContainer/ModeSelector"]
+layout_mode = 0
+offset_left = -1.0
+offset_right = 52.0
+offset_bottom = 31.0
+text = "Menu"
 
 [connection signal="check_grid" from="." to="SubViewportContainer/SubViewport/Grid" method="_on_current_level_check_grid"]
 [connection signal="launch" from="CodingSpace" to="." method="_on_coding_space_launch"]
 [connection signal="mouse_entered" from="SubViewportContainer" to="." method="_on_sub_viewport_container_mouse_entered"]
 [connection signal="mouse_exited" from="SubViewportContainer" to="." method="_on_sub_viewport_container_mouse_exited"]
 [connection signal="level_complete" from="SubViewportContainer/SubViewport/Grid" to="." method="_on_grid_level_complete"]
+[connection signal="pressed" from="SubViewportContainer/ModeSelector/Button" to="SubViewportContainer/ModeSelector" method="_on_button_pressed"]
