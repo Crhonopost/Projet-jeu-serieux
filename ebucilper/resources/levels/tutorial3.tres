@@ -32,7 +32,7 @@ metadata/_custom_type_script = "uid://b05xctfx6o6fl"
 [resource]
 script = ExtResource("5_14yps")
 id = "tutorial3"
-name = "Tutorial3"
+name = "Tutorial 3"
 texts = Array[ExtResource("6_mea8g")]([SubResource("Resource_a72hl"), SubResource("Resource_0crb2")])
 background = ExtResource("2_dn8m8")
 to_be_done_icon = ExtResource("7_ylcpw")

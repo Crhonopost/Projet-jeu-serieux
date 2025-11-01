@@ -8,13 +8,9 @@ extends Control
 @export var level: LevelResource
 
 signal leave
-signal next_grid_tutorial
 
 func _ready():
 	_load_target()
-	
-	if(level):
-		$CodingSpace.setAuthorizedInstuctions(level.authorized_logic_executions)
 	
 	var cursor_node = $SubViewportContainer/SubViewport/Cursor
 	cursor_node._set_drone_immediately(builder.cursorPosition, builder.cursorOrientation, 0.5)
@@ -74,6 +70,7 @@ func _load_target():
 	gridView.showTargetBlock(gridView.mode, true, Vector3i(0, 0, 0))
 	
 	$CodingSpace.setTip(level.tip)
+	$CodingSpace.setAuthorizedInstuctions(level.authorized_logic_executions)
 
 var mouse_over_viewport = false
 
@@ -91,15 +88,8 @@ func _on_sub_viewport_container_mouse_exited() -> void:
 
 
 func _on_grid_level_complete() -> void:
-	if(level.id == "tutorial"):
-		level = load("res://resources/levels/tutorial2.tres")
-		_ready()
-	elif(level.id == "tutorial2"):
-		level = load("res://resources/levels/tutorial3.tres")
-		_ready()
-	else:
-		print("ouioui")
-		_on_leave_pressed()
+	level.done = true
+	_on_leave_pressed()
 
 
 func _on_leave_pressed() -> void:

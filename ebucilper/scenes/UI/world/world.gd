@@ -48,3 +48,8 @@ func go_home():
 	$TextureRect.visible = true
 	if(game_instance):
 		game_instance.queue_free()
+	
+	for i in range(levels.size()-1):
+		var level := levels[i]
+		levels[i+1].unlocked = level.done
+		$TextureRect/LevelsList/ScrollContainer/LevelList.get_child(i).update_level()

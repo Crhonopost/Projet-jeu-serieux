@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cmay8br4ehsts"]
+[gd_scene load_steps=15 format=3 uid="uid://cmay8br4ehsts"]
 
 [ext_resource type="PackedScene" uid="uid://fwytoh7mehli" path="res://scenes/UI/world/level.tscn" id="1_fmaxo"]
 [ext_resource type="Script" uid="uid://dfdgi8lyueyh3" path="res://scenes/UI/world/world.gd" id="1_i1d74"]
@@ -6,7 +6,9 @@
 [ext_resource type="FontFile" uid="uid://cj52gxydlihfd" path="res://Assets/Fonts/Breakdown PG.otf" id="2_mm5an"]
 [ext_resource type="Script" uid="uid://b3x3werlg62hj" path="res://scripts/levels/level_resource.gd" id="2_yq0iy"]
 [ext_resource type="FontFile" uid="uid://bewn88o0me7h7" path="res://Assets/Fonts/Coolvetica Rg.otf" id="3_rg8tu"]
+[ext_resource type="Resource" uid="uid://v1m5rnaweisd" path="res://resources/levels/tutorial2.tres" id="4_bxrww"]
 [ext_resource type="Resource" uid="uid://3fvap6xi3ku" path="res://resources/levels/level_1.tres" id="5_a6vwr"]
+[ext_resource type="Resource" uid="uid://nkmc1xqx5b86" path="res://resources/levels/tutorial3.tres" id="5_r5cxa"]
 [ext_resource type="Resource" uid="uid://n7qalt033jf5" path="res://resources/levels/level_2.tres" id="6_jorwd"]
 [ext_resource type="Resource" uid="uid://kdmddxa77cml" path="res://resources/levels/level_3.tres" id="6_n143m"]
 [ext_resource type="Resource" uid="uid://coly7ndvbxflw" path="res://resources/levels/tutorial.tres" id="7_i1d74"]
@@ -21,7 +23,7 @@ corner_radius_bottom_left = 5
 
 [node name="World" type="Node"]
 script = ExtResource("1_i1d74")
-levels = Array[ExtResource("2_yq0iy")]([ExtResource("7_i1d74"), ExtResource("5_a6vwr"), ExtResource("6_jorwd"), ExtResource("6_n143m"), ExtResource("7_m7tf2")])
+levels = Array[ExtResource("2_yq0iy")]([ExtResource("7_i1d74"), ExtResource("4_bxrww"), ExtResource("5_r5cxa"), ExtResource("5_a6vwr"), ExtResource("6_jorwd"), ExtResource("6_n143m"), ExtResource("7_m7tf2")])
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 10
