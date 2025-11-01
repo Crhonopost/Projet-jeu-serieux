@@ -1,10 +1,11 @@
 extends Node
 
+signal launch_level()
+
 var current_text: int = 0
 var current_level: LevelResource
 
 func _ready() -> void:
-	current_level = ActiveLevel.level
 	$Background.texture = current_level.background
 	_show_current_text()
 	
@@ -27,11 +28,11 @@ func _show_current_text() -> void:
 
 func _on_button_pressed() -> void:
 	if current_text == current_level.texts.size() - 1:
-		get_tree().change_scene_to_file("res://scenes/level/current_level.tscn")
+		launch_level.emit()
 	else:
 		$Button.visible = false
 		current_text += 1
 		_show_current_text()
 
 func _on_skip_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/level/current_level.tscn")
+	launch_level.emit()

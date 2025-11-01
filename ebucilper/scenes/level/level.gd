@@ -2,6 +2,8 @@ extends Node
 
 @export var level_data: LevelResource
 
+signal level_selected(level: LevelResource)
+
 func _ready() -> void:
 	# Load from game progress
 	# unlocked = false
@@ -32,6 +34,4 @@ func setGolderStar(starNode: TextureRect) -> void:
 	starNode.modulate.g = 0.8
 
 func _on_button_pressed() -> void:
-	# Set active level to the one clicked
-	ActiveLevel.level = level_data
-	get_tree().change_scene_to_file("res://scenes/level/level_introduction.tscn")
+	level_selected.emit(level_data)

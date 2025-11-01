@@ -7,11 +7,15 @@ signal check_grid
 
 @export var dev_mode: bool = true                 # developpement mode
 
+var level: LevelResource
+
+signal leave
+
 func _ready():
 	_load_target()
 	
-	if(ActiveLevel.level):
-		$CodingSpace.setAuthorizedInstuctions(ActiveLevel.level.authorized_logic_executions)
+	if(level):
+		$CodingSpace.setAuthorizedInstuctions(level.authorized_logic_executions)
 
 func _on_coding_space_launch() -> void:
 	var instructions = $CodingSpace.retrieveInstructions()
@@ -80,3 +84,7 @@ func _on_sub_viewport_container_mouse_exited() -> void:
 
 func _on_grid_level_complete() -> void:
 	$CodingSpace.setTip("gagné")
+
+
+func _on_leave_pressed() -> void:
+	leave.emit()
