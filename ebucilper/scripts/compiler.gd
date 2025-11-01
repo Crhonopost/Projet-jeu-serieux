@@ -9,6 +9,9 @@ func processAllInstructions(entryPoints: Array[FunctionLogicResource]) -> Array[
 	var functions: Dictionary[String, int]
 	var functionsArgs: Dictionary[int, PackedStringArray]
 	
+	functionCallsWaiting.clear()
+	functionsCallWaitingArgs.clear()
+	
 	var res : Array[Instruction]
 	for entry in entryPoints:
 		functions[entry.name] = res.size()
