@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ckwrutivvfd2d"]
+[gd_scene load_steps=13 format=3 uid="uid://ckwrutivvfd2d"]
 
 [ext_resource type="Script" uid="uid://cfs4aurw5bldk" path="res://scenes/grid/gridViewer.gd" id="1_brle5"]
 [ext_resource type="Script" uid="uid://dekn4sp37cmhs" path="res://scenes/grid/visualization.gd" id="2_hg1qn"]
@@ -7,6 +7,16 @@
 [ext_resource type="Script" uid="uid://cln2wnn2yo7k4" path="res://addons/orbit_camera/orbit_camera.gd" id="5_r77gd"]
 [ext_resource type="PackedScene" uid="uid://b4yvg7aldvrrs" path="res://Assets/Blender/Terrain.glb" id="6_n33vv"]
 [ext_resource type="PackedScene" uid="uid://bpap3u71d8t2c" path="res://Assets/Blender/Terrain2.glb" id="7_aaxs0"]
+[ext_resource type="AudioStream" uid="uid://bljfh8b3i51ns" path="res://Assets/Audio/Construction/boop_1.wav" id="8_ml811"]
+[ext_resource type="AudioStream" uid="uid://4alxnjrkjhnh" path="res://Assets/Audio/Construction/boop_2.wav" id="9_0k6gf"]
+[ext_resource type="AudioStream" uid="uid://b787rus16c7bq" path="res://Assets/Audio/Construction/boop_3.wav" id="10_e4ugg"]
+[ext_resource type="Script" uid="uid://choo8iq1aoknw" path="res://scenes/grid/sounds.gd" id="11_0k6gf"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0k6gf"]
+streams_count = 3
+stream_0/stream = ExtResource("8_ml811")
+stream_1/stream = ExtResource("9_0k6gf")
+stream_2/stream = ExtResource("10_e4ugg")
 
 [node name="Grid" type="Node3D"]
 script = ExtResource("1_brle5")
@@ -39,3 +49,14 @@ sky_mode = 1
 
 [node name="Terrain2" parent="." instance=ExtResource("7_aaxs0")]
 transform = Transform3D(10.4086275, 0, 0, 0, 10.4086275, 0, 0, 0, 10.4086275, 0.75753784, -64.31033, -4.804779)
+
+[node name="Sounds" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_0k6gf")
+max_polyphony = 12
+script = ExtResource("11_0k6gf")
+
+[node name="PlaceBlockTimer" type="Timer" parent="Sounds"]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="Sounds/PlaceBlockTimer" to="Sounds" method="_on_place_block_timer_timeout"]

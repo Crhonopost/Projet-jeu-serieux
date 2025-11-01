@@ -57,7 +57,8 @@ func _process(_dt):
 func _on_block_placed(pos: Vector3i, color: int) -> void:
 	if $Visualization:
 		$Visualization.instantiate(Vector3(pos.x, pos.y, pos.z), color, false)
-		
+		$Sounds.place_block()
+
 func _on_cursor_moved(pos: Vector3i, orientation: int) -> void:
 	if drone == null: return
 	
