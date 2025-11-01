@@ -60,7 +60,6 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 		if at_position.y < child_mid && target_idx > i:
 			target_idx = i
 	
-	print(target_idx)
 	instructionResource.childs.insert(target_idx, data)
 	instantiateChild(data, target_idx)
 

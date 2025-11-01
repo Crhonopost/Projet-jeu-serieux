@@ -17,6 +17,12 @@ func _ready():
 	
 	if(level):
 		$CodingSpace.setAuthorizedInstuctions(level.authorized_logic_executions)
+	
+	var cursor_node = $SubViewportContainer/SubViewport/Cursor
+	cursor_node._set_drone_immediately(builder.cursorPosition, builder.cursorOrientation, 0.5)
+	builder.block_placed.connect(cursor_node.place_block)
+	builder.cursor_moved.connect(cursor_node.move_to)
+	cursor_node.block_placed.connect(gridView._on_block_placed)
 
 func _on_coding_space_launch() -> void:
 	var instructions = $CodingSpace.retrieveInstructions()
@@ -29,11 +35,9 @@ func _on_coding_space_launch() -> void:
 	
 	builder.resetState()
 	# wait for the cursor back to start
-	await gridView.move_to_start(builder.cursorPosition, builder.cursorOrientation) 
 	builder.load_program(instructions)
-	await builder.build()
+	builder.build()
 	#gridView.placeBlocs(builder.grid, false)
-	gridView.placePlayerBlocs()
 	gridView.showTargetBlock(gridView.mode, true, Vector3i.ZERO)
 	#check_grid.emit()
 	

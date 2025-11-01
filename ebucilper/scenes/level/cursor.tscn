@@ -1,0 +1,109 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfxk6jpnwr82m"]
+
+[ext_resource type="PackedScene" uid="uid://ckptoigidwfjp" path="res://Assets/Blender/buster_drone.glb" id="1_6t2rx"]
+[ext_resource type="Script" uid="uid://dmyxs11coi52r" path="res://scenes/level/cursor.gd" id="1_14s8q"]
+[ext_resource type="Script" uid="uid://dythkx0i6u3gp" path="res://scenes/level/selected_cell.gd" id="3_xpwk4"]
+
+[node name="Cursor" type="Node3D"]
+script = ExtResource("1_14s8q")
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_6t2rx")]
+
+[node name="U_MassPoint" parent="Sketchfab_Scene/Sketchfab_model/BusterDrone_fbx/Object_2/RootNode/Drone_Controller" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.24763307, -0.9688539, 0, 0.9688539, 0.24763307, 0, 0.11856791, -12.910047)
+
+[node name="F_P1_G" parent="Sketchfab_Scene/Sketchfab_model/BusterDrone_fbx/Object_2/RootNode/Drone_Controller/U_MassPoint/D_MassPoint/Drone_Body/Drone_leg_F" index="1"]
+transform = Transform3D(5.5233505e-07, -2.6763785e-14, 1, 8.4703295e-22, 1, 2.6763785e-14, -1, -1.3935544e-20, 5.5233505e-07, 0.0066300184, -5.5105014, -0.092750534)
+
+[node name="F_P2" parent="Sketchfab_Scene/Sketchfab_model/BusterDrone_fbx/Object_2/RootNode/Drone_Controller/U_MassPoint/D_MassPoint/Drone_Body/Drone_leg_F/F_P1_G" index="1"]
+transform = Transform3D(-4.371139e-08, 0.9961947, 0.08715545, 0, 0.08715545, -0.9961947, -1, -4.3545054e-08, -3.8096855e-09, 0, -4.080754e-05, 0)
+
+[node name="F_P3_G" parent="Sketchfab_Scene/Sketchfab_model/BusterDrone_fbx/Object_2/RootNode/Drone_Controller/U_MassPoint/D_MassPoint/Drone_Body/Drone_leg_F/F_P1_G/F_P2" index="1"]
+transform = Transform3D(1, 1.7401552e-16, -8.221768e-07, -1.740153e-16, 1, 2.7755591e-16, 8.221768e-07, -2.7755578e-16, 1, 7.688589e-05, -22.915894, 0.02676699)
+
+[node name="F_P4" parent="Sketchfab_Scene/Sketchfab_model/BusterDrone_fbx/Object_2/RootNode/Drone_Controller/U_MassPoint/D_MassPoint/Drone_Body/Drone_leg_F/F_P1_G/F_P2/F_P3_G" index="1"]
+transform = Transform3D(-1, -8.742278e-08, 1.5518814e-16, 2.990034e-08, -0.34202003, -0.9396927, 8.215054e-08, -0.9396927, 0.34202003, 0, 0, 0)
+
+[node name="F_P7" parent="Sketchfab_Scene/Sketchfab_model/BusterDrone_fbx/Object_2/RootNode/Drone_Controller/U_MassPoint/D_MassPoint/Drone_Body/Drone_leg_F/F_P1_G/F_P2/F_P3_G/F_P4/F_P5_M/F_P6_G" index="1"]
+transform = Transform3D(1, -1.4532189e-22, 1.0623835e-22, 1.4558381e-22, 0.3057578, -0.95210934, 1.0587914e-22, 0.95210934, 0.3057578, 4.3368087e-19, 3.3886132e-05, 1.4036095e-05)
+
+[node name="Drone_Gen_R" parent="Sketchfab_Scene/Sketchfab_model/BusterDrone_fbx/Object_2/RootNode/Drone_Controller/U_MassPoint/D_MassPoint/Drone_Body" index="2"]
+transform = Transform3D(0, -0.51503813, -0.8571673, -2.9802322e-08, 0.8571673, -0.51503813, 1, 2.9802322e-08, 0, -19.237127, -26.576735, -0.7482)
+
+[node name="Drone_Panel_R" parent="Sketchfab_Scene/Sketchfab_model/BusterDrone_fbx/Object_2/RootNode/Drone_Controller/U_MassPoint/D_MassPoint/Drone_Body/Drone_Gen_R" index="1"]
+transform = Transform3D(1, 2.4980018e-16, 5.245012e-08, -2.4980018e-16, 1, 4.163335e-17, -5.245012e-08, -4.1633363e-17, 1, 0.6785003, -0.37506112, 1.9578662)
+
+[node name="R_P1_G" parent="Sketchfab_Scene/Sketchfab_model/BusterDrone_fbx/Object_2/RootNode/Drone_Controller/U_MassPoint/D_MassPoint/Drone_Body/Drone_Gen_R/Drone_Panel_R/Drone_leg_R" index="1"]
+transform = Transform3D(-0.25881898, -6.848456e-16, 0.96592563, -1.466349e-16, 1, 6.697136e-16, -0.96592563, 3.1696185e-17, -0.25881898, 2.4154792, -4.842291, -0.0066521387)
+
+[node name="R_P2" parent="Sketchfab_Scene/Sketchfab_model/BusterDrone_fbx/Object_2/RootNode/Drone_Controller/U_MassPoint/D_MassPoint/Drone_Body/Drone_Gen_R/Drone_Panel_R/Drone_leg_R/R_P1_G" index="1"]
+transform = Transform3D(1, -5.4458263e-17, -7.021837e-17, -5.551117e-17, 0.23420262, -0.9721878, 6.9388966e-17, 0.9721878, 0.23420262, 0, 0, 0)
+
+[node name="R_P3_G" parent="Sketchfab_Scene/Sketchfab_model/BusterDrone_fbx/Object_2/RootNode/Drone_Controller/U_MassPoint/D_MassPoint/Drone_Body/Drone_Gen_R/Drone_Panel_R/Drone_leg_R/R_P1_G/R_P2" index="1"]
+transform = Transform3D(1, -2.7755576e-16, 2.7755576e-17, 2.7755576e-16, 1, -8.500145e-16, -2.7755576e-17, 8.500145e-16, 1, 0.002689761, -22.916384, 0.026932752)
+
+[node name="R_P4" parent="Sketchfab_Scene/Sketchfab_model/BusterDrone_fbx/Object_2/RootNode/Drone_Controller/U_MassPoint/D_MassPoint/Drone_Body/Drone_Gen_R/Drone_Panel_R/Drone_leg_R/R_P1_G/R_P2/R_P3_G" index="1"]
+transform = Transform3D(-1, 8.742278e-08, -1.1026143e-16, -2.3830149e-08, -0.27258512, -0.9621317, -8.411222e-08, -0.9621317, 0.27258512, 0.004904936, 0.0029711532, -0.0014322279)
+
+[node name="R_P7" parent="Sketchfab_Scene/Sketchfab_model/BusterDrone_fbx/Object_2/RootNode/Drone_Controller/U_MassPoint/D_MassPoint/Drone_Body/Drone_Gen_R/Drone_Panel_R/Drone_leg_R/R_P1_G/R_P2/R_P3_G/R_P4/R_P5_M/R_P6_G" index="1"]
+transform = Transform3D(1, 7.044403e-08, -5.0864084e-08, -6.1439025e-08, 0.15934378, -0.98722315, -6.1439096e-08, 0.98722315, 0.15934378, -1.154632e-13, -2.1920105e-06, -9.0796044e-07)
+
+[node name="Drone_Gen_L" parent="Sketchfab_Scene/Sketchfab_model/BusterDrone_fbx/Object_2/RootNode/Drone_Controller/U_MassPoint/D_MassPoint/Drone_Body" index="3"]
+transform = Transform3D(0, 0.51503813, 0.8571673, 2.9802322e-08, 0.8571673, -0.51503813, -1, 2.9802322e-08, 0, 19.237127, -26.576735, -0.7482)
+
+[node name="Drone_Panel_L" parent="Sketchfab_Scene/Sketchfab_model/BusterDrone_fbx/Object_2/RootNode/Drone_Controller/U_MassPoint/D_MassPoint/Drone_Body/Drone_Gen_L" index="1"]
+transform = Transform3D(1, 2.3327664e-11, 5.4944103e-08, -1.6653345e-16, 0.9999999, -0.00042456778, -5.494411e-08, 0.00042456778, 0.9999999, -0.6784976, -0.3758924, 1.9577068)
+
+[node name="L_P1_G" parent="Sketchfab_Scene/Sketchfab_model/BusterDrone_fbx/Object_2/RootNode/Drone_Controller/U_MassPoint/D_MassPoint/Drone_Body/Drone_Gen_L/Drone_Panel_L/Drone_leg_L" index="1"]
+transform = Transform3D(-0.15929584, 1.2905011e-17, -0.98723084, 1.6099117e-16, 1, -1.2905003e-17, 0.98723084, -1.6099118e-16, -0.15929584, -2.41548, -4.8422904, -0.006640427)
+
+[node name="L_P2" parent="Sketchfab_Scene/Sketchfab_model/BusterDrone_fbx/Object_2/RootNode/Drone_Controller/U_MassPoint/D_MassPoint/Drone_Body/Drone_Gen_L/Drone_Panel_L/Drone_leg_L/L_P1_G" index="1"]
+transform = Transform3D(1, 1.5348398e-16, 7.434516e-17, 2.7755586e-17, 0.28365186, -0.95892733, -1.6826814e-16, 0.95892733, 0.28365186, 0, 0, 0)
+
+[node name="L_P3_G" parent="Sketchfab_Scene/Sketchfab_model/BusterDrone_fbx/Object_2/RootNode/Drone_Controller/U_MassPoint/D_MassPoint/Drone_Body/Drone_Gen_L/Drone_Panel_L/Drone_leg_L/L_P1_G/L_P2" index="1"]
+transform = Transform3D(1, 1.4571677e-16, 2.7755576e-17, -1.4571677e-16, 1, 4.510281e-16, -2.7755576e-17, -4.510281e-16, 1, 0.00026445606, -22.91594, 0.026753252)
+
+[node name="L_P4" parent="Sketchfab_Scene/Sketchfab_model/BusterDrone_fbx/Object_2/RootNode/Drone_Controller/U_MassPoint/D_MassPoint/Drone_Body/Drone_Gen_L/Drone_Panel_L/Drone_leg_L/L_P1_G/L_P2/L_P3_G" index="1"]
+transform = Transform3D(-1, -8.742277e-08, 1.159113e-16, 9.239565e-09, -0.10568829, -0.9943992, 8.693315e-08, -0.9943992, 0.10568829, -0.004460121, 7.818745e-06, 5.1864787e-05)
+
+[node name="L_P7" parent="Sketchfab_Scene/Sketchfab_model/BusterDrone_fbx/Object_2/RootNode/Drone_Controller/U_MassPoint/D_MassPoint/Drone_Body/Drone_Gen_L/Drone_Panel_L/Drone_leg_L/L_P1_G/L_P2/L_P3_G/L_P4/L_P5_M/L_P6_G" index="1"]
+transform = Transform3D(1, 4.1633366e-16, -1.8198523e-23, 0, -4.371139e-08, -1, -4.1633366e-16, 1, -4.371139e-08, 0.012268163, 0.00024394221, 0.00025623108)
+
+[node name="Drone_UPanel_R" parent="Sketchfab_Scene/Sketchfab_model/BusterDrone_fbx/Object_2/RootNode/Drone_Controller/U_MassPoint/D_MassPoint/Drone_Body" index="4"]
+transform = Transform3D(0, -0.26326436, -0.96472377, 0, 0.9647237, -0.26326436, 1, 0, 0, -22.556858, -8.625174, 0.14466852)
+
+[node name="Drone_UPanel_L" parent="Sketchfab_Scene/Sketchfab_model/BusterDrone_fbx/Object_2/RootNode/Drone_Controller/U_MassPoint/D_MassPoint/Drone_Body" index="5"]
+transform = Transform3D(0, 0.26326436, 0.96472377, 0, 0.9647237, -0.26326436, -1, 0, 0, 22.442184, -9.648647, -0.07695)
+
+[node name="Drone_UPart" parent="Sketchfab_Scene/Sketchfab_model/BusterDrone_fbx/Object_2/RootNode/Drone_Controller/U_MassPoint/D_MassPoint/Drone_Body" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 33.47655, -3.07305)
+
+[node name="Drone_IEye" parent="Sketchfab_Scene/Sketchfab_model/BusterDrone_fbx/Object_2/RootNode/Drone_Controller/U_MassPoint/D_MassPoint/Drone_Body/Drone_ILens" index="1"]
+transform = Transform3D(-0.99999994, -2.8888978e-09, 8.737501e-08, 1.2246467e-16, 0.9994537, 0.03304514, -8.742277e-08, 0.033045143, -0.9994536, 0, -0.018226024, -8.908538)
+
+[node name="1" parent="Sketchfab_Scene/Sketchfab_model/BusterDrone_fbx/Object_2/RootNode/Drone_Controller/U_MassPoint/D_MassPoint/Drone_Body/Drone_ILens/Drone_IEye" index="0"]
+blend_shapes/morph_1 = 1.0
+
+[node name="Drone_Turb_M_L" parent="Sketchfab_Scene/Sketchfab_model/BusterDrone_fbx/Object_2/RootNode/Drone_Controller/U_MassPoint/D_MassPoint/Drone_Body" index="8"]
+transform = Transform3D(1.4305112e-06, -0.9338786, 0.35758987, 0.1437775, 0.35387468, 0.9241757, -0.9896099, 0.05141204, 0.13427128, 19.9734, 24.55685, -6.0070467)
+
+[node name="Drone_Turb_Blade_L" parent="Sketchfab_Scene/Sketchfab_model/BusterDrone_fbx/Object_2/RootNode/Drone_Controller/U_MassPoint/D_MassPoint/Drone_Body/Drone_Turb_M_L" index="1"]
+transform = Transform3D(0.9999999, 6.5010677e-09, 4.382926e-08, 4.382926e-08, -0.29026806, -0.95694524, 6.5010672e-09, 0.9569453, -0.29026806, -2.1889296e-05, -36.155148, -10.966756)
+
+[node name="Drone_Turb_M_R" parent="Sketchfab_Scene/Sketchfab_model/BusterDrone_fbx/Object_2/RootNode/Drone_Controller/U_MassPoint/D_MassPoint/Drone_Body" index="9"]
+transform = Transform3D(7.45058e-07, 0.9338785, -0.3575901, -0.14377777, 0.35387477, 0.9241756, 0.98960996, 0.051412784, 0.13427126, -19.9734, 24.556849, -6.0070496)
+
+[node name="Drone_Turb_Blade_R" parent="Sketchfab_Scene/Sketchfab_model/BusterDrone_fbx/Object_2/RootNode/Drone_Controller/U_MassPoint/D_MassPoint/Drone_Body/Drone_Turb_M_R" index="1"]
+transform = Transform3D(0.9999999, -2.954905e-07, 4.382926e-08, -4.382926e-08, -0.29026806, -0.95694524, 2.954905e-07, 0.95694524, -0.29026806, 5.1651492e-05, -36.15515, -10.966744)
+
+[node name="TransitionTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="SelectionBox3D" type="Node3D" parent="."]
+script = ExtResource("3_xpwk4")
+metadata/_custom_type_script = "uid://dythkx0i6u3gp"
+
+[connection signal="timeout" from="TransitionTimer" to="." method="_on_transition_timer_timeout"]
+
+[editable path="Sketchfab_Scene"]
