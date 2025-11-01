@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b678kr1glpsrl" path="res://scenes/UI/coding_space.gd" id="1_25lkw"]
 [ext_resource type="Script" uid="uid://bulv0feibbce" path="res://scripts/compiler.gd" id="2_bwyhw"]
 [ext_resource type="StyleBox" uid="uid://b1mv4qn7s3w4d" path="res://resources/ui/panels/coding_space.tres" id="3_xchgw"]
-[ext_resource type="Resource" uid="uid://dexj7eqnqc313" path="res://resources/levels/all_instructions.tres" id="6_r5p2t"]
+[ext_resource type="Resource" uid="uid://dexj7eqnqc313" path="res://resources/levels/instructions list/all_instructions.tres" id="6_r5p2t"]
 [ext_resource type="Script" uid="uid://d1ynh7ys7iaab" path="res://scenes/UI/inventory.gd" id="7_a6itc"]
 [ext_resource type="FontFile" uid="uid://bewn88o0me7h7" path="res://Assets/Fonts/Coolvetica Rg.otf" id="12_78wbv"]
 

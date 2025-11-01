@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cmay8br4ehsts"]
+[gd_scene load_steps=12 format=3 uid="uid://cmay8br4ehsts"]
 
 [ext_resource type="PackedScene" uid="uid://fwytoh7mehli" path="res://scenes/UI/world/level.tscn" id="1_fmaxo"]
 [ext_resource type="Script" uid="uid://dfdgi8lyueyh3" path="res://scenes/UI/world/world.gd" id="1_i1d74"]
@@ -6,9 +6,10 @@
 [ext_resource type="FontFile" uid="uid://cj52gxydlihfd" path="res://Assets/Fonts/Breakdown PG.otf" id="2_mm5an"]
 [ext_resource type="Script" uid="uid://b3x3werlg62hj" path="res://scripts/levels/level_resource.gd" id="2_yq0iy"]
 [ext_resource type="FontFile" uid="uid://bewn88o0me7h7" path="res://Assets/Fonts/Coolvetica Rg.otf" id="3_rg8tu"]
-[ext_resource type="Resource" uid="uid://dlj234rnf7qga" path="res://resources/levels/level_1.tres" id="5_a6vwr"]
-[ext_resource type="Resource" uid="uid://bbb4tkhtyljw2" path="res://resources/levels/level_2.tres" id="6_jorwd"]
-[ext_resource type="Resource" uid="uid://sjmrehmgxqxw" path="res://resources/levels/tutorial.tres" id="7_i1d74"]
+[ext_resource type="Resource" uid="uid://7843y2qna67b" path="res://resources/levels/level_1.tres" id="5_a6vwr"]
+[ext_resource type="Resource" uid="uid://n7qalt033jf5" path="res://resources/levels/level_2.tres" id="6_jorwd"]
+[ext_resource type="Resource" uid="uid://dvy3yjmkh6dnx" path="res://resources/levels/level_3.tres" id="6_n143m"]
+[ext_resource type="Resource" uid="uid://coly7ndvbxflw" path="res://resources/levels/tutorial.tres" id="7_i1d74"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ivcrt"]
 bg_color = Color(0.16470589, 0.10980392, 0.07058824, 0.7058824)
@@ -19,7 +20,7 @@ corner_radius_bottom_left = 5
 
 [node name="World" type="Node"]
 script = ExtResource("1_i1d74")
-levels = Array[ExtResource("2_yq0iy")]([ExtResource("5_a6vwr"), ExtResource("6_jorwd"), ExtResource("7_i1d74")])
+levels = Array[ExtResource("2_yq0iy")]([ExtResource("5_a6vwr"), ExtResource("6_jorwd"), ExtResource("7_i1d74"), ExtResource("6_n143m")])
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 10

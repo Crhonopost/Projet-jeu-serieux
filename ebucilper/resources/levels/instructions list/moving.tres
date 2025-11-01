@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="AuthorizedInstructions" load_steps=10 format=3 uid="uid://bffxkb4oj3k3g"]
+
+[ext_resource type="Script" uid="uid://bqe45dm5wyip4" path="res://resources/scripting/definitions/logic/logic_resource.gd" id="1_cyvwn"]
+[ext_resource type="Script" uid="uid://qjop52belxgl" path="res://resources/scripting/definitions/logic/executions/no_args_logic_resource.gd" id="2_rdwgc"]
+[ext_resource type="Script" uid="uid://cl4sxibgn52lf" path="res://scripts/levels/authorized_instructions.gd" id="3_e0wv4"]
+
+[sub_resource type="Resource" id="Resource_oesm3"]
+script = ExtResource("2_rdwgc")
+type = 1
+metadata/_custom_type_script = "uid://qjop52belxgl"
+
+[sub_resource type="Resource" id="Resource_vgk20"]
+script = ExtResource("2_rdwgc")
+type = 2
+metadata/_custom_type_script = "uid://qjop52belxgl"
+
+[sub_resource type="Resource" id="Resource_hacoe"]
+script = ExtResource("2_rdwgc")
+type = 3
+metadata/_custom_type_script = "uid://qjop52belxgl"
+
+[sub_resource type="Resource" id="Resource_mljr6"]
+script = ExtResource("2_rdwgc")
+type = 4
+metadata/_custom_type_script = "uid://qjop52belxgl"
+
+[sub_resource type="Resource" id="Resource_al4sv"]
+script = ExtResource("2_rdwgc")
+type = 5
+metadata/_custom_type_script = "uid://qjop52belxgl"
+
+[sub_resource type="Resource" id="Resource_d6knl"]
+script = ExtResource("2_rdwgc")
+metadata/_custom_type_script = "uid://qjop52belxgl"
+
+[resource]
+script = ExtResource("3_e0wv4")
+instructions = Array[ExtResource("1_cyvwn")]([SubResource("Resource_oesm3"), SubResource("Resource_vgk20"), SubResource("Resource_hacoe"), SubResource("Resource_mljr6"), SubResource("Resource_al4sv"), SubResource("Resource_d6knl")])
+metadata/_custom_type_script = "uid://cl4sxibgn52lf"

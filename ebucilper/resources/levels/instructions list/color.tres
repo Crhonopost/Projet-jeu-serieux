@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="AuthorizedInstructions" load_steps=12 format=3 uid="uid://d23cideqf55t6"]
+
+[ext_resource type="Script" uid="uid://bqe45dm5wyip4" path="res://resources/scripting/definitions/logic/logic_resource.gd" id="1_7x6mg"]
+[ext_resource type="Script" uid="uid://qjop52belxgl" path="res://resources/scripting/definitions/logic/executions/no_args_logic_resource.gd" id="2_32en2"]
+[ext_resource type="Script" uid="uid://dmggbp5elydyj" path="res://resources/scripting/definitions/logic/executions/change_color_logic_resource.gd" id="4_bjgqj"]
+[ext_resource type="Script" uid="uid://cl4sxibgn52lf" path="res://scripts/levels/authorized_instructions.gd" id="11_n66sm"]
+
+[sub_resource type="Resource" id="Resource_oesm3"]
+script = ExtResource("2_32en2")
+type = 1
+metadata/_custom_type_script = "uid://qjop52belxgl"
+
+[sub_resource type="Resource" id="Resource_vgk20"]
+script = ExtResource("2_32en2")
+type = 2
+metadata/_custom_type_script = "uid://qjop52belxgl"
+
+[sub_resource type="Resource" id="Resource_hacoe"]
+script = ExtResource("2_32en2")
+type = 3
+metadata/_custom_type_script = "uid://qjop52belxgl"
+
+[sub_resource type="Resource" id="Resource_mljr6"]
+script = ExtResource("2_32en2")
+type = 4
+metadata/_custom_type_script = "uid://qjop52belxgl"
+
+[sub_resource type="Resource" id="Resource_al4sv"]
+script = ExtResource("2_32en2")
+type = 5
+metadata/_custom_type_script = "uid://qjop52belxgl"
+
+[sub_resource type="Resource" id="Resource_d6knl"]
+script = ExtResource("2_32en2")
+metadata/_custom_type_script = "uid://qjop52belxgl"
+
+[sub_resource type="Resource" id="Resource_ib3s5"]
+script = ExtResource("4_bjgqj")
+metadata/_custom_type_script = "uid://dmggbp5elydyj"
+
+[resource]
+script = ExtResource("11_n66sm")
+instructions = Array[ExtResource("1_7x6mg")]([SubResource("Resource_oesm3"), SubResource("Resource_vgk20"), SubResource("Resource_hacoe"), SubResource("Resource_mljr6"), SubResource("Resource_al4sv"), SubResource("Resource_d6knl"), SubResource("Resource_ib3s5")])
+metadata/_custom_type_script = "uid://cl4sxibgn52lf"
