@@ -58,14 +58,6 @@ func clear_player():
 
 
 func placePlayerBlocs() -> void:
-	var S := playerGrid.gridScale
-	for i in range(S):
-		for k in range(S):
-			for j in range(S):
-				var idx := i + k * S + j * S * S
-				var c := playerGrid.grid[idx]
-				if c != Global.ColorsEnum.NONE:
-					$Visualization.instantiate(Vector3(i, k, j), c, false)
 	_on_current_level_check_grid()
 
 

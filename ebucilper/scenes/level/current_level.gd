@@ -36,9 +36,11 @@ func _on_coding_space_launch() -> void:
 	builder.resetState()
 	# wait for the cursor back to start
 	builder.load_program(instructions)
-	builder.build()
-	#gridView.placeBlocs(builder.grid, false)
+	await builder.build()
+	gridView.placeBlocs(builder.grid, false)
+	gridView.placePlayerBlocs()
 	gridView.showTargetBlock(gridView.mode, true, Vector3i.ZERO)
+	
 	
 	
 func _unhandled_input(event: InputEvent) -> void:
