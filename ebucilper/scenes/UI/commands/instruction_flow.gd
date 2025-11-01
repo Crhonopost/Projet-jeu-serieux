@@ -57,7 +57,6 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 	for i in instructionList.get_child_count():
 		var child = instructionList.get_child(i)
 		var child_mid = child.position.y + child.size.y * 0.5 + $PanelTitle.size.y
-		print(child_mid, "   ", at_position.y)
 		if at_position.y < child_mid && target_idx > i:
 			target_idx = i
 	
