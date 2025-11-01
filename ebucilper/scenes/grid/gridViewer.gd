@@ -57,7 +57,7 @@ func clear_player():
 	$Visualization.clear()
 
 
-func placePlayerBlocs() -> void:
+func checkgrid() -> void:
 	_on_current_level_check_grid()
 
 

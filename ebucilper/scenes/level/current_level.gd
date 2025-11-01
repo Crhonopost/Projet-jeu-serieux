@@ -38,8 +38,9 @@ func _on_coding_space_launch() -> void:
 	builder.load_program(instructions)
 	await builder.build()
 	gridView.placeBlocs(builder.grid, false)
-	gridView.placePlayerBlocs()
+	
 	gridView.showTargetBlock(gridView.mode, true, Vector3i.ZERO)
+	gridView.checkgrid()
 	
 	
 	
