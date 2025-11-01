@@ -20,7 +20,13 @@ func processAllInstructions(entryPoints: Array[FunctionLogicResource]) -> Array[
 	
 	for fctCall in functionCallsWaiting.keys():
 		var fctIdx = functions[functionCallsWaiting[fctCall]]
-		res[fctCall].jumpIdx = fctIdx
+		
+		var instru = res[fctCall]
+		if(instru is CallFunctionInstruction):
+			instru.jumpIdx = fctIdx
+		else :
+			instru.toIdx = fctIdx
+		
 		for argIdx in range(functionsArgs[fctIdx].size()):
 			var varExpression := functionsCallWaitingArgs[fctCall].get(argIdx)
 			var argName := functionsArgs[fctIdx][argIdx]
