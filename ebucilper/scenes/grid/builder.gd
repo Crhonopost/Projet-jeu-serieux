@@ -3,10 +3,10 @@ extends Node3D
 
 const NoArgInstructionType = NoArgsInstruction.NoArgInstructionType
 const ColorsEnum = Global.ColorsEnum
+const OrientationsEnum = Global.OrientationsEnum
 
 var grid : GridResource
 
-enum OrientationsEnum  { X_POSITIVE=0, X_NEGATIVE=1, Z_POSITIVE=2, Z_NEGATIVE=3 }
 var rightOrientation: Array[OrientationsEnum] = [OrientationsEnum.Z_POSITIVE, OrientationsEnum.Z_NEGATIVE, OrientationsEnum.X_NEGATIVE, OrientationsEnum.X_POSITIVE]
 var leftOrientation: Array[OrientationsEnum] = [OrientationsEnum.Z_NEGATIVE, OrientationsEnum.Z_POSITIVE, OrientationsEnum.X_POSITIVE, OrientationsEnum.X_NEGATIVE]
 
@@ -15,9 +15,9 @@ var cursorPosition: Vector3i
 var currentColor: ColorsEnum
 var buildingTime: int # number of executed instructions
 
+
 signal cursor_moved(pos: Vector3i, orientation: OrientationsEnum)
 signal block_placed(pos: Vector3i, color: int)
-@export var step_delay := 0.12
 
 
 var callStack : Array[ExecutionContext]
@@ -30,11 +30,7 @@ func resetState() -> void:
 	cursorPosition = Vector3i.ZERO
 	currentColor = ColorsEnum.RED
 	callStack.clear()
-	
-	
-func _pause_step() -> void:
-	if step_delay > 0.0:
-		await get_tree().create_timer(step_delay).timeout
+	emit_signal("cursor_moved", cursorPosition, cursorOrientation)
 
 
 var instructionList: Array[Instruction]
@@ -49,12 +45,12 @@ func load_program(instructions: Array[Instruction]):
 func next_step()-> bool:
 	var instruction := instructionList[callStack.back().instructionIdx]
 	callStack.back().instructionIdx += 1
-	var result = await followInstruction(instruction)
+	var result = followInstruction(instruction)
 	return result
 
 func build() -> bool:
 	while callStack.size() > 0:
-		var ok := await next_step()
+		var ok := next_step()
 		if not ok:
 			return false
 		buildingTime += 1
@@ -79,13 +75,12 @@ func followNoArgs(instruction: NoArgsInstruction) -> bool:
 			callStack.pop_back()
 	
 	buildingTime += 1
-	await _pause_step() 
 	return instructionResult
 
 func followInstruction(instruction : Instruction) -> bool:
 	var instructionResult: bool = true
 	if instruction is NoArgsInstruction:
-		instructionResult = await followNoArgs(instruction)
+		instructionResult = followNoArgs(instruction)
 	elif instruction is ChangeColorInstruction:
 		changeColor(instruction.color)
 		buildingTime += 1
@@ -95,14 +90,12 @@ func followInstruction(instruction : Instruction) -> bool:
 		jump(instruction.toIdx)
 	elif instruction is CreateVarInstruction:
 		createVariable(instruction.target, instruction.expression)
-		await _pause_step()
 	elif instruction is UpdateVarInstruction:
 		updateVariable(instruction.target, instruction.expression)
-		await _pause_step()
 	elif instruction is CallFunctionInstruction:
 		callFunction(instruction.jumpIdx, instruction.argsToVar)
 	elif instruction is SetCursorPositionInstruction:
-		await moveTo(instruction.position_x, instruction.position_y, instruction.position_z)
+		moveTo(instruction.position_x, instruction.position_y, instruction.position_z)
 	else:
 		printerr("Unknown instruction type")
 		instructionResult = false
@@ -126,10 +119,9 @@ func moveTo(position_x: LowLevelExpression, position_y: LowLevelExpression, posi
 		position_z.execute(cur_variables)
 	)
 	if grid_view and grid_view.has_method("move_to_start"):
-		await grid_view.move_to_start(cursorPosition, cursorOrientation)
+		grid_view.move_to_start(cursorPosition, cursorOrientation)
 	else:
 		emit_signal("cursor_moved", cursorPosition, cursorOrientation)
-		await _pause_step()
 
 func moveForward():
 	var vec = Vector3i(0,0,0)
@@ -143,27 +135,22 @@ func moveForward():
 		vec -= Vector3i(0,0,1)
 	cursorPosition += vec
 	emit_signal("cursor_moved", cursorPosition, cursorOrientation)
-	await _pause_step() 
 
 func moveUp():
 	cursorPosition.y += 1
 	emit_signal("cursor_moved", cursorPosition, cursorOrientation)
-	await _pause_step() 
 	
 func moveDown():
 	cursorPosition.y -= 1
 	emit_signal("cursor_moved", cursorPosition, cursorOrientation)
-	await _pause_step()
 
 func rotateLeft():
 	cursorOrientation = leftOrientation[cursorOrientation]
 	emit_signal("cursor_moved", cursorPosition, cursorOrientation)
-	await _pause_step() 
 	
 func rotateRight():
 	cursorOrientation = rightOrientation[cursorOrientation]
 	emit_signal("cursor_moved", cursorPosition, cursorOrientation)
-	await _pause_step() 
 	
 func changeColor(color: int):
 	var colorString = ColorsEnum.keys()[color]
