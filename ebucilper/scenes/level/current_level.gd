@@ -10,6 +10,7 @@ signal check_grid
 @export var level: LevelResource
 
 signal leave
+signal next_grid_tutorial
 
 func _ready():
 	_load_target()
@@ -30,11 +31,11 @@ func _on_coding_space_launch() -> void:
 	# wait for the cursor back to start
 	await gridView.move_to_start(builder.cursorPosition, builder.cursorOrientation) 
 	builder.load_program(instructions)
-	builder.build()
+	await builder.build()
 	#gridView.placeBlocs(builder.grid, false)
 	gridView.placePlayerBlocs()
 	gridView.showTargetBlock(gridView.mode, true, Vector3i.ZERO)
-	check_grid.emit()
+	#check_grid.emit()
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if dev_mode and event.is_action_pressed("dev_save_target"):
@@ -64,6 +65,7 @@ func _load_target():
 
 	var new_grid = GridResource.new()
 	new_grid.load_data(grid_data)
+	gridView.clearGrid()
 	gridView.currentGrid = new_grid
 	gridView.showTargetBlock(gridView.mode, true, Vector3i(0, 0, 0))
 	
@@ -85,7 +87,12 @@ func _on_sub_viewport_container_mouse_exited() -> void:
 
 
 func _on_grid_level_complete() -> void:
-	$CodingSpace.setTip("gagné")
+	if(level.id == "tutorial"):
+		level = load("res://resources/levels/tutorial2.tres")
+		_ready()
+	else:
+		print("ouioui")
+		_on_leave_pressed()
 
 
 func _on_leave_pressed() -> void:

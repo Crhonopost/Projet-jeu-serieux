@@ -38,6 +38,8 @@ func _on_introduction_finished():
 	game_instance.connect("leave", go_home)
 	game_instance.level = ActiveLevel.level
 	add_child(game_instance)
+	
+
 
 func go_home():
 	$TextureRect.visible = true

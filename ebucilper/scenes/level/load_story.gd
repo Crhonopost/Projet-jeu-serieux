@@ -35,4 +35,7 @@ func _on_button_pressed() -> void:
 		_show_current_text()
 
 func _on_skip_pressed() -> void:
+	var connections = get_signal_connection_list("launch_level")
+	for c in connections:
+		print(c)
 	launch_level.emit()

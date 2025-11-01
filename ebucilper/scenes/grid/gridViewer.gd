@@ -6,7 +6,7 @@ signal level_complete
 @export var currentGrid : GridResource
 enum showTargetBlockMode {all,layer,smaller}
 @export var mode : showTargetBlockMode : set = set_mode
-var playerGrid: GridResource = GridResource.new() 
+var playerGrid: GridResource = GridResource.new()
 @onready var builder: Node3D = $"../Builder"
 @export var cell_size: float = 1.0 
 @export var move_time_per_cell := 0.10
@@ -179,6 +179,7 @@ func placePlayerBlocs() -> void:
 				var c := playerGrid.grid[idx]
 				if c != Global.ColorsEnum.NONE:
 					$Visualization.instantiate(Vector3(i, k, j), c, false)
+	_on_current_level_check_grid()
 
 
 func placeBlocs(gridResource : GridResource, isTransparent : bool) :
@@ -230,17 +231,24 @@ func showTargetBlock(showMode : showTargetBlockMode , show : bool, cursor_positi
 		
 
 func _grids_are_equal(grid1: GridResource, grid2: GridResource) -> bool:
+	
 	if grid1.gridScale != grid2.gridScale:
+		
 		return false
 
 	for i in range(grid1.grid.size()):
 		if grid1.grid[i] != grid2.grid[i]:
-			print(grid1.grid[i],"\t", grid2.grid[i],"\t", i)
+			print("current :",grid1.grid[i],"\t player:", grid2.grid[i],"\tindice :", i)
 			return false
 
 	return true
 
 func _on_current_level_check_grid() -> void:
 	if _grids_are_equal(currentGrid, playerGrid):
-		print("ouioui baguette")
+		print("level complete")
 		level_complete.emit()
+
+
+func _on_current_level_next_grid_tutorial(grid) -> void:
+	clearGrid()
+	currentGrid = grid
