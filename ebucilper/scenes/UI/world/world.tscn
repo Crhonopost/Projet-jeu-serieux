@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cmay8br4ehsts"]
+[gd_scene load_steps=11 format=3 uid="uid://cmay8br4ehsts"]
 
 [ext_resource type="PackedScene" uid="uid://fwytoh7mehli" path="res://scenes/UI/world/level.tscn" id="1_fmaxo"]
 [ext_resource type="Script" uid="uid://dfdgi8lyueyh3" path="res://scenes/UI/world/world.gd" id="1_i1d74"]
 [ext_resource type="Texture2D" uid="uid://c5mn07u5l2rvp" path="res://Assets/Images/backgrounds/background_36.png" id="1_ivcrt"]
 [ext_resource type="FontFile" uid="uid://cj52gxydlihfd" path="res://Assets/Fonts/Breakdown PG.otf" id="2_mm5an"]
+[ext_resource type="Script" uid="uid://b3x3werlg62hj" path="res://scripts/levels/level_resource.gd" id="2_yq0iy"]
 [ext_resource type="FontFile" uid="uid://bewn88o0me7h7" path="res://Assets/Fonts/Coolvetica Rg.otf" id="3_rg8tu"]
 [ext_resource type="Resource" uid="uid://dlj234rnf7qga" path="res://resources/levels/level_1.tres" id="5_a6vwr"]
 [ext_resource type="Resource" uid="uid://bbb4tkhtyljw2" path="res://resources/levels/level_2.tres" id="6_jorwd"]
@@ -18,6 +19,7 @@ corner_radius_bottom_left = 5
 
 [node name="World" type="Node"]
 script = ExtResource("1_i1d74")
+levels = Array[ExtResource("2_yq0iy")]([ExtResource("5_a6vwr"), ExtResource("6_jorwd"), ExtResource("7_i1d74")])
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 10
@@ -91,21 +93,19 @@ grow_horizontal = 2
 grow_vertical = 2
 vertical_scroll_mode = 0
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="TextureRect/LevelsList/ScrollContainer"]
+[node name="LevelList" type="HBoxContainer" parent="TextureRect/LevelsList/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Level" parent="TextureRect/LevelsList/ScrollContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
+[node name="Level" parent="TextureRect/LevelsList/ScrollContainer/LevelList" instance=ExtResource("1_fmaxo")]
 layout_mode = 2
 level_data = ExtResource("5_a6vwr")
 
-[node name="Level2" parent="TextureRect/LevelsList/ScrollContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
+[node name="Level2" parent="TextureRect/LevelsList/ScrollContainer/LevelList" instance=ExtResource("1_fmaxo")]
 layout_mode = 2
 level_data = ExtResource("6_jorwd")
 
-[node name="tutorial" parent="TextureRect/LevelsList/ScrollContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
+[node name="tutorial" parent="TextureRect/LevelsList/ScrollContainer/LevelList" instance=ExtResource("1_fmaxo")]
 layout_mode = 2
 level_data = ExtResource("7_i1d74")
-
-[connection signal="level_selected" from="TextureRect/LevelsList/ScrollContainer/HBoxContainer2/Level" to="." method="_on_level_level_selected"]
