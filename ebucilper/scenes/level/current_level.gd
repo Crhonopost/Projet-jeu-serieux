@@ -7,7 +7,7 @@ signal check_grid
 
 @export var dev_mode: bool = true                 # developpement mode
 
-var level: LevelResource
+@export var level: LevelResource
 
 signal leave
 
@@ -45,12 +45,12 @@ func _save_current_as_target() -> void:
 		push_error("No grid to save.")
 		return
 	
-	ActiveLevel.level.build_data.building_time = builder.buildingTime
-	ActiveLevel.level.build_data.grid = builder.grid.to_serializable_dict()
+	level.build_data.building_time = builder.buildingTime
+	level.build_data.grid = builder.grid.to_serializable_dict()
 
 
 func _load_target():
-	var result = ActiveLevel.level.build_data
+	var result = level.build_data
 	if result == null:
 		push_error("No build data.")
 		return
@@ -65,7 +65,7 @@ func _load_target():
 	gridView.currentGrid = new_grid
 	gridView.showTargetBlock(gridView.mode, true, Vector3i(0, 0, 0))
 	
-	$CodingSpace.setTip(ActiveLevel.level.tip)
+	$CodingSpace.setTip(level.tip)
 
 var mouse_over_viewport = false
 
