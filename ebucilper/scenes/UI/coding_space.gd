@@ -18,9 +18,12 @@ func _ready() -> void:
 		add_function(functions[i])
 		
 	InstructionVisualBuilder.connect("functionCallInstantiatiated", functionCall)
+	
+func setAuthorizedInstuctions(instructions: AuthorizedInstructions):
+	$HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/Inventory.allow_instructions(instructions)
 
 func setTip(tip: String):
-	$HBoxContainer/LeftSide/PanelContainer/MarginContainer/Goal.text = ActiveLevel.level_tip
+	$HBoxContainer/LeftSide/PanelContainer/MarginContainer/Goal.text = tip
 
 func functionCall(node: Control):
 	node.getSpecialNode().connect("connectToFunction", func (index): connectNodeToFunction(index, node))

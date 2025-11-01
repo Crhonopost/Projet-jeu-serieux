@@ -26,32 +26,18 @@ func positionToIndex(position: Vector3i) -> int :
 func clear() -> void:
 	grid.fill(ColorsEnum.NONE)
 	
-func to_serializable_dict() -> Dictionary:
-	var dims := [gridScale, gridScale, gridScale]
-
-	var grid_copy := grid.duplicate(true)
-
-	return {
-		"dimensions": dims,
-		"grid": grid_copy
-	}
+func to_serializable_dict() -> GridDataResource:
+	var res := GridDataResource.new()
+	res.dimensions = Vector3i(gridScale, gridScale, gridScale)
+	res.grid = grid.duplicate(true)
 	
+	return res
 
-func from_serializable_dict(data: Dictionary) -> void:
-	if not data.has("dimensions") or not data.has("grid"):
-		push_error("Invalid grid data: missing keys.")
-		return
-		
-	var dims = data["dimensions"]
-	if dims.size() != 3:
-		push_error("Invalid grid dimensions.")
-		return
+func load_data(gridData: GridDataResource):
+	var dims = gridData.dimensions
 	
-	gridScale = int(dims[0])
+	gridScale = int(dims[0]) # TODO: ?
 	grid.resize(gridScale * gridScale * gridScale)
 
-	var grid_data = data["grid"]
-	print("Loading grid of size: ", grid_data.size())
-
-	for i in range(min(grid.size(), grid_data.size())):
-		grid[i] = int(grid_data[i])
+	for i in range(min(grid.size(), gridData.grid.size())):
+		grid[i] = int(gridData.grid[i])

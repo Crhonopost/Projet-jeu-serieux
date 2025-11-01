@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://towe38v7ths"
-path="res://.godot/imported/icon.png-c7817b0496d0e88cd77d583a83e9d060.ctex"
+uid="uid://cbu22rkh7ocgj"
+path="res://.godot/imported/bat16_destroyed.png-9234bb8760765364db05610a363422a5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/bat16/icon.png"
-dest_files=["res://.godot/imported/icon.png-c7817b0496d0e88cd77d583a83e9d060.ctex"]
+source_file="res://Assets/Images/levelIcons/bat16_destroyed.png"
+dest_files=["res://.godot/imported/bat16_destroyed.png-9234bb8760765364db05610a363422a5.ctex"]
 
 [params]
 

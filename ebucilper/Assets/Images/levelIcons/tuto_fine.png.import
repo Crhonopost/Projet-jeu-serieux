@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://pt7d6eutpsa3"
-path="res://.godot/imported/icon.png-ed2eacd4bfdd6702880c3d5a5a4f1a8c.ctex"
+path="res://.godot/imported/tuto_fine.png-ca11a69b2e6f5a719b04f62763c2ad3b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/tuto/icon.png"
-dest_files=["res://.godot/imported/icon.png-ed2eacd4bfdd6702880c3d5a5a4f1a8c.ctex"]
+source_file="res://Assets/Images/levelIcons/tuto_fine.png"
+dest_files=["res://.godot/imported/tuto_fine.png-ca11a69b2e6f5a719b04f62763c2ad3b.ctex"]
 
 [params]
 

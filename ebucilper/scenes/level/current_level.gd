@@ -6,11 +6,12 @@ signal check_grid
 @onready var gridView = $SubViewportContainer/SubViewport/Grid
 
 @export var dev_mode: bool = true                 # developpement mode
-var level_name : String = ActiveLevel.level_name
-var level_path : String = ActiveLevel.level_path
 
 func _ready():
-	_load_target_from_json()
+	_load_target()
+	
+	if(ActiveLevel.level):
+		$CodingSpace.setAuthorizedInstuctions(ActiveLevel.level.authorized_logic_executions)
 
 func _on_coding_space_launch() -> void:
 	var instructions = $CodingSpace.retrieveInstructions()
@@ -39,48 +40,28 @@ func _save_current_as_target() -> void:
 	if builder.grid == null:
 		push_error("No grid to save.")
 		return
-
-	var payload := {
-		"level": level_name,
-		"building_time": builder.buildingTime,  
-		"grid_data": builder.grid.to_serializable_dict()
-	}
-
-	var file_path := level_path + "/target.json"
-	var f := FileAccess.open(file_path, FileAccess.WRITE)
-
-	f.store_string(JSON.stringify(payload, "\t"))
-	f.close()
-
-	print("Saved target to: ", file_path)
+	
+	ActiveLevel.level.build_data.building_time = builder.buildingTime
+	ActiveLevel.level.build_data.grid = builder.grid.to_serializable_dict()
 
 
-func _load_target_from_json():
-	var file_path := level_path + "/target.json"
-	if not FileAccess.file_exists(file_path):
-		push_error("Target JSON file not found: %s" % file_path)
-		return
-
-	var f := FileAccess.open(file_path, FileAccess.READ)
-	var json_str := f.get_as_text()
-	f.close()
-
-	var result = JSON.parse_string(json_str)
+func _load_target():
+	var result = ActiveLevel.level.build_data
 	if result == null:
-		push_error("Failed to parse JSON: %s" % file_path)
+		push_error("No build data.")
 		return
 
-	var grid_data = result.get("grid_data", null)
+	var grid_data = result.grid
 	if grid_data == null:
-		push_error("No 'grid_data' found in JSON.")
+		push_error("No 'grid_data' found.")
 		return
 
 	var new_grid = GridResource.new()
-	new_grid.from_serializable_dict(grid_data)
+	new_grid.load_data(grid_data)
 	gridView.currentGrid = new_grid
 	gridView.showTargetBlock(gridView.mode, true, Vector3i(0, 0, 0))
 	
-	$CodingSpace.setTip(ActiveLevel.level_tip)
+	$CodingSpace.setTip(ActiveLevel.level.tip)
 
 var mouse_over_viewport = false
 

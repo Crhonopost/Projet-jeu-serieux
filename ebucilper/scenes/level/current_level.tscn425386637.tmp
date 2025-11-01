@@ -69,6 +69,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1n4kf")
+dev_mode = null
 
 [node name="CodingSpace" parent="." instance=ExtResource("1_j3nmy")]
 layout_mode = 1

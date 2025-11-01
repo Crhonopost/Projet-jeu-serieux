@@ -1,20 +1,11 @@
-[gd_scene load_steps=32 format=3 uid="uid://c2i2xc75qwiwp"]
+[gd_scene load_steps=9 format=3 uid="uid://c2i2xc75qwiwp"]
 
 [ext_resource type="Script" uid="uid://b678kr1glpsrl" path="res://scenes/UI/coding_space.gd" id="1_25lkw"]
 [ext_resource type="Script" uid="uid://bulv0feibbce" path="res://scripts/compiler.gd" id="2_bwyhw"]
-[ext_resource type="Script" uid="uid://bqe45dm5wyip4" path="res://resources/scripting/definitions/logic/logic_resource.gd" id="2_fn0c8"]
 [ext_resource type="StyleBox" uid="uid://b1mv4qn7s3w4d" path="res://resources/ui/panels/coding_space.tres" id="3_xchgw"]
-[ext_resource type="Script" uid="uid://dmggbp5elydyj" path="res://resources/scripting/definitions/logic/executions/change_color_logic_resource.gd" id="6_a6itc"]
+[ext_resource type="Resource" uid="uid://dexj7eqnqc313" path="res://resources/levels/all_instructions.tres" id="6_r5p2t"]
 [ext_resource type="Script" uid="uid://d1ynh7ys7iaab" path="res://scenes/UI/inventory.gd" id="7_a6itc"]
-[ext_resource type="Script" uid="uid://qjop52belxgl" path="res://resources/scripting/definitions/logic/executions/no_args_logic_resource.gd" id="7_vjcr8"]
-[ext_resource type="Script" uid="uid://cioni3f13iu1e" path="res://resources/scripting/definitions/logic/flows/while_instruction_resource.gd" id="8_vjcr8"]
-[ext_resource type="Script" uid="uid://bptnkeoa30f03" path="res://resources/scripting/definitions/logic/executions/create_logic_resource.gd" id="9_f75ky"]
-[ext_resource type="Script" uid="uid://jhj821woppuc" path="res://resources/scripting/definitions/logic/executions/update_logic_resource.gd" id="11_jhjoh"]
 [ext_resource type="FontFile" uid="uid://bewn88o0me7h7" path="res://Assets/Fonts/Coolvetica Rg.otf" id="12_78wbv"]
-[ext_resource type="Script" uid="uid://bbo0hwiwoksjc" path="res://resources/scripting/definitions/logic/executions/call_function_logic_resource.gd" id="13_dhuyy"]
-[ext_resource type="Script" uid="uid://d1w3rheadok7n" path="res://resources/scripting/definitions/logic/executions/set_cursor_position_logic_resource.gd" id="14_iduvy"]
-[ext_resource type="Script" uid="uid://wg0wpwcwxkec" path="res://resources/scripting/definitions/logic/flows/flow_logic_resource.gd" id="14_xchgw"]
-[ext_resource type="Script" uid="uid://c2h1mt0env6k5" path="res://resources/scripting/definitions/logic/flows/for_logic_resource.gd" id="15_iduvy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dhuyy"]
 bg_color = Color(0.8, 0.25882354, 0.23137255, 1)
@@ -35,67 +26,6 @@ corner_radius_bottom_left = 10
 shadow_color = Color(0, 0, 0, 0.32156864)
 shadow_size = 5
 shadow_offset = Vector2(2.235, 2.78)
-
-[sub_resource type="Resource" id="Resource_f75ky"]
-script = ExtResource("6_a6itc")
-metadata/_custom_type_script = "uid://dmggbp5elydyj"
-
-[sub_resource type="Resource" id="Resource_usmbw"]
-script = ExtResource("7_vjcr8")
-metadata/_custom_type_script = "uid://qjop52belxgl"
-
-[sub_resource type="Resource" id="Resource_a6itc"]
-script = ExtResource("7_vjcr8")
-type = 1
-metadata/_custom_type_script = "uid://qjop52belxgl"
-
-[sub_resource type="Resource" id="Resource_vjcr8"]
-script = ExtResource("7_vjcr8")
-type = 2
-metadata/_custom_type_script = "uid://qjop52belxgl"
-
-[sub_resource type="Resource" id="Resource_jhjoh"]
-script = ExtResource("7_vjcr8")
-type = 3
-metadata/_custom_type_script = "uid://qjop52belxgl"
-
-[sub_resource type="Resource" id="Resource_78wbv"]
-script = ExtResource("7_vjcr8")
-type = 4
-metadata/_custom_type_script = "uid://qjop52belxgl"
-
-[sub_resource type="Resource" id="Resource_dhuyy"]
-script = ExtResource("7_vjcr8")
-type = 5
-metadata/_custom_type_script = "uid://qjop52belxgl"
-
-[sub_resource type="Resource" id="Resource_xchgw"]
-script = ExtResource("8_vjcr8")
-metadata/_custom_type_script = "uid://cioni3f13iu1e"
-
-[sub_resource type="Resource" id="Resource_iduvy"]
-script = ExtResource("9_f75ky")
-metadata/_custom_type_script = "uid://bptnkeoa30f03"
-
-[sub_resource type="Resource" id="Resource_lhmcw"]
-script = ExtResource("11_jhjoh")
-metadata/_custom_type_script = "uid://jhj821woppuc"
-
-[sub_resource type="Resource" id="Resource_3t8km"]
-script = ExtResource("14_xchgw")
-metadata/_custom_type_script = "uid://wg0wpwcwxkec"
-
-[sub_resource type="Resource" id="Resource_47f3o"]
-script = ExtResource("13_dhuyy")
-metadata/_custom_type_script = "uid://bbo0hwiwoksjc"
-
-[sub_resource type="Resource" id="Resource_sfy5e"]
-script = ExtResource("14_iduvy")
-metadata/_custom_type_script = "uid://d1w3rheadok7n"
-
-[sub_resource type="Resource" id="Resource_7l374"]
-script = ExtResource("15_iduvy")
-metadata/_custom_type_script = "uid://c2h1mt0env6k5"
 
 [node name="CodingSpace" type="Control"]
 layout_mode = 3
@@ -182,7 +112,7 @@ theme_override_constants/margin_top = 30
 [node name="Inventory" type="FlowContainer" parent="HBoxContainer/VBoxContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 script = ExtResource("7_a6itc")
-availableInstructions = Array[ExtResource("2_fn0c8")]([SubResource("Resource_f75ky"), SubResource("Resource_usmbw"), SubResource("Resource_a6itc"), SubResource("Resource_vjcr8"), SubResource("Resource_jhjoh"), SubResource("Resource_78wbv"), SubResource("Resource_dhuyy"), SubResource("Resource_xchgw"), SubResource("Resource_iduvy"), SubResource("Resource_lhmcw"), SubResource("Resource_3t8km"), SubResource("Resource_47f3o"), SubResource("Resource_sfy5e"), SubResource("Resource_7l374")])
+availableInstructions = ExtResource("6_r5p2t")
 
 [connection signal="pressed" from="HBoxContainer/LeftSide/AddFunction" to="." method="_on_add_function_pressed"]
 [connection signal="tab_selected" from="HBoxContainer/LeftSide/Functions" to="." method="_on_functions_tab_selected"]

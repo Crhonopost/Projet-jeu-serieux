@@ -1,9 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://cmay8br4ehsts"]
+[gd_scene load_steps=9 format=3 uid="uid://cmay8br4ehsts"]
 
 [ext_resource type="PackedScene" uid="uid://fwytoh7mehli" path="res://scenes/UI/world/level.tscn" id="1_fmaxo"]
-[ext_resource type="Texture2D" uid="uid://c5mn07u5l2rvp" path="res://levels/bat36/background.png" id="1_ivcrt"]
+[ext_resource type="Texture2D" uid="uid://c5mn07u5l2rvp" path="res://Assets/Images/backgrounds/background_36.png" id="1_ivcrt"]
 [ext_resource type="FontFile" uid="uid://cj52gxydlihfd" path="res://Assets/Fonts/Breakdown PG.otf" id="2_mm5an"]
 [ext_resource type="FontFile" uid="uid://bewn88o0me7h7" path="res://Assets/Fonts/Coolvetica Rg.otf" id="3_rg8tu"]
+[ext_resource type="Resource" uid="uid://dlj234rnf7qga" path="res://resources/levels/level_1.tres" id="5_a6vwr"]
+[ext_resource type="Resource" uid="uid://bbb4tkhtyljw2" path="res://resources/levels/level_2.tres" id="6_jorwd"]
+[ext_resource type="Resource" uid="uid://sjmrehmgxqxw" path="res://resources/levels/tutorial.tres" id="7_i1d74"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ivcrt"]
 bg_color = Color(0.16470589, 0.10980392, 0.07058824, 0.7058824)
@@ -91,28 +94,12 @@ size_flags_vertical = 3
 
 [node name="Level" parent="LevelsList/ScrollContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
 layout_mode = 2
-level_id = "bat36"
-level_name = "Bâtiment 36"
-level_path = "res://levels/bat36"
-target_steps = 10
-optimal_steps = 5
-unlocked = true
-done = true
-steps = 5
+level_data = ExtResource("5_a6vwr")
 
 [node name="Level2" parent="LevelsList/ScrollContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
 layout_mode = 2
-level_name = "Bâtiment 16"
-level_path = "res://levels/bat16"
-unlocked = true
+level_data = ExtResource("6_jorwd")
 
 [node name="tutorial" parent="LevelsList/ScrollContainer/HBoxContainer2" instance=ExtResource("1_fmaxo")]
 layout_mode = 2
-level_id = "tutorial"
-level_name = "tutorial"
-level_path = "res://levels/tuto"
-target_steps = 10
-optimal_steps = 5
-unlocked = true
-done = true
-steps = 5
+level_data = ExtResource("7_i1d74")

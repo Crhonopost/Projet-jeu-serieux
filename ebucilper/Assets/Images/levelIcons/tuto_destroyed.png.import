@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dh1fgon3wyed8"
-path="res://.godot/imported/icon_destroyed.png-caa7b7b2ad52865e6aad06a553a58502.ctex"
+uid="uid://bwmx6ppsei3wl"
+path="res://.godot/imported/tuto_destroyed.png-95e3574d97206c014951208fb8624454.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/bat36/icon_destroyed.png"
-dest_files=["res://.godot/imported/icon_destroyed.png-caa7b7b2ad52865e6aad06a553a58502.ctex"]
+source_file="res://Assets/Images/levelIcons/tuto_destroyed.png"
+dest_files=["res://.godot/imported/tuto_destroyed.png-95e3574d97206c014951208fb8624454.ctex"]
 
 [params]
 

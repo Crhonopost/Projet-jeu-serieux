@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://dw1qsxvlj8t6q"]
 
 [ext_resource type="Script" uid="uid://chd0ikkfqbyqk" path="res://scenes/level/load_story.gd" id="1_hmpfh"]
-[ext_resource type="Texture2D" uid="uid://65iu3hsrri36" path="res://levels/bat16/background.png" id="2_50vrq"]
+[ext_resource type="Texture2D" uid="uid://65iu3hsrri36" path="res://Assets/Images/backgrounds/background_16.png" id="2_50vrq"]
 [ext_resource type="FontFile" uid="uid://bewn88o0me7h7" path="res://Assets/Fonts/Coolvetica Rg.otf" id="3_uuwn3"]
 [ext_resource type="Texture2D" uid="uid://on53etfxd4ck" path="res://Assets/Images/characters/nicolas_lutz_happy.png" id="3_vx6h1"]
 

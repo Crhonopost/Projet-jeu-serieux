@@ -1,14 +1,6 @@
 extends Node
 
-@export var level_id: String
-@export var level_name : String
-@export var level_path : String
-@export var target_steps : int
-@export var optimal_steps : int
-
-@export var unlocked : bool = false
-@export var done : bool = false
-@export var steps : int
+@export var level_data: LevelResource
 
 func _ready() -> void:
 	# Load from game progress
@@ -16,23 +8,23 @@ func _ready() -> void:
 	# done = false
 	# steps = 7
 	
-	$LevelContainer/Name.text = level_name
-	if not unlocked:
+	$LevelContainer/Name.text = level_data.name
+	if not level_data.unlocked:
 		$LevelContainer/Icon.texture = load("res://Assets/Images/lock.png")	
 		$LevelContainer/Stars.visible = false
-	elif done:
-		$LevelContainer/Icon.texture = load(level_path + "/icon.png")
+	elif level_data.done:
+		$LevelContainer/Icon.texture = level_data.completed_icon
 	else:
-		$LevelContainer/Icon.texture = load(level_path + "/icon_destroyed.png")
+		$LevelContainer/Icon.texture = level_data.to_be_done_icon
 	
-	if done:
-		if steps <= target_steps:
+	if level_data.done:
+		if level_data.steps <= level_data.target_steps:
 			setGolderStar($LevelContainer/Stars/Star1)
 			
-		if steps < target_steps:
+		if level_data.steps < level_data.target_steps:
 			setGolderStar($LevelContainer/Stars/Star2)
 			
-		if steps <= optimal_steps:
+		if level_data.steps <= level_data.optimal_steps:
 			setGolderStar($LevelContainer/Stars/Star3)
 	
 func setGolderStar(starNode: TextureRect) -> void:
@@ -41,8 +33,5 @@ func setGolderStar(starNode: TextureRect) -> void:
 
 func _on_button_pressed() -> void:
 	# Set active level to the one clicked
-	ActiveLevel.level_id = level_id
-	ActiveLevel.level_name = level_name
-	ActiveLevel.level_path = level_path
-	
+	ActiveLevel.level = level_data
 	get_tree().change_scene_to_file("res://scenes/level/level_introduction.tscn")

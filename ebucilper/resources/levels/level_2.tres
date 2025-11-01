@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="LevelResource" load_steps=15 format=3 uid="uid://bbb4tkhtyljw2"]
+
+[ext_resource type="Resource" uid="uid://dexj7eqnqc313" path="res://resources/levels/all_instructions.tres" id="1_u0ri6"]
+[ext_resource type="Texture2D" uid="uid://65iu3hsrri36" path="res://Assets/Images/backgrounds/background_16.png" id="2_2gm7q"]
+[ext_resource type="Script" uid="uid://b3x3werlg62hj" path="res://scripts/levels/level_resource.gd" id="2_rbwim"]
+[ext_resource type="Script" uid="uid://b05xctfx6o6fl" path="res://scripts/levels/dialog_resource.gd" id="3_f38rn"]
+[ext_resource type="Script" uid="uid://bwsthiomo1lgy" path="res://scripts/levels/grid_data_resource.gd" id="3_u0ri6"]
+[ext_resource type="Texture2D" uid="uid://towe38v7ths" path="res://Assets/Images/levelIcons/bat16_fine.png" id="3_wi76j"]
+[ext_resource type="Script" uid="uid://bxhd44vk88cnu" path="res://scripts/levels/build_resource.gd" id="4_01ud5"]
+[ext_resource type="Texture2D" uid="uid://rhck5ddagurf" path="res://Assets/Images/characters/nicolas_lutz_sad.png" id="4_f38rn"]
+[ext_resource type="Texture2D" uid="uid://on53etfxd4ck" path="res://Assets/Images/characters/nicolas_lutz_happy.png" id="5_2gm7q"]
+[ext_resource type="Texture2D" uid="uid://cbu22rkh7ocgj" path="res://Assets/Images/levelIcons/bat16_destroyed.png" id="8_61tk6"]
+
+[sub_resource type="Resource" id="Resource_toexm"]
+script = ExtResource("3_u0ri6")
+dimensions = Vector3i(10, 10, 10)
+grid = Array[int]([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+metadata/_custom_type_script = "uid://bwsthiomo1lgy"
+
+[sub_resource type="Resource" id="Resource_ce1dc"]
+script = ExtResource("4_01ud5")
+building_time = 20
+grid = SubResource("Resource_toexm")
+metadata/_custom_type_script = "uid://bxhd44vk88cnu"
+
+[sub_resource type="Resource" id="Resource_qd1vq"]
+script = ExtResource("3_f38rn")
+character_icon = ExtResource("4_f38rn")
+text = "C'est terrible ! Qu'es ce qu'on va bien pouvoir faire ? Notre glorieux batiment 16 est réduit en miettes. Tous nos TP anéantis par l'attaque de plantes sauvages"
+metadata/_custom_type_script = "uid://b05xctfx6o6fl"
+
+[sub_resource type="Resource" id="Resource_wi76j"]
+script = ExtResource("3_f38rn")
+character_icon = ExtResource("5_2gm7q")
+text = "Ho ! Vous êtes la pour reconstruire ? Vraiment ? Peut etre que tous espoir n'est pas perdu !"
+metadata/_custom_type_script = "uid://b05xctfx6o6fl"
+
+[resource]
+script = ExtResource("2_rbwim")
+id = "bat16"
+name = "Bâtiment 16"
+texts = Array[ExtResource("3_f38rn")]([SubResource("Resource_qd1vq"), SubResource("Resource_wi76j")])
+background = ExtResource("2_2gm7q")
+to_be_done_icon = ExtResource("8_61tk6")
+completed_icon = ExtResource("3_wi76j")
+tip = "Glisse l’instruction “placer un bloc” dans la zone de construction pour ajouter un bloc. Essaie ensuite différentes instructions pour construire ton objectif !"
+authorized_logic_executions = ExtResource("1_u0ri6")
+unlocked = true
+build_data = SubResource("Resource_ce1dc")
+metadata/_custom_type_script = "uid://b3x3werlg62hj"
