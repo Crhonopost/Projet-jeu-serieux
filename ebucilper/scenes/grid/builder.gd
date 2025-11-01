@@ -1,4 +1,5 @@
 extends Node3D
+@onready var grid_view := $"../Grid"
 
 const NoArgInstructionType = NoArgsInstruction.NoArgInstructionType
 const ColorsEnum = Global.ColorsEnum
@@ -45,15 +46,17 @@ func load_program(instructions: Array[Instruction]):
 	init.instructionIdx = 0
 	callStack.append(init)
 
-func next_step():
+func next_step()-> bool:
 	var instruction := instructionList[callStack.back().instructionIdx]
 	callStack.back().instructionIdx += 1
 	var result = await followInstruction(instruction)
-	if !result: return false
+	return result
 
 func build() -> bool:
 	while callStack.size() > 0:
-		next_step()
+		var ok := await next_step()
+		if not ok:
+			return false
 		buildingTime += 1
 	return true
 	
@@ -122,8 +125,11 @@ func moveTo(position_x: LowLevelExpression, position_y: LowLevelExpression, posi
 		position_y.execute(cur_variables),
 		position_z.execute(cur_variables)
 	)
-	emit_signal("cursor_moved", cursorPosition, cursorOrientation)
-	await _pause_step()
+	if grid_view and grid_view.has_method("move_to_start"):
+		await grid_view.move_to_start(cursorPosition, cursorOrientation)
+	else:
+		emit_signal("cursor_moved", cursorPosition, cursorOrientation)
+		await _pause_step()
 
 func moveForward():
 	var vec = Vector3i(0,0,0)
