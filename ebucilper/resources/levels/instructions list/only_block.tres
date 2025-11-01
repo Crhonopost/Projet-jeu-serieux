@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="AuthorizedInstructions" load_steps=5 format=3 uid="uid://dapnwbithnu61"]
+
+[ext_resource type="Script" uid="uid://bqe45dm5wyip4" path="res://resources/scripting/definitions/logic/logic_resource.gd" id="1_uxm5b"]
+[ext_resource type="Script" uid="uid://qjop52belxgl" path="res://resources/scripting/definitions/logic/executions/no_args_logic_resource.gd" id="2_ag5ir"]
+[ext_resource type="Script" uid="uid://cl4sxibgn52lf" path="res://scripts/levels/authorized_instructions.gd" id="3_hre1h"]
+
+[sub_resource type="Resource" id="Resource_d6knl"]
+script = ExtResource("2_ag5ir")
+metadata/_custom_type_script = "uid://qjop52belxgl"
+
+[resource]
+script = ExtResource("3_hre1h")
+instructions = Array[ExtResource("1_uxm5b")]([SubResource("Resource_d6knl")])
+metadata/_custom_type_script = "uid://cl4sxibgn52lf"

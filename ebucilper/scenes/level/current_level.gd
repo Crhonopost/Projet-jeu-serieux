@@ -90,6 +90,9 @@ func _on_grid_level_complete() -> void:
 	if(level.id == "tutorial"):
 		level = load("res://resources/levels/tutorial2.tres")
 		_ready()
+	elif(level.id == "tutorial2"):
+		level = load("res://resources/levels/tutorial3.tres")
+		_ready()
 	else:
 		print("ouioui")
 		_on_leave_pressed()
