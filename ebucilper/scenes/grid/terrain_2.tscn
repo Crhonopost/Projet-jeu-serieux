@@ -1,0 +1,29 @@
+[gd_scene load_steps=9 format=3 uid="uid://bur7mbofyvfay"]
+
+[ext_resource type="PackedScene" uid="uid://bpap3u71d8t2c" path="res://Assets/Blender/Terrain2.glb" id="1_xtv1y"]
+[ext_resource type="Texture2D" uid="uid://bclexeatc8p3e" path="res://Assets/Images/textures/moss_ground_02_1k/moss_groud_02_Base_Color_1k.png" id="2_favgt"]
+[ext_resource type="Texture2D" uid="uid://ccv3a4o5uhgv4" path="res://Assets/Images/textures/moss_ground_02_1k/moss_groud_02_Ambient_Occlusion_1k.png" id="3_m55l0"]
+[ext_resource type="Texture2D" uid="uid://ddrkdkjjq0lbh" path="res://Assets/Images/textures/moss_ground_02_1k/moss_groud_02_Height_1k.png" id="4_ilt8c"]
+[ext_resource type="Texture2D" uid="uid://ciueg64a704sb" path="res://Assets/Images/textures/ground_tiles_with_sand_01_1k/ground_tiles_with_sand_01_metallic_1k.png" id="5_00ijv"]
+[ext_resource type="Texture2D" uid="uid://5awtijh22cv3" path="res://Assets/Images/textures/moss_ground_02_1k/moss_groud_02_Normal_dx_1k.png" id="6_00ijv"]
+[ext_resource type="Texture2D" uid="uid://w88dny1cnhb6" path="res://Assets/Images/textures/moss_ground_02_1k/moss_groud_02_Roughness_1k.png" id="7_yftya"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xtv1y"]
+albedo_texture = ExtResource("2_favgt")
+metallic_texture = ExtResource("5_00ijv")
+roughness = 0.75
+roughness_texture = ExtResource("7_yftya")
+normal_enabled = true
+normal_scale = -5.63
+normal_texture = ExtResource("6_00ijv")
+ao_enabled = true
+ao_texture = ExtResource("3_m55l0")
+heightmap_enabled = true
+heightmap_scale = 16.0
+heightmap_texture = ExtResource("4_ilt8c")
+uv1_scale = Vector3(7, 7, 7)
+
+[node name="Terrain2" instance=ExtResource("1_xtv1y")]
+
+[node name="Plane" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_xtv1y")

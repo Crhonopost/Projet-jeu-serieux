@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ckwrutivvfd2d"]
+[gd_scene load_steps=14 format=3 uid="uid://ckwrutivvfd2d"]
 
 [ext_resource type="Script" uid="uid://cfs4aurw5bldk" path="res://scenes/grid/gridViewer.gd" id="1_brle5"]
 [ext_resource type="Script" uid="uid://dekn4sp37cmhs" path="res://scenes/grid/visualization.gd" id="2_hg1qn"]
@@ -7,10 +7,11 @@
 [ext_resource type="Script" uid="uid://cln2wnn2yo7k4" path="res://addons/orbit_camera/orbit_camera.gd" id="5_r77gd"]
 [ext_resource type="PackedScene" uid="uid://b4yvg7aldvrrs" path="res://Assets/Blender/Terrain.glb" id="6_n33vv"]
 [ext_resource type="PackedScene" uid="uid://bpap3u71d8t2c" path="res://Assets/Blender/Terrain2.glb" id="7_aaxs0"]
+[ext_resource type="PackedScene" uid="uid://bur7mbofyvfay" path="res://scenes/grid/terrain_2.tscn" id="8_e4ugg"]
 [ext_resource type="AudioStream" uid="uid://bljfh8b3i51ns" path="res://Assets/Audio/Construction/boop_1.wav" id="8_ml811"]
 [ext_resource type="AudioStream" uid="uid://4alxnjrkjhnh" path="res://Assets/Audio/Construction/boop_2.wav" id="9_0k6gf"]
 [ext_resource type="AudioStream" uid="uid://b787rus16c7bq" path="res://Assets/Audio/Construction/boop_3.wav" id="10_e4ugg"]
-[ext_resource type="Script" uid="uid://choo8iq1aoknw" path="res://scenes/grid/sounds.gd" id="11_0k6gf"]
+[ext_resource type="Script" path="res://scenes/grid/sounds.gd" id="11_0k6gf"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0k6gf"]
 streams_count = 3
@@ -49,6 +50,10 @@ sky_mode = 1
 
 [node name="Terrain2" parent="." instance=ExtResource("7_aaxs0")]
 transform = Transform3D(10.4086275, 0, 0, 0, 10.4086275, 0, 0, 0, 10.4086275, 0.75753784, -64.31033, -4.804779)
+visible = false
+
+[node name="Terrain3" parent="." instance=ExtResource("8_e4ugg")]
+transform = Transform3D(10.4, 0, 0, 0, 10.4, 0, 0, 0, 10.4, 0.758, -64.31, -4.805)
 
 [node name="Sounds" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_0k6gf")
