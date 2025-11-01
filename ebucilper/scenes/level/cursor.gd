@@ -1,6 +1,7 @@
 extends Node3D
 
 signal block_placed(position: Vector3i, color: Global.ColorsEnum)
+signal finish_instructions()
 
 var cell_size: float = 1
 var actions: Array[Dictionary]
@@ -18,11 +19,15 @@ func _ready() -> void:
 
 
 func move_to(position: Vector3i, orientation: Global.OrientationsEnum):
+	if($TransitionTimer.is_stopped()):
+		$TransitionTimer.start()
 	actions.append({"move_position": position, "move_orientation": orientation})
 
 func place_block(position: Vector3i, color: Global.ColorsEnum):
+	if($TransitionTimer.is_stopped()):
+		$TransitionTimer.start()
 	actions.append({"place_color": color, "place_position": position})
-	
+
 
 
 func _on_transition_timer_timeout() -> void:
@@ -32,6 +37,9 @@ func _on_transition_timer_timeout() -> void:
 			m_move_cursor(action["move_position"], action["move_orientation"])
 		elif(action.has("place_color")):
 			block_placed.emit(action["place_position"], action["place_color"])
+	else:
+		finish_instructions.emit()
+		$TransitionTimer.stop()
 
 func get_orientation_y(orientation: Global.OrientationsEnum) -> float:
 	var yaw := 0.0

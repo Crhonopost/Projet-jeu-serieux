@@ -1,7 +1,5 @@
 extends Control
 
-signal check_grid
-
 @onready var builder = $SubViewportContainer/SubViewport/Builder
 @onready var gridView = $SubViewportContainer/SubViewport/Grid
 
@@ -23,6 +21,7 @@ func _ready():
 	builder.block_placed.connect(cursor_node.place_block)
 	builder.cursor_moved.connect(cursor_node.move_to)
 	cursor_node.block_placed.connect(gridView._on_block_placed)
+	cursor_node.finish_instructions.connect(gridView.placePlayerBlocs)
 
 func _on_coding_space_launch() -> void:
 	var instructions = $CodingSpace.retrieveInstructions()
@@ -36,9 +35,8 @@ func _on_coding_space_launch() -> void:
 	builder.resetState()
 	# wait for the cursor back to start
 	builder.load_program(instructions)
-	await builder.build()
+	builder.build()
 	gridView.placeBlocs(builder.grid, false)
-	gridView.placePlayerBlocs()
 	gridView.showTargetBlock(gridView.mode, true, Vector3i.ZERO)
 	
 	

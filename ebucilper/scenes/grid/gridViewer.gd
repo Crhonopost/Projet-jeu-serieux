@@ -10,6 +10,7 @@ var playerGrid: GridResource = GridResource.new()
 
 var _last_layer := -1
 
+
 # func _ready() -> void:
 	# fillgrid(gridTarget,0.05)
 	# fillgrid(gridEditor,0.05)
@@ -58,7 +59,9 @@ func clear_player():
 
 
 func placePlayerBlocs() -> void:
-	_on_current_level_check_grid()
+	if _grids_are_equal(currentGrid, playerGrid):
+		print("level complete")
+		level_complete.emit()
 
 
 func placeBlocs(gridResource : GridResource, isTransparent : bool) :
@@ -121,11 +124,6 @@ func _grids_are_equal(grid1: GridResource, grid2: GridResource) -> bool:
 			return false
 
 	return true
-
-func _on_current_level_check_grid() -> void:
-	if _grids_are_equal(currentGrid, playerGrid):
-		print("level complete")
-		level_complete.emit()
 
 
 func _on_current_level_next_grid_tutorial(grid) -> void:
