@@ -29,10 +29,12 @@ func instantiateList():
 	for instructionChild in instructionResource.childs:
 		instantiateChild(instructionChild)
 
-func instantiateChild(instructionChild: LogicResource):
+func instantiateChild(instructionChild: LogicResource, index: int = -1):
 	var instance = InstructionVisualBuilder.instantiate(instructionChild)
 	instance.connect("exitCode", func (): childLeave(instructionChild))
 	instructionList.add_child(instance)
+	if(index > -1):
+		instructionList.move_child(instance, index)
 
 func _on_delete_pressed() -> void:
 	emit_signal("exitCode")
@@ -51,8 +53,17 @@ func _get_drag_data(at_position: Vector2) -> Variant:
 	return instructionResource
 
 func _drop_data(at_position: Vector2, data: Variant) -> void:
-	instructionResource.childs.append(data)
-	instantiateChild(data)
+	var target_idx = instructionResource.childs.size()
+	for i in instructionList.get_child_count():
+		var child = instructionList.get_child(i)
+		var child_mid = child.position.y + child.size.y * 0.5 + $PanelTitle.size.y
+		print(child_mid, "   ", at_position.y)
+		if at_position.y < child_mid && target_idx > i:
+			target_idx = i
+	
+	print(target_idx)
+	instructionResource.childs.insert(target_idx, data)
+	instantiateChild(data, target_idx)
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	return data is LogicResource
