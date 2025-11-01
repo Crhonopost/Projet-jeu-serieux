@@ -35,7 +35,7 @@ func _on_coding_space_launch() -> void:
 	#gridView.placeBlocs(builder.grid, false)
 	gridView.placePlayerBlocs()
 	gridView.showTargetBlock(gridView.mode, true, Vector3i.ZERO)
-	#check_grid.emit()
+	
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if dev_mode and event.is_action_pressed("dev_save_target"):

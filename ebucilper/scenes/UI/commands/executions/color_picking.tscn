@@ -12,8 +12,9 @@ script = ExtResource("1_lvrrf")
 layout_mode = 2
 auto_width = true
 auto_height = true
-item_count = 2
+item_count = 3
 item_0/text = "RED"
 item_1/text = "BLUE"
+item_2/text = "GREEN"
 
 [connection signal="item_selected" from="ItemList" to="." method="_on_item_list_item_selected"]

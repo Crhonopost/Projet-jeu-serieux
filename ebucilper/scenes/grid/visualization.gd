@@ -4,7 +4,7 @@ const ColorsEnum = Global.ColorsEnum
 
 @export var cellInstance: PackedScene
 
-@export var colors: Array[Color] = [Color("pink"), Color("red"), Color("blue")]
+@export var colors: Array[Color] = [Color("pink"), Color("red"), Color("blue"),Color("green")]
 
 func instantiate(position: Vector3, colorIdx: int , isTransparent := false):
 	var bloc: MeshInstance3D = cellInstance.instantiate()
