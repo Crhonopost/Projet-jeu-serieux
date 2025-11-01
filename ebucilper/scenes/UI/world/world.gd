@@ -13,7 +13,10 @@ func _enter_tree() -> void:
 		child.queue_free()
 	
 	var levelItemScene : PackedScene = load("res://scenes/UI/world/level.tscn")
-	for level in levels:
+	for i in range(levels.size()-1):
+		var level := levels[i]
+		levels[i+1].unlocked = level.done
+
 		var l = levelItemScene.instantiate()
 		l.level_data = level
 		$TextureRect/LevelsList/ScrollContainer/LevelList.add_child(l)
