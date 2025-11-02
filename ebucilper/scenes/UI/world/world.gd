@@ -24,6 +24,11 @@ func _enter_tree() -> void:
 		l.level_data = level
 		$TextureRect/LevelsList/ScrollContainer/LevelList.add_child(l)
 		l.connect("level_selected", _on_level_selected)
+	
+	var l = levelItemScene.instantiate()
+	l.level_data = levels.back()
+	$TextureRect/LevelsList/ScrollContainer/LevelList.add_child(l)
+	l.connect("level_selected", _on_level_selected)
 
 func user_levels_init():
 	for i in levels.size():
