@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="LevelResource" load_steps=16 format=3 uid="uid://kdmddxa77cml"]
+[gd_resource type="Resource" script_class="LevelResource" load_steps=17 format=3 uid="uid://kdmddxa77cml"]
 
 [ext_resource type="Resource" uid="uid://dexj7eqnqc313" path="res://resources/levels/instructions list/all_instructions.tres" id="1_qmb0u"]
 [ext_resource type="Texture2D" uid="uid://65iu3hsrri36" path="res://Assets/Images/backgrounds/background_16.png" id="2_slpo0"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bxhd44vk88cnu" path="res://scripts/levels/build_resource.gd" id="4_ngx10"]
 [ext_resource type="Texture2D" uid="uid://towe38v7ths" path="res://Assets/Images/levelIcons/bat16_fine.png" id="5_dlu6a"]
 [ext_resource type="Script" uid="uid://b3x3werlg62hj" path="res://scripts/levels/level_resource.gd" id="6_lpvmc"]
+[ext_resource type="Script" uid="uid://bg3typib0wbdw" path="res://resources/scripting/definitions/logic/flows/function_logic_resource.gd" id="6_slpo0"]
 [ext_resource type="Script" uid="uid://b05xctfx6o6fl" path="res://scripts/levels/dialog_resource.gd" id="7_jt5ii"]
 [ext_resource type="Texture2D" uid="uid://rhck5ddagurf" path="res://Assets/Images/characters/nicolas_lutz_sad.png" id="8_gmm2o"]
 [ext_resource type="Texture2D" uid="uid://on53etfxd4ck" path="res://Assets/Images/characters/nicolas_lutz_happy.png" id="9_2845u"]
