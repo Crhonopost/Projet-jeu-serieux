@@ -41,6 +41,5 @@ authorized_logic_executions = ExtResource("1_ur6hj")
 optimal_steps = 1
 optimal_instruction_count = 1
 unlocked = true
-done = true
 build_data = SubResource("Resource_fd41c")
 metadata/_custom_type_script = "uid://b3x3werlg62hj"

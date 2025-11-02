@@ -12,7 +12,7 @@
 [ext_resource type="Resource" uid="uid://nkmc1xqx5b86" path="res://resources/levels/tutorial3.tres" id="5_r5cxa"]
 [ext_resource type="Resource" uid="uid://n7qalt033jf5" path="res://resources/levels/level_2.tres" id="6_jorwd"]
 [ext_resource type="Resource" uid="uid://kdmddxa77cml" path="res://resources/levels/level_3.tres" id="6_n143m"]
-[ext_resource type="Resource" uid="uid://s6ugy2ere6yd" path="res://resources/levels/tutorial.tres" id="7_i1d74"]
+[ext_resource type="Resource" uid="uid://c1cbyg4vhlcb4" path="res://resources/levels/tutorial.tres" id="7_i1d74"]
 [ext_resource type="Resource" uid="uid://dko4d283p37fp" path="res://resources/levels/level_4.tres" id="7_m7tf2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ivcrt"]
