@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="LevelResource" load_steps=16 format=3 uid="uid://n7qalt033jf5"]
+[gd_resource type="Resource" script_class="LevelResource" load_steps=17 format=3 uid="uid://n7qalt033jf5"]
 
 [ext_resource type="Resource" uid="uid://dexj7eqnqc313" path="res://resources/levels/instructions list/all_instructions.tres" id="1_u0ri6"]
 [ext_resource type="Texture2D" uid="uid://65iu3hsrri36" path="res://Assets/Images/backgrounds/background_16.png" id="2_2gm7q"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://bxhd44vk88cnu" path="res://scripts/levels/build_resource.gd" id="4_01ud5"]
 [ext_resource type="Texture2D" uid="uid://rhck5ddagurf" path="res://Assets/Images/characters/nicolas_lutz_sad.png" id="4_f38rn"]
 [ext_resource type="Texture2D" uid="uid://on53etfxd4ck" path="res://Assets/Images/characters/nicolas_lutz_happy.png" id="5_2gm7q"]
+[ext_resource type="Script" uid="uid://bg3typib0wbdw" path="res://resources/scripting/definitions/logic/flows/function_logic_resource.gd" id="6_01ud5"]
 [ext_resource type="Texture2D" uid="uid://cbu22rkh7ocgj" path="res://Assets/Images/levelIcons/bat16_destroyed.png" id="8_61tk6"]
 
 [sub_resource type="Resource" id="Resource_u0ri6"]
@@ -55,6 +56,5 @@ The IF block allows you to compare numbers (for example, loop iterators).
 The \"SET_CURSOR_POS\" block allows you to place the robot anywere in the grid."
 authorized_logic_executions = ExtResource("1_u0ri6")
 optimal_steps = 221
-unlocked = true
 build_data = SubResource("Resource_ce1dc")
 metadata/_custom_type_script = "uid://b3x3werlg62hj"

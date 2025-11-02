@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="LevelResource" load_steps=15 format=3 uid="uid://bbmq8eos5w6ps"]
+[gd_resource type="Resource" script_class="LevelResource" load_steps=16 format=3 uid="uid://bbmq8eos5w6ps"]
 
 [ext_resource type="Script" uid="uid://b3x3werlg62hj" path="res://scripts/levels/level_resource.gd" id="1_hndnq"]
 [ext_resource type="Resource" uid="uid://ck3xinrcsj3qi" path="res://resources/levels/instructions list/for.tres" id="1_v6d2w"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bwsthiomo1lgy" path="res://scripts/levels/grid_data_resource.gd" id="3_v6d2w"]
 [ext_resource type="Script" uid="uid://b05xctfx6o6fl" path="res://scripts/levels/dialog_resource.gd" id="4_2hak1"]
 [ext_resource type="Script" uid="uid://bxhd44vk88cnu" path="res://scripts/levels/build_resource.gd" id="4_br0t4"]
+[ext_resource type="Script" uid="uid://bg3typib0wbdw" path="res://resources/scripting/definitions/logic/flows/function_logic_resource.gd" id="6_d3w8w"]
 [ext_resource type="Texture2D" uid="uid://rhck5ddagurf" path="res://Assets/Images/characters/nicolas_lutz_sad.png" id="8_4u7ew"]
 [ext_resource type="Texture2D" uid="uid://dh1fgon3wyed8" path="res://Assets/Images/levelIcons/bat36_destroyed.png" id="9_v6d2w"]
 
@@ -53,6 +54,5 @@ tip = "Use the for loop to execute instructions multiple times. The \"stage iter
 Be careful not to place block outside the grid !"
 authorized_logic_executions = ExtResource("1_v6d2w")
 optimal_steps = 60
-unlocked = true
 build_data = SubResource("Resource_bbtr6")
 metadata/_custom_type_script = "uid://b3x3werlg62hj"

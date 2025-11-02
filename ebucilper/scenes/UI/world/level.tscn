@@ -8,7 +8,7 @@
 [node name="Level" type="MarginContainer"]
 custom_minimum_size = Vector2(200, 0)
 offset_right = 200.0
-offset_bottom = 280.0
+offset_bottom = 267.0
 script = ExtResource("1_ho8or")
 
 [node name="LevelContainer" type="VBoxContainer" parent="."]

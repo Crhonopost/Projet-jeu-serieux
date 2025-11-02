@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="LevelResource" load_steps=12 format=3 uid="uid://v1m5rnaweisd"]
+[gd_resource type="Resource" script_class="LevelResource" load_steps=13 format=3 uid="uid://v1m5rnaweisd"]
 
 [ext_resource type="Resource" uid="uid://bffxkb4oj3k3g" path="res://resources/levels/instructions list/moving.tres" id="1_2f483"]
 [ext_resource type="Texture2D" uid="uid://8jssbf2d57h" path="res://Assets/Images/backgrounds/background_tuto.png" id="4_b4ctf"]
 [ext_resource type="Script" uid="uid://bwsthiomo1lgy" path="res://scripts/levels/grid_data_resource.gd" id="5_fm0co"]
+[ext_resource type="Script" uid="uid://bg3typib0wbdw" path="res://resources/scripting/definitions/logic/flows/function_logic_resource.gd" id="6_v3egd"]
 [ext_resource type="Script" uid="uid://bxhd44vk88cnu" path="res://scripts/levels/build_resource.gd" id="6_wlhgs"]
 [ext_resource type="Texture2D" uid="uid://b20lgfmyudpij" path="res://Assets/Images/characters/engineer.png" id="7_owajo"]
 [ext_resource type="Script" uid="uid://b3x3werlg62hj" path="res://scripts/levels/level_resource.gd" id="8_8wl2s"]
@@ -37,6 +38,5 @@ completed_icon = ExtResource("7_owajo")
 tip = "Use the movement instructions to move Blocky to the desired location!"
 authorized_logic_executions = ExtResource("1_2f483")
 optimal_steps = 5
-unlocked = true
 build_data = SubResource("Resource_fd41c")
 metadata/_custom_type_script = "uid://b3x3werlg62hj"

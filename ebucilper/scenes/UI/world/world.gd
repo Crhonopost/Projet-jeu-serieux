@@ -18,7 +18,7 @@ func _enter_tree() -> void:
 	var levelItemScene : PackedScene = load("res://scenes/UI/world/level.tscn")
 	for i in range(levels.size()-1):
 		var level := levels[i]
-		levels[i+1].unlocked = level.done
+		levels[i+1].unlocked = level.done || levels[i+1].unlocked
 
 		var l = levelItemScene.instantiate()
 		l.level_data = level

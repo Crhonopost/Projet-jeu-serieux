@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c5mn07u5l2rvp" path="res://Assets/Images/backgrounds/background_36.png" id="1_ivcrt"]
 [ext_resource type="FontFile" uid="uid://cj52gxydlihfd" path="res://Assets/Fonts/Breakdown PG.otf" id="2_mm5an"]
 [ext_resource type="Script" uid="uid://b3x3werlg62hj" path="res://scripts/levels/level_resource.gd" id="2_yq0iy"]
-[ext_resource type="Resource" uid="uid://c5ah077ap0lkd" path="res://resources/levels/sandbox.tres" id="3_r5cxa"]
+[ext_resource type="Resource" uid="uid://hx1jnupyfmcj" path="res://resources/levels/sandbox.tres" id="3_r5cxa"]
 [ext_resource type="FontFile" uid="uid://bewn88o0me7h7" path="res://Assets/Fonts/Coolvetica Rg.otf" id="3_rg8tu"]
 [ext_resource type="Resource" uid="uid://v1m5rnaweisd" path="res://resources/levels/tutorial2.tres" id="4_bxrww"]
 [ext_resource type="Resource" uid="uid://bbmq8eos5w6ps" path="res://resources/levels/level_1.tres" id="5_a6vwr"]
@@ -97,6 +97,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+horizontal_scroll_mode = 2
 vertical_scroll_mode = 0
 
 [node name="LevelList" type="HBoxContainer" parent="TextureRect/LevelsList/ScrollContainer"]
