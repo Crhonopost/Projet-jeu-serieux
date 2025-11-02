@@ -37,6 +37,7 @@ to_be_done_icon = ExtResource("10_yxior")
 completed_icon = ExtResource("5_54n1d")
 tip = "Utilisez tout ce qu'on a vu auparavant."
 authorized_logic_executions = ExtResource("1_si2pv")
+optimal_steps = 120
 unlocked = true
 build_data = SubResource("Resource_ce1dc")
 metadata/_custom_type_script = "uid://b3x3werlg62hj"

@@ -51,6 +51,7 @@ completed_icon = ExtResource("3_wi76j")
 tip = "On peut placer une boucle for a l'interieur d'une autre !
 Le block IF permet de comparer des nombres (par exemples des iterateurs de boucles)"
 authorized_logic_executions = ExtResource("1_u0ri6")
+optimal_steps = 221
 unlocked = true
 build_data = SubResource("Resource_ce1dc")
 metadata/_custom_type_script = "uid://b3x3werlg62hj"

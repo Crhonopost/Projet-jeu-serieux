@@ -39,7 +39,7 @@ metadata/_custom_type_script = "uid://b05xctfx6o6fl"
 [sub_resource type="Resource" id="Resource_bqjqr"]
 script = ExtResource("4_2hak1")
 character_icon = ExtResource("7_d3w8w")
-text = "Il faut reconstruitre les fondations du batiment. On peut utiliser une boucle pour ca !"
+text = "Il faut reconstruitre les fondations du batiment. On peut utiliser une boucle pour ca ! Elle va permettre de repeter des actions un certain nombre de fois."
 metadata/_custom_type_script = "uid://b05xctfx6o6fl"
 
 [resource]
@@ -50,9 +50,8 @@ texts = Array[ExtResource("4_2hak1")]([SubResource("Resource_v6d2w"), SubResourc
 background = ExtResource("2_4u7ew")
 to_be_done_icon = ExtResource("9_v6d2w")
 completed_icon = ExtResource("3_d3w8w")
-tip = "Utilise la boucle for pour executer des instructions un certain nombre de fois. conseil il faut utiliser deux bloucles for"
+tip = "Utilise la boucle for pour executer des instructions un certain nombre de fois. Le \"stage iterator\" est un nombre qui represente l'étape en cours."
 authorized_logic_executions = ExtResource("1_v6d2w")
-optimal_steps = 5
-unlocked = true
+optimal_steps = 30
 build_data = SubResource("Resource_bbtr6")
 metadata/_custom_type_script = "uid://b3x3werlg62hj"

@@ -107,6 +107,7 @@ func placeBlock():
 	else:
 		push_warning("placeBlock failed at %s" % [cursorPosition])
 	buildingTime += 1
+	print(buildingTime)
 	return ok
 
 
