@@ -127,13 +127,12 @@ func processFor(forLogic: ForLogicResource, instructionIdx: int) -> Array[Instru
 	#####################################
 	
 	################# childs ####################
+	for child in forLogic.childs:
+		res.append_array(processInstructions(child, instructionIdx + res.size()))
 	var iteratorUpdate := UpdateVarInstruction.new()
 	iteratorUpdate.target = forLogic.variableName
 	iteratorUpdate.expression.parse(forLogic.variableName + " + 1")
 	res.append(iteratorUpdate)
-	
-	for child in forLogic.childs:
-		res.append_array(processInstructions(child, instructionIdx + res.size()))
 	#####################################
 	
 	################# jump back ####################
