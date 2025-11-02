@@ -51,7 +51,8 @@ background = ExtResource("2_2gm7q")
 to_be_done_icon = ExtResource("8_61tk6")
 completed_icon = ExtResource("3_wi76j")
 tip = "You can place one for loop inside another!
-The IF block allows you to compare numbers (for example, loop iterators)."
+The IF block allows you to compare numbers (for example, loop iterators).
+The \"SET_CURSOR_POS\" block allows you to place the robot anywere in the grid."
 authorized_logic_executions = ExtResource("1_u0ri6")
 optimal_steps = 221
 unlocked = true
