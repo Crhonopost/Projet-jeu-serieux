@@ -76,7 +76,7 @@ var mouse_over_viewport = false
 
 func _input(event: InputEvent) -> void:
 	if(event.is_action("move_camera")):
-		$SubViewportContainer/SubViewport/Grid.get_node("CameraTarget/OrbitCamera").follow_mouse = mouse_over_viewport && event.is_action_pressed("move_camera")
+		$SubViewportContainer/SubViewport/Env/CameraTarget/OrbitCamera.follow_mouse = mouse_over_viewport && event.is_action_pressed("move_camera")
 	
 
 func _on_sub_viewport_container_mouse_entered() -> void:
