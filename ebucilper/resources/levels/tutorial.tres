@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="LevelResource" load_steps=12 format=3 uid="uid://c1cbyg4vhlcb4"]
 
-[ext_resource type="Resource" uid="uid://dexj7eqnqc313" path="res://resources/levels/instructions list/all_instructions.tres" id="1_ur6hj"]
+[ext_resource type="Resource" uid="uid://dapnwbithnu61" path="res://resources/levels/instructions list/only_block.tres" id="1_ur6hj"]
 [ext_resource type="Script" uid="uid://b3x3werlg62hj" path="res://scripts/levels/level_resource.gd" id="2_0crb2"]
 [ext_resource type="Texture2D" uid="uid://8jssbf2d57h" path="res://Assets/Images/backgrounds/background_tuto.png" id="2_766ou"]
 [ext_resource type="Script" uid="uid://b05xctfx6o6fl" path="res://scripts/levels/dialog_resource.gd" id="3_sc4kr"]
