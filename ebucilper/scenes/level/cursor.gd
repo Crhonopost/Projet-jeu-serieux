@@ -44,10 +44,10 @@ func _on_transition_timer_timeout() -> void:
 func get_orientation_y(orientation: Global.OrientationsEnum) -> float:
 	var yaw := 0.0
 	match orientation:
-		Global.OrientationsEnum.X_POSITIVE: yaw = 0.0
-		Global.OrientationsEnum.X_NEGATIVE: yaw = deg_to_rad(180)
-		Global.OrientationsEnum.Z_POSITIVE: yaw = deg_to_rad(90)
-		Global.OrientationsEnum.Z_NEGATIVE: yaw = deg_to_rad(-90)
+		Global.OrientationsEnum.X_POSITIVE: yaw = deg_to_rad(90)
+		Global.OrientationsEnum.X_NEGATIVE: yaw = deg_to_rad(-90)
+		Global.OrientationsEnum.Z_POSITIVE: yaw = 0.0
+		Global.OrientationsEnum.Z_NEGATIVE: yaw = deg_to_rad(180)
 	
 	return yaw
 

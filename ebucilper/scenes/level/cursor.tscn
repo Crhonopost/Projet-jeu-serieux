@@ -9,6 +9,9 @@ script = ExtResource("1_14s8q")
 
 [node name="Sketchfab_Scene" parent="." instance=ExtResource("1_6t2rx")]
 
+[node name="Sketchfab_model" parent="Sketchfab_Scene" index="0"]
+transform = Transform3D(0.01308184, 0, 0, 0, -5.718254e-10, 0.01308184, 0, -0.01308184, -5.718254e-10, 0, 0, 0)
+
 [node name="U_MassPoint" parent="Sketchfab_Scene/Sketchfab_model/BusterDrone_fbx/Object_2/RootNode/Drone_Controller" index="1"]
 transform = Transform3D(1, 0, 0, 0, 0.24763307, -0.9688539, 0, 0.9688539, 0.24763307, 0, 0.11856791, -12.910047)
 

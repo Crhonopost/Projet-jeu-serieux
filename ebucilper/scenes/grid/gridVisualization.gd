@@ -31,7 +31,6 @@ func _make_label3d(txt: String, color: Color,pixel_size :float = 0.0011) -> Labe
 	L.fixed_size = true
 	L.double_sided = true
 	L.pixel_size = pixel_size
-	L.outline_size = 1
 	return L
 	
 func axis_labels():
@@ -222,5 +221,73 @@ func draw_grid(immediate_mesh: ImmediateMesh):
 					immediate_mesh.surface_add_vertex(p + Vector3(0, 0, axis_len))
 					immediate_mesh.surface_add_vertex(p)
 					immediate_mesh.surface_add_vertex(p + Vector3(0, 0, -axis_len))
+	immediate_mesh.surface_end()
+	
+	
+	var tick_shader := Shader.new()
+	tick_shader.code = """
+	shader_type spatial;
+	render_mode unshaded, cull_disabled, fog_disabled;
+	uniform vec4 tint : source_color = vec4(0.0, 0.0, 0.0, 1.0);
+	void fragment() {
+	    ALBEDO = tint.rgb;
+	    ALPHA = 1.0;
+	}
+	"""
+	var tick_mat := ShaderMaterial.new()
+	tick_mat.shader = tick_shader
+	tick_mat.set_shader_parameter("tint", Color.WHITE)
+
+	var tick_step      := 1 
+	var major_every    := 5
+	var minor_len      := 0.25 
+	var major_len      := 0.45
+	immediate_mesh.surface_begin(Mesh.PRIMITIVE_LINES, tick_mat)
+
+	for i in range(1, grid_size + 1, tick_step):
+		var p : Vector3
+		p= start + Vector3(i * cell_size, 0, 0)
+		var len
+		var dir : Vector3
+		dir = Vector3(0, -1, -1).normalized()
+		if(i % major_every == 0):
+			len =  major_len 
+		else:
+			len = minor_len
+		var a := p
+		var b :Vector3 = p + dir * len
+		immediate_mesh.surface_add_vertex(a)
+		immediate_mesh.surface_add_vertex(b)
+
+	for i in range(1, grid_size + 1, tick_step):
+		var p : Vector3
+		p = start + Vector3(0, i * cell_size, 0)
+		var len
+		var dir : Vector3
+		dir = Vector3(-1, 0, -1).normalized()
+		if(i % major_every == 0):
+			len =  major_len 
+		else:
+			len = minor_len
+		var a := p
+		var b :Vector3 = p + dir * len
+		immediate_mesh.surface_add_vertex(a)
+		immediate_mesh.surface_add_vertex(b)
+
+	for i in range(1, grid_size + 1, tick_step):
+		var p :Vector3
+		p= start + Vector3(0, 0, i * cell_size)
+		var len
+		var dir : Vector3
+		dir = Vector3(-1, -1, 0).normalized()
+		if(i % major_every == 0):
+			len =  major_len 
+		else:
+			len = minor_len
+		var a := p
+		var b :Vector3 = p + dir * len
+		immediate_mesh.surface_add_vertex(a)
+		immediate_mesh.surface_add_vertex(b)
 
 	immediate_mesh.surface_end()
+	
