@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="LevelResource" load_steps=12 format=3 uid="uid://c1cbyg4vhlcb4"]
+[gd_resource type="Resource" script_class="LevelResource" load_steps=13 format=3 uid="uid://c1cbyg4vhlcb4"]
 
 [ext_resource type="Resource" uid="uid://dapnwbithnu61" path="res://resources/levels/instructions list/only_block.tres" id="1_ur6hj"]
 [ext_resource type="Script" uid="uid://b3x3werlg62hj" path="res://scripts/levels/level_resource.gd" id="2_0crb2"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bwsthiomo1lgy" path="res://scripts/levels/grid_data_resource.gd" id="3_ur6hj"]
 [ext_resource type="Script" uid="uid://bxhd44vk88cnu" path="res://scripts/levels/build_resource.gd" id="4_58q5j"]
 [ext_resource type="Texture2D" uid="uid://b20lgfmyudpij" path="res://Assets/Images/characters/engineer.png" id="5_ur6hj"]
+[ext_resource type="Script" uid="uid://bg3typib0wbdw" path="res://resources/scripting/definitions/logic/flows/function_logic_resource.gd" id="6_58q5j"]
 
 [sub_resource type="Resource" id="Resource_ur6hj"]
 script = ExtResource("3_ur6hj")

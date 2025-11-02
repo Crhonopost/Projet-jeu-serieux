@@ -53,6 +53,5 @@ tip = "Use functions to eliminate redundant code.
 To do this, create a function, then call it with the \"CALL_FUNCTION\" block, providing parameters if needed."
 authorized_logic_executions = ExtResource("1_qmb0u")
 optimal_steps = 120
-unlocked = true
 build_data = SubResource("Resource_ce1dc")
 metadata/_custom_type_script = "uid://b3x3werlg62hj"
