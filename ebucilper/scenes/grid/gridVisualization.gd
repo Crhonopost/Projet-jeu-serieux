@@ -4,6 +4,10 @@ extends Node3D
 @export var grid_size: int = 10
 @export var small_axe_color: Color = Color.WHITE
 @export var line_color: Color = Color.BLACK
+@export var num_color: Color = Color.LINEN
+@export var axeletter_color: Color = Color.RED
+
+
 
 
 var cellOffset = Vector3(-0.5,-0.5,-0.5)
@@ -17,8 +21,57 @@ func _ready():
 	add_child(mesh_instance)
 
 	draw_grid(immediate_mesh)
+	axis_labels()
 
+func _make_label3d(txt: String, color: Color,pixel_size :float = 0.0011) -> Label3D:
+	var L := Label3D.new()
+	L.text = txt
+	L.modulate = color
+	L.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	L.fixed_size = true
+	L.double_sided = true
+	L.pixel_size = pixel_size
+	L.outline_size = 1
+	return L
+	
+func axis_labels():
+	var size: float = float(grid_size) * cell_size
+	var start: Vector3 = Vector3(0, 0, 0)
+	var off_y := Vector3(0, 0.25 * cell_size, 0)
+	var off_x := Vector3(0.25 * cell_size, 0, 0)
+	var off_z := Vector3(0, 0.25 * cell_size, 0)
 
+	# axe x
+	var p_X := start + Vector3(size, 0, 0) - Vector3(-1.5,0.5,0.5)
+	var lbl_X := _make_label3d('X', axeletter_color,0.0015)
+	lbl_X.position = p_X + off_y
+	add_child(lbl_X)
+	for i in range(0, grid_size):
+		var p := start + Vector3(i*cell_size, 0, 0) - Vector3(0,1,1)
+		var lbl := _make_label3d(str(i), num_color)
+		lbl.position = p + off_y
+		add_child(lbl)
+	# axe y
+	var p_Y := start + Vector3(0,size, 0) - Vector3(0.5,-1.5,0.5)
+	var lbl_Y := _make_label3d('Y', axeletter_color,0.0015)
+	lbl_Y.position = p_Y + off_x
+	add_child(lbl_Y)
+	for i in range(0, grid_size):
+		var p := start + Vector3(0, i * cell_size, 0) - Vector3(1,0,1)
+		var lbl := _make_label3d(str(i), num_color)
+		lbl.position = p + off_x
+		add_child(lbl)
+
+	#axe z
+	var p_Z := start + Vector3(0,0, size) - Vector3(0.5,0.5,-1.5)
+	var lbl_Z := _make_label3d('Z', axeletter_color,0.0015)
+	lbl_Z.position = p_Z + off_y
+	add_child(lbl_Z)
+	for i in range(0, grid_size ):
+		var p := start + Vector3(0, 0, i * cell_size) - Vector3(1,1,0)
+		var lbl := _make_label3d(str(i), num_color)
+		lbl.position = p + off_y
+		add_child(lbl)
 
 func create_axis(start: Vector3, end: Vector3, radius: float, color: Color):
 	var axis = MeshInstance3D.new()
