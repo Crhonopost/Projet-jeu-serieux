@@ -25,19 +25,19 @@ metadata/_custom_type_script = "uid://bxhd44vk88cnu"
 [sub_resource type="Resource" id="Resource_qd1vq"]
 script = ExtResource("7_jt5ii")
 character_icon = ExtResource("8_gmm2o")
-text = "Il faut replanter la forêt de la fac. Pour lui rendre sa splendeur."
+text = "We need to replant the university forest to restore its former beauty."
 metadata/_custom_type_script = "uid://b05xctfx6o6fl"
 
 [sub_resource type="Resource" id="Resource_wi76j"]
 script = ExtResource("7_jt5ii")
 character_icon = ExtResource("8_gmm2o")
-text = "Ca va etre long de tout faire a la main. Il faut placer les arbres un par un !"
+text = "Doing it all by hand would take forever — we’d have to place each tree one by one!"
 metadata/_custom_type_script = "uid://b05xctfx6o6fl"
 
 [sub_resource type="Resource" id="Resource_01ud5"]
 script = ExtResource("7_jt5ii")
 character_icon = ExtResource("9_2845u")
-text = "Je sais ! on peut utiliser des fonctions pour eviter d'avoir a copier coller du code !"
+text = "I know! We can use functions to avoid copying and pasting code!"
 metadata/_custom_type_script = "uid://b05xctfx6o6fl"
 
 [resource]
@@ -48,8 +48,10 @@ texts = Array[ExtResource("7_jt5ii")]([SubResource("Resource_qd1vq"), SubResourc
 background = ExtResource("2_slpo0")
 to_be_done_icon = ExtResource("10_5qhsn")
 completed_icon = ExtResource("5_dlu6a")
-tip = "Utilisez les fonctions pour éviter le code redondant. Pour cela il faut creer la fonction puis l'appeler avec le block \"CALL_FUNCTION\" avec des parametres si besoin. "
+tip = "Use functions to eliminate redundant code.
+To do this, create a function, then call it with the \"CALL_FUNCTION\" block, providing parameters if needed."
 authorized_logic_executions = ExtResource("1_qmb0u")
+optimal_steps = 120
 unlocked = true
 build_data = SubResource("Resource_ce1dc")
 metadata/_custom_type_script = "uid://b3x3werlg62hj"

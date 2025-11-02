@@ -23,7 +23,7 @@ metadata/_custom_type_script = "uid://bxhd44vk88cnu"
 [sub_resource type="Resource" id="Resource_a72hl"]
 script = ExtResource("6_mea8g")
 character_icon = ExtResource("7_dn8m8")
-text = "Vous pouvez contruire avec différentes couleurs.  Pour cela il faut utiliser l'instruction \"CHANGE_COLOR\""
+text = "You can build with different colors. To do so, use the \"CHANGE_COLOR\" instruction."
 metadata/_custom_type_script = "uid://b05xctfx6o6fl"
 
 [resource]
@@ -33,7 +33,7 @@ name = "Tutorial 3"
 texts = Array[ExtResource("6_mea8g")]([SubResource("Resource_a72hl")])
 background = ExtResource("2_dn8m8")
 to_be_done_icon = ExtResource("7_ylcpw")
-tip = "Utilise l'instruction \"change_color\" pour creer des blocks bleus."
+tip = "Use the \"change_color\" instruction to create blue blocks."
 authorized_logic_executions = ExtResource("1_rsbou")
 optimal_steps = 5
 unlocked = true
