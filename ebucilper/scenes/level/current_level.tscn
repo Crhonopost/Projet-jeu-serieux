@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://b267yic7ui0nk"]
+[gd_scene load_steps=25 format=3 uid="uid://b267yic7ui0nk"]
 
 [ext_resource type="Script" uid="uid://b7c8bsgviwne6" path="res://scenes/level/current_level.gd" id="1_1n4kf"]
 [ext_resource type="PackedScene" uid="uid://c2i2xc75qwiwp" path="res://scenes/UI/coding_space.tscn" id="1_j3nmy"]
@@ -11,11 +11,7 @@
 [ext_resource type="Script" uid="uid://qrylnjtay82j" path="res://scenes/grid/grid_resource.gd" id="4_6j83v"]
 [ext_resource type="Script" uid="uid://cav7hgnw788c8" path="res://scenes/grid/builder.gd" id="4_7ehec"]
 [ext_resource type="Script" uid="uid://bxhd44vk88cnu" path="res://scripts/levels/build_resource.gd" id="4_fii46"]
-[ext_resource type="Script" uid="uid://bqe45dm5wyip4" path="res://resources/scripting/definitions/logic/logic_resource.gd" id="4_p6xvp"]
-[ext_resource type="Script" uid="uid://jhj821woppuc" path="res://resources/scripting/definitions/logic/executions/update_logic_resource.gd" id="5_i02fo"]
-[ext_resource type="Script" uid="uid://qjop52belxgl" path="res://resources/scripting/definitions/logic/executions/no_args_logic_resource.gd" id="6_3mkxh"]
 [ext_resource type="Texture2D" uid="uid://0nw44w57ihvb" path="res://Assets/Blender/AllSkyFree_Sky_EpicBlueSunset_Equirect.png" id="6_g6sfq"]
-[ext_resource type="Script" uid="uid://cioni3f13iu1e" path="res://resources/scripting/definitions/logic/flows/while_instruction_resource.gd" id="7_4dcc5"]
 [ext_resource type="Script" uid="uid://b35gu8stq82fc" path="res://scenes/level/mode_selector.gd" id="12_3mkxh"]
 [ext_resource type="PackedScene" uid="uid://cfxk6jpnwr82m" path="res://scenes/level/cursor.tscn" id="17_5182c"]
 [ext_resource type="Script" uid="uid://cln2wnn2yo7k4" path="res://addons/orbit_camera/orbit_camera.gd" id="17_fii46"]
@@ -38,39 +34,6 @@ script = ExtResource("2_n1qbq")
 authorized_logic_executions = ExtResource("2_5182c")
 build_data = SubResource("Resource_4gigl")
 metadata/_custom_type_script = "uid://b3x3werlg62hj"
-
-[sub_resource type="Resource" id="Resource_r8t8t"]
-script = ExtResource("3_pxd4i")
-name = "Main"
-metadata/_custom_type_script = "uid://bg3typib0wbdw"
-
-[sub_resource type="Resource" id="Resource_fhmg5"]
-script = ExtResource("5_i02fo")
-name = "x"
-expression = "x+1"
-metadata/_custom_type_script = "uid://jhj821woppuc"
-
-[sub_resource type="Resource" id="Resource_n1qbq"]
-script = ExtResource("6_3mkxh")
-metadata/_custom_type_script = "uid://qjop52belxgl"
-
-[sub_resource type="Resource" id="Resource_3mjdo"]
-script = ExtResource("6_3mkxh")
-type = 2
-metadata/_custom_type_script = "uid://qjop52belxgl"
-
-[sub_resource type="Resource" id="Resource_wkaoq"]
-script = ExtResource("7_4dcc5")
-condition = "x<3"
-childs = Array[ExtResource("4_p6xvp")]([SubResource("Resource_fhmg5"), SubResource("Resource_n1qbq"), SubResource("Resource_3mjdo")])
-metadata/_custom_type_script = "uid://cioni3f13iu1e"
-
-[sub_resource type="Resource" id="Resource_pxd4i"]
-script = ExtResource("3_pxd4i")
-name = "EHEH"
-args = PackedStringArray("x")
-childs = Array[ExtResource("4_p6xvp")]([SubResource("Resource_wkaoq")])
-metadata/_custom_type_script = "uid://bg3typib0wbdw"
 
 [sub_resource type="Resource" id="Resource_g6sfq"]
 script = ExtResource("4_6j83v")
@@ -98,7 +61,6 @@ level = SubResource("Resource_5182c")
 
 [node name="CodingSpace" parent="." instance=ExtResource("1_j3nmy")]
 layout_mode = 1
-functions = Array[ExtResource("3_pxd4i")]([SubResource("Resource_r8t8t"), SubResource("Resource_pxd4i")])
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 layout_direction = 3

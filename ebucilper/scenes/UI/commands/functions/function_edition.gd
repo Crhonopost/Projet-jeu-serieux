@@ -8,11 +8,11 @@ func edit_function(function: FunctionLogicResource):
 		child.queue_free()
 	
 	if edited_function.name == "Main":
-		$FunctionName.visible = false
+		$HBoxContainer.visible = false
 		$ArgumentsEdition.visible = false
 	
 	$ScrollContainer/Code.add_child(InstructionVisualBuilder.instantiate(function))
-	$FunctionName.text = function.name
+	$HBoxContainer/FunctionName.text = function.name
 	
 	
 	call_deferred("createArgUI", 0, edited_function.args.size())
