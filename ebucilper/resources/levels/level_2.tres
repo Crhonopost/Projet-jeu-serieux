@@ -25,19 +25,21 @@ metadata/_custom_type_script = "uid://bxhd44vk88cnu"
 [sub_resource type="Resource" id="Resource_qd1vq"]
 script = ExtResource("3_f38rn")
 character_icon = ExtResource("4_f38rn")
-text = "C'est terrible ! Qu'es ce qu'on va bien pouvoir faire ? Notre glorieux batiment 16 est réduit en miettes. Tous nos TP anéantis par l'attaque de plantes sauvages"
+text = "This is terrible! What are we going to do?
+Our glorious Building 16 has been reduced to rubble. All our lab sessions destroyed by the attack of wild plants!"
 metadata/_custom_type_script = "uid://b05xctfx6o6fl"
 
 [sub_resource type="Resource" id="Resource_wi76j"]
 script = ExtResource("3_f38rn")
 character_icon = ExtResource("4_f38rn")
-text = "Le toit va s'effondrer ! Il faut le reparer !"
+text = "The roof is about to collapse — we have to fix it!"
 metadata/_custom_type_script = "uid://b05xctfx6o6fl"
 
 [sub_resource type="Resource" id="Resource_01ud5"]
 script = ExtResource("3_f38rn")
 character_icon = ExtResource("5_2gm7q")
-text = "Vous avez un Blocky 2000 ! nou sommes sauvés. On peut utiliser des boucles et des conditions pour reparer le toit!"
+text = "You’ve got a Blocky 2000 — we’re saved!
+We can use loops and conditions to repair the roof!"
 metadata/_custom_type_script = "uid://b05xctfx6o6fl"
 
 [resource]
@@ -48,8 +50,8 @@ texts = Array[ExtResource("3_f38rn")]([SubResource("Resource_qd1vq"), SubResourc
 background = ExtResource("2_2gm7q")
 to_be_done_icon = ExtResource("8_61tk6")
 completed_icon = ExtResource("3_wi76j")
-tip = "On peut placer une boucle for a l'interieur d'une autre !
-Le block IF permet de comparer des nombres (par exemples des iterateurs de boucles)"
+tip = "You can place one for loop inside another!
+The IF block allows you to compare numbers (for example, loop iterators)."
 authorized_logic_executions = ExtResource("1_u0ri6")
 optimal_steps = 221
 unlocked = true

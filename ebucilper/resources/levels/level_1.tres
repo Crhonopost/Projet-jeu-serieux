@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="LevelResource" load_steps=17 format=3 uid="uid://3fvap6xi3ku"]
+[gd_resource type="Resource" script_class="LevelResource" load_steps=15 format=3 uid="uid://3fvap6xi3ku"]
 
 [ext_resource type="Script" uid="uid://b3x3werlg62hj" path="res://scripts/levels/level_resource.gd" id="1_hndnq"]
 [ext_resource type="Resource" uid="uid://ck3xinrcsj3qi" path="res://resources/levels/instructions list/for.tres" id="1_v6d2w"]
@@ -7,9 +7,7 @@
 [ext_resource type="Script" uid="uid://bwsthiomo1lgy" path="res://scripts/levels/grid_data_resource.gd" id="3_v6d2w"]
 [ext_resource type="Script" uid="uid://b05xctfx6o6fl" path="res://scripts/levels/dialog_resource.gd" id="4_2hak1"]
 [ext_resource type="Script" uid="uid://bxhd44vk88cnu" path="res://scripts/levels/build_resource.gd" id="4_br0t4"]
-[ext_resource type="Texture2D" uid="uid://dv44gu602h3vc" path="res://Assets/Images/characters/william_puesh_sad.png" id="5_7blc3"]
-[ext_resource type="Texture2D" uid="uid://cmkbiylnyca0k" path="res://Assets/Images/characters/william_puesh.png" id="6_4u7ew"]
-[ext_resource type="Texture2D" uid="uid://bc8g7xmrne64d" path="res://Assets/Images/characters/william_puesh_happy.png" id="7_d3w8w"]
+[ext_resource type="Texture2D" uid="uid://rhck5ddagurf" path="res://Assets/Images/characters/nicolas_lutz_sad.png" id="8_4u7ew"]
 [ext_resource type="Texture2D" uid="uid://dh1fgon3wyed8" path="res://Assets/Images/levelIcons/bat36_destroyed.png" id="9_v6d2w"]
 
 [sub_resource type="Resource" id="Resource_cgn3d"]
@@ -26,20 +24,22 @@ metadata/_custom_type_script = "uid://bxhd44vk88cnu"
 
 [sub_resource type="Resource" id="Resource_v6d2w"]
 script = ExtResource("4_2hak1")
-character_icon = ExtResource("5_7blc3")
-text = "Ho non! La fac été détruite par l'attaque des plantes mutantes. Le batiment 36 va s'effondrer il faut faire quelque chose ou notre fabuleux campus triolet va disparaitre"
+character_icon = ExtResource("8_4u7ew")
+text = "Oh no! The university has been destroyed by the mutant plant attack!
+Building 36 is about to collapse — we have to do something or our fabulous Triolet campus will disappear!"
 metadata/_custom_type_script = "uid://b05xctfx6o6fl"
 
 [sub_resource type="Resource" id="Resource_br0t4"]
 script = ExtResource("4_2hak1")
-character_icon = ExtResource("6_4u7ew")
-text = "Toi la ! tu peux peut etre nous guider pour reconstruire la fac avec ton robot !"
+character_icon = ExtResource("8_4u7ew")
+text = "Hey you! Maybe you can guide us to rebuild the university with your robot!"
 metadata/_custom_type_script = "uid://b05xctfx6o6fl"
 
 [sub_resource type="Resource" id="Resource_bqjqr"]
 script = ExtResource("4_2hak1")
-character_icon = ExtResource("7_d3w8w")
-text = "Il faut reconstruitre les fondations du batiment. On peut utiliser une boucle pour ca ! Elle va permettre de repeter des actions un certain nombre de fois."
+character_icon = ExtResource("8_4u7ew")
+text = "We need to rebuild the building’s foundations. We can use a loop for that!
+A loop allows you to repeat actions a certain number of times."
 metadata/_custom_type_script = "uid://b05xctfx6o6fl"
 
 [resource]
@@ -50,7 +50,7 @@ texts = Array[ExtResource("4_2hak1")]([SubResource("Resource_v6d2w"), SubResourc
 background = ExtResource("2_4u7ew")
 to_be_done_icon = ExtResource("9_v6d2w")
 completed_icon = ExtResource("3_d3w8w")
-tip = "Utilise la boucle for pour executer des instructions un certain nombre de fois. Le \"stage iterator\" est un nombre qui represente l'étape en cours."
+tip = "Use the for loop to execute instructions multiple times. The \"stage iterator\" is a number that represents the current step."
 authorized_logic_executions = ExtResource("1_v6d2w")
 optimal_steps = 30
 build_data = SubResource("Resource_bbtr6")

@@ -22,13 +22,14 @@ metadata/_custom_type_script = "uid://bxhd44vk88cnu"
 [sub_resource type="Resource" id="Resource_a72hl"]
 script = ExtResource("3_sc4kr")
 character_icon = ExtResource("5_ur6hj")
-text = "Bienvenu dans le tutoriel pour utiliser le robot de construction Blocky2000 ! A la pointe de la technologie ce Blocky permet de construire tous types de structures."
+text = "Welcome to the tutorial for using the Blocky2000 construction robot!
+At the cutting edge of technology, this Blocky can build all kinds of structures."
 metadata/_custom_type_script = "uid://b05xctfx6o6fl"
 
 [sub_resource type="Resource" id="Resource_0crb2"]
 script = ExtResource("3_sc4kr")
 character_icon = ExtResource("5_ur6hj")
-text = "Mais pour cela il faut lui dire quoi faire grace à des blocks d'instructions."
+text = "But to do that, you need to tell it what to do using instruction blocks."
 metadata/_custom_type_script = "uid://b05xctfx6o6fl"
 
 [resource]
@@ -39,7 +40,7 @@ texts = Array[ExtResource("3_sc4kr")]([SubResource("Resource_a72hl"), SubResourc
 background = ExtResource("2_766ou")
 to_be_done_icon = ExtResource("5_ur6hj")
 completed_icon = ExtResource("5_ur6hj")
-tip = "Glisse l’instruction “placer un bloc” dans la zone de construction pour ajouter un bloc. Appuie ensuite sur le bouton construire !"
+tip = "Drag the \"place block\" instruction into the construction area to add a block. Then press the Build button!"
 authorized_logic_executions = ExtResource("1_ur6hj")
 optimal_steps = 1
 optimal_instruction_count = 1
