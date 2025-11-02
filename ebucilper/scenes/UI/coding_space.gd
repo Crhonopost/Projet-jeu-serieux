@@ -7,18 +7,23 @@ extends Control
 
 
 var selectedFunction: int = 0
-@export var functions : Array[FunctionLogicResource]
+var level: LevelResource
 
 @onready var functionEditionScene : PackedScene = load("res://scenes/UI/commands/functions/function_edition.tscn")
 
 signal launch(debug: bool)
 
-func _ready() -> void:
-	for i in range(functions.size()):
-		add_function(functions[i])
+func setLevel(lvl: LevelResource):
+	level = lvl
+	for i in range(level.functions.size()):
+		add_function(level.functions[i])
 		
+
+func _ready() -> void:
 	InstructionVisualBuilder.connect("functionCallInstantiatiated", functionCall)
-	
+	if(level != null):
+		setLevel(level)
+
 func setAuthorizedInstuctions(instructions: AuthorizedInstructions):
 	$HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/Inventory.allow_instructions(instructions)
 
@@ -27,16 +32,16 @@ func setTip(tip: String):
 
 func functionCall(node: Control):
 	node.getSpecialNode().connect("connectToFunction", func (index): connectNodeToFunction(index, node))
-	node.getSpecialNode().linkWithFunctionRes(functions[functionsNode.current_tab])
+	node.getSpecialNode().linkWithFunctionRes(level.functions[functionsNode.current_tab])
 
 func connectNodeToFunction(index: int, node: Node):
-	node.getSpecialNode().linkWithFunctionRes(functions[index])
+	node.getSpecialNode().linkWithFunctionRes(level.functions[index])
 
 func _on_button_pressed() -> void:
 	emit_signal("launch", false)
 
 func retrieveInstructions() -> Array[Instruction]:
-	return compiler.processAllInstructions(functions)
+	return compiler.processAllInstructions(level.functions)
 
 
 func _on_functions_tab_selected(tab: int) -> void:
@@ -51,8 +56,8 @@ func add_function(function: FunctionLogicResource):
 	function.connect("updateFuncName", func (name): functionsNode.set_tab_title(functionsNode.get_child_count()-1, name))
 
 func _on_add_function_pressed() -> void:
-	functions.append(FunctionLogicResource.new())
-	add_function(functions.back())
+	level.functions.append(FunctionLogicResource.new())
+	add_function(level.functions.back())
 
 
 func _on_debug_pressed() -> void:

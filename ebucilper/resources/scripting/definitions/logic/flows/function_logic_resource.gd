@@ -22,3 +22,7 @@ func deleteArg(index: int):
 func setName(newName: String):
 	name = newName
 	emit_signal('updateFuncName', newName)
+
+func buildName(n: String) -> FunctionLogicResource:
+	name = n
+	return self

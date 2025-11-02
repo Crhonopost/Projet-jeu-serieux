@@ -27,6 +27,7 @@ func _ready():
 	roundStats.connect("next_selected", _on_leave_pressed) 
 	
 	$SubViewportContainer/Menu/ModeSelector.select(gridView.mode)
+	$CodingSpace.setLevel(level)
 
 func _on_coding_space_launch(debug: bool) -> void:
 	var instructions = $CodingSpace.retrieveInstructions()

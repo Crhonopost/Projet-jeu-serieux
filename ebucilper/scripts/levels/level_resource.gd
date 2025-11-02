@@ -7,6 +7,14 @@ class_name LevelResource extends Resource
 @export var to_be_done_icon: Texture2D
 @export var completed_icon: Texture2D
 
+@export var functions: Array[FunctionLogicResource]
+
+func _init() -> void:
+	if functions.size() == 0:
+		functions = [
+			FunctionLogicResource.new().buildName("Main")
+		]
+
 
 @export_multiline var tip: String
 @export var authorized_logic_executions := AuthorizedInstructions.new()
