@@ -11,7 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://bljfh8b3i51ns" path="res://Assets/Audio/Construction/boop_1.wav" id="8_ml811"]
 [ext_resource type="AudioStream" uid="uid://4alxnjrkjhnh" path="res://Assets/Audio/Construction/boop_2.wav" id="9_0k6gf"]
 [ext_resource type="AudioStream" uid="uid://b787rus16c7bq" path="res://Assets/Audio/Construction/boop_3.wav" id="10_e4ugg"]
-[ext_resource type="Script" path="res://scenes/grid/sounds.gd" id="11_0k6gf"]
+[ext_resource type="Script" uid="uid://choo8iq1aoknw" path="res://scenes/grid/sounds.gd" id="11_0k6gf"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0k6gf"]
 streams_count = 3
@@ -39,6 +39,9 @@ metadata/_custom_type_script = "uid://cln2wnn2yo7k4"
 
 [node name="gridVisualization" type="Node3D" parent="."]
 script = ExtResource("5_n33vv")
+x_color = Color(0.88235295, 0.42745098, 0.42745098, 1)
+y_color = Color(0.42352942, 0.8784314, 0.42352942, 1)
+z_color = Color(0.42745098, 0.88235295, 0.8235294, 1)
 
 [node name="Terrain" parent="." instance=ExtResource("6_n33vv")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, -16.083221, 0)

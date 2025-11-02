@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://b05xctfx6o6fl" path="res://scripts/levels/dialog_resource.gd" id="3_3mjdo"]
 [ext_resource type="Script" uid="uid://bwsthiomo1lgy" path="res://scripts/levels/grid_data_resource.gd" id="3_36wsu"]
 [ext_resource type="Script" uid="uid://bg3typib0wbdw" path="res://resources/scripting/definitions/logic/flows/function_logic_resource.gd" id="3_pxd4i"]
-[ext_resource type="Script" path="res://scenes/grid/grid_resource.gd" id="4_6j83v"]
+[ext_resource type="Script" uid="uid://qrylnjtay82j" path="res://scenes/grid/grid_resource.gd" id="4_6j83v"]
 [ext_resource type="Script" uid="uid://cav7hgnw788c8" path="res://scenes/grid/builder.gd" id="4_7ehec"]
 [ext_resource type="Script" uid="uid://bxhd44vk88cnu" path="res://scripts/levels/build_resource.gd" id="4_fii46"]
 [ext_resource type="Script" uid="uid://bqe45dm5wyip4" path="res://resources/scripting/definitions/logic/logic_resource.gd" id="4_p6xvp"]

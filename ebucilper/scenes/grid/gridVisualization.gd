@@ -3,9 +3,13 @@ extends Node3D
 @export var cell_size: float = 1.0
 @export var grid_size: int = 10
 @export var small_axe_color: Color = Color.WHITE
-@export var line_color: Color = Color.BLACK
 @export var num_color: Color = Color.LINEN
-@export var axeletter_color: Color = Color.RED
+@export var stride: int = 5
+
+
+@export var x_color: Color = Color.RED
+@export var y_color: Color = Color.RED
+@export var z_color: Color = Color.RED
 
 
 
@@ -27,50 +31,53 @@ func _make_label3d(txt: String, color: Color,pixel_size :float = 0.0011) -> Labe
 	var L := Label3D.new()
 	L.text = txt
 	L.modulate = color
+	L.outline_modulate = Color.WHITE
+	L.outline_size = 0
 	L.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 	L.fixed_size = true
 	L.double_sided = true
 	L.pixel_size = pixel_size
 	return L
-	
+
+func instantiate_graduations(start: Vector3, direction: Vector3):
+	var p := start
+	for i in range(0, grid_size + 1):
+		if(i % stride == 0):
+			var lbl := _make_label3d(str(i), num_color)
+			lbl.position = p
+			add_child(lbl)
+		p += direction
+
 func axis_labels():
 	var size: float = float(grid_size) * cell_size
 	var start: Vector3 = Vector3(0, 0, 0)
-	var off_y := Vector3(0, 0.25 * cell_size, 0)
 	var off_x := Vector3(0.25 * cell_size, 0, 0)
-	var off_z := Vector3(0, 0.25 * cell_size, 0)
+	var off_y := Vector3(0, 0.25 * cell_size, 0)
+	var off_z := Vector3(0, 0, 0.25 * cell_size)
 
 	# axe x
 	var p_X := start + Vector3(size, 0, 0) - Vector3(-1.5,0.5,0.5)
-	var lbl_X := _make_label3d('X', axeletter_color,0.0015)
+	var lbl_X := _make_label3d('X', x_color,0.0015)
 	lbl_X.position = p_X + off_y
 	add_child(lbl_X)
-	for i in range(0, grid_size):
-		var p := start + Vector3(i*cell_size, 0, 0) - Vector3(0,1,1)
-		var lbl := _make_label3d(str(i), num_color)
-		lbl.position = p + off_y
-		add_child(lbl)
+	var start_x = start - (off_y + off_z) * 4 - off_x * 2
+	instantiate_graduations(start_x, Vector3.RIGHT * cell_size)
+	
 	# axe y
 	var p_Y := start + Vector3(0,size, 0) - Vector3(0.5,-1.5,0.5)
-	var lbl_Y := _make_label3d('Y', axeletter_color,0.0015)
+	var lbl_Y := _make_label3d('Y', y_color,0.0015)
 	lbl_Y.position = p_Y + off_x
 	add_child(lbl_Y)
-	for i in range(0, grid_size):
-		var p := start + Vector3(0, i * cell_size, 0) - Vector3(1,0,1)
-		var lbl := _make_label3d(str(i), num_color)
-		lbl.position = p + off_x
-		add_child(lbl)
+	var start_y = start - (off_x + off_z) * 4 - off_y * 2
+	instantiate_graduations(start_y, Vector3.UP * cell_size)
 
 	#axe z
 	var p_Z := start + Vector3(0,0, size) - Vector3(0.5,0.5,-1.5)
-	var lbl_Z := _make_label3d('Z', axeletter_color,0.0015)
+	var lbl_Z := _make_label3d('Z', z_color,0.0015)
 	lbl_Z.position = p_Z + off_y
 	add_child(lbl_Z)
-	for i in range(0, grid_size ):
-		var p := start + Vector3(0, 0, i * cell_size) - Vector3(1,1,0)
-		var lbl := _make_label3d(str(i), num_color)
-		lbl.position = p + off_y
-		add_child(lbl)
+	var start_z = start - (off_x + off_y) * 4 - off_z * 2
+	instantiate_graduations(start_z, Vector3.BACK * cell_size)
 
 func create_axis(start: Vector3, end: Vector3, radius: float, color: Color):
 	var axis = MeshInstance3D.new()
@@ -134,16 +141,16 @@ func draw_grid(immediate_mesh: ImmediateMesh):
 	var start = Vector3(0, 0, 0) + cellOffset
 	# Axes Z
 	var end_z = Vector3(0, 0, size + 1.0) + cellOffset
-	create_axis(start, end_z, 0.05, line_color)
-	create_cone_head(end_z, end_z - start, 0.15, 0.4, line_color)
+	create_axis(start, end_z, 0.05, z_color)
+	create_cone_head(end_z, end_z - start, 0.15, 0.4, z_color)
 	## Axe X
 	var end_x = Vector3(size + 1.0, 0, 0) + cellOffset
-	create_axis(start, end_x, 0.05, line_color)
-	create_cone_head(end_x, end_x - start, 0.15, 0.4, line_color)
+	create_axis(start, end_x, 0.05, x_color)
+	create_cone_head(end_x, end_x - start, 0.15, 0.4, x_color)
 	## Axe Y
 	var end_y = Vector3(0,size + 1.0,  0) + cellOffset
-	create_axis(start , end_y, 0.05, line_color)
-	create_cone_head(end_y, end_y - start , 0.15, 0.4, line_color)
+	create_axis(start , end_y, 0.05, y_color)
+	create_cone_head(end_y, end_y - start , 0.15, 0.4, y_color)
 	
 	
 	var axis_shader: Shader = Shader.new()
