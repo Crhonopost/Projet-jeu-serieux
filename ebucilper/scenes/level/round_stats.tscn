@@ -32,33 +32,23 @@ script = ExtResource("1_4dvvh")
 
 [node name="List" type="VBoxContainer" parent="."]
 layout_mode = 2
-size_flags_horizontal = 4
 alignment = 1
-
-[node name="LevelNameTitle" type="Label" parent="List"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Level name"
-horizontal_alignment = 1
 
 [node name="LevelName" type="Label" parent="List"]
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 3
 text = "OUIOUI"
 horizontal_alignment = 1
 
 [node name="Stars" type="HBoxContainer" parent="List"]
 layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/separation = 124
+theme_override_constants/separation = 29
 alignment = 1
 
 [node name="First" type="VBoxContainer" parent="List/Stars"]
 layout_mode = 2
-
-[node name="Title" type="Label" parent="List/Stars/First"]
-layout_mode = 2
-text = "Done"
+size_flags_horizontal = 3
 
 [node name="Star" type="TextureRect" parent="List/Stars/First"]
 layout_mode = 2
@@ -66,16 +56,15 @@ texture = ExtResource("2_3mobj")
 expand_mode = 4
 stretch_mode = 5
 
+[node name="Title" type="Label" parent="List/Stars/First"]
+layout_mode = 2
+text = "Done"
+horizontal_alignment = 1
+
 [node name="Second" type="VBoxContainer" parent="List/Stars"]
 layout_mode = 2
-
-[node name="Title" type="Label" parent="List/Stars/Second"]
-layout_mode = 2
-text = "Target cycle"
-
-[node name="Player" type="Label" parent="List/Stars/Second"]
-layout_mode = 2
-text = "Player stats"
+size_flags_horizontal = 3
+alignment = 2
 
 [node name="Star" type="TextureRect" parent="List/Stars/Second"]
 layout_mode = 2
@@ -84,16 +73,19 @@ texture = ExtResource("2_3mobj")
 expand_mode = 4
 stretch_mode = 5
 
-[node name="Third" type="VBoxContainer" parent="List/Stars"]
+[node name="Title" type="Label" parent="List/Stars/Second"]
 layout_mode = 2
+text = "Target cycle"
+horizontal_alignment = 1
 
-[node name="Title" type="Label" parent="List/Stars/Third"]
-layout_mode = 2
-text = "Target instru count"
-
-[node name="Player" type="Label" parent="List/Stars/Third"]
+[node name="Player" type="Label" parent="List/Stars/Second"]
 layout_mode = 2
 text = "Player stats"
+horizontal_alignment = 1
+
+[node name="Third" type="VBoxContainer" parent="List/Stars"]
+layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="Star" type="TextureRect" parent="List/Stars/Third"]
 layout_mode = 2
@@ -101,6 +93,16 @@ size_flags_horizontal = 3
 texture = ExtResource("2_3mobj")
 expand_mode = 4
 stretch_mode = 5
+
+[node name="Title" type="Label" parent="List/Stars/Third"]
+layout_mode = 2
+text = "Target instru count"
+horizontal_alignment = 1
+
+[node name="Player" type="Label" parent="List/Stars/Third"]
+layout_mode = 2
+text = "Player stats"
+horizontal_alignment = 1
 
 [node name="Stay" type="Button" parent="List"]
 layout_mode = 2

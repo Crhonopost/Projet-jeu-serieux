@@ -119,6 +119,7 @@ offset_right = 386.0
 grow_vertical = 0
 texture = ExtResource("3_vx6h1")
 expand_mode = 1
+stretch_mode = 6
 
 [node name="Button" type="Button" parent="."]
 visible = false
