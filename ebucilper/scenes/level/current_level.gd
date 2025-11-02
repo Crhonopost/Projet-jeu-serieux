@@ -44,8 +44,7 @@ func _on_coding_space_launch() -> void:
 	if(builder.buildingTime < level.player_steps):
 		level.player_steps = builder.buildingTime
 	
-	gridView.placeBlocs(builder.grid, false)
-	gridView.showTargetBlock(gridView.mode, true, Vector3i.ZERO)
+	_load_target()
 	
 	
 	
@@ -105,6 +104,9 @@ func _on_grid_level_complete() -> void:
 		ResourceSaver.save(level)
 	roundStats.visible = true
 	roundStats.load_level(level)
+	
+	gridView.placeBlocs(builder.grid, false)
+	gridView.showTargetBlock(gridView.mode, true, Vector3i.ZERO)
 
 
 func _on_leave_pressed() -> void:
