@@ -43,7 +43,7 @@ metadata/_custom_type_script = "uid://b05xctfx6o6fl"
 [resource]
 script = ExtResource("6_lpvmc")
 id = "lvl3"
-name = "Replanter les arbres"
+name = "Replant trees"
 texts = Array[ExtResource("7_jt5ii")]([SubResource("Resource_qd1vq"), SubResource("Resource_wi76j"), SubResource("Resource_01ud5")])
 background = ExtResource("2_slpo0")
 to_be_done_icon = ExtResource("10_5qhsn")

@@ -45,7 +45,7 @@ metadata/_custom_type_script = "uid://b05xctfx6o6fl"
 [resource]
 script = ExtResource("2_rbwim")
 id = "bat16"
-name = "Bâtiment 16"
+name = "Building 16"
 texts = Array[ExtResource("3_f38rn")]([SubResource("Resource_qd1vq"), SubResource("Resource_wi76j"), SubResource("Resource_01ud5")])
 background = ExtResource("2_2gm7q")
 to_be_done_icon = ExtResource("8_61tk6")
