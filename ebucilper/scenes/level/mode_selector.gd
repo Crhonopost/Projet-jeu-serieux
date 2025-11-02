@@ -1,18 +1,15 @@
-extends Control
+extends OptionButton
 # in inspector, set the grid_viewer_path as the node of GridViewer
 @export var grid_viewer_path: NodePath
-@onready var gv = get_node(grid_viewer_path)
-@onready var opt: OptionButton = $ModeOpt
 
 const MODE_ALL := 0
 const MODE_LAYER := 1
+signal mode_selected(id: int)
 
 func _ready():
-	opt.clear()
-	opt.add_item("All", MODE_ALL)
-	opt.add_item("Layer", MODE_LAYER)
-	opt.select(int(gv.mode))
-	opt.item_selected.connect(_on_item_selected)
+	clear()
+	add_item("All", MODE_ALL)
+	add_item("Layer", MODE_LAYER)
 
 func _on_item_selected(id:int) -> void:
-	gv.mode = id
+	mode_selected.emit(id)

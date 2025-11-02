@@ -18,13 +18,22 @@ func _ready():
 	builder.block_placed.connect(cursor_node.place_block)
 	builder.cursor_moved.connect(cursor_node.move_to)
 	cursor_node.block_placed.connect(gridView._on_block_placed)
-	cursor_node.finish_instructions.connect(gridView.placePlayerBlocs)
+	cursor_node.finish_instructions.connect(func (): 
+		if not builder.building: 
+			gridView.placePlayerBlocs()
+	)
 	
 	roundStats.connect("keep_playing_selected", func(): roundStats.visible = false)
 	roundStats.connect("next_selected", _on_leave_pressed) 
+	
+	$SubViewportContainer/Menu/ModeSelector.select(gridView.mode)
 
-func _on_coding_space_launch() -> void:
+func _on_coding_space_launch(debug: bool) -> void:
 	var instructions = $CodingSpace.retrieveInstructions()
+	
+	if(instructions.size() < level.player_instruction_count):
+		level.player_instruction_count = instructions.size()
+	
 	#gridView.clearGrid()
 	#builder.grid = gridView.currentGrid
 	gridView.clear_player()
@@ -35,15 +44,15 @@ func _on_coding_space_launch() -> void:
 	builder.resetState()
 	# wait for the cursor back to start
 	builder.load_program(instructions)
-	builder.build()
-	
-	print("building time :",builder.buildingTime)
-	print("instructions size :",instructions)
-	if(instructions.size() < level.player_instruction_count):
-		level.player_instruction_count = instructions.size()
-	if(builder.buildingTime < level.player_steps):
-		level.player_steps = builder.buildingTime
-	
+	if not debug:
+		builder.build()
+		print("building time :",builder.buildingTime)
+		print("instructions size :",instructions)
+		if(builder.buildingTime < level.player_steps):
+			level.player_steps = builder.buildingTime
+	else:
+		$SubViewportContainer/Menu/Debug.visible = true
+		
 	_load_target()
 	
 	
@@ -111,3 +120,27 @@ func _on_grid_level_complete() -> void:
 
 func _on_leave_pressed() -> void:
 	leave.emit()
+
+
+func _on_mode_selector_mode_selected(id: int) -> void:
+	gridView.mode = id
+
+
+
+func _on_next_pressed() -> void:
+	builder.next_step()
+	if(not builder.building):
+		if(builder.buildingTime < level.player_steps):
+			level.player_steps = builder.buildingTime
+		gridView.placePlayerBlocs()
+		$SubViewportContainer/Menu/Debug.visible = false
+
+
+func _on_finish_pressed() -> void:
+	var end = false
+	while(not end):
+		builder.next_step()
+		end = not builder.building
+	if(builder.buildingTime < level.player_steps):
+		level.player_steps = builder.buildingTime
+	$SubViewportContainer/Menu/Debug.visible = false

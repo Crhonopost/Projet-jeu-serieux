@@ -11,7 +11,7 @@ var selectedFunction: int = 0
 
 @onready var functionEditionScene : PackedScene = load("res://scenes/UI/commands/functions/function_edition.tscn")
 
-signal launch
+signal launch(debug: bool)
 
 func _ready() -> void:
 	for i in range(functions.size()):
@@ -33,7 +33,7 @@ func connectNodeToFunction(index: int, node: Node):
 	node.getSpecialNode().linkWithFunctionRes(functions[index])
 
 func _on_button_pressed() -> void:
-	emit_signal("launch")
+	emit_signal("launch", false)
 
 func retrieveInstructions() -> Array[Instruction]:
 	return compiler.processAllInstructions(functions)
@@ -53,3 +53,7 @@ func add_function(function: FunctionLogicResource):
 func _on_add_function_pressed() -> void:
 	functions.append(FunctionLogicResource.new())
 	add_function(functions.back())
+
+
+func _on_debug_pressed() -> void:
+	emit_signal("launch", true)

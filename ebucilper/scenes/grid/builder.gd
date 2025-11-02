@@ -14,7 +14,7 @@ var cursorOrientation: OrientationsEnum
 var cursorPosition: Vector3i
 var currentColor: ColorsEnum
 var buildingTime: int # number of executed instructions
-
+var building: bool
 
 signal cursor_moved(pos: Vector3i, orientation: OrientationsEnum)
 signal block_placed(pos: Vector3i, color: int)
@@ -42,18 +42,17 @@ func load_program(instructions: Array[Instruction]):
 	init.instructionIdx = 0
 	callStack.append(init)
 
-func next_step()-> bool:
+func next_step():
 	var instruction := instructionList[callStack.back().instructionIdx]
 	callStack.back().instructionIdx += 1
-	var result = followInstruction(instruction)
-	return result
+	building = followInstruction(instruction) && callStack.size() > 0
 
 func build() -> bool:
 	while callStack.size() > 0:
-		var ok := next_step()
-		if not ok:
+		next_step()
+		if not building:
 			return false
-		
+	building = false
 	return true
 	
 func followNoArgs(instruction: NoArgsInstruction) -> bool:
@@ -103,7 +102,7 @@ func followInstruction(instruction : Instruction) -> bool:
 func placeBlock():
 	var ok := grid.placeBlock(cursorPosition, currentColor)
 	if ok:
-		emit_signal("block_placed", cursorPosition, currentColor)
+		call_deferred("emit_signal", "block_placed", cursorPosition, currentColor)
 	else:
 		push_warning("placeBlock failed at %s" % [cursorPosition])
 	buildingTime += 1
@@ -122,7 +121,7 @@ func moveTo(position_x: LowLevelExpression, position_y: LowLevelExpression, posi
 		grid_view.move_to_start(cursorPosition, cursorOrientation)
 	else:
 		buildingTime += 1
-		emit_signal("cursor_moved", cursorPosition, cursorOrientation)
+		call_deferred("emit_signal", "cursor_moved", cursorPosition, cursorOrientation)
 
 func moveForward():
 	var vec = Vector3i(0,0,0)
@@ -136,27 +135,27 @@ func moveForward():
 		vec -= Vector3i(0,0,1)
 	cursorPosition += vec
 	buildingTime += 1
-	emit_signal("cursor_moved", cursorPosition, cursorOrientation)
+	call_deferred("emit_signal", "cursor_moved", cursorPosition, cursorOrientation)
 
 func moveUp():
 	cursorPosition.y += 1
 	buildingTime += 1
-	emit_signal("cursor_moved", cursorPosition, cursorOrientation)
+	call_deferred("emit_signal", "cursor_moved", cursorPosition, cursorOrientation)
 	
 func moveDown():
 	cursorPosition.y -= 1
 	buildingTime += 1
-	emit_signal("cursor_moved", cursorPosition, cursorOrientation)
+	call_deferred("emit_signal", "cursor_moved", cursorPosition, cursorOrientation)
 
 func rotateLeft():
 	cursorOrientation = leftOrientation[cursorOrientation]
 	buildingTime += 1
-	emit_signal("cursor_moved", cursorPosition, cursorOrientation)
+	call_deferred("emit_signal", "cursor_moved", cursorPosition, cursorOrientation)
 	
 func rotateRight():
 	cursorOrientation = rightOrientation[cursorOrientation]
 	buildingTime += 1
-	emit_signal("cursor_moved", cursorPosition, cursorOrientation)
+	call_deferred("emit_signal", "cursor_moved", cursorPosition, cursorOrientation)
 	
 func changeColor(color: int):
 	var colorString = ColorsEnum.keys()[color]
