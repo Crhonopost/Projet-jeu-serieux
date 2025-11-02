@@ -2,6 +2,7 @@ extends Control
 
 @onready var builder = $SubViewportContainer/SubViewport/Builder
 @onready var gridView = $SubViewportContainer/SubViewport/Grid
+@onready var roundStats = $RoundStats
 
 @export var dev_mode: bool = true                 # developpement mode
 
@@ -18,6 +19,9 @@ func _ready():
 	builder.cursor_moved.connect(cursor_node.move_to)
 	cursor_node.block_placed.connect(gridView._on_block_placed)
 	cursor_node.finish_instructions.connect(gridView.placePlayerBlocs)
+	
+	roundStats.connect("keep_playing_selected", func(): roundStats.visible = false)
+	roundStats.connect("next_selected", _on_leave_pressed) 
 
 func _on_coding_space_launch() -> void:
 	var instructions = $CodingSpace.retrieveInstructions()
@@ -32,6 +36,12 @@ func _on_coding_space_launch() -> void:
 	# wait for the cursor back to start
 	builder.load_program(instructions)
 	builder.build()
+	
+	if(instructions.size() < level.player_instruction_count):
+		level.player_instruction_count = instructions.size()
+	if(builder.buildingTime < level.player_steps):
+		level.player_steps = builder.buildingTime
+	
 	gridView.placeBlocs(builder.grid, false)
 	gridView.showTargetBlock(gridView.mode, true, Vector3i.ZERO)
 	
@@ -89,7 +99,10 @@ func _on_sub_viewport_container_mouse_exited() -> void:
 
 func _on_grid_level_complete() -> void:
 	level.done = true
-	_on_leave_pressed()
+	if OS.has_feature("build"):
+		ResourceSaver.save(level)
+	roundStats.visible = true
+	roundStats.load_level(level)
 
 
 func _on_leave_pressed() -> void:

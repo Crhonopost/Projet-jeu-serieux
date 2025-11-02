@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="LevelResource" load_steps=12 format=3 uid="uid://coly7ndvbxflw"]
+[gd_resource type="Resource" script_class="LevelResource" load_steps=12 format=3 uid="uid://s6ugy2ere6yd"]
 
 [ext_resource type="Resource" uid="uid://dapnwbithnu61" path="res://resources/levels/instructions list/only_block.tres" id="1_ur6hj"]
 [ext_resource type="Script" uid="uid://b3x3werlg62hj" path="res://scripts/levels/level_resource.gd" id="2_0crb2"]
@@ -38,9 +38,7 @@ background = ExtResource("2_766ou")
 to_be_done_icon = ExtResource("6_58q5j")
 tip = "Glisse l’instruction “placer un bloc” dans la zone de construction pour ajouter un bloc. Appuie ensuite sur le bouton construire !"
 authorized_logic_executions = ExtResource("1_ur6hj")
-target_steps = 10
 optimal_steps = 5
-steps = 5
 unlocked = true
 build_data = SubResource("Resource_fd41c")
 metadata/_custom_type_script = "uid://b3x3werlg62hj"

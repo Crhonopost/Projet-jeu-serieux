@@ -6,9 +6,10 @@
 
 [node name="InstructionExe" type="PanelContainer"]
 texture_filter = 1
-offset_left = 45.0
-offset_right = 45.0
-offset_bottom = 50.0
+custom_minimum_size = Vector2(600, 0)
+offset_right = 109.0
+offset_bottom = 64.0
+size_flags_horizontal = 0
 mouse_filter = 1
 theme_override_styles/panel = ExtResource("1_810cs")
 script = ExtResource("1_dfbn3")
@@ -22,6 +23,7 @@ text = "Type"
 
 [node name="Special" type="HBoxContainer" parent="InstructionExe"]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="CenterContainer" type="CenterContainer" parent="InstructionExe"]
 custom_minimum_size = Vector2(32, 32)

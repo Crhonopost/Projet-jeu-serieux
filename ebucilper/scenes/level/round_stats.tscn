@@ -1,0 +1,115 @@
+[gd_scene load_steps=5 format=3 uid="uid://cn53e8doiccn7"]
+
+[ext_resource type="Script" uid="uid://bst0785ska6e7" path="res://scenes/level/round_stats.gd" id="1_4dvvh"]
+[ext_resource type="Texture2D" uid="uid://ct324x7e8h7pb" path="res://Assets/Images/code/Menu.png" id="1_d4xxb"]
+[ext_resource type="Texture2D" uid="uid://c82bsjmp0ng3e" path="res://Assets/Images/star.png" id="2_3mobj"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_garun"]
+texture = ExtResource("1_d4xxb")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+region_rect = Rect2(0, 0, 64, 64)
+
+[node name="RoundStats" type="PanelContainer"]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -265.0
+offset_top = -182.5
+offset_right = 265.0
+offset_bottom = 182.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_garun")
+script = ExtResource("1_4dvvh")
+
+[node name="List" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="LevelNameTitle" type="Label" parent="List"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Level name"
+horizontal_alignment = 1
+
+[node name="LevelName" type="Label" parent="List"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "OUIOUI"
+horizontal_alignment = 1
+
+[node name="Stars" type="HBoxContainer" parent="List"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 124
+alignment = 1
+
+[node name="First" type="VBoxContainer" parent="List/Stars"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="List/Stars/First"]
+layout_mode = 2
+text = "Done"
+
+[node name="Star" type="TextureRect" parent="List/Stars/First"]
+layout_mode = 2
+texture = ExtResource("2_3mobj")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="StepCount" type="VBoxContainer" parent="List/Stars"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="List/Stars/StepCount"]
+layout_mode = 2
+text = "Target cycle"
+
+[node name="Player" type="Label" parent="List/Stars/StepCount"]
+layout_mode = 2
+text = "Player stats"
+
+[node name="Star" type="TextureRect" parent="List/Stars/StepCount"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_3mobj")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="InstructionCount" type="VBoxContainer" parent="List/Stars"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="List/Stars/InstructionCount"]
+layout_mode = 2
+text = "Target instru count"
+
+[node name="Player" type="Label" parent="List/Stars/InstructionCount"]
+layout_mode = 2
+text = "Player stats"
+
+[node name="Star" type="TextureRect" parent="List/Stars/InstructionCount"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_3mobj")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Stay" type="Button" parent="List"]
+layout_mode = 2
+text = "Keep playing"
+
+[node name="Continue" type="Button" parent="List"]
+layout_mode = 2
+text = "Continue
+"
+
+[connection signal="pressed" from="List/Stay" to="." method="_on_stay_pressed"]
+[connection signal="pressed" from="List/Continue" to="." method="_on_continue_pressed"]

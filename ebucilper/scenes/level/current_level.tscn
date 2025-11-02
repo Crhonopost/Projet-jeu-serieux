@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://b267yic7ui0nk"]
+[gd_scene load_steps=35 format=3 uid="uid://b267yic7ui0nk"]
 
 [ext_resource type="Script" uid="uid://b7c8bsgviwne6" path="res://scenes/level/current_level.gd" id="1_1n4kf"]
 [ext_resource type="PackedScene" uid="uid://c2i2xc75qwiwp" path="res://scenes/UI/coding_space.tscn" id="1_j3nmy"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://cfxk6jpnwr82m" path="res://scenes/level/cursor.tscn" id="17_5182c"]
 [ext_resource type="Script" uid="uid://cln2wnn2yo7k4" path="res://addons/orbit_camera/orbit_camera.gd" id="17_fii46"]
 [ext_resource type="PackedScene" uid="uid://bur7mbofyvfay" path="res://scenes/grid/terrain_2.tscn" id="18_oa8ak"]
+[ext_resource type="PackedScene" uid="uid://cn53e8doiccn7" path="res://scenes/level/round_stats.tscn" id="21_oa8ak"]
 
 [sub_resource type="Resource" id="Resource_oa8ak"]
 script = ExtResource("3_36wsu")
@@ -169,7 +170,12 @@ offset_bottom = 40.0
 layout_mode = 2
 text = "Go back"
 
-[node name="Label3D" type="Label3D" parent="."]
+[node name="RoundStats" parent="." instance=ExtResource("21_oa8ak")]
+visible = false
+layout_mode = 1
+offset_top = -217.5
+offset_bottom = 217.5
+completed_color = Color(0.9843137, 0.85882354, 0.3882353, 1)
 
 [connection signal="launch" from="CodingSpace" to="." method="_on_coding_space_launch"]
 [connection signal="mouse_entered" from="SubViewportContainer" to="." method="_on_sub_viewport_container_mouse_entered"]

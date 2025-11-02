@@ -6,7 +6,8 @@
 [ext_resource type="StyleBox" uid="uid://dkd7qwh2g1tn2" path="res://resources/ui/panels/instruction_list.tres" id="4_rag2b"]
 
 [node name="InstructionList" type="VBoxContainer"]
-offset_right = 89.0
+custom_minimum_size = Vector2(600, 0)
+offset_right = 600.0
 offset_bottom = 91.0
 mouse_filter = 0
 theme_override_constants/separation = 0
@@ -54,6 +55,7 @@ text = ")"
 
 [node name="PanelInstructions" type="PanelContainer" parent="."]
 texture_filter = 1
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 mouse_filter = 1
 theme_override_styles/panel = ExtResource("4_rag2b")

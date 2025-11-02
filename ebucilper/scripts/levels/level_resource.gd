@@ -12,9 +12,11 @@ class_name LevelResource extends Resource
 @export var authorized_logic_executions := AuthorizedInstructions.new()
 
 
-@export var target_steps: int
 @export var optimal_steps: int
-@export var steps: int # ?
+@export var player_steps: int = 999999
+@export var optimal_instruction_count: int
+@export var player_instruction_count: int = 999999
+
 @export var unlocked : bool
 @export var done: bool
 

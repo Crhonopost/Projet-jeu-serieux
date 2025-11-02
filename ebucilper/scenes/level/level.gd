@@ -34,11 +34,10 @@ func update_level()->void:
 			$LevelContainer/Icon.texture = level_data.to_be_done_icon
 	
 	if level_data.done:
-		if level_data.steps <= level_data.target_steps:
-			setGolderStar($LevelContainer/Stars/Star1)
-			
-		if level_data.steps < level_data.target_steps:
+		setGolderStar($LevelContainer/Stars/Star1)
+		
+		if level_data.player_steps < level_data.optimal_steps:
 			setGolderStar($LevelContainer/Stars/Star2)
 			
-		if level_data.steps <= level_data.optimal_steps:
+		if level_data.player_instruction_count <= level_data.optimal_instruction_count:
 			setGolderStar($LevelContainer/Stars/Star3)

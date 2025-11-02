@@ -11,7 +11,7 @@
 [ext_resource type="Resource" uid="uid://nkmc1xqx5b86" path="res://resources/levels/tutorial3.tres" id="5_r5cxa"]
 [ext_resource type="Resource" uid="uid://n7qalt033jf5" path="res://resources/levels/level_2.tres" id="6_jorwd"]
 [ext_resource type="Resource" uid="uid://kdmddxa77cml" path="res://resources/levels/level_3.tres" id="6_n143m"]
-[ext_resource type="Resource" uid="uid://coly7ndvbxflw" path="res://resources/levels/tutorial.tres" id="7_i1d74"]
+[ext_resource type="Resource" uid="uid://s6ugy2ere6yd" path="res://resources/levels/tutorial.tres" id="7_i1d74"]
 [ext_resource type="Resource" uid="uid://dko4d283p37fp" path="res://resources/levels/level_4.tres" id="7_m7tf2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ivcrt"]
@@ -105,3 +105,7 @@ size_flags_vertical = 3
 [node name="Level" parent="TextureRect/LevelsList/ScrollContainer/LevelList" instance=ExtResource("1_fmaxo")]
 layout_mode = 2
 level_data = ExtResource("5_a6vwr")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
