@@ -8,7 +8,7 @@
 [ext_resource type="Resource" uid="uid://c5ah077ap0lkd" path="res://resources/levels/sandbox.tres" id="3_r5cxa"]
 [ext_resource type="FontFile" uid="uid://bewn88o0me7h7" path="res://Assets/Fonts/Coolvetica Rg.otf" id="3_rg8tu"]
 [ext_resource type="Resource" uid="uid://v1m5rnaweisd" path="res://resources/levels/tutorial2.tres" id="4_bxrww"]
-[ext_resource type="Resource" uid="uid://3fvap6xi3ku" path="res://resources/levels/level_1.tres" id="5_a6vwr"]
+[ext_resource type="Resource" uid="uid://bbmq8eos5w6ps" path="res://resources/levels/level_1.tres" id="5_a6vwr"]
 [ext_resource type="Resource" uid="uid://nkmc1xqx5b86" path="res://resources/levels/tutorial3.tres" id="5_r5cxa"]
 [ext_resource type="Resource" uid="uid://n7qalt033jf5" path="res://resources/levels/level_2.tres" id="6_jorwd"]
 [ext_resource type="Resource" uid="uid://kdmddxa77cml" path="res://resources/levels/level_3.tres" id="6_n143m"]
@@ -55,7 +55,7 @@ size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.8784314, 0.3137255, 0.42745098, 1)
 theme_override_fonts/font = ExtResource("2_mm5an")
 theme_override_font_sizes/font_size = 110
-text = "Université de Montpellier"
+text = "University of Montpellier"
 autowrap_mode = 2
 
 [node name="Label2" type="Label" parent="TextureRect"]
@@ -71,7 +71,7 @@ size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.9607843, 0.8745098, 0.88235295, 1)
 theme_override_fonts/font = ExtResource("3_rg8tu")
 theme_override_font_sizes/font_size = 48
-text = "Apprends à programmer en aidant à reconstruire l'université."
+text = "Learn to program by helping rebuild the university."
 autowrap_mode = 2
 
 [node name="LevelsList" type="Panel" parent="TextureRect"]
@@ -116,3 +116,4 @@ offset_bottom = 40.0
 stream = ExtResource("15_wfgqh")
 volume_db = -23.214
 autoplay = true
+parameters/looping = true
