@@ -56,14 +56,19 @@ func _on_level_selected(level: LevelResource) -> void:
 	if(game_instance):
 		game_instance.queue_free()
 	
-	game_instance = levelIntroductionScene.instantiate()
 	ActiveLevel.level = level
+	if(level.id=="sandbox"):
+		_on_introduction_finished()
+		return
+	
+	game_instance = levelIntroductionScene.instantiate()
 	game_instance.current_level = level
 	add_child(game_instance)
 	game_instance.connect("launch_level", _on_introduction_finished)
 
 func _on_introduction_finished():
-	game_instance.queue_free()
+	if(game_instance):
+		game_instance.queue_free()
 	
 	game_instance = levelScene.instantiate()
 	game_instance.connect("leave", go_home)
