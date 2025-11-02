@@ -116,3 +116,4 @@ offset_bottom = 40.0
 stream = ExtResource("15_wfgqh")
 volume_db = -23.214
 autoplay = true
+parameters/looping = true
