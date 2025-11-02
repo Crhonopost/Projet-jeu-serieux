@@ -53,7 +53,7 @@ func build() -> bool:
 		var ok := next_step()
 		if not ok:
 			return false
-		buildingTime += 1
+		
 	return true
 	
 func followNoArgs(instruction: NoArgsInstruction) -> bool:
@@ -74,7 +74,6 @@ func followNoArgs(instruction: NoArgsInstruction) -> bool:
 		NoArgInstructionType.EXIT_FUNCTION:
 			callStack.pop_back()
 	
-	buildingTime += 1
 	return instructionResult
 
 func followInstruction(instruction : Instruction) -> bool:
@@ -83,7 +82,6 @@ func followInstruction(instruction : Instruction) -> bool:
 		instructionResult = followNoArgs(instruction)
 	elif instruction is ChangeColorInstruction:
 		changeColor(instruction.color)
-		buildingTime += 1
 	elif instruction is JumpToIfInstruction:
 		jumpIf(instruction.toIdx, instruction.condition, instruction.evaluateNot)
 	elif instruction is JumpToInstruction:
@@ -108,6 +106,7 @@ func placeBlock():
 		emit_signal("block_placed", cursorPosition, currentColor)
 	else:
 		push_warning("placeBlock failed at %s" % [cursorPosition])
+	buildingTime += 1
 	return ok
 
 
@@ -121,6 +120,7 @@ func moveTo(position_x: LowLevelExpression, position_y: LowLevelExpression, posi
 	if grid_view and grid_view.has_method("move_to_start"):
 		grid_view.move_to_start(cursorPosition, cursorOrientation)
 	else:
+		buildingTime += 1
 		emit_signal("cursor_moved", cursorPosition, cursorOrientation)
 
 func moveForward():
@@ -134,26 +134,32 @@ func moveForward():
 	elif(cursorOrientation == OrientationsEnum.Z_NEGATIVE):
 		vec -= Vector3i(0,0,1)
 	cursorPosition += vec
+	buildingTime += 1
 	emit_signal("cursor_moved", cursorPosition, cursorOrientation)
 
 func moveUp():
 	cursorPosition.y += 1
+	buildingTime += 1
 	emit_signal("cursor_moved", cursorPosition, cursorOrientation)
 	
 func moveDown():
 	cursorPosition.y -= 1
+	buildingTime += 1
 	emit_signal("cursor_moved", cursorPosition, cursorOrientation)
 
 func rotateLeft():
 	cursorOrientation = leftOrientation[cursorOrientation]
+	buildingTime += 1
 	emit_signal("cursor_moved", cursorPosition, cursorOrientation)
 	
 func rotateRight():
 	cursorOrientation = rightOrientation[cursorOrientation]
+	buildingTime += 1
 	emit_signal("cursor_moved", cursorPosition, cursorOrientation)
 	
 func changeColor(color: int):
 	var colorString = ColorsEnum.keys()[color]
+	buildingTime += 1
 	currentColor = ColorsEnum[colorString]
 
 func jump(idx: int):

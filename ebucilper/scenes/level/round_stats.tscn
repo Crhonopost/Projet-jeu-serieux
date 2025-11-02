@@ -66,36 +66,36 @@ texture = ExtResource("2_3mobj")
 expand_mode = 4
 stretch_mode = 5
 
-[node name="StepCount" type="VBoxContainer" parent="List/Stars"]
+[node name="Second" type="VBoxContainer" parent="List/Stars"]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="List/Stars/StepCount"]
+[node name="Title" type="Label" parent="List/Stars/Second"]
 layout_mode = 2
 text = "Target cycle"
 
-[node name="Player" type="Label" parent="List/Stars/StepCount"]
+[node name="Player" type="Label" parent="List/Stars/Second"]
 layout_mode = 2
 text = "Player stats"
 
-[node name="Star" type="TextureRect" parent="List/Stars/StepCount"]
+[node name="Star" type="TextureRect" parent="List/Stars/Second"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("2_3mobj")
 expand_mode = 4
 stretch_mode = 5
 
-[node name="InstructionCount" type="VBoxContainer" parent="List/Stars"]
+[node name="Third" type="VBoxContainer" parent="List/Stars"]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="List/Stars/InstructionCount"]
+[node name="Title" type="Label" parent="List/Stars/Third"]
 layout_mode = 2
 text = "Target instru count"
 
-[node name="Player" type="Label" parent="List/Stars/InstructionCount"]
+[node name="Player" type="Label" parent="List/Stars/Third"]
 layout_mode = 2
 text = "Player stats"
 
-[node name="Star" type="TextureRect" parent="List/Stars/InstructionCount"]
+[node name="Star" type="TextureRect" parent="List/Stars/Third"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("2_3mobj")
