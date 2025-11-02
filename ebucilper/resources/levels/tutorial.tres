@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="LevelResource" load_steps=12 format=3 uid="uid://c1cbyg4vhlcb4"]
 
-[ext_resource type="Resource" uid="uid://dapnwbithnu61" path="res://resources/levels/instructions list/only_block.tres" id="1_ur6hj"]
+[ext_resource type="Resource" uid="uid://dexj7eqnqc313" path="res://resources/levels/instructions list/all_instructions.tres" id="1_ur6hj"]
 [ext_resource type="Script" uid="uid://b3x3werlg62hj" path="res://scripts/levels/level_resource.gd" id="2_0crb2"]
 [ext_resource type="Texture2D" uid="uid://8jssbf2d57h" path="res://Assets/Images/backgrounds/background_tuto.png" id="2_766ou"]
 [ext_resource type="Script" uid="uid://b05xctfx6o6fl" path="res://scripts/levels/dialog_resource.gd" id="3_sc4kr"]
 [ext_resource type="Script" uid="uid://bwsthiomo1lgy" path="res://scripts/levels/grid_data_resource.gd" id="3_ur6hj"]
 [ext_resource type="Script" uid="uid://bxhd44vk88cnu" path="res://scripts/levels/build_resource.gd" id="4_58q5j"]
-[ext_resource type="Texture2D" uid="uid://bwmx6ppsei3wl" path="res://Assets/Images/levelIcons/tuto_destroyed.png" id="6_58q5j"]
+[ext_resource type="Texture2D" uid="uid://b20lgfmyudpij" path="res://Assets/Images/characters/engineer.png" id="5_ur6hj"]
 
 [sub_resource type="Resource" id="Resource_ur6hj"]
 script = ExtResource("3_ur6hj")
@@ -21,12 +21,14 @@ metadata/_custom_type_script = "uid://bxhd44vk88cnu"
 
 [sub_resource type="Resource" id="Resource_a72hl"]
 script = ExtResource("3_sc4kr")
-text = "Bienvenu dans le tutoriel pour utiliser le robot de consttruction Blocky2000 !"
+character_icon = ExtResource("5_ur6hj")
+text = "Bienvenu dans le tutoriel pour utiliser le robot de construction Blocky2000 ! A la pointe de la technologie ce Blocky permet de construire tous types de structures."
 metadata/_custom_type_script = "uid://b05xctfx6o6fl"
 
 [sub_resource type="Resource" id="Resource_0crb2"]
 script = ExtResource("3_sc4kr")
-text = "Vous allez aprendre les rudiments de la construction."
+character_icon = ExtResource("5_ur6hj")
+text = "Mais pour cela il faut lui dire quoi faire grace à des blocks d'instructions."
 metadata/_custom_type_script = "uid://b05xctfx6o6fl"
 
 [resource]
@@ -35,7 +37,8 @@ id = "tutorial"
 name = "Tutorial 1"
 texts = Array[ExtResource("3_sc4kr")]([SubResource("Resource_a72hl"), SubResource("Resource_0crb2")])
 background = ExtResource("2_766ou")
-to_be_done_icon = ExtResource("6_58q5j")
+to_be_done_icon = ExtResource("5_ur6hj")
+completed_icon = ExtResource("5_ur6hj")
 tip = "Glisse l’instruction “placer un bloc” dans la zone de construction pour ajouter un bloc. Appuie ensuite sur le bouton construire !"
 authorized_logic_executions = ExtResource("1_ur6hj")
 optimal_steps = 1
