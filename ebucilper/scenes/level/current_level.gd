@@ -37,6 +37,8 @@ func _on_coding_space_launch() -> void:
 	builder.load_program(instructions)
 	builder.build()
 	
+	print("building time :",builder.buildingTime)
+	print("instructions size :",instructions)
 	if(instructions.size() < level.player_instruction_count):
 		level.player_instruction_count = instructions.size()
 	if(builder.buildingTime < level.player_steps):
